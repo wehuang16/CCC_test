@@ -1,0 +1,289 @@
+within weiping_CCC_test.Examples;
+model HP_TES_water_test
+  package MediumAir = Buildings.Media.Air;
+  package MediumWater = Buildings.Media.Water;
+  CCC.Fluid.HeatPumps.BaseClasses.CCC_HP_wTSup_ctr_withPowerData cCC_HP_wTSup_ctr_withPowerData(
+    redeclare package MediumAir = MediumAir,
+    redeclare package MediumWat = MediumWater,
+    datTabHea=CCC.Fluid.HeatPumps.Data.LG_DATA_Heating(),
+    datTabCoo=CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling(),
+    redeclare parameter
+      IBPSA.Fluid.HeatPumps.ModularReversible.Controls.Safety.Data.Wuellhorst2021
+      safCtrParEurNor)
+    annotation (Placement(transformation(extent={{-30,-68},{-10,-52}})));
+  Buildings.Fluid.Storage.StratifiedEnhancedInternalHex tan(
+    redeclare package Medium = MediumWater,
+    m_flow_nominal=0.126,
+    VTan=0.3,
+    hTan=1.2,
+    dIns=0.050,
+    nSeg=5,
+    redeclare package MediumHex = MediumWater,
+    hHex_a=1,
+    hHex_b=0.2,
+    Q_flow_nominal=10000,
+    TTan_nominal=313.15,
+    THex_nominal=328.15,
+    mHex_flow_nominal=0.7)
+                annotation (Placement(transformation(
+        extent={{10,-9},{-10,9}},
+        rotation=0,
+        origin={-6,39})));
+  CCC.Fluid.HeatPumps.BaseClasses.LG_HP_mFlowContr lG_HP_mFlowContr
+    annotation (Placement(transformation(extent={{58,-88},{36,-66}})));
+  Modelica.Blocks.Interfaces.RealInput TSupSet annotation (Placement(
+        transformation(extent={{126,-82},{100,-56}}),   iconTransformation(
+          extent={{-11,-11},{11,11}},
+        rotation=180,
+        origin={111,-63})));
+  Modelica.Blocks.Interfaces.RealInput Tdcw annotation (Placement(
+        transformation(extent={{-208,18},{-180,46}}), iconTransformation(extent={{-202,36},
+            {-180,58}})));
+  Modelica.Fluid.Sources.MassFlowSource_T boundary(
+    redeclare package Medium = MediumWater,
+    use_m_flow_in=true,
+    use_T_in=true,
+    nPorts=1) annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
+  Modelica.Blocks.Interfaces.RealInput mdot_dcw annotation (Placement(
+        transformation(extent={{-208,-10},{-180,18}}), iconTransformation(
+          extent={{-202,-4},{-180,18}})));
+  Modelica.Blocks.Interfaces.BooleanInput HP_On annotation (Placement(
+        transformation(extent={{126,-102},{100,-76}}), iconTransformation(
+          extent={{-11,-11},{11,11}},
+        rotation=180,
+        origin={111,-93})));
+  Modelica.Blocks.Interfaces.BooleanInput HP_mode annotation (Placement(
+        transformation(extent={{126,-42},{100,-16}}), iconTransformation(extent={{-11,-11},
+            {11,11}},
+        rotation=180,
+        origin={111,-5})));
+  Modelica.Blocks.Interfaces.RealOutput T_dhw_out annotation (Placement(
+        transformation(extent={{100,14},{128,42}}), iconTransformation(extent={{100,30},
+            {122,52}})));
+  Modelica.Fluid.Sources.Boundary_pT boundary1(
+    redeclare package Medium = MediumWater,    use_T_in=false, nPorts=1)
+    annotation (Placement(transformation(extent={{104,64},{84,82}})));
+  Modelica.Fluid.Sensors.TemperatureTwoPort temperature(redeclare package
+      Medium = MediumWater)
+    annotation (Placement(transformation(extent={{28,30},{48,50}})));
+  Modelica.Blocks.Interfaces.RealInput T_OA annotation (Placement(
+        transformation(extent={{126,-62},{100,-36}}), iconTransformation(extent={{-11,-11},
+            {11,11}},
+        rotation=180,
+        origin={111,-35})));
+  Buildings.HeatTransfer.Sources.PrescribedTemperature TBCSid1
+    "Boundary condition for tank" annotation (Placement(transformation(extent={{-58,84},
+            {-46,96}})));
+  Buildings.HeatTransfer.Sources.PrescribedTemperature TBCSid2
+    "Boundary condition for tank" annotation (Placement(transformation(extent={{-64,68},
+            {-52,80}})));
+  Buildings.HeatTransfer.Sources.PrescribedTemperature TBCSid3
+    "Boundary condition for tank" annotation (Placement(transformation(extent={{-68,50},
+            {-56,62}})));
+  Modelica.Blocks.Interfaces.RealInput T_closet annotation (Placement(
+        transformation(extent={{-208,46},{-180,74}}), iconTransformation(extent={{-202,70},
+            {-180,92}})));
+  Modelica.Blocks.Sources.Constant const2(k=-273.15)
+    annotation (Placement(transformation(extent={{-94,-52},{-74,-32}})));
+  Modelica.Blocks.Math.Add add
+    annotation (Placement(transformation(extent={{-66,-86},{-46,-66}})));
+  Modelica.Fluid.Sensors.TemperatureTwoPort temperature1(redeclare package
+      Medium = MediumWater)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={32,12})));
+  Modelica.Fluid.Sources.Boundary_pT boundary2(
+    redeclare package Medium = MediumWater,
+    use_T_in=false,
+    nPorts=1)
+    annotation (Placement(transformation(extent={{90,4},{70,22}})));
+  Modelica.Fluid.Sources.MassFlowSource_T boundary3(
+    redeclare package Medium = MediumWater,
+    use_m_flow_in=true,
+    use_T_in=true,
+    nPorts=1) annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        rotation=180,
+        origin={16,-18})));
+  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo1
+    annotation (Placement(transformation(extent={{-118,-24},{-98,-4}})));
+  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo2
+    annotation (Placement(transformation(extent={{-118,-42},{-98,-22}})));
+  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo3
+    annotation (Placement(transformation(extent={{-118,-60},{-98,-40}})));
+  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo4
+    annotation (Placement(transformation(extent={{-118,-82},{-98,-62}})));
+  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo5
+    annotation (Placement(transformation(extent={{-116,-106},{-96,-86}})));
+  Modelica.Blocks.Interfaces.BooleanInput Resistance_On annotation (Placement(
+        transformation(
+        extent={{13,-13},{-13,13}},
+        rotation=180,
+        origin={-193,-123}), iconTransformation(
+        extent={{-11,-11},{11,11}},
+        rotation=0,
+        origin={-191,-127})));
+  Modelica.Blocks.Interfaces.RealInput ResistanceThermalCapacity annotation (
+      Placement(transformation(extent={{-208,-58},{-180,-30}}),
+        iconTransformation(extent={{-202,-86},{-180,-64}})));
+  Modelica.Blocks.Math.Division division
+    annotation (Placement(transformation(extent={{-152,-60},{-132,-40}})));
+  Modelica.Blocks.Sources.Constant const(k=5)
+    annotation (Placement(transformation(extent={{-160,-96},{-140,-76}})));
+  Modelica.Blocks.Logical.Switch switch1
+    annotation (Placement(transformation(extent={{-164,-132},{-144,-112}})));
+  Modelica.Blocks.Sources.Constant const1(k=0)
+    annotation (Placement(transformation(extent={{-180,-160},{-160,-140}})));
+  Modelica.Blocks.Interfaces.RealOutput P_resistance annotation (Placement(
+        transformation(extent={{100,-148},{128,-120}}), iconTransformation(
+          extent={{100,-142},{122,-120}})));
+  Modelica.Blocks.Interfaces.RealOutput QCon_flow_HP(final unit="W", final
+      displayUnit="W")
+    "Heat flow rate from the refrigerant to the condenser medium" annotation (
+      Placement(transformation(
+        extent={{-15,-15},{15,15}},
+        rotation=270,
+        origin={-97,-175}), iconTransformation(
+        extent={{-15,-15},{15,15}},
+        rotation=270,
+        origin={-97,-175})));
+  Modelica.Blocks.Interfaces.RealOutput QEva_flow_HP(final unit="W", final
+      displayUnit="W")
+    "Heat flow rate from the evaporator medium to the refrigerant" annotation (
+      Placement(transformation(
+        extent={{16,-16},{-16,16}},
+        rotation=90,
+        origin={-34,-176}), iconTransformation(
+        extent={{15,-15},{-15,15}},
+        rotation=90,
+        origin={-47,-175})));
+  Modelica.Blocks.Interfaces.RealOutput PEle_HP(final unit="W", final
+      displayUnit="W")
+    "Routing block that picks the component for electric power consumption"
+    annotation (Placement(transformation(
+        extent={{-16,-16},{16,16}},
+        rotation=270,
+        origin={12,-176}), iconTransformation(
+        extent={{-14,-14},{14,14}},
+        rotation=270,
+        origin={-2,-174})));
+  Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor[5]
+    annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=90,
+        origin={20,74})));
+  Modelica.Blocks.Interfaces.RealOutput T_tan_temp[5] annotation (Placement(
+        transformation(
+        extent={{-14,-14},{14,14}},
+        rotation=90,
+        origin={20,114}), iconTransformation(
+        extent={{-11,-11},{11,11}},
+        rotation=90,
+        origin={-41,111})));
+equation
+  connect(boundary.ports[1], tan.port_b) annotation (Line(points={{-60,30},{-24,
+          30},{-24,39},{-16,39}}, color={0,127,255}));
+  connect(boundary.T_in, Tdcw) annotation (Line(points={{-82,34},{-94,34},{-94,
+          32},{-194,32}}, color={0,0,127}));
+  connect(boundary.m_flow_in, mdot_dcw)
+    annotation (Line(points={{-80,38},{-80,4},{-194,4}}, color={0,0,127}));
+  connect(lG_HP_mFlowContr.IO, HP_On) annotation (Line(points={{60.2,-83.6},{
+          60.2,-85.3},{113,-85.3},{113,-89}}, color={255,0,255}));
+  connect(HP_On, cCC_HP_wTSup_ctr_withPowerData.IO) annotation (Line(points={{
+          113,-89},{68,-89},{68,-58},{-2,-58},{-2,-74},{-36,-74},{-36,-62.4},{-31.2,
+          -62.4}}, color={255,0,255}));
+  connect(HP_mode, cCC_HP_wTSup_ctr_withPowerData.Mode) annotation (Line(points=
+         {{113,-29},{12,-29},{12,-60},{-8.8,-60}}, color={255,0,255}));
+  connect(tan.port_a, temperature.port_a) annotation (Line(points={{4,39},{16,
+          39},{16,40},{28,40}}, color={0,127,255}));
+  connect(temperature.port_b, boundary1.ports[1]) annotation (Line(points={{48,
+          40},{78,40},{78,73},{84,73}}, color={0,127,255}));
+  connect(temperature.T, T_dhw_out)
+    annotation (Line(points={{38,51},{38,28},{114,28}}, color={0,0,127}));
+  connect(cCC_HP_wTSup_ctr_withPowerData.TOutAir, T_OA) annotation (Line(points=
+         {{-8.7,-65.3},{14,-65.3},{14,-52},{94,-52},{94,-49},{113,-49}}, color=
+          {0,0,127}));
+  connect(TSupSet, cCC_HP_wTSup_ctr_withPowerData.TSupSet) annotation (Line(
+        points={{113,-69},{66,-69},{66,-60},{16,-60},{16,-76},{-38,-76},{-38,
+          -65.9},{-31.1,-65.9}}, color={0,0,127}));
+  connect(TBCSid1.port, tan.heaPorTop)
+    annotation (Line(points={{-46,90},{-8,90},{-8,45.66}}, color={191,0,0}));
+  connect(TBCSid2.port, tan.heaPorSid) annotation (Line(points={{-52,74},{-26,
+          74},{-26,39},{-11.6,39}}, color={191,0,0}));
+  connect(TBCSid3.port, tan.heaPorBot) annotation (Line(points={{-56,56},{-48,
+          56},{-48,26},{-20,26},{-20,24},{-8,24},{-8,32.34}}, color={191,0,0}));
+  connect(T_closet, TBCSid1.T) annotation (Line(points={{-194,60},{-74,60},{-74,
+          90},{-59.2,90}}, color={0,0,127}));
+  connect(TBCSid2.T, TBCSid1.T) annotation (Line(points={{-65.2,74},{-70,74},{
+          -70,66},{-74,66},{-74,90},{-59.2,90}}, color={0,0,127}));
+  connect(TBCSid3.T, TBCSid1.T) annotation (Line(points={{-69.2,56},{-72,56},{
+          -72,62},{-76,62},{-76,60},{-74,60},{-74,90},{-59.2,90}}, color={0,0,
+          127}));
+  connect(const2.y, add.u1) annotation (Line(points={{-73,-42},{-68,-42},{-68,
+          -60},{-76,-60},{-76,-70},{-68,-70}}, color={0,0,127}));
+  connect(TSupSet, add.u2) annotation (Line(points={{113,-69},{80,-69},{80,-94},
+          {-68,-94},{-68,-82}}, color={0,0,127}));
+  connect(add.y, lG_HP_mFlowContr.TSet) annotation (Line(points={{-45,-76},{-42,
+          -76},{-42,-86},{28,-86},{28,-70.4},{60.2,-70.4}}, color={0,0,127}));
+  connect(temperature1.port_b, boundary2.ports[1]) annotation (Line(points={{42,
+          12},{44,12},{44,13},{70,13}}, color={0,127,255}));
+  connect(tan.portHex_b, temperature1.port_a) annotation (Line(points={{4,31.8},
+          {14,31.8},{14,12},{22,12}}, color={0,127,255}));
+  connect(boundary3.ports[1], cCC_HP_wTSup_ctr_withPowerData.port_a)
+    annotation (Line(points={{6,-18},{-4,-18},{-4,-54},{-9,-54}}, color={0,127,
+          255}));
+  connect(cCC_HP_wTSup_ctr_withPowerData.port_b, tan.portHex_a) annotation (
+      Line(points={{-31,-54.2},{-42,-54.2},{-42,14},{10,14},{10,35.58},{4,35.58}},
+        color={0,127,255}));
+  connect(boundary3.T_in, temperature1.T) annotation (Line(points={{28,-22},{52,
+          -22},{52,23},{32,23}}, color={0,0,127}));
+  connect(boundary3.m_flow_in, lG_HP_mFlowContr.mHP_flow) annotation (Line(
+        points={{26,-26},{32,-26},{32,-85.8},{34.9,-85.8}}, color={0,0,127}));
+  connect(preHeaFlo1.port, tan.heaPorVol[1]) annotation (Line(points={{-98,-14},
+          {-6,-14},{-6,38.568}}, color={191,0,0}));
+  connect(preHeaFlo2.port, tan.heaPorVol[2]) annotation (Line(points={{-98,-32},
+          {-6,-32},{-6,38.784}}, color={191,0,0}));
+  connect(preHeaFlo3.port, tan.heaPorVol[3]) annotation (Line(points={{-98,-50},
+          {-98,-48},{-6,-48},{-6,39}}, color={191,0,0}));
+  connect(preHeaFlo4.port, tan.heaPorVol[4]) annotation (Line(points={{-98,-72},
+          {-6,-72},{-6,39.216}}, color={191,0,0}));
+  connect(preHeaFlo5.port, tan.heaPorVol[5]) annotation (Line(points={{-96,-96},
+          {-68,-96},{-68,-102},{-6,-102},{-6,39.432}}, color={191,0,0}));
+  connect(const.y, division.u2) annotation (Line(points={{-139,-86},{-134,-86},
+          {-134,-64},{-158,-64},{-158,-56},{-154,-56}}, color={0,0,127}));
+  connect(Resistance_On, switch1.u2) annotation (Line(points={{-193,-123},{-192,
+          -123},{-192,-122},{-166,-122}}, color={255,0,255}));
+  connect(ResistanceThermalCapacity, switch1.u1) annotation (Line(points={{-194,
+          -44},{-174,-44},{-174,-114},{-166,-114}}, color={0,0,127}));
+  connect(const1.y, switch1.u3) annotation (Line(points={{-159,-150},{-154,-150},
+          {-154,-130},{-166,-130}}, color={0,0,127}));
+  connect(switch1.y, division.u1) annotation (Line(points={{-143,-122},{-136,
+          -122},{-136,-102},{-166,-102},{-166,-44},{-154,-44}}, color={0,0,127}));
+  connect(division.y, preHeaFlo1.Q_flow) annotation (Line(points={{-131,-50},{
+          -126,-50},{-126,-14},{-118,-14}}, color={0,0,127}));
+  connect(division.y, preHeaFlo2.Q_flow) annotation (Line(points={{-131,-50},{
+          -126,-50},{-126,-32},{-118,-32}}, color={0,0,127}));
+  connect(division.y, preHeaFlo3.Q_flow)
+    annotation (Line(points={{-131,-50},{-118,-50}}, color={0,0,127}));
+  connect(division.y, preHeaFlo4.Q_flow) annotation (Line(points={{-131,-50},{
+          -126,-50},{-126,-72},{-118,-72}}, color={0,0,127}));
+  connect(division.y, preHeaFlo5.Q_flow) annotation (Line(points={{-131,-50},{
+          -126,-50},{-126,-96},{-116,-96}}, color={0,0,127}));
+  connect(switch1.y, P_resistance) annotation (Line(points={{-143,-122},{94,
+          -122},{94,-134},{114,-134}}, color={0,0,127}));
+  connect(cCC_HP_wTSup_ctr_withPowerData.QCon_flow, QCon_flow_HP) annotation (
+      Line(points={{-23.8,-51},{-23.8,-140},{-97,-140},{-97,-175}}, color={0,0,
+          127}));
+  connect(cCC_HP_wTSup_ctr_withPowerData.QEva_flow, QEva_flow_HP) annotation (
+      Line(points={{-20.4,-51},{-20.4,-152},{-34,-152},{-34,-176}}, color={0,0,
+          127}));
+  connect(cCC_HP_wTSup_ctr_withPowerData.PEle, PEle_HP) annotation (Line(points=
+         {{-16.75,-50.85},{-16.75,-148},{12,-148},{12,-176}}, color={0,0,127}));
+  connect(tan.heaPorVol, temperatureSensor.port) annotation (Line(points={{-6,
+          39},{2,39},{2,40},{20,40},{20,64}}, color={191,0,0}));
+  connect(temperatureSensor.T, T_tan_temp)
+    annotation (Line(points={{20,85},{20,114}}, color={0,0,127}));
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-180,
+            -160},{100,100}})),                                  Diagram(
+        coordinateSystem(preserveAspectRatio=false, extent={{-180,-160},{100,
+            100}})));
+end HP_TES_water_test;
