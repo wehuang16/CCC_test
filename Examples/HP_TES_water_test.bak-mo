@@ -1,4 +1,4 @@
-within weiping_CCC_test.Examples;
+within CCC_test.Examples;
 model HP_TES_water_test
   package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;

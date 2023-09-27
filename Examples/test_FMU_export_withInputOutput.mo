@@ -1,4 +1,4 @@
-within weiping_CCC_test.Examples;
+within CCC_test.Examples;
 model test_FMU_export_withInputOutput
     package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;

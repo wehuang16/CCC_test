@@ -1,3 +1,3 @@
-within weiping_CCC_test;
+within CCC_test;
 package Examples
 end Examples;

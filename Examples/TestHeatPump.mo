@@ -1,4 +1,4 @@
-within weiping_CCC_test.Examples;
+within CCC_test.Examples;
 model TestHeatPump
   extends Modelica.Icons.Example;
   HP_TES_water_test               hP_TES_water_test
