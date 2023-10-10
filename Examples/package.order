@@ -5,3 +5,4 @@ test_FMU_export_withInputOutput
 HP_TES_water_test
 TestVesselPorts
 testSpawnNoAhu
+testTankHx

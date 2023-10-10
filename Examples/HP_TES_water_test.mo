@@ -179,6 +179,8 @@ model HP_TES_water_test
         extent={{-11,-11},{11,11}},
         rotation=90,
         origin={-41,111})));
+  inner Modelica.Fluid.System system
+    annotation (Placement(transformation(extent={{-148,64},{-128,84}})));
 equation
   connect(boundary.ports[1], tan.port_b) annotation (Line(points={{-60,30},{-24,
           30},{-24,39},{-16,39}}, color={0,127,255}));
