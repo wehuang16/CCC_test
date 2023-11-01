@@ -1,18 +1,17 @@
 within CCC_test.Examples;
 model TestHeatPump
   extends Modelica.Icons.Example;
-  CCC.Fluid.Examples.HP_TES_water_v2
-                                  hP_TES_water_v2_1
+  CCC.Fluid.Examples.HP_TES_water hP_TES_water_v2_1
     annotation (Placement(transformation(extent={{-6,20},{34,56}})));
   Modelica.Blocks.Sources.Constant const(k=273.15 + 20)
     annotation (Placement(transformation(extent={{-68,70},{-48,90}})));
   Modelica.Blocks.Sources.Constant const1(k=273.15 + 12)
     annotation (Placement(transformation(extent={{-76,36},{-56,56}})));
-  Modelica.Blocks.Sources.Constant const2(k=0.2)
+  Modelica.Blocks.Sources.Constant const2(k=1.5)
     annotation (Placement(transformation(extent={{-66,-12},{-46,8}})));
   Modelica.Blocks.Sources.Constant const6(k=273.15 + 50)
     annotation (Placement(transformation(extent={{52,-18},{72,2}})));
-  Modelica.Blocks.Sources.Constant const4(k=273.15 + 18)
+  Modelica.Blocks.Sources.Constant const4(k=273.15 + 0)
     annotation (Placement(transformation(extent={{52,-50},{72,-30}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant(k=true)
     annotation (Placement(transformation(extent={{-2,-30},{18,-10}})));
@@ -46,8 +45,6 @@ equation
   connect(booleanConstant2.y,hP_TES_water_v2_1. Resistance_On) annotation (Line(
         points={{-41,-72},{-30,-72},{-30,-68},{-16,-68},{-16,24.5692},{-7.57143,
           24.5692}}, color={255,0,255}));
-  connect(hP_TES_water_v2_1.Q_Hp_set, const3.y) annotation (Line(points={{
-          35.5714,45.0615},{96,45.0615},{96,58},{91,58}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
