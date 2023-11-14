@@ -241,15 +241,15 @@ equation
   connect(boundary3.m_flow_in, lG_HP_mFlowContr.mHP_flow) annotation (Line(
         points={{26,-26},{32,-26},{32,-85.8},{34.9,-85.8}}, color={0,0,127}));
   connect(preHeaFlo1.port, tan.heaPorVol[1]) annotation (Line(points={{-98,-14},
-          {-6,-14},{-6,38.568}}, color={191,0,0}));
+          {-6,-14},{-6,38.784}}, color={191,0,0}));
   connect(preHeaFlo2.port, tan.heaPorVol[2]) annotation (Line(points={{-98,-32},
-          {-6,-32},{-6,38.784}}, color={191,0,0}));
+          {-6,-32},{-6,38.892}}, color={191,0,0}));
   connect(preHeaFlo3.port, tan.heaPorVol[3]) annotation (Line(points={{-98,-50},
           {-98,-48},{-6,-48},{-6,39}}, color={191,0,0}));
   connect(preHeaFlo4.port, tan.heaPorVol[4]) annotation (Line(points={{-98,-72},
-          {-6,-72},{-6,39.216}}, color={191,0,0}));
+          {-6,-72},{-6,39.108}}, color={191,0,0}));
   connect(preHeaFlo5.port, tan.heaPorVol[5]) annotation (Line(points={{-96,-96},
-          {-68,-96},{-68,-102},{-6,-102},{-6,39.432}}, color={191,0,0}));
+          {-68,-96},{-68,-102},{-6,-102},{-6,39.216}}, color={191,0,0}));
   connect(const.y, division.u2) annotation (Line(points={{-139,-86},{-134,-86},
           {-134,-64},{-158,-64},{-158,-56},{-154,-56}}, color={0,0,127}));
   connect(Resistance_On, switch1.u2) annotation (Line(points={{-193,-123},{-192,
