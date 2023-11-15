@@ -86,7 +86,6 @@ model RadiantHeatingCooling_TRoom
     iLayPip=3,
     pipe=Buildings.Fluid.Data.Pipes.PEX_DN_15(),
     sysTyp=Buildings.Fluid.HeatExchangers.RadiantSlabs.Types.SystemType.Ceiling_Wall_or_Capillary,
-
     disPip=0.2,
     nCir=4,
     A=AFlo,
@@ -94,6 +93,7 @@ model RadiantHeatingCooling_TRoom
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     show_T=true) "Slab for ceiling with embedded pipes"
     annotation (Placement(transformation(extent={{2,80},{22,100}})));
+
   Buildings.Fluid.Sources.Boundary_ph prePre(
     redeclare package Medium = MediumW,
     nPorts=1,

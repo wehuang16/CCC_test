@@ -12,3 +12,4 @@ GlycolWaterBufferTankTest
 RadiantHeatingCooling_TRoom
 VAVReheatBox
 testHeatPump
+testPump
