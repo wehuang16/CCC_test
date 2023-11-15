@@ -1,5 +1,5 @@
 within CCC_test.Examples;
-model TestHeatPump
+model TestHeatPumpSystem
   extends Modelica.Icons.Example;
   CCC.Fluid.Examples.HP_TES_water hP_TES_water_v2_1
     annotation (Placement(transformation(extent={{-6,20},{34,56}})));
@@ -51,4 +51,4 @@ equation
       StopTime=8640,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end TestHeatPump;
+end TestHeatPumpSystem;

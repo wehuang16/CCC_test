@@ -10,7 +10,7 @@ model testTank
     dIns=0.050,
     nSeg=5,
     redeclare package MediumHex = MediumWater,
-    hHex_a=1.2,
+    hHex_a=1.199,
     hHex_b=0,
     Q_flow_nominal=10000,
     TTan_nominal=313.15,
