@@ -13,3 +13,9 @@ RadiantHeatingCooling_TRoom
 VAVReheatBox
 testHeatPump
 testPump
+ReversibleAirToWaterEuropeanNorm2D_withPowerData
+CCC_HP_wTSup_ctr_withPowerData_Test
+ModularReversible
+NonArisMultiFamilyTest
+NonArisMultiFamilyTest2
+CCC_HP_wTSup_ctr_withPowerData

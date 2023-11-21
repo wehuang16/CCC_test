@@ -4,7 +4,7 @@ model testHeatPump
   package MediumWater = Buildings.Media.Water;
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater;
-  CCC.Fluid.HeatPumps.BaseClasses.CCC_HP_wTSup_ctr_withPowerData
+  CCC_HP_wTSup_ctr_withPowerData
     cCC_HP_wTSup_ctr_withPowerData(
     redeclare package MediumAir = MediumAir,
     redeclare package MediumWat = MediumPropyleneGlycol (property_T=293.15, X_a
@@ -48,36 +48,6 @@ model testHeatPump
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={-38,-52})));
-  Modelica.Fluid.Sources.MassFlowSource_T hpPump1(
-    redeclare package Medium = MediumPropyleneGlycol (property_T=293.15, X_a=
-            0.4),
-    use_m_flow_in=false,
-    use_T_in=false,
-    m_flow=0.3,
-    T=288.15,
-    nPorts=1) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=180,
-        origin={62,70})));
-  Modelica.Fluid.Sensors.TemperatureTwoPort tempHpSupply1(redeclare package
-      Medium = MediumPropyleneGlycol (property_T=293.15, X_a=0.4))
-                            annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=180,
-        origin={10,80})));
-  Buildings.Fluid.Sensors.MassFlowRate senMasFlo1(redeclare package Medium =
-        MediumWater) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=180,
-        origin={-22,82})));
-  Modelica.Fluid.Sources.Boundary_pT boundary1(
-    redeclare package Medium = MediumPropyleneGlycol (property_T=293.15, X_a=
-            0.4),
-    use_T_in=false,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{10,-9},{-10,9}},
-        rotation=270,
-        origin={-56,55})));
 equation
   connect(booleanConstant.y,cCC_HP_wTSup_ctr_withPowerData. IO) annotation (
       Line(points={{-73,46},{-14,46},{-14,9.6},{-7.2,9.6}},
@@ -96,15 +66,6 @@ equation
           -20},{-38,-20},{-38,-42}}, color={0,127,255}));
   connect(senMasFlo.port_b, boundary2.ports[1]) annotation (Line(points={{-38,
           -62},{-38,-76},{-40,-76},{-40,-89},{-36,-89}}, color={0,127,255}));
-  connect(hpPump1.ports[1], cCC_HP_wTSup_ctr_withPowerData.port_a) annotation (
-      Line(points={{52,70},{24,70},{24,22},{15,22},{15,18}}, color={0,127,255}));
-  connect(cCC_HP_wTSup_ctr_withPowerData.port_b, tempHpSupply1.port_a)
-    annotation (Line(points={{-7,17.8},{-8,17.8},{-8,96},{24,96},{24,80},{20,80}},
-        color={0,127,255}));
-  connect(tempHpSupply1.port_b, senMasFlo1.port_a) annotation (Line(points={{
-          -1.77636e-15,80},{-1.77636e-15,82},{-12,82}}, color={0,127,255}));
-  connect(senMasFlo1.port_b, boundary1.ports[1]) annotation (Line(points={{-32,
-          82},{-44,82},{-44,62},{-56,62},{-56,65}}, color={0,127,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 end testHeatPump;
