@@ -7,29 +7,33 @@ model testHeatPump
      replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Heating datTabHeaHpwh;
   replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling
     datTabCooHpwh;
+    replaceable parameter CCC.Fluid.HeatPumps.Data.ARIS_DATA_EASE datTabHeaHpwh2;
 
   CCC_HP_wTSup_ctr_withPowerData
     cCC_HP_wTSup_ctr_withPowerData(
     redeclare package MediumAir = MediumAir,
     redeclare package MediumWat = MediumPropyleneGlycol (property_T=293.15, X_a
           =0.4),
-    datTabHea=datTabHeaHpwh,
-    datTabCoo=datTabCooHpwh)
+    datTabHea=datTabHeaHpwh2,
+    datTabCoo=datTabCooHpwh,
+    Q_flow_nominal=18500,
+    mCon_flow_nominal=0.92,
+    mEva_flow_nominal=2.333)
     annotation (Placement(transformation(extent={{-6,4},{14,20}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant1
     annotation (Placement(transformation(extent={{50,20},{70,40}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant(k=true)
     annotation (Placement(transformation(extent={{-94,36},{-74,56}})));
-  Modelica.Blocks.Sources.Constant const6(k=273.15 + 50)
+  Modelica.Blocks.Sources.Constant const6(k=273.15 + 55)
     annotation (Placement(transformation(extent={{-92,0},{-72,20}})));
-  Modelica.Blocks.Sources.Constant const4(k=273.15 + 20)
+  Modelica.Blocks.Sources.Constant const4(k=273.15 + 2)
     annotation (Placement(transformation(extent={{42,-32},{62,-12}})));
   Modelica.Fluid.Sources.MassFlowSource_T hpPump(
     redeclare package Medium = MediumPropyleneGlycol (property_T=293.15, X_a=
             0.4),
     use_m_flow_in=false,
     use_T_in=false,
-    m_flow=0.11,
+    m_flow=0.105,
     T=293.15,
     nPorts=1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
