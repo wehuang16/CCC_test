@@ -9,6 +9,10 @@ model CCC_HP_wTSup_ctr_withPowerData_Test
 replaceable parameter IBPSA.Fluid.HeatPumps.ModularReversible.Data.TableData2D.GenericAirToWater datTabHea;
   replaceable parameter IBPSA.Fluid.Chillers.ModularReversible.Data.EuropeanNorm2D.Generic
     datTabCoo;
+
+         replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Heating datTabHeaHpwh;
+  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling
+    datTabCooHpwh;
   replaceable parameter
     IBPSA.Fluid.HeatPumps.ModularReversible.Controls.Safety.Data.Wuellhorst2021 safCtrParEurNor;
 
@@ -27,11 +31,11 @@ replaceable parameter IBPSA.Fluid.HeatPumps.ModularReversible.Data.TableData2D.G
     use_intSafCtr=false,
     TCon_nominal=333.15,
     dpCon_nominal=2000,
-    TEva_nominal=sou.T,
+    TEva_nominal=293.15,
     dpEva_nominal=2000,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    datTabHea=datTabHea,
-    datTabCoo=datTabCoo,
+    datTabHea=datTabHeaHpwh,
+    datTabCoo=datTabCooHpwh,
     safCtrParEurNor=safCtrParEurNor)
     annotation (Placement(transformation(extent={{6,36},{-14,60}})));
   IBPSA.Fluid.Sources.Boundary_pT sou(
@@ -56,7 +60,7 @@ replaceable parameter IBPSA.Fluid.HeatPumps.ModularReversible.Data.TableData2D.G
     annotation (Placement(transformation(extent={{-92,32},{-72,52}})));
   Buildings.Fluid.Sources.MassFlowSource_T           freshAirCor1(
     redeclare package Medium = MediumWat,
-    m_flow=0.3,
+    m_flow=0.1,
     T=318.15,
     nPorts=1) "Outside air supply"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},

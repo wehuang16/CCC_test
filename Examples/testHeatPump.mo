@@ -4,29 +4,33 @@ model testHeatPump
   package MediumWater = Buildings.Media.Water;
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater;
+     replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Heating datTabHeaHpwh;
+  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling
+    datTabCooHpwh;
+
   CCC_HP_wTSup_ctr_withPowerData
     cCC_HP_wTSup_ctr_withPowerData(
     redeclare package MediumAir = MediumAir,
     redeclare package MediumWat = MediumPropyleneGlycol (property_T=293.15, X_a
           =0.4),
-    datTabHea=CCC.Fluid.HeatPumps.Data.LG_DATA_Heating(),
-    datTabCoo=CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling())
+    datTabHea=datTabHeaHpwh,
+    datTabCoo=datTabCooHpwh)
     annotation (Placement(transformation(extent={{-6,4},{14,20}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant1
     annotation (Placement(transformation(extent={{50,20},{70,40}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant(k=true)
     annotation (Placement(transformation(extent={{-94,36},{-74,56}})));
   Modelica.Blocks.Sources.Constant const6(k=273.15 + 50)
-    annotation (Placement(transformation(extent={{-88,-4},{-68,16}})));
-  Modelica.Blocks.Sources.Constant const4(k=273.15 + 0)
-    annotation (Placement(transformation(extent={{32,-26},{52,-6}})));
+    annotation (Placement(transformation(extent={{-92,0},{-72,20}})));
+  Modelica.Blocks.Sources.Constant const4(k=273.15 + 20)
+    annotation (Placement(transformation(extent={{42,-32},{62,-12}})));
   Modelica.Fluid.Sources.MassFlowSource_T hpPump(
     redeclare package Medium = MediumPropyleneGlycol (property_T=293.15, X_a=
             0.4),
     use_m_flow_in=false,
     use_T_in=false,
-    m_flow=0.2,
-    T=299.15,
+    m_flow=0.11,
+    T=293.15,
     nPorts=1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
@@ -55,9 +59,9 @@ equation
   connect(booleanConstant1.y,cCC_HP_wTSup_ctr_withPowerData. Mode) annotation (
       Line(points={{71,30},{76,30},{76,12},{15.2,12}}, color={255,0,255}));
   connect(const6.y,cCC_HP_wTSup_ctr_withPowerData. TSupSet) annotation (Line(
-        points={{-67,6},{-37.05,6},{-37.05,6.1},{-7.1,6.1}},    color={0,0,127}));
+        points={{-71,10},{-37.05,10},{-37.05,6.1},{-7.1,6.1}},  color={0,0,127}));
   connect(const4.y,cCC_HP_wTSup_ctr_withPowerData. TOutAir) annotation (Line(
-        points={{53,-16},{58,-16},{58,6.7},{15.3,6.7}}, color={0,0,127}));
+        points={{63,-22},{68,-22},{68,6.7},{15.3,6.7}}, color={0,0,127}));
   connect(hpPump.ports[1], cCC_HP_wTSup_ctr_withPowerData.port_a) annotation (
       Line(points={{16,-66},{20,-66},{20,18},{15,18}}, color={0,127,255}));
   connect(cCC_HP_wTSup_ctr_withPowerData.port_b, tempHpSupply.port_a)
@@ -67,5 +71,9 @@ equation
   connect(senMasFlo.port_b, boundary2.ports[1]) annotation (Line(points={{-38,
           -62},{-38,-76},{-40,-76},{-40,-89},{-36,-89}}, color={0,127,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)));
+        coordinateSystem(preserveAspectRatio=false)),
+    experiment(
+      StopTime=8640,
+      Interval=60,
+      __Dymola_Algorithm="Dassl"));
 end testHeatPump;
