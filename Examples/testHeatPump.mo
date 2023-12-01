@@ -9,7 +9,7 @@ model testHeatPump
     datTabCooHpwh;
     replaceable parameter CCC.Fluid.HeatPumps.Data.ARIS_DATA_EASE datTabHeaHpwh2;
 
-  CCC_HP_wTSup_ctr_withPowerData
+  CCC.Fluid.HeatPumps.BaseClasses.CCC_HP_wTSup_ctr_withPowerData
     cCC_HP_wTSup_ctr_withPowerData(
     redeclare package MediumAir = MediumAir,
     redeclare package MediumWat = MediumPropyleneGlycol (property_T=293.15, X_a
@@ -17,6 +17,8 @@ model testHeatPump
     datTabHea=datTabHeaHpwh2,
     datTabCoo=datTabCooHpwh,
     Q_flow_nominal=18500,
+    TCon_nominal=308.15,
+    TEva_nominal=280.15,
     mCon_flow_nominal=0.92,
     mEva_flow_nominal=2.333)
     annotation (Placement(transformation(extent={{-6,4},{14,20}})));
@@ -33,8 +35,8 @@ model testHeatPump
             0.4),
     use_m_flow_in=false,
     use_T_in=false,
-    m_flow=0.105,
-    T=293.15,
+    m_flow=0.5,
+    T=323.15,
     nPorts=1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,

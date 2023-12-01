@@ -4,8 +4,11 @@ model testFCU
   package MediumWater = Buildings.Media.Water;
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater;
-  CCC.Fluid.HeatExchangers.BaseClasses.FanCoilUnit fanCoilUnit(T_a1_nominal=
-        328.15, T_a2_nominal=288.15)
+  CCC.Fluid.HeatExchangers.BaseClasses.FanCoilUnit fanCoilUnit(
+    redeclare package Medium1 = MediumWater,
+    redeclare package Medium2 = MediumAir,
+    T_a1_nominal=328.15,
+    T_a2_nominal=288.15)
     annotation (Placement(transformation(extent={{-12,10},{8,30}})));
   Modelica.Fluid.Sources.Boundary_pT boundary2(
     redeclare package Medium = MediumWater,
