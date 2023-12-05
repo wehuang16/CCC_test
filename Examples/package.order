@@ -22,3 +22,8 @@ NonArisMultiFamilyTest3
 testFCU
 refrigerantCycleTest
 testCombiTable2D
+testCombiTableND
+testAixLibHeatPumpCycle
+HeatPump
+TabledDiode
+InterpolationMethods
