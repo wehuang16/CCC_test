@@ -9,8 +9,8 @@ model testHeatPump
     datTabCooHpwh;
     replaceable parameter CCC.Fluid.HeatPumps.Data.ARIS_DATA_EASE datTabHeaHpwh2;
 
-  CCC.Fluid.HeatPumps.BaseClasses.CCC_HP_wTSup_ctr_withPowerData
-    cCC_HP_wTSup_ctr_withPowerData(
+  CCC.Fluid.HeatPumps.BaseClasses.CCC_HP_wTSup_ctr_withPowerData_3D
+    cCC_HP_wTSup_ctr_withPowerData_3D(
     redeclare package MediumAir = MediumAir,
     redeclare package MediumWat = MediumPropyleneGlycol (property_T=293.15, X_a
           =0.4),
@@ -59,18 +59,19 @@ model testHeatPump
         rotation=270,
         origin={-38,-52})));
 equation
-  connect(booleanConstant.y,cCC_HP_wTSup_ctr_withPowerData. IO) annotation (
-      Line(points={{-73,46},{-14,46},{-14,9.6},{-7.2,9.6}},
-                                                         color={255,0,255}));
-  connect(booleanConstant1.y,cCC_HP_wTSup_ctr_withPowerData. Mode) annotation (
-      Line(points={{71,30},{76,30},{76,12},{15.2,12}}, color={255,0,255}));
-  connect(const6.y,cCC_HP_wTSup_ctr_withPowerData. TSupSet) annotation (Line(
-        points={{-71,10},{-37.05,10},{-37.05,6.1},{-7.1,6.1}},  color={0,0,127}));
-  connect(const4.y,cCC_HP_wTSup_ctr_withPowerData. TOutAir) annotation (Line(
+  connect(booleanConstant.y, cCC_HP_wTSup_ctr_withPowerData_3D.IO) annotation (
+      Line(points={{-73,46},{-14,46},{-14,9.6},{-7.2,9.6}}, color={255,0,255}));
+  connect(booleanConstant1.y, cCC_HP_wTSup_ctr_withPowerData_3D.Mode)
+    annotation (Line(points={{71,30},{76,30},{76,12},{15.2,12}}, color={255,0,
+          255}));
+  connect(const6.y, cCC_HP_wTSup_ctr_withPowerData_3D.TSupSet) annotation (Line(
+        points={{-71,10},{-37.05,10},{-37.05,6.1},{-7.1,6.1}}, color={0,0,127}));
+  connect(const4.y, cCC_HP_wTSup_ctr_withPowerData_3D.TOutAir) annotation (Line(
         points={{63,-22},{68,-22},{68,6.7},{15.3,6.7}}, color={0,0,127}));
-  connect(hpPump.ports[1], cCC_HP_wTSup_ctr_withPowerData.port_a) annotation (
-      Line(points={{16,-66},{20,-66},{20,18},{15,18}}, color={0,127,255}));
-  connect(cCC_HP_wTSup_ctr_withPowerData.port_b, tempHpSupply.port_a)
+  connect(hpPump.ports[1], cCC_HP_wTSup_ctr_withPowerData_3D.port_a)
+    annotation (Line(points={{16,-66},{20,-66},{20,18},{15,18}}, color={0,127,
+          255}));
+  connect(cCC_HP_wTSup_ctr_withPowerData_3D.port_b, tempHpSupply.port_a)
     annotation (Line(points={{-7,17.8},{-36,17.8},{-36,0}}, color={0,127,255}));
   connect(tempHpSupply.port_b, senMasFlo.port_a) annotation (Line(points={{-36,
           -20},{-38,-20},{-38,-42}}, color={0,127,255}));

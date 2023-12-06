@@ -20,14 +20,14 @@ model TabledDiode "Interpolate diode characteristics using the NDTable block"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Ramp temperature(
     duration=1,
-    height=5,
+    height=0,
     offset=398.15)
     annotation (Placement(transformation(extent={{-60,10},{-40,30}})));
   Modelica.Blocks.Sources.Ramp forwardVoltage(
     duration=1,
-    startTime=0.1,
-    offset=0.1,
-    height=3)
+    startTime=0,
+    offset=0,
+    height=1.92)
     annotation (Placement(transformation(extent={{-60,-30},{-40,-10}})));
 equation
   connect(temperature.y, diode.u[2]) annotation (Line(
@@ -40,6 +40,6 @@ equation
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
             100,100}})),
-    experiment(StopTime=2, __Dymola_Algorithm="Dassl"),
+    experiment(__Dymola_Algorithm="Dassl"),
     __Dymola_experimentSetupOutput);
 end TabledDiode;

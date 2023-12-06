@@ -29,6 +29,13 @@ model testPump
         origin={-76,10})));
   Modelica.Blocks.Sources.Constant const5(k=0.136)
     annotation (Placement(transformation(extent={{-36,48},{-16,68}})));
+  CCC.Fluid.HeatPumps.BaseClasses.EuropeanNorm3D europeanNorm3D
+    annotation (Placement(transformation(extent={{-66,-58},{-46,-38}})));
+  CCC.Fluid.HeatPumps.BaseClasses.ReversibleAirToWaterEuropeanNorm3D_withPowerData
+    reversibleAirToWaterEuropeanNorm3D_withPowerData
+    annotation (Placement(transformation(extent={{-30,-56},{-10,-32}})));
+  CCC.Fluid.HeatPumps.BaseClasses.ModularReversible_3D modularReversible_3D
+    annotation (Placement(transformation(extent={{16,-68},{36,-44}})));
 equation
   connect(hpPump.ports[1], fanFcuAirSupply1.port_a) annotation (Line(points={{
           -66,10},{-14,10},{-14,4},{-8,4}}, color={0,127,255}));

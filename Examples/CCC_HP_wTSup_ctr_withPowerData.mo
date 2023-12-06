@@ -15,6 +15,8 @@ replaceable parameter IBPSA.Fluid.HeatPumps.ModularReversible.Data.TableData2D.G
  parameter Modelica.Units.SI.HeatFlowRate Q_flow_nominal=14800
     "Nominal heat flow rate of radiator";
 
+     parameter Modelica.Units.SI.Temperature TCon_nominal=273.15+60;
+     parameter Modelica.Units.SI.Temperature TEva_nominal=273.15+20;
  parameter Modelica.Units.SI.MassFlowRate mCon_flow_nominal=0.575;
   parameter Modelica.Units.SI.MassFlowRate  mEva_flow_nominal=1.293;
 
@@ -25,10 +27,10 @@ replaceable parameter IBPSA.Fluid.HeatPumps.ModularReversible.Data.TableData2D.G
     QUse_flow_nominal=Q_flow_nominal,
     y_nominal=1,
     use_intSafCtr=false,
-    TCon_nominal=333.15,
-    dpCon_nominal=2000,
-    TEva_nominal=sou.T,
-    dpEva_nominal=2000,
+    TCon_nominal=TCon_nominal,
+    dpCon_nominal=10,
+    TEva_nominal=TEva_nominal,
+    dpEva_nominal=10,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     datTabHea=datTabHea,
     datTabCoo=datTabCoo,
@@ -78,7 +80,7 @@ replaceable parameter IBPSA.Fluid.HeatPumps.ModularReversible.Data.TableData2D.G
   Modelica.Blocks.Interfaces.BooleanInput Mode "true=heating, false=cooling"
     annotation (Placement(transformation(extent={{124,8},{100,32}}),
         iconTransformation(extent={{124,8},{100,32}})));
-  Modelica.Blocks.Sources.Constant const(k=1)
+  Modelica.Blocks.Sources.Constant const(k=mEva_flow_nominal)
     annotation (Placement(transformation(extent={{-90,28},{-70,48}})));
   Modelica.Blocks.Sources.Constant constTSetRooHea(final k=0)
     "Room set point temperature for heating"
