@@ -24,7 +24,7 @@ model testHeatPump
     annotation (Placement(transformation(extent={{-6,4},{14,20}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant1
     annotation (Placement(transformation(extent={{50,20},{70,40}})));
-  Modelica.Blocks.Sources.BooleanConstant booleanConstant(k=true)
+  Modelica.Blocks.Sources.BooleanPulse    booleanPulse(width=50, period=864)
     annotation (Placement(transformation(extent={{-94,36},{-74,56}})));
   Modelica.Blocks.Sources.Constant const6(k=273.15 + 55)
     annotation (Placement(transformation(extent={{-92,0},{-72,20}})));
@@ -36,7 +36,7 @@ model testHeatPump
     use_m_flow_in=false,
     use_T_in=false,
     m_flow=0.5,
-    T=323.15,
+    T=321.15,
     nPorts=1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
@@ -59,7 +59,7 @@ model testHeatPump
         rotation=270,
         origin={-38,-52})));
 equation
-  connect(booleanConstant.y, cCC_HP_wTSup_ctr_withPowerData_3D.IO) annotation (
+  connect(booleanPulse.y, cCC_HP_wTSup_ctr_withPowerData_3D.IO) annotation (
       Line(points={{-73,46},{-14,46},{-14,9.6},{-7.2,9.6}}, color={255,0,255}));
   connect(booleanConstant1.y, cCC_HP_wTSup_ctr_withPowerData_3D.Mode)
     annotation (Line(points={{71,30},{76,30},{76,12},{15.2,12}}, color={255,0,
