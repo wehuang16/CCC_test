@@ -29,9 +29,9 @@ model ArisMultiFamilyTest1
   Modelica.Blocks.Sources.BooleanConstant booleanConstant1
     annotation (Placement(transformation(extent={{64,64},{84,84}})));
   Modelica.Blocks.Sources.Constant const6(k=273.15 + 55)
-    annotation (Placement(transformation(extent={{-118,42},{-98,62}})));
+    annotation (Placement(transformation(extent={{-102,42},{-82,62}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant(k=true)
-    annotation (Placement(transformation(extent={{-66,72},{-46,92}})));
+    annotation (Placement(transformation(extent={{-166,72},{-146,92}})));
   Buildings.Fluid.Storage.StratifiedEnhancedInternalHex tan(
     redeclare package Medium = MediumWater,
     m_flow_nominal=mOccupant_flow_nominal,
@@ -88,7 +88,7 @@ model ArisMultiFamilyTest1
     annotation (Placement(transformation(extent={{154,-50},{134,-32}})));
 
   Modelica.Blocks.Sources.Constant const2(k=0)
-    annotation (Placement(transformation(extent={{-44,-106},{-24,-86}})));
+    annotation (Placement(transformation(extent={{-44,-120},{-24,-100}})));
   Buildings.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium =
         MediumWater)
     annotation (Placement(transformation(extent={{106,-56},{126,-36}})));
@@ -125,14 +125,23 @@ model ArisMultiFamilyTest1
     annotation (Placement(transformation(extent={{-164,-24},{-144,-4}})));
   Modelica.Blocks.Sources.Constant const1(k=1)
     annotation (Placement(transformation(extent={{-190,-56},{-170,-36}})));
+  Modelica.Blocks.Logical.Hysteresis controlHpOnOff(
+    uLow=273.15 + 43,
+    uHigh=273.15 + 47,
+    pre_y_start=true)
+    annotation (Placement(transformation(extent={{-144,44},{-124,64}})));
+  Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor tempTanBot
+    annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=180,
+        origin={-156,-90})));
 equation
   connect(booleanConstant1.y, cCC_HP_wTSup_ctr_withPowerData_3D.Mode)
     annotation (Line(points={{85,74},{90,74},{90,56},{29.2,56}}, color={255,0,
           255}));
   connect(const6.y, cCC_HP_wTSup_ctr_withPowerData_3D.TSupSet) annotation (Line(
-        points={{-97,52},{-97,50.1},{6.9,50.1}}, color={0,0,127}));
-  connect(booleanConstant.y, cCC_HP_wTSup_ctr_withPowerData_3D.IO) annotation (
-      Line(points={{-45,82},{0,82},{0,53.6},{6.8,53.6}}, color={255,0,255}));
+        points={{-81,52},{-37.05,52},{-37.05,50.1},{6.9,50.1}},
+                                                 color={0,0,127}));
   connect(hpPump.ports[1], cCC_HP_wTSup_ctr_withPowerData_3D.port_a)
     annotation (Line(points={{24,24},{34,24},{34,62},{29,62}}, color={0,127,255}));
   connect(cCC_HP_wTSup_ctr_withPowerData_3D.port_b, tempHpSupply.port_a)
@@ -170,8 +179,16 @@ equation
           0,127}));
   connect(add.y, conPID.u_m) annotation (Line(points={{-101,-60},{-104,-60},{
           -104,-26},{-154,-26}}, color={0,0,127}));
-  connect(conPID.y, gain.u) annotation (Line(points={{-143,-14},{-128,-14},{
-          -128,0},{-118,0}}, color={0,0,127}));
+  connect(const1.y, gain.u) annotation (Line(points={{-169,-46},{-160,-46},{
+          -160,-42},{-134,-42},{-134,0},{-118,0}}, color={0,0,127}));
+  connect(controlHpOnOff.y, cCC_HP_wTSup_ctr_withPowerData_3D.IO) annotation (
+      Line(points={{-123,54},{-112,54},{-112,72},{0,72},{0,53.6},{6.8,53.6}},
+        color={255,0,255}));
+  connect(tan.heaPorVol[5], tempTanBot.port) annotation (Line(points={{-24,
+          -50.784},{-42,-50.784},{-42,-52},{-92,-52},{-92,-90},{-146,-90}},
+        color={191,0,0}));
+  connect(tempTanBot.T, controlHpOnOff.u) annotation (Line(points={{-167,-90},{
+          -178,-90},{-178,-88},{-194,-88},{-194,54},{-146,54}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,
             -400},{560,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-200,-400},{560,

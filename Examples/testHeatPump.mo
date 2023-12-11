@@ -36,7 +36,7 @@ model testHeatPump
     use_m_flow_in=false,
     use_T_in=false,
     m_flow=0.5,
-    T=321.15,
+    T=323.15,
     nPorts=1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
