@@ -1,0 +1,3 @@
+within CCC_test;
+package obsolete_hil_flexlab_model
+end obsolete_hil_flexlab_model;

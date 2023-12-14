@@ -11,8 +11,8 @@ model HeatCapacitySensor
     m_flow_nominal=0.2,
     dp_nominal=0)
     annotation (Placement(transformation(extent={{-14,34},{6,54}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium
-      = MediumWater, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
+        MediumWater, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{-54,4},{-34,24}})));
   Buildings.Fluid.Sensors.TemperatureTwoPort senTem(redeclare package Medium =
         MediumWater, m_flow_nominal=1)

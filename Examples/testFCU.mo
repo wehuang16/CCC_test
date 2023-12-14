@@ -30,6 +30,7 @@ model testFCU
   Modelica.Fluid.Sources.Boundary_pT boundary3(
     redeclare package Medium = MediumAir,
     use_T_in=false,
+    T=285.15,
     nPorts=1)
     annotation (Placement(transformation(extent={{76,-4},{56,14}})));
   Modelica.Fluid.Sources.Boundary_pT boundary4(

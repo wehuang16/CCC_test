@@ -1,18 +1,20 @@
 within CCC_test.Examples;
 model testPIDControl
-  Modelica.Blocks.Sources.Constant const1(k=18)
+  Modelica.Blocks.Sources.Constant const1(k=0.8)
     annotation (Placement(transformation(extent={{-74,22},{-54,42}})));
   Modelica.Blocks.Sources.Ramp     ramp(
-    height=2,
+    height=0,
     duration=4320,
-    offset=17,
+    offset=0,
     startTime=2160)
     annotation (Placement(transformation(extent={{-66,-10},{-46,10}})));
   Buildings.Controls.Continuous.LimPID conPID(
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
-    k=0.3,
+    k=0.03,
     Ti=300,
-    reverseActing=true)
+    initType=Modelica.Blocks.Types.Init.InitialOutput,
+    y_start=0.2,
+    reverseActing=false)
     annotation (Placement(transformation(extent={{-12,6},{8,26}})));
 equation
   connect(const1.y, conPID.u_s) annotation (Line(points={{-53,32},{-26,32},{-26,

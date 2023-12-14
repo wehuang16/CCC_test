@@ -1,7 +1,8 @@
 within CCC_test.Examples;
 model TestVesselPorts
   package Medium = Buildings.Media.Air "Medium model for air";
-  hil_flexlab_model.BaseClasses.PartialTestVesselPorts partialTestVesselPorts
+  obsolete_hil_flexlab_model.BaseClasses.PartialTestVesselPorts
+    partialTestVesselPorts
     annotation (Placement(transformation(extent={{-60,-26},{-40,-6}})));
   Buildings.Fluid.Sources.Boundary_pT sinCoo1(redeclare package Medium = Medium,
       nPorts=1)                                         "Sink for cooling coil"
