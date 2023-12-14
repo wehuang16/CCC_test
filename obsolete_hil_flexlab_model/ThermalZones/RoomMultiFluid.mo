@@ -346,8 +346,8 @@ model RoomMultiFluid
   Modelica.Blocks.Interfaces.RealOutput TRooMeaRad(unit="K")
     "Room mean radiant temperature" annotation (Placement(transformation(extent=
            {{200,-40},{220,-20}}), iconTransformation(extent={{200,-70},{220,-50}})));
-  Modelica.Fluid.Interfaces.FluidPorts_b ports[nPorts](redeclare package Medium
-      = Buildings.Media.Air) "Fluid ports"
+  Modelica.Fluid.Interfaces.FluidPorts_b ports[nPorts](redeclare package Medium =
+        Buildings.Media.Air) "Fluid ports"
     annotation (Placement(transformation(extent={{-210,-66},{-190,14}})));
   InternalLoad lig(
     radFraction=0.37,

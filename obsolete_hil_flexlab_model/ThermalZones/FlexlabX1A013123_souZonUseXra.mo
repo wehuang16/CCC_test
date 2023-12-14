@@ -56,9 +56,7 @@ model FlexlabX1A013123_souZonUseXra "Model of a flexlab x1a"
       layers={celDiv,zonDiv,ceiling},
       A={3.05*2.74,6.49*2.74,6.49*3.05},
       til={Buildings.Types.Tilt.Wall,Buildings.Types.Tilt.Wall,Buildings.Types.Tilt.Ceiling},
-
       azi={Buildings.Types.Azimuth.E,Buildings.Types.Azimuth.N,Buildings.Types.Azimuth.S}),
-
     mSenFac=8,
     nPorts=5,
     intConMod=Buildings.HeatTransfer.Types.InteriorConvection.Temperature,
@@ -66,6 +64,7 @@ model FlexlabX1A013123_souZonUseXra "Model of a flexlab x1a"
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     final sampleModel=sampleModel) "South zone"
     annotation (Placement(transformation(extent={{144,-44},{184,-4}})));
+
   Buildings.Occupants.ThermalZones.Detailed.MixedAir ple(
     redeclare package Medium = Medium,
     lat=lat,
@@ -313,8 +312,7 @@ model FlexlabX1A013123_souZonUseXra "Model of a flexlab x1a"
     wOpe=0.01,
     forceErrorControlOnFlow=false) "Opening between perimeter3 and core"
     annotation (Placement(transformation(extent={{82,74},{102,94}})));
-  Buildings.Fluid.Sensors.RelativePressure senRelPre(redeclare package Medium
-      =                                                                         Medium)
+  Buildings.Fluid.Sensors.RelativePressure senRelPre(redeclare package Medium = Medium)
     "Building pressure measurement"
     annotation (Placement(transformation(extent={{60,240},{40,260}})));
   Buildings.Fluid.Sources.Outside out(nPorts=1, redeclare package Medium = Medium)

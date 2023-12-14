@@ -3,8 +3,8 @@ model FlexlabX1aNoLeakBaseline0901
   "DR mode - Variable air volume flow system with terminal reheat and five thermal zones at Flexlab X1 cell"
   extends Modelica.Icons.Example;
   extends
-    CCC_test.obsolete_hil_flexlab_model.BaseClasses.PartialOpenLoopX1aNoLeakage0830
-    (                                                 occSch(
+    CCC_test.obsolete_hil_flexlab_model.BaseClasses.PartialOpenLoopX1aNoLeakage0830(
+                                                      occSch(
       occupancy={0,86399},
       firstEntryOccupied=true,
       period=86400), fanSup(per(use_powerCharacteristic=true, power(V_flow={

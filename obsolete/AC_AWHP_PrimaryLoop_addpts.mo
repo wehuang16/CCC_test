@@ -144,15 +144,13 @@ model AC_AWHP_PrimaryLoop_addpts
   Modelica.Blocks.Interfaces.RealOutput m_flow_pri annotation (Placement(
         transformation(extent={{416,-262},{454,-224}}), iconTransformation(
           extent={{412,-262},{450,-224}})));
-   hil_flexlab_model.HeatPumps.BlackBox_Generic_TSetpoint AirWaterHP(
+  obsolete_hil_flexlab_model.HeatPumps.BlackBox_Generic_TSetpoint AirWaterHP(
     tauHeatLoss=3600,
     QNom=10590,
     redeclare package Medium = IDEAS.Media.Water,
     m_flow_nominal=m_flow,
     modulation_min=16,
-    modulation_start=25)
-                        annotation (
-      Placement(transformation(
+    modulation_start=25) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={228,-240})));

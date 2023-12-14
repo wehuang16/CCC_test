@@ -180,8 +180,8 @@ partial model PartialOpenLoopX1aV1_Chiller
     m_flow_nominal=m_flow_nominal,
     allowFlowReversal=allowFlowReversal)
     annotation (Placement(transformation(extent={{356,-66},{376,-46}})));
-  Buildings.Fluid.Sensors.RelativePressure dpDisSupFan(redeclare package Medium
-      = MediumA) "Supply fan static discharge pressure" annotation (Placement(
+  Buildings.Fluid.Sensors.RelativePressure dpDisSupFan(redeclare package Medium =
+        MediumA) "Supply fan static discharge pressure" annotation (Placement(
         transformation(
         extent={{-10,10},{10,-10}},
         rotation=90,
@@ -490,8 +490,7 @@ partial model PartialOpenLoopX1aV1_Chiller
           transformation(extent={{100,-39},{126,-14}}),
           iconTransformation(extent={{96,-39},{76,-24}})));
 
-      Buildings.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium
-        =                                                                       Medium,
+      Buildings.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium = Medium,
           allowFlowReversal=false) "Mass flow rate sensor"
                               annotation (Placement(transformation(
           extent={{10,-10},{-10,10}},

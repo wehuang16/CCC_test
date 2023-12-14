@@ -170,8 +170,8 @@ partial model PartialOpenLoopX1aV020123_Impose_Airflow
     m_flow_nominal=m_flow_nominal,
     allowFlowReversal=allowFlowReversal)
     annotation (Placement(transformation(extent={{330,-50},{350,-30}})));
-  Buildings.Fluid.Sensors.RelativePressure dpDisSupFan(redeclare package Medium
-      = MediumA) "Supply fan static discharge pressure" annotation (Placement(
+  Buildings.Fluid.Sensors.RelativePressure dpDisSupFan(redeclare package Medium =
+        MediumA) "Supply fan static discharge pressure" annotation (Placement(
         transformation(
         extent={{-10,10},{10,-10}},
         rotation=90,
@@ -500,8 +500,8 @@ public
     allowFlowReversal=allowFlowReversal,
     dp_nominal=40) "Pressure drop for return duct"
     annotation (Placement(transformation(extent={{562,38},{542,58}})));
-  Buildings.Fluid.Movers.FlowControlled_m_flow fanSup(redeclare package Medium
-      = MediumA, m_flow_nominal=m_flow_nominal)
+  Buildings.Fluid.Movers.FlowControlled_m_flow fanSup(redeclare package Medium =
+        MediumA, m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{236,-50},{256,-30}})));
   Buildings.Fluid.Movers.FlowControlled_m_flow fanSupCor(redeclare package
       Medium = MediumA, m_flow_nominal=mCor_flow_nominal)

@@ -3,7 +3,7 @@ model testSpawnNoAhu
 
     package MediumA = Buildings.Media.Air "Medium model for air";
   package MediumW = Buildings.Media.Water "Medium model for water";
-  hil_flexlab_model.ThermalZones.Floor_withAuxRooms flo(
+  obsolete_hil_flexlab_model.ThermalZones.Floor_withAuxRooms flo(
     nor(T_start=294.96),
     cor(T_start=294.96),
     sou(T_start=294.96),

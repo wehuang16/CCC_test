@@ -2,8 +2,8 @@ within CCC_test.obsolete_hil_flexlab_model.Examples;
 model FlexlabX1aNoLeakBaseline0907 "adjust the overnight cooling issue"
   extends Modelica.Icons.Example;
   extends
-    CCC_test.obsolete_hil_flexlab_model.BaseClasses.PartialOpenLoopX1aNoLeakage0830
-    (                                                 occSch(
+    CCC_test.obsolete_hil_flexlab_model.BaseClasses.PartialOpenLoopX1aNoLeakage0830(
+                                                      occSch(
       occupancy={0,86399},
       firstEntryOccupied=true,
       period=86400), fanSup(per(use_powerCharacteristic=true, power(V_flow={

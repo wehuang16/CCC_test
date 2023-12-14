@@ -49,8 +49,8 @@ partial model partialSourceCoo_weiping_062822
         extent={{-4,-4},{4,4}},
         rotation=0,
         origin={-90,60})));
-  hil_flexlab_model.HeatPumps.BlackBox_Generic_TSetpoint blackBox_Generic_TSetpoint
-    annotation (Placement(transformation(
+  obsolete_hil_flexlab_model.HeatPumps.BlackBox_Generic_TSetpoint
+    blackBox_Generic_TSetpoint annotation (Placement(transformation(
         extent={{11,-13},{-11,13}},
         rotation=180,
         origin={-47,-7})));

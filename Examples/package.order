@@ -5,7 +5,7 @@ test_FMU_export_withInputOutput
 HP_TES_water_test
 TestVesselPorts
 testSpawnNoAhu
-testTankHx
+testHx
 AirHeating
 testTank
 GlycolWaterBufferTankTest
@@ -32,3 +32,4 @@ ArisMultiFamilyTest1
 testPIDControl
 ArisMultiFamilyOriginal
 testBufferTank
+FanCoilUnitPidTest2

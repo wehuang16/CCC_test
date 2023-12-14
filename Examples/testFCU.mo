@@ -4,8 +4,7 @@ model testFCU
   package MediumWater = Buildings.Media.Water;
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater;
-  CCC.Fluid.HeatExchangers.BaseClasses.FanCoilUnitPid
-                                                   fanCoilUnitPid(
+  FanCoilUnitPidTest2                              fanCoilUnitPidTest2_1(
     redeclare package Medium1 = MediumWater,
     redeclare package Medium2 = MediumAir,
     T_a1_nominal=328.15,
@@ -51,16 +50,16 @@ model testFCU
     startTime=2160)
     annotation (Placement(transformation(extent={{-54,-40},{-34,-20}})));
 equation
-  connect(boundary2.ports[1], fanCoilUnitPid.port_a1) annotation (Line(points={
-          {-46,33},{-24,33},{-24,24.4},{-12.2,24.4}}, color={0,127,255}));
-  connect(fanCoilUnitPid.port_b1, boundary4.ports[1]) annotation (Line(points={
-          {8.2,24.4},{46,24.4},{46,31},{52,31}}, color={0,127,255}));
-  connect(boundary3.ports[1], fanCoilUnitPid.port_a2) annotation (Line(points={
-          {56,5},{14,5},{14,14.8},{8.2,14.8}}, color={0,127,255}));
-  connect(fanCoilUnitPid.port_b2, boundary1.ports[1]) annotation (Line(points={
-          {-12.2,15},{-48,15},{-48,1},{-52,1}}, color={0,127,255}));
-  connect(ramp.y, fanCoilUnitPid.zonAirTem) annotation (Line(points={{-33,-30},
-          {-26,-30},{-26,11.2},{-14,11.2}}, color={0,0,127}));
+  connect(boundary2.ports[1], fanCoilUnitPidTest2_1.port_a1) annotation (Line(
+        points={{-46,33},{-24,33},{-24,24.4},{-12.2,24.4}}, color={0,127,255}));
+  connect(fanCoilUnitPidTest2_1.port_b1, boundary4.ports[1]) annotation (Line(
+        points={{8.2,24.4},{46,24.4},{46,31},{52,31}}, color={0,127,255}));
+  connect(boundary3.ports[1], fanCoilUnitPidTest2_1.port_a2) annotation (Line(
+        points={{56,5},{14,5},{14,14.8},{8.2,14.8}}, color={0,127,255}));
+  connect(fanCoilUnitPidTest2_1.port_b2, boundary1.ports[1]) annotation (Line(
+        points={{-12.2,15},{-48,15},{-48,1},{-52,1}}, color={0,127,255}));
+  connect(ramp.y, fanCoilUnitPidTest2_1.zonAirTem) annotation (Line(points={{-33,
+          -30},{-26,-30},{-26,11.2},{-14,11.2}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(

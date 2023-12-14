@@ -156,8 +156,8 @@ partial model PartialOpenLoopXRa
     m_flow_nominal=m_flow_nominal,
     allowFlowReversal=allowFlowReversal)
     annotation (Placement(transformation(extent={{330,-50},{350,-30}})));
-  Buildings.Fluid.Sensors.RelativePressure dpDisSupFan(redeclare package Medium
-      = MediumA) "Supply fan static discharge pressure" annotation (Placement(
+  Buildings.Fluid.Sensors.RelativePressure dpDisSupFan(redeclare package Medium =
+        MediumA) "Supply fan static discharge pressure" annotation (Placement(
         transformation(
         extent={{-10,10},{10,-10}},
         rotation=90,
@@ -316,7 +316,7 @@ equation
       smooth=Smooth.None,
       thickness=0.5));
   connect(amb.ports[1], VOut1.port_a) annotation (Line(
-      points={{-114,-42.0667},{-94,-42.0667},{-94,-33},{-72,-33}},
+      points={{-114,-46.4667},{-94,-46.4667},{-94,-33},{-72,-33}},
       color={0,127,255},
       smooth=Smooth.None,
       thickness=0.5));
@@ -385,7 +385,7 @@ equation
   connect(gaiCooCoi.y, souCoo.m_flow_in) annotation (Line(points={{122,-248},{
           222,-248},{222,-132}}, color={0,0,127}));
   connect(dpDisSupFan.port_b, amb.ports[3]) annotation (Line(
-      points={{320,10},{320,14},{-88,14},{-88,-47.9333},{-114,-47.9333}},
+      points={{320,10},{320,14},{-88,14},{-88,-43.5333},{-114,-43.5333}},
       color={0,0,0},
       pattern=LinePattern.Dot));
   connect(senRetFlo.port_b, TRet.port_a) annotation (Line(points={{340,140},{
@@ -421,9 +421,9 @@ equation
       extent={{-6,3},{-6,3}},
       horizontalAlignment=TextAlignment.Right));
   connect(VSupNor_flow.port_b, flexlabXRA.portsCell[2]) annotation (Line(points={{708,138},
-          {708,222},{878,222},{878,517.54},{838.443,517.54}},           color={0,
+          {708,222},{878,222},{878,517.54},{835.889,517.54}},           color={0,
           127,255}));
-  connect(flexlabXRA.portsCell[2], dpRetDuc.port_a) annotation (Line(points={{838.443,
+  connect(flexlabXRA.portsCell[2], dpRetDuc.port_a) annotation (Line(points={{835.889,
           517.54},{590,517.54},{590,140},{400,140}}, color={0,127,255}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-380,
             -400},{1420,600}}), graphics={Line(points={{310,404}}, color={28,

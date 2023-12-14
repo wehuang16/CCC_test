@@ -3,8 +3,8 @@ model FlexlabX1aNoLeakBaseline1202
   "Variable air volume flow system with terminal reheat - flexlab baseline, no leakage"
   extends Modelica.Icons.Example;
   extends
-    CCC_test.obsolete_hil_flexlab_model.BaseClasses.PartialOpenLoopX1aNoLeakage0830
-    (                                                 occSch(
+    CCC_test.obsolete_hil_flexlab_model.BaseClasses.PartialOpenLoopX1aNoLeakage0830(
+                                                      occSch(
       occupancy={0,86399},
       firstEntryOccupied=true,
       period=86400), fanSup(per(use_powerCharacteristic=true, power(V_flow={

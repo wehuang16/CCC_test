@@ -1,26 +1,35 @@
 within CCC_test.Examples;
 model testPIDControl
-  Modelica.Blocks.Sources.Constant const1(k=0.8)
-    annotation (Placement(transformation(extent={{-74,22},{-54,42}})));
+
+          package MediumAir = Buildings.Media.Air;
+  package MediumWater = Buildings.Media.Water;
+  package MediumPropyleneGlycol =
+      Buildings.Media.Antifreeze.PropyleneGlycolWater;
+  Modelica.Blocks.Sources.Constant const1(k=52)
+    annotation (Placement(transformation(extent={{-84,22},{-64,42}})));
   Modelica.Blocks.Sources.Ramp     ramp(
-    height=0,
-    duration=4320,
+    height=1.25,
+    duration=60,
     offset=0,
-    startTime=2160)
-    annotation (Placement(transformation(extent={{-66,-10},{-46,10}})));
+    startTime=0)
+    annotation (Placement(transformation(extent={{-62,62},{-42,82}})));
   Buildings.Controls.Continuous.LimPID conPID(
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
     k=0.03,
     Ti=300,
+    yMax=1,
+    yMin=0,
     initType=Modelica.Blocks.Types.Init.InitialOutput,
     y_start=0.2,
     reverseActing=false)
-    annotation (Placement(transformation(extent={{-12,6},{8,26}})));
+    annotation (Placement(transformation(extent={{-30,20},{-10,40}})));
+  Modelica.Blocks.Sources.Constant const2(k=50)
+    annotation (Placement(transformation(extent={{-32,-54},{-12,-34}})));
 equation
-  connect(const1.y, conPID.u_s) annotation (Line(points={{-53,32},{-26,32},{-26,
-          16},{-14,16}}, color={0,0,127}));
-  connect(ramp.y, conPID.u_m)
-    annotation (Line(points={{-45,0},{-2,0},{-2,4}}, color={0,0,127}));
+  connect(conPID.u_m, const2.y) annotation (Line(points={{-20,18},{-20,-30},{
+          -11,-30},{-11,-44}}, color={0,0,127}));
+  connect(const1.y, conPID.u_s)
+    annotation (Line(points={{-63,32},{-32,32},{-32,30}}, color={0,0,127}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false)),
     Diagram(coordinateSystem(preserveAspectRatio=false)),
