@@ -4,45 +4,41 @@ model testPump
   package MediumWater = Buildings.Media.Water;
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater;
-  Buildings.Fluid.Movers.FlowControlled_m_flow fanFcuAirSupply1(
-    redeclare package Medium = MediumAir,
-    m_flow_nominal=8*51*1.2/3600,
-    nominalValuesDefineDefaultPressureCurve=true) "Fan" annotation (Placement(
-        transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={2,4})));
   Modelica.Fluid.Sources.Boundary_pT boundary2(
-    redeclare package Medium = MediumAir,
+    redeclare package Medium = MediumWater,
     use_T_in=false,
     nPorts=1)
     annotation (Placement(transformation(extent={{10,-9},{-10,9}},
         rotation=0,
         origin={66,7})));
   Modelica.Fluid.Sources.Boundary_pT      hpPump(
-    redeclare package Medium = MediumAir,
+    redeclare package Medium = MediumWater,
     use_T_in=false,
     T=293.15,
     nPorts=1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
-        origin={-76,10})));
+        origin={-74,14})));
   Modelica.Blocks.Sources.Constant const5(k=0.136)
     annotation (Placement(transformation(extent={{-36,48},{-16,68}})));
-  CCC.Fluid.HeatPumps.BaseClasses.EuropeanNorm3D europeanNorm3D
-    annotation (Placement(transformation(extent={{-66,-58},{-46,-38}})));
-  CCC.Fluid.HeatPumps.BaseClasses.ReversibleAirToWaterEuropeanNorm3D_withPowerData
-    reversibleAirToWaterEuropeanNorm3D_withPowerData
-    annotation (Placement(transformation(extent={{-30,-56},{-10,-32}})));
-  CCC.Fluid.HeatPumps.BaseClasses.ModularReversible_3D modularReversible_3D
-    annotation (Placement(transformation(extent={{16,-68},{36,-44}})));
+  Buildings.Fluid.Movers.FlowControlled_m_flow pumpFcuWaterSupply(redeclare
+      package Medium = MediumWater, m_flow_nominal=0.136)
+                                                  "pump" annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={-8,8})));
 equation
-  connect(hpPump.ports[1], fanFcuAirSupply1.port_a) annotation (Line(points={{
-          -66,10},{-14,10},{-14,4},{-8,4}}, color={0,127,255}));
-  connect(fanFcuAirSupply1.port_b, boundary2.ports[1])
-    annotation (Line(points={{12,4},{50,4},{50,7},{56,7}}, color={0,127,255}));
-  connect(const5.y, fanFcuAirSupply1.m_flow_in)
-    annotation (Line(points={{-15,58},{2,58},{2,16}}, color={0,0,127}));
+  connect(const5.y, pumpFcuWaterSupply.m_flow_in)
+    annotation (Line(points={{-15,58},{-8,58},{-8,20}}, color={0,0,127}));
+  connect(hpPump.ports[1], pumpFcuWaterSupply.port_a) annotation (Line(points={
+          {-64,14},{-24,14},{-24,8},{-18,8}}, color={0,127,255}));
+  connect(pumpFcuWaterSupply.port_b, boundary2.ports[1])
+    annotation (Line(points={{2,8},{32,8},{32,7},{56,7}}, color={0,127,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)));
+        coordinateSystem(preserveAspectRatio=false)),
+    experiment(
+      StopTime=8640,
+      Interval=60,
+      __Dymola_Algorithm="Dassl"));
 end testPump;

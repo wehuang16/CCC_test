@@ -5,7 +5,7 @@ model testPIDControl
   package MediumWater = Buildings.Media.Water;
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater;
-  Modelica.Blocks.Sources.Constant const1(k=52)
+  Modelica.Blocks.Sources.Constant const1(k=5)
     annotation (Placement(transformation(extent={{-84,22},{-64,42}})));
   Modelica.Blocks.Sources.Ramp     ramp(
     height=1.25,
@@ -23,7 +23,7 @@ model testPIDControl
     y_start=0.2,
     reverseActing=false)
     annotation (Placement(transformation(extent={{-30,20},{-10,40}})));
-  Modelica.Blocks.Sources.Constant const2(k=50)
+  Modelica.Blocks.Sources.Constant const2(k=6)
     annotation (Placement(transformation(extent={{-32,-54},{-12,-34}})));
 equation
   connect(conPID.u_m, const2.y) annotation (Line(points={{-20,18},{-20,-30},{

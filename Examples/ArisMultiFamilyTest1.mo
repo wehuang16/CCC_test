@@ -39,13 +39,13 @@ model ArisMultiFamilyTest1
     hTan=1.2,
     dIns=0.050,
     nSeg=5,
-    T_start=321.15,
+    T_start=317.15,
     redeclare package MediumHex = MediumWater,
     hHex_a=1.199,
     hHex_b=0,
     Q_flow_nominal=18500,
-    TTan_nominal=313.15,
-    THex_nominal=328.15,
+    TTan_nominal=316.15,
+    THex_nominal=323.15,
     mHex_flow_nominal=0.92)
                 annotation (Placement(transformation(
         extent={{10,-9},{-10,9}},
@@ -73,11 +73,11 @@ model ArisMultiFamilyTest1
     annotation (Placement(transformation(extent={{72,-32},{52,-14}})));
   Modelica.Fluid.Sources.MassFlowSource_T boundary(
     redeclare package Medium = MediumWater,
-    use_m_flow_in=false,
+    use_m_flow_in=true,
     use_T_in=false,
-    m_flow=0.006,
+    m_flow=0.1,
     T=285.15,
-    nPorts=1) annotation (Placement(transformation(extent={{-80,-96},{-60,-76}})));
+    nPorts=1) annotation (Placement(transformation(extent={{-80,-118},{-60,-98}})));
   Modelica.Fluid.Sensors.TemperatureTwoPort tempTankOutlet(redeclare package
       Medium = MediumWater)
     annotation (Placement(transformation(extent={{76,-56},{96,-36}})));
@@ -87,8 +87,11 @@ model ArisMultiFamilyTest1
     nPorts=1)
     annotation (Placement(transformation(extent={{154,-50},{134,-32}})));
 
-  Modelica.Blocks.Sources.Constant const2(k=0)
-    annotation (Placement(transformation(extent={{-44,-120},{-24,-100}})));
+  Modelica.Blocks.Sources.Step     step(
+    height=-0.1,
+    offset=0.1,
+    startTime=43200)
+    annotation (Placement(transformation(extent={{-122,-136},{-102,-116}})));
   Buildings.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium =
         MediumWater)
     annotation (Placement(transformation(extent={{106,-56},{126,-36}})));
@@ -128,13 +131,15 @@ model ArisMultiFamilyTest1
   Modelica.Blocks.Logical.Hysteresis controlHpOnOff(
     uLow=273.15 + 43,
     uHigh=273.15 + 47,
-    pre_y_start=true)
+    pre_y_start=false)
     annotation (Placement(transformation(extent={{-144,44},{-124,64}})));
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor tempTanBot
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={-156,-90})));
+  Modelica.Blocks.Logical.Not not1
+    annotation (Placement(transformation(extent={{-52,62},{-32,82}})));
 equation
   connect(booleanConstant1.y, cCC_HP_wTSup_ctr_withPowerData_3D.Mode)
     annotation (Line(points={{85,74},{90,74},{90,56},{29.2,56}}, color={255,0,
@@ -147,8 +152,9 @@ equation
   connect(cCC_HP_wTSup_ctr_withPowerData_3D.port_b, tempHpSupply.port_a)
     annotation (Line(points={{7,61.8},{-4,61.8},{-4,40},{-46,40},{-46,34}},
         color={0,127,255}));
-  connect(boundary.ports[1], tan.port_b) annotation (Line(points={{-60,-86},{-50,
-          -86},{-50,-51},{-34,-51}}, color={0,127,255}));
+  connect(boundary.ports[1], tan.port_b) annotation (Line(points={{-60,-108},{
+          -52,-108},{-52,-72},{-34,-72},{-34,-51}},
+                                     color={0,127,255}));
   connect(tan.port_a, tempTankOutlet.port_a) annotation (Line(points={{-14,-51},
           {-14,-52},{2,-52},{2,-46},{76,-46}},   color={0,127,255}));
   connect(tempTankOutlet.port_b, senMasFlo.port_a) annotation (Line(points={{96,-46},
@@ -179,23 +185,25 @@ equation
           0,127}));
   connect(add.y, conPID.u_m) annotation (Line(points={{-101,-60},{-104,-60},{
           -104,-26},{-154,-26}}, color={0,0,127}));
-  connect(const1.y, gain.u) annotation (Line(points={{-169,-46},{-160,-46},{
-          -160,-42},{-134,-42},{-134,0},{-118,0}}, color={0,0,127}));
-  connect(controlHpOnOff.y, cCC_HP_wTSup_ctr_withPowerData_3D.IO) annotation (
-      Line(points={{-123,54},{-112,54},{-112,72},{0,72},{0,53.6},{6.8,53.6}},
-        color={255,0,255}));
   connect(tan.heaPorVol[5], tempTanBot.port) annotation (Line(points={{-24,
           -50.784},{-42,-50.784},{-42,-52},{-92,-52},{-92,-90},{-146,-90}},
         color={191,0,0}));
   connect(tempTanBot.T, controlHpOnOff.u) annotation (Line(points={{-167,-90},{
           -178,-90},{-178,-88},{-194,-88},{-194,54},{-146,54}}, color={0,0,127}));
+  connect(controlHpOnOff.y, not1.u) annotation (Line(points={{-123,54},{-112,54},
+          {-112,72},{-54,72}}, color={255,0,255}));
+  connect(not1.y, cCC_HP_wTSup_ctr_withPowerData_3D.IO) annotation (Line(points
+        ={{-31,72},{0,72},{0,53.6},{6.8,53.6}}, color={255,0,255}));
+  connect(conPID.y, gain.u) annotation (Line(points={{-143,-14},{-128,-14},{
+          -128,0},{-118,0}}, color={0,0,127}));
+  connect(step.y, boundary.m_flow_in) annotation (Line(points={{-101,-126},{
+          -101,-128},{-92,-128},{-92,-100},{-80,-100}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,
             -400},{560,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-200,-400},{560,
             100}})),
     experiment(
-      StartTime=21427200,
-      StopTime=21470400,
-      Interval=300,
+      StopTime=86400,
+      Interval=60,
       __Dymola_Algorithm="Dassl"));
 end ArisMultiFamilyTest1;
