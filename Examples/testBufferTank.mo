@@ -56,8 +56,7 @@ model testBufferTank
   Modelica.Blocks.Sources.Constant const1(k=273.15 + 22)
     annotation (Placement(transformation(extent={{-80,-66},{-60,-46}})));
   Modelica.Blocks.Tables.CombiTable1Ds combiTable1Ds1(
-    table=[273.15 + 0,273.15 + 45; 273.15 + 20,273.15 + 40; 273.15 + 40,273.15
-         + 35],
+    table=[273.15 - 6.67,273.15 + 48.89; 273.15 + 4.44,273.15 + 35],
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
     annotation (Placement(transformation(extent={{-44,-60},{-24,-40}})));
