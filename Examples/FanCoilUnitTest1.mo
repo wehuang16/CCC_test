@@ -39,7 +39,6 @@ model FanCoilUnitTest1
     dp1_nominal=dp1_nominal,
     dp2_nominal=0,
     configuration=Buildings.Fluid.Types.HeatExchangerConfiguration.CounterFlow,
-
     Q_flow_nominal=Q_flow_nominal,
     T_a1_nominal=T_a1_nominal,
     T_a2_nominal=T_a2_nominal)

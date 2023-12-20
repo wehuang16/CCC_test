@@ -10,7 +10,7 @@ model TabledDiode "Interpolate diode characteristics using the NDTable block"
     filename=Modelica.Utilities.Files.loadResource(
         "modelica://SDF/Resources/Data/Examples/diode.sdf"),
     interpMethod=SDF.Types.InterpolationMethod.Akima,
-    extrapMethod=SDF.Types.ExtrapolationMethod.Linear,
+    extrapMethod=SDF.Types.ExtrapolationMethod.Hold,
     data=SDF.Functions.readTableData(
         diode.filename,
         diode.dataset,
@@ -27,7 +27,7 @@ model TabledDiode "Interpolate diode characteristics using the NDTable block"
     duration=1,
     startTime=0,
     offset=0,
-    height=1.92)
+    height=100.92)
     annotation (Placement(transformation(extent={{-60,-30},{-40,-10}})));
 equation
   connect(temperature.y, diode.u[2]) annotation (Line(
