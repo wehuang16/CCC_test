@@ -1,5 +1,5 @@
 within CCC_test.Examples;
-model FlowRouter
+model FlowRouterSupply
       package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
   package MediumPropyleneGlycol =
@@ -7,9 +7,8 @@ model FlowRouter
    replaceable package Medium1 =   Buildings.Media.Water;
   replaceable parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=1
     "Valve nominal mass flow rate";
-     replaceable parameter Modelica.Units.SI.Pressure dpValve_nominal=0
+     replaceable parameter Modelica.Units.SI.Pressure dpValve_nominal=10
     "Valve nominal pressure drop";
-
 
   Buildings.Fluid.Actuators.Valves.TwoWayQuickOpening val(
     redeclare package Medium = Medium1,
@@ -69,13 +68,15 @@ model FlowRouter
     annotation (Placement(transformation(extent={{-142,28},{-102,70}})));
   Modelica.Blocks.Interfaces.RealInput u2
     annotation (Placement(transformation(extent={{-140,-10},{-100,32}})));
+  Modelica.Blocks.Sources.Constant const(k=1)
+    annotation (Placement(transformation(extent={{-126,118},{-106,138}})));
 protected
   Modelica.Blocks.Math.Feedback inv "Inversion of control signal"
-    annotation (Placement(transformation(extent={{-74,86},{-62,98}})));
+    annotation (Placement(transformation(extent={{-84,74},{-72,86}})));
 protected
   Modelica.Blocks.Math.Feedback inv1
                                     "Inversion of control signal"
-    annotation (Placement(transformation(extent={{-82,52},{-70,64}})));
+    annotation (Placement(transformation(extent={{-84,52},{-72,64}})));
 protected
   Modelica.Blocks.Math.Feedback inv2
                                     "Inversion of control signal"
@@ -105,6 +106,30 @@ equation
           -42},{106,-42}}, color={0,127,255}));
   connect(val5.port_b, port_b1) annotation (Line(points={{-16,-88},{92,-88},{92,
           -42},{106,-42}}, color={0,127,255}));
+  connect(u, val.y) annotation (Line(points={{-120,87},{-88,87},{-88,100},{-36,100},
+          {-36,90}}, color={0,0,127}));
+  connect(inv.u2, u) annotation (Line(points={{-78,75.2},{-80,75.2},{-80,74},{-120,
+          74},{-120,87}}, color={0,0,127}));
+  connect(inv.y, val3.y) annotation (Line(points={{-72.6,80},{-50,80},{-50,58},{
+          -24,58}}, color={0,0,127}));
+  connect(u1, val1.y) annotation (Line(points={{-122,49},{-86,49},{-86,42},{-44,
+          42},{-44,32},{-42,32},{-42,24}}, color={0,0,127}));
+  connect(u2, val2.y) annotation (Line(points={{-120,11},{-88,11},{-88,-38},{-46,
+          -38},{-46,-42},{-36,-42}}, color={0,0,127}));
+  connect(u1, inv1.u2)
+    annotation (Line(points={{-122,49},{-78,49},{-78,53.2}}, color={0,0,127}));
+  connect(u2, inv2.u2) annotation (Line(points={{-120,11},{-88,11},{-88,0},{-78,
+          0},{-78,5.2}}, color={0,0,127}));
+  connect(inv1.y, val4.y) annotation (Line(points={{-72.6,58},{-60,58},{-60,-2},
+          {-26,-2}}, color={0,0,127}));
+  connect(inv2.y, val5.y) annotation (Line(points={{-72.6,10},{-62,10},{-62,-76},
+          {-26,-76}}, color={0,0,127}));
+  connect(const.y, inv.u1) annotation (Line(points={{-105,128},{-92,128},{-92,80},
+          {-82.8,80}}, color={0,0,127}));
+  connect(inv1.u1, const.y) annotation (Line(points={{-82.8,58},{-105,58},{-105,
+          128}}, color={0,0,127}));
+  connect(inv2.u1, const.y) annotation (Line(points={{-82.8,10},{-86,10},{-86,46},
+          {-105,46},{-105,128}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
-end FlowRouter;
+end FlowRouterSupply;

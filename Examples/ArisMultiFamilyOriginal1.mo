@@ -111,7 +111,7 @@ model ArisMultiFamilyOriginal1
         "modelica://Buildings/Resources/weatherdata/US_Berkeley_20210913.epw"),
     weaName=Modelica.Utilities.Files.loadResource(
         "modelica://Buildings/Resources/weatherdata/US_Berkeley_20210913.mos"))
-    annotation (Placement(transformation(extent={{104,32},{124,52}})));
+    annotation (Placement(transformation(extent={{102,32},{122,52}})));
 
   Buildings.ThermalZones.EnergyPlus_9_6_0.ThermalZone nor(
     zoneName="FlexLab-X3-ZoneA-North-Zone Thermal Zone",
@@ -132,7 +132,7 @@ model ArisMultiFamilyOriginal1
     annotation (Placement(transformation(extent={{348,-106},{388,-66}})));
   Modelica.Blocks.Sources.Constant qIntGai[3](each k=0)
     "Internal heat gains, set to zero because these are modeled in EnergyPlus"
-    annotation (Placement(transformation(extent={{114,70},{134,90}})));
+    annotation (Placement(transformation(extent={{112,70},{132,90}})));
   Buildings.Fluid.Sources.Boundary_pT pAtm(
     redeclare package Medium = MediumAir,
     p=101300,
@@ -348,12 +348,12 @@ equation
           {16,-96},{16,-100},{18,-100}},      color={0,0,127}));
   connect(tan.port_a, tempTankOutlet.port_a) annotation (Line(points={{-14,-51},
           {-14,-52},{2,-52},{2,-46},{76,-46}},   color={0,127,255}));
-  connect(qIntGai.y, nor.qGai_flow) annotation (Line(points={{135,80},{282,80},
+  connect(qIntGai.y, nor.qGai_flow) annotation (Line(points={{133,80},{282,80},
           {282,78},{290,78}}, color={0,0,127}));
-  connect(qIntGai.y, cor.qGai_flow) annotation (Line(points={{135,80},{156,80},
+  connect(qIntGai.y, cor.qGai_flow) annotation (Line(points={{133,80},{156,80},
           {156,2},{286,2},{286,4},{294,4}}, color={0,0,127}));
-  connect(qIntGai.y, sou.qGai_flow) annotation (Line(points={{135,80},{156,80},{
-          156,2},{286,2},{286,-48},{336,-48},{336,-76},{346,-76}},
+  connect(qIntGai.y, sou.qGai_flow) annotation (Line(points={{133,80},{156,80},
+          {156,2},{286,2},{286,-48},{336,-48},{336,-76},{346,-76}},
                                                 color={0,0,127}));
   connect(nor.ports[1], ducNor.port_a) annotation (Line(points={{310.5,48.9},{
           310.5,36},{234,36},{234,54}},
@@ -370,15 +370,15 @@ equation
           {366.5,-114},{310,-114},{310,-126},{230,-126}},
                                  color={0,127,255}));
   connect(building.weaBus, freshAirNor.weaBus) annotation (Line(
-      points={{124,42},{222,42},{222,34},{214,34},{214,18.2},{224,18.2}},
+      points={{122,42},{222,42},{222,34},{214,34},{214,18.2},{224,18.2}},
       color={255,204,51},
       thickness=0.5));
   connect(building.weaBus, freshAirCor.weaBus) annotation (Line(
-      points={{124,42},{158,42},{158,22},{238,22},{238,-31.8}},
+      points={{122,42},{158,42},{158,22},{238,22},{238,-31.8}},
       color={255,204,51},
       thickness=0.5));
   connect(building.weaBus, freshAirSou.weaBus) annotation (Line(
-      points={{124,42},{134,42},{134,36},{166,36},{166,-95.8},{242,-95.8}},
+      points={{122,42},{134,42},{134,36},{166,36},{166,-95.8},{242,-95.8}},
       color={255,204,51},
       thickness=0.5));
   connect(freshAirNor.ports[1], nor.ports[2]) annotation (Line(points={{244,18},
@@ -424,7 +424,7 @@ equation
   connect(senMasFlo.port_b, boundary1.ports[1]) annotation (Line(points={{126,-46},
           {128,-46},{128,-41},{134,-41}}, color={0,127,255}));
   connect(building.weaBus, weaBus) annotation (Line(
-      points={{124,42},{140,42},{140,14},{414,14},{414,-46}},
+      points={{122,42},{140,42},{140,14},{414,14},{414,-46}},
       color={255,204,51},
       thickness=0.5), Text(
       string="%second",
