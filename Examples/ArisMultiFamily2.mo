@@ -103,20 +103,21 @@ model ArisMultiFamily2
     use_T_in=false,
     nPorts=1)
     annotation (Placement(transformation(extent={{144,-32},{124,-14}})));
-  FlowRouterSupply flowRouterSupply
+  FlowRouterSupply flowRouterSupply(redeclare package Medium1 =
+        MediumPropyleneGlycol (property_T=293.15, X_a=0.4))
     annotation (Placement(transformation(extent={{-4,2},{16,22}})));
-  FlowRouterReturn flowRouterReturn
+  FlowRouterReturn flowRouterReturn(redeclare package Medium1 =
+        MediumPropyleneGlycol (property_T=293.15, X_a=0.4))
     annotation (Placement(transformation(extent={{-136,-2},{-116,18}})));
   inner Buildings.ThermalZones.EnergyPlus_9_6_0.Building building(
     idfName=Modelica.Utilities.Files.loadResource(
         "modelica://Buildings/Resources/Data/ThermalZones/EnergyPlus_9_6_0/Examples/energyPlusFiles/X1-2021-V8_v2_correctedInternalGain.idf"),
-
     epwName=Modelica.Utilities.Files.loadResource(
         "modelica://Buildings/Resources/weatherdata/US_Berkeley_20210913.epw"),
-
     weaName=Modelica.Utilities.Files.loadResource(
         "modelica://Buildings/Resources/weatherdata/US_Berkeley_20210913.mos"))
     annotation (Placement(transformation(extent={{70,70},{90,90}})));
+
   Modelica.Blocks.Sources.Constant qIntGai[3](each k=0)
     "Internal heat gains, set to zero because these are modeled in EnergyPlus"
     annotation (Placement(transformation(extent={{200,132},{220,152}})));
@@ -148,7 +149,8 @@ model ArisMultiFamily2
     annotation (Placement(transformation(extent={{-190,100},{-170,120}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant1
     annotation (Placement(transformation(extent={{-220,90},{-200,110}})));
-  CCC.Fluid.HeatExchangers.BaseClasses.FanCoilUnitPid fanCoilUnitPid(
+  CCC.Fluid.HeatExchangers.BaseClasses.FanCoilUnitPidNoMover
+                                                      fanCoilUnitPidNoMover(
     redeclare package Medium1 = MediumPropyleneGlycol (property_T=293.15, X_a=
             0.4),
     redeclare package Medium2 = MediumAir,
@@ -159,7 +161,7 @@ model ArisMultiFamily2
     Q_flow_nominal=2549.7177,
     T_a1_nominal=343.15,
     T_a2_nominal=293.15)
-    annotation (Placement(transformation(extent={{146,-100},{166,-80}})));
+    annotation (Placement(transformation(extent={{200,-80},{220,-60}})));
   Buildings.BoundaryConditions.WeatherData.Bus weaBus "Weather Data Bus"
     annotation (Placement(transformation(extent={{96,122},{116,142}}),
         iconTransformation(extent={{-360,170},{-340,190}})));
@@ -251,7 +253,8 @@ model ArisMultiFamily2
     m_flow=0.3*cor.V*1.2/3600,
     nPorts=1) "Outside air supply"
     annotation (Placement(transformation(extent={{256,-112},{276,-92}})));
-  CCC.Fluid.HeatExchangers.BaseClasses.FanCoilUnitPid fanCoilUnitPid1(
+  CCC.Fluid.HeatExchangers.BaseClasses.FanCoilUnitPidNoMover
+                                                      fanCoilUnitPidNoMover1(
     redeclare package Medium1 = MediumPropyleneGlycol (property_T=293.15, X_a=
             0.4),
     redeclare package Medium2 = MediumAir,
@@ -263,9 +266,45 @@ model ArisMultiFamily2
     T_a1_nominal=343.15,
     T_a2_nominal=293.15)
     annotation (Placement(transformation(extent={{208,-154},{228,-134}})));
+  Buildings.Fluid.Movers.FlowControlled_m_flow fan(redeclare package Medium =
+        MediumPropyleneGlycol (property_T=293.15, X_a=0.4), m_flow_nominal=
+        0.06111)
+    annotation (Placement(transformation(extent={{162,-78},{182,-58}})));
+  Buildings.Fluid.Movers.FlowControlled_m_flow fan1(redeclare package Medium =
+        MediumAir, m_flow_nominal=0.05333)       annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=180,
+        origin={172,-102})));
+  Buildings.Fluid.FixedResistances.Junction jun3(
+    redeclare package Medium = MediumPropyleneGlycol (property_T=293.15, X_a=
+            0.4),
+    m_flow_nominal={2,-1,-1},
+    dp_nominal={1,-1,-1}) annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={128,-116})));
+  Buildings.Fluid.FixedResistances.Junction jun1(
+    redeclare package Medium = MediumPropyleneGlycol (property_T=293.15, X_a=
+            0.4),
+    m_flow_nominal={1,-2,1},
+    dp_nominal={1,-1,1})  annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=180,
+        origin={58,-170})));
+  Buildings.Fluid.Movers.FlowControlled_m_flow fan2(redeclare package Medium =
+        MediumPropyleneGlycol (property_T=293.15, X_a=0.4), m_flow_nominal=
+        0.06111)
+    annotation (Placement(transformation(extent={{138,-146},{158,-126}})));
+  Buildings.Fluid.Movers.FlowControlled_m_flow fan3(redeclare package Medium =
+        MediumAir, m_flow_nominal=0.05333)       annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=180,
+        origin={174,-150})));
 equation
-  connect(booleanConstant2.y, cCC_HP_wTSup_ctr_withPowerData_3D.IO) annotation
-    (Line(points={{-115,122},{-90,122},{-90,77.6},{-83.2,77.6}}, color={255,0,
+  connect(booleanConstant2.y, cCC_HP_wTSup_ctr_withPowerData_3D.IO) annotation (
+     Line(points={{-115,122},{-90,122},{-90,77.6},{-83.2,77.6}}, color={255,0,
           255}));
   connect(booleanConstant2.y, cCC_HP_wTSup_ctr_withPowerData_3D1.IO)
     annotation (Line(points={{-115,122},{-90,122},{-90,49.6},{-81.2,49.6}},
@@ -383,17 +422,15 @@ equation
           -132,-104},{-168,-104},{-168,-36}}, color={0,0,127}));
   connect(const2.y, conservationEquation.Q_flow) annotation (Line(points={{-33,
           -108},{-20,-108},{-20,-100},{-12,-100}}, color={0,0,127}));
-  connect(fanCoilUnitPid.port_b1, tempFcuReturn.port_a) annotation (Line(points
-        ={{166.2,-85.6},{182,-85.6},{182,-140},{-124,-140}}, color={0,127,255}));
   connect(tempFcuReturn.port_b, flowRouterReturn.port_a) annotation (Line(
         points={{-144,-140},{-164,-140},{-164,-138},{-190,-138},{-190,6},{
           -136.4,6}}, color={0,127,255}));
-  connect(nor.TAir, fanCoilUnitPid.zonAirTem) annotation (Line(points={{233,124},
-          {244,124},{244,-98.8},{144,-98.8}}, color={0,0,127}));
-  connect(nor.ports[3], fanCoilUnitPid.port_a2) annotation (Line(points={{212.5,
-          86.9},{212.5,-95.2},{166.2,-95.2}}, color={0,127,255}));
-  connect(fanCoilUnitPid.port_b2, nor.ports[4]) annotation (Line(points={{145.8,
-          -95},{154,-95},{154,74},{213.5,74},{213.5,86.9}}, color={0,127,255}));
+  connect(nor.TAir, fanCoilUnitPidNoMover.zonAirTem) annotation (Line(points={{
+          233,124},{238,124},{238,-58},{192,-58},{192,-70},{190,-70},{190,-78.8},
+          {198,-78.8}}, color={0,0,127}));
+  connect(nor.ports[3], fanCoilUnitPidNoMover.port_a2) annotation (Line(points=
+          {{212.5,86.9},{212.5,84},{214,84},{214,74},{154,74},{154,-86},{228,
+          -86},{228,-75.2},{220.2,-75.2}}, color={0,127,255}));
   connect(flowRouterSupply.port_b1, tempHpSupply.port_a) annotation (Line(
         points={{16.6,7.8},{18,7.8},{18,34},{16,34},{16,50},{22,50}}, color={0,
           127,255}));
@@ -415,9 +452,6 @@ equation
   connect(conservationEquation.ports[1], tempBufTanSupply.port_a) annotation (
       Line(points={{-1,-116},{-1,-130},{80,-130},{80,-126},{86,-126}}, color={0,
           127,255}));
-  connect(tempBufTanSupply.port_b, fanCoilUnitPid.port_a1) annotation (Line(
-        points={{106,-126},{124,-126},{124,-85.6},{145.8,-85.6}}, color={0,127,
-          255}));
   connect(flowRouterSupply.port_b, tempFcuSupply.port_a) annotation (Line(
         points={{16.4,18.4},{20,18.4},{20,2}}, color={0,127,255}));
   connect(tempFcuSupply.port_b, conservationEquation.ports[2]) annotation (Line(
@@ -435,20 +469,54 @@ equation
       points={{90,80},{256,80},{256,-101.8}},
       color={255,204,51},
       thickness=0.5));
-  connect(cor.TAir, fanCoilUnitPid1.zonAirTem) annotation (Line(points={{295,32},
-          {302,32},{302,-152.8},{206,-152.8}}, color={0,0,127}));
-  connect(fanCoilUnitPid1.port_b2, cor.ports[3]) annotation (Line(points={{
-          207.8,-149},{194,-149},{194,-5.1},{274.5,-5.1}}, color={0,127,255}));
-  connect(fanCoilUnitPid1.port_a2, cor.ports[4]) annotation (Line(points={{
-          228.2,-149.2},{275.5,-149.2},{275.5,-5.1}}, color={0,127,255}));
-  connect(tempBufTanSupply.port_b, fanCoilUnitPid1.port_a1) annotation (Line(
-        points={{106,-126},{202,-126},{202,-139.6},{207.8,-139.6}}, color={0,
+  connect(cor.TAir, fanCoilUnitPidNoMover1.zonAirTem) annotation (Line(points={
+          {295,32},{302,32},{302,-152.8},{206,-152.8}}, color={0,0,127}));
+  connect(fanCoilUnitPidNoMover1.port_a2, cor.ports[3]) annotation (Line(points
+        ={{228.2,-149.2},{274.5,-149.2},{274.5,-5.1}}, color={0,127,255}));
+  connect(fan.port_b, fanCoilUnitPidNoMover.port_a1) annotation (Line(points={{
+          182,-68},{182,-65.6},{199.8,-65.6}}, color={0,127,255}));
+  connect(fanCoilUnitPidNoMover.m_flow_water, fan.m_flow_in) annotation (Line(
+        points={{221.2,-61.8},{226,-61.8},{226,-48},{172,-48},{172,-56}}, color
+        ={0,0,127}));
+  connect(fanCoilUnitPidNoMover.port_b2, fan1.port_a) annotation (Line(points={
+          {199.8,-75},{199.8,-76},{188,-76},{188,-102},{182,-102}}, color={0,
           127,255}));
-  connect(fanCoilUnitPid1.port_b1, tempFcuReturn.port_a) annotation (Line(
-        points={{228.2,-139.6},{236,-139.6},{236,-148},{-124,-148},{-124,-140}},
-        color={0,127,255}));
+  connect(fan1.port_b, nor.ports[4]) annotation (Line(points={{162,-102},{146,
+          -102},{146,-104},{128,-104},{128,86.9},{213.5,86.9}}, color={0,127,
+          255}));
+  connect(fanCoilUnitPidNoMover.m_flow_air, fan1.m_flow_in) annotation (Line(
+        points={{221.2,-78.2},{236,-78.2},{236,-114},{172,-114}}, color={0,0,
+          127}));
+  connect(tempBufTanSupply.port_b, jun3.port_1) annotation (Line(points={{106,
+          -126},{112,-126},{112,-116},{118,-116}}, color={0,127,255}));
+  connect(jun3.port_2, fan.port_a) annotation (Line(points={{138,-116},{148,
+          -116},{148,-68},{162,-68}}, color={0,127,255}));
+  connect(fanCoilUnitPidNoMover.port_b1, jun1.port_3) annotation (Line(points={
+          {220.2,-65.6},{240,-65.6},{240,-110},{58,-110},{58,-160}}, color={0,
+          127,255}));
+  connect(fanCoilUnitPidNoMover1.port_b1, jun1.port_1) annotation (Line(points=
+          {{228.2,-139.6},{234,-139.6},{234,-170},{68,-170}}, color={0,127,255}));
+  connect(tempFcuReturn.port_a, jun1.port_2) annotation (Line(points={{-124,
+          -140},{42,-140},{42,-170},{48,-170}}, color={0,127,255}));
+  connect(fan3.port_a, fanCoilUnitPidNoMover1.port_b2) annotation (Line(points=
+          {{184,-150},{186,-150},{186,-149},{207.8,-149}}, color={0,127,255}));
+  connect(fan3.port_b, cor.ports[4]) annotation (Line(points={{164,-150},{164,
+          -5.1},{275.5,-5.1}}, color={0,127,255}));
+  connect(fanCoilUnitPidNoMover1.m_flow_air, fan3.m_flow_in) annotation (Line(
+        points={{229.2,-152.2},{229.2,-162},{174,-162}}, color={0,0,127}));
+  connect(jun3.port_3, fan2.port_a) annotation (Line(points={{128,-126},{128,
+          -136},{138,-136}}, color={0,127,255}));
+  connect(fan2.port_b, fanCoilUnitPidNoMover1.port_a1) annotation (Line(points=
+          {{158,-136},{202,-136},{202,-139.6},{207.8,-139.6}}, color={0,127,255}));
+  connect(fanCoilUnitPidNoMover1.m_flow_water, fan2.m_flow_in) annotation (Line(
+        points={{229.2,-135.8},{236,-135.8},{236,-126},{148,-126},{148,-124}},
+        color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-220,
             -220},{260,160}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-220,-220},{260,
-            160}})));
+            160}})),
+    experiment(
+      StopTime=8640,
+      Interval=60,
+      __Dymola_Algorithm="Dassl"));
 end ArisMultiFamily2;

@@ -1,5 +1,5 @@
 within CCC_test.Examples;
-model FanCoilUnitPidTest3
+model FanCoilUnitPidTest1D
     replaceable package Medium1 = Buildings.Media.Water "Medium 1 in the component";
       replaceable package Medium2 = Buildings.Media.Air "Medium 2 in the component";
   replaceable parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal=0.126
@@ -48,7 +48,7 @@ model FanCoilUnitPidTest3
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
-        origin={-80,26})));
+        origin={-30,18})));
   Modelica.Fluid.Sensors.TemperatureTwoPort tempFcuAirReturn(redeclare package
       Medium = Medium2)   annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
@@ -96,7 +96,7 @@ model FanCoilUnitPidTest3
     y_start=0.2,
     reverseActing=false)
     annotation (Placement(transformation(extent={{-58,70},{-38,90}})));
-  Modelica.Blocks.Sources.Constant const4(k=10)
+  Modelica.Blocks.Sources.Constant const4(k=5)
     annotation (Placement(transformation(extent={{-88,74},{-68,94}})));
   Modelica.Blocks.Math.Add add(k2=-1)
     annotation (Placement(transformation(extent={{-10,40},{10,60}})));
@@ -116,14 +116,14 @@ model FanCoilUnitPidTest3
     annotation (Placement(transformation(extent={{-50,-74},{-30,-54}})));
   Buildings.Fluid.Movers.FlowControlled_m_flow fan(redeclare package Medium =
         Medium1, m_flow_nominal=m1_flow_nominal)
-    annotation (Placement(transformation(extent={{-48,16},{-28,36}})));
+    annotation (Placement(transformation(extent={{-90,8},{-70,28}})));
   Buildings.Fluid.Movers.FlowControlled_m_flow fan1(redeclare package Medium =
         Medium2, m_flow_nominal=m2_flow_nominal) annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
-        origin={42,-28})));
-  Modelica.Blocks.Sources.Constant const1(k=20)
+        origin={-90,-14})));
+  Modelica.Blocks.Sources.Constant const1(k=6)
     annotation (Placement(transformation(extent={{-72,38},{-52,58}})));
 equation
   connect(port_a1, port_a1)
@@ -132,8 +132,8 @@ equation
           {34,10},{34,38},{40,38}}, color={0,127,255}));
   connect(hex.port_b2, tempFcuAirReturn.port_a) annotation (Line(points={{-8,-2},
           {-48,-2},{-48,-14},{-54,-14}}, color={0,127,255}));
-  connect(tempFcuWaterSupply.T, TempWaterSupply) annotation (Line(points={{-80,37},
-          {-80,70},{-92,70},{-92,100},{-64,100},{-64,96},{-50,96},{-50,110}},
+  connect(tempFcuWaterSupply.T, TempWaterSupply) annotation (Line(points={{-30,29},
+          {-30,32},{-34,32},{-34,94},{-50,94},{-50,110}},
                                         color={0,0,127}));
   connect(tempFcuWaterReturn.T, TempWaterReturn) annotation (Line(points={{50,49},
           {50,96},{58,96},{58,110}}, color={0,0,127}));
@@ -143,8 +143,8 @@ equation
           {74,-96},{36,-96},{36,-110}},color={0,0,127}));
   connect(const4.y, conPID.u_s) annotation (Line(points={{-67,84},{-64,84},{-64,
           80},{-60,80}}, color={0,0,127}));
-  connect(tempFcuWaterSupply.T, add.u1) annotation (Line(points={{-80,37},{-80,
-          70},{-92,70},{-92,100},{-64,100},{-64,96},{-30,96},{-30,56},{-12,56}},
+  connect(tempFcuWaterSupply.T, add.u1) annotation (Line(points={{-30,29},{-30,
+          32},{-34,32},{-34,66},{-12,66},{-12,56}},
                                                 color={0,0,127}));
   connect(tempFcuWaterReturn.T, add.u2) annotation (Line(points={{50,49},{18,49},
           {18,34},{-12,34},{-12,44}}, color={0,0,127}));
@@ -156,29 +156,29 @@ equation
           {-56,-90},{12,-90},{12,-76}}, color={0,0,127}));
   connect(conPID.y, gain.u)
     annotation (Line(points={{-37,80},{-20,80}}, color={0,0,127}));
-  connect(tempFcuWaterSupply.port_a, port_a1) annotation (Line(points={{-90,26},
-          {-102,26},{-102,44}}, color={0,127,255}));
   connect(tempFcuAirSupply.port_a, port_a2) annotation (Line(points={{84,-28},{
           102,-28},{102,-52}}, color={0,127,255}));
-  connect(gain.y, fan.m_flow_in) annotation (Line(points={{3,80},{6,80},{6,64},
-          {-38,64},{-38,38}},
-                            color={0,0,127}));
-  connect(gain1.y, fan1.m_flow_in) annotation (Line(points={{69,-64},{72,-64},{
-          72,-48},{42,-48},{42,-40}},   color={0,0,127}));
-  connect(tempFcuWaterSupply.port_b, fan.port_a)
-    annotation (Line(points={{-70,26},{-48,26}}, color={0,127,255}));
-  connect(fan.port_b, hex.port_a1) annotation (Line(points={{-28,26},{-14,26},{
-          -14,10},{-8,10}}, color={0,127,255}));
+  connect(gain.y, fan.m_flow_in) annotation (Line(points={{3,80},{6,80},{6,66},
+          {-14,66},{-14,64},{-40,64},{-40,60},{-56,60},{-56,62},{-80,62},{-80,
+          30}},             color={0,0,127}));
+  connect(fan1.port_a, tempFcuAirReturn.port_b)
+    annotation (Line(points={{-80,-14},{-74,-14}}, color={0,127,255}));
+  connect(fan1.port_b, port_b2) annotation (Line(points={{-100,-14},{-104,-14},
+          {-104,-50},{-102,-50}}, color={0,127,255}));
+  connect(tempFcuAirSupply.port_b, hex.port_a2) annotation (Line(points={{64,
+          -28},{18,-28},{18,-2},{12,-2}}, color={0,127,255}));
+  connect(gain1.y, fan1.m_flow_in) annotation (Line(points={{69,-64},{70,-64},{
+          70,-36},{-90,-36},{-90,-26}}, color={0,0,127}));
   connect(tempFcuWaterReturn.port_b, port_b1) annotation (Line(points={{60,38},
           {86,38},{86,44},{102,44}}, color={0,127,255}));
-  connect(conPID.u_m, add.y)
-    annotation (Line(points={{-48,68},{-48,50},{11,50}}, color={0,0,127}));
-  connect(tempFcuAirSupply.port_b, fan1.port_a)
-    annotation (Line(points={{64,-28},{52,-28}}, color={0,127,255}));
-  connect(fan1.port_b, hex.port_a2) annotation (Line(points={{32,-28},{18,-28},
-          {18,-2},{12,-2}}, color={0,127,255}));
-  connect(tempFcuAirReturn.port_b, port_b2) annotation (Line(points={{-74,-14},
-          {-102,-14},{-102,-50}}, color={0,127,255}));
+  connect(conPID.u_m, add.y) annotation (Line(points={{-48,68},{-48,54},{-26,54},
+          {-26,62},{8,62},{8,64},{11,64},{11,50}}, color={0,0,127}));
+  connect(tempFcuWaterSupply.port_a, fan.port_b)
+    annotation (Line(points={{-40,18},{-70,18}}, color={0,127,255}));
+  connect(fan.port_a, port_a1) annotation (Line(points={{-90,18},{-102,18},{
+          -102,44}}, color={0,127,255}));
+  connect(tempFcuWaterSupply.port_b, hex.port_a1) annotation (Line(points={{-20,
+          18},{-16,18},{-16,10},{-8,10}}, color={0,127,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
-end FanCoilUnitPidTest3;
+end FanCoilUnitPidTest1D;
