@@ -11,7 +11,6 @@ testTank
 GlycolWaterBufferTankTest
 RadiantHeatingCooling_TRoom
 VAVReheatBox
-testHeatPump
 testPump
 ReversibleAirToWaterEuropeanNorm2D_withPowerData
 CCC_HP_wTSup_ctr_withPowerData_Test
@@ -22,7 +21,7 @@ testFCU1A
 refrigerantCycleTest
 testCombiTable2D
 testCombiTableND
-testAixLibHeatPumpCycle
+testAixLibHeatPump
 HeatPump
 TabledDiode
 InterpolationMethods
@@ -32,7 +31,6 @@ testPIDControl
 testBufferTank
 FanCoilUnitTest1
 ArisMultiFamilyOriginal1
-ArisMultiFamily2
 FlowRouterSupply
 FlowRouterReturn
 FlowRouterTest
@@ -50,3 +48,5 @@ FanCoilUnitPidTest1C
 testFCU1D
 FanCoilUnitPidTest1D
 testFCU2
+testFcuBlock
+HeatCapacitySensor
