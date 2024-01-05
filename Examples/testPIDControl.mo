@@ -12,18 +12,16 @@ model testPIDControl
     duration=60,
     offset=0,
     startTime=0)
-    annotation (Placement(transformation(extent={{-62,62},{-42,82}})));
+    annotation (Placement(transformation(extent={{2,66},{22,86}})));
   Buildings.Controls.Continuous.LimPID conPID(
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
-    k=0.03,
+    k=0.3,
     Ti=300,
-    yMax=1,
-    yMin=0,
     initType=Modelica.Blocks.Types.Init.InitialOutput,
     y_start=0.2,
-    reverseActing=false)
+    reverseActing=true)
     annotation (Placement(transformation(extent={{-30,20},{-10,40}})));
-  Modelica.Blocks.Sources.Constant const2(k=6)
+  Modelica.Blocks.Sources.Constant const2(k=4)
     annotation (Placement(transformation(extent={{-32,-54},{-12,-34}})));
 equation
   connect(conPID.u_m, const2.y) annotation (Line(points={{-20,18},{-20,-30},{

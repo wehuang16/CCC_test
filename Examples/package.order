@@ -1,7 +1,3 @@
-test_FMU_export
-TestHeatPumpSystem
-test_FMU_export_withInput
-test_FMU_export_withInputOutput
 HP_TES_water_test
 TestVesselPorts
 testSpawnNoAhu
@@ -31,11 +27,8 @@ testPIDControl
 testBufferTank
 FanCoilUnitTest1
 ArisMultiFamilyOriginal1
-FlowRouterSupply
-FlowRouterReturn
 FlowRouterTest
 FlowRouterTest2
-HpModeSelector
 testAnyBlock
 HpModeSelectorTest
 FanCoilUnitPidTest1A
@@ -43,10 +36,13 @@ FanCoilUnitPidTest2
 FanCoilUnitPidTest3
 FanCoilUnitPidTest1B
 testFCU1B
-testFCU1C
 FanCoilUnitPidTest1C
 testFCU1D
 FanCoilUnitPidTest1D
 testFCU2
 testFcuBlock
 HeatCapacitySensor
+testPumpValve
+OutputNotZero
+FanCoilUnitUnitTest2
+containedTempSensor

@@ -9,7 +9,8 @@ model FlowRouterTest
 
   Modelica.Blocks.Sources.Constant const(k=0)
     annotation (Placement(transformation(extent={{-66,14},{-46,34}})));
-  FlowRouterSupply flowRouter(redeclare package Medium1 = MediumWater)
+  CCC.Fluid.BaseClasses.FlowRouterSupply flowRouter(redeclare package Medium1
+      = MediumWater)
     annotation (Placement(transformation(extent={{0,8},{20,28}})));
   Modelica.Fluid.Sources.MassFlowSource_T hpPump(
     redeclare package Medium = MediumWater,

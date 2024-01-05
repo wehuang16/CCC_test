@@ -8,10 +8,25 @@ model testAixLibHeatPump
   AixLib.Fluid.HeatPumps.HeatPump heatPump(
     redeclare package Medium_con = MediumPropyleneGlycol,
     redeclare package Medium_eva = MediumAir,
+    mFlow_conNominal=0.5,
+    VCon=0.4,
+    dpCon_nominal=0,
+    mFlow_evaNominal=0.5,
+    VEva=0.04,
+    dpEva_nominal=0,
+    redeclare model PerDataMainHP =
+        AixLib.DataBase.HeatPump.PerformanceData.LookUpTableND (interpMethod=
+            SDF.Types.InterpolationMethod.Akima, extrapMethod=SDF.Types.ExtrapolationMethod.Hold),
+
+    redeclare model PerDataRevHP =
+        AixLib.DataBase.Chiller.PerformanceData.LookUpTableND (interpMethod=SDF.Types.InterpolationMethod.Akima,
+          extrapMethod=SDF.Types.ExtrapolationMethod.Hold),
     useBusConnectorOnly=true,
     use_conCap=false,
     use_evaCap=false)
-    annotation (Placement(transformation(extent={{2,0},{22,24}})));
+    annotation (Placement(transformation(extent={{4,0},{24,24}})));
+
+
   Modelica.Fluid.Sources.Boundary_pT boundary2(
     redeclare package Medium = MediumPropyleneGlycol,
     use_T_in=false,
@@ -38,19 +53,21 @@ model testAixLibHeatPump
         rotation=180,
         origin={-42,23})));
   Modelica.Blocks.Sources.Constant iceFac(final k=1)
-    "Fixed value for icing factor. 1 means no icing/frosting (full heat transfer in heat exchanger)"
-                                                                                                     annotation (Placement(
+    "Fixed value for icing factor. 1 means no icing/frosting (full heat transfer in heat exchanger)" annotation (Placement(
         transformation(
         extent={{8,8},{-8,-8}},
         rotation=180,
-        origin={-10,-22})));
-  Modelica.Blocks.Sources.Constant nSet(final k=1) annotation (Placement(
+        origin={-4,-44})));
+  Modelica.Blocks.Sources.Constant nSet(final k=1)
+    "Relative rotational speed of compressor between 0 and 1"
+                                                   annotation (Placement(
         transformation(
         extent={{8,8},{-8,-8}},
         rotation=180,
-        origin={-52,-4})));
-  Modelica.Blocks.Sources.BooleanConstant booleanConstant
-    annotation (Placement(transformation(extent={{-66,-44},{-46,-24}})));
+        origin={-56,-20})));
+  Modelica.Blocks.Sources.BooleanConstant modeSet
+    "Current operation mode: true: main operation mode, false: reversible operation mode"
+    annotation (Placement(transformation(extent={{-48,-86},{-28,-66}})));
   Modelica.Fluid.Sources.MassFlowSource_T
                                      boundary3(
     redeclare package Medium = MediumAir,
@@ -72,21 +89,41 @@ model testAixLibHeatPump
     annotation (Placement(transformation(extent={{20,-44},{50,-10}}),
         iconTransformation(extent={{-22,30},{-4,56}})));
 equation
-  connect(boundary1.ports[1], heatPump.port_a1) annotation (Line(points={{-32,
-          23},{-4,23},{-4,18},{2,18}}, color={0,127,255}));
-  connect(heatPump.port_b1, boundary2.ports[1]) annotation (Line(points={{22,18},
+  connect(boundary1.ports[1], heatPump.port_a1) annotation (Line(points={{-32,23},
+          {-4,23},{-4,18},{4,18}},     color={0,127,255}));
+  connect(heatPump.port_b1, boundary2.ports[1]) annotation (Line(points={{24,18},
           {64,18},{64,21},{70,21}}, color={0,127,255}));
-  connect(iceFac.y, heatPump.iceFac_in) annotation (Line(points={{-1.2,-22},{
-          4.4,-22},{4.4,-1.6}}, color={0,0,127}));
-  connect(nSet.y, heatPump.nSet) annotation (Line(points={{-43.2,-4},{-34,-4},{
-          -34,14},{0.4,14}}, color={0,0,127}));
-  connect(heatPump.modeSet, booleanConstant.y) annotation (Line(points={{0.4,10},
-          {-30,10},{-30,-34},{-45,-34}}, color={255,0,255}));
-  connect(boundary4.ports[1], heatPump.port_b2) annotation (Line(points={{-74,
-          -25},{-74,-26},{-70,-26},{-70,-48},{-24,-48},{-24,6},{2,6}}, color={0,
+  connect(boundary4.ports[1], heatPump.port_b2) annotation (Line(points={{-74,-25},
+          {-74,-26},{-70,-26},{-70,-48},{-24,-48},{-24,6},{4,6}},      color={0,
           127,255}));
-  connect(heatPump.port_a2, boundary3.ports[1]) annotation (Line(points={{22,6},
-          {72,6},{72,-35},{76,-35}}, color={0,127,255}));
+  connect(heatPump.port_a2, boundary3.ports[1]) annotation (Line(points={{24,6},{
+          72,6},{72,-35},{76,-35}},  color={0,127,255}));
+  connect(sigBus1, heatPump.sigBus) annotation (Line(
+      points={{35,-27},{35,-4},{-2,-4},{-2,8.1},{4.1,8.1}},
+      color={255,204,51},
+      thickness=0.5), Text(
+      string="%first",
+      index=-1,
+      extent={{-3,-6},{-3,-6}},
+      horizontalAlignment=TextAlignment.Right));
+  connect(iceFac.y, sigBus1.iceFacMea) annotation (Line(points={{4.8,-44},{16,-44},
+          {16,-26.915},{35.075,-26.915}}, color={0,0,127}), Text(
+      string="%second",
+      index=1,
+      extent={{6,3},{6,3}},
+      horizontalAlignment=TextAlignment.Left));
+  connect(nSet.y, sigBus1.nSet) annotation (Line(points={{-47.2,-20},{14,-20},{14,
+          -26.915},{35.075,-26.915}}, color={0,0,127}), Text(
+      string="%second",
+      index=1,
+      extent={{6,3},{6,3}},
+      horizontalAlignment=TextAlignment.Left));
+  connect(modeSet.y, sigBus1.modeSet) annotation (Line(points={{-27,-76},{35.075,
+          -76},{35.075,-26.915}}, color={255,0,255}), Text(
+      string="%second",
+      index=1,
+      extent={{6,3},{6,3}},
+      horizontalAlignment=TextAlignment.Left));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false)),
     Diagram(coordinateSystem(preserveAspectRatio=false)),
