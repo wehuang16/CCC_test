@@ -15,12 +15,39 @@ model testAixLibHeatPump
     VEva=0.04,
     dpEva_nominal=0,
     redeclare model PerDataMainHP =
-        AixLib.DataBase.HeatPump.PerformanceData.LookUpTableND (interpMethod=
-            SDF.Types.InterpolationMethod.Akima, extrapMethod=SDF.Types.ExtrapolationMethod.Hold),
+        AixLib.DataBase.HeatPump.PerformanceData.LookUpTableND (
+        nConv=1,
+        interpMethod=SDF.Types.InterpolationMethod.Akima,
+        extrapMethod=SDF.Types.ExtrapolationMethod.Hold,
+        filename_Pel=
+            "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_heating.sdf",
 
+        dataset_Pel="/elec_power",
+        dataUnit_Pel="W",
+        scaleUnits_Pel={"K","K",""},
+        filename_QCon=
+            "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_heating.sdf",
+
+        dataset_QCon="/condenser_heat",
+        dataUnit_QCon="W",
+        scaleUnits_QCon={"K","K",""}),
     redeclare model PerDataRevHP =
-        AixLib.DataBase.Chiller.PerformanceData.LookUpTableND (interpMethod=SDF.Types.InterpolationMethod.Akima,
-          extrapMethod=SDF.Types.ExtrapolationMethod.Hold),
+        AixLib.DataBase.Chiller.PerformanceData.LookUpTableND (
+        nConv=1,
+        interpMethod=SDF.Types.InterpolationMethod.Akima,
+        extrapMethod=SDF.Types.ExtrapolationMethod.Hold,
+        filename_Pel=
+            "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_cooling.sdf",
+
+        dataset_Pel="/elec_power",
+        dataUnit_Pel="W",
+        scaleUnits_Pel={"K","K",""},
+        filename_QCon=
+            "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_cooling.sdf",
+
+        dataset_QCon="/evaporator_heat",
+        dataUnit_QCon="W",
+        scaleUnits_QCon={"K","K",""}),
     useBusConnectorOnly=true,
     use_conCap=false,
     use_evaCap=false)
