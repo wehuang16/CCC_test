@@ -31,7 +31,7 @@ model FanCoilUnitEps
         rotation=0,
         origin={-68,26})));
 
-  CCC.Fluid.HeatExchangers.BaseClasses.VariableEffectiveness hex(
+  CCC.Fluid.HeatExchangers.VariableEffectiveness hex(
     redeclare package Medium1 = Medium1,
     redeclare package Medium2 = Medium2,
     m1_flow_nominal=m1_flow_nominal,

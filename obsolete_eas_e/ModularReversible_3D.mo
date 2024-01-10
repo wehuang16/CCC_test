@@ -1,18 +1,17 @@
-within CCC_test.Examples;
-model ModularReversible
+within CCC_test.obsolete_eas_e;
+model ModularReversible_3D
   "Grey-box model for reversible heat pumps using performance data or functional approaches to simulate the refrigeration cycle"
-  extends
-    IBPSA.Fluid.HeatPumps.ModularReversible.BaseClasses.PartialReversibleRefrigerantMachine(
+  extends PartialReversibleRefrigerantMachine3D(
     safCtr(final forHeaPum=true),
-    final PEle_nominal=refCyc.refCycHeaPumHea.PEle_nominal,
-    mCon_flow_nominal=QUse_flow_nominal/(dTCon_nominal*cpCon),
-    mEva_flow_nominal=(QUse_flow_nominal - PEle_nominal)/(dTEva_nominal*cpEva),
     final scaFac=refCyc.refCycHeaPumHea.scaFac,
     use_rev=true,
-    redeclare IBPSA.Fluid.HeatPumps.ModularReversible.BaseClasses.RefrigerantCycle refCyc(
-        redeclare model RefrigerantCycleHeatPumpHeating =
-          RefrigerantCycleHeatPumpHeating, redeclare model
-        RefrigerantCycleHeatPumpCooling = RefrigerantCycleHeatPumpCooling));
+    redeclare CCC_test.obsolete_eas_e.RefrigerantCycle_3D refCyc(redeclare
+        model RefrigerantCycleHeatPumpHeating = RefrigerantCycleHeatPumpHeating,
+        redeclare model RefrigerantCycleHeatPumpCooling =
+          RefrigerantCycleHeatPumpCooling));
+    /*final PEle_nominal=refCyc.refCycHeaPumHea.PEle_nominal,
+    mCon_flow_nominal=QUse_flow_nominal/(dTCon_nominal*cpCon),
+    mEva_flow_nominal=(QUse_flow_nominal - PEle_nominal)/(dTEva_nominal*cpEva),*/
   replaceable model RefrigerantCycleHeatPumpHeating =
       IBPSA.Fluid.HeatPumps.ModularReversible.RefrigerantCycle.BaseClasses.PartialHeatPumpCycle
       (QUseNoSca_flow_nominal=0)
@@ -177,4 +176,4 @@ equation
   UsersGuide</a>.
 </p>
 </html>"));
-end ModularReversible;
+end ModularReversible_3D;

@@ -1,0 +1,11 @@
+CCC_HP_wTSup_ctr_withPowerData_3D
+RefrigerantCycle_3D
+ModularReversible_3D
+ReversibleAirToWaterEuropeanNorm3D_withPowerData
+EuropeanNorm3D
+ArisMultiFamily
+PartialReversibleRefrigerantMachine3D
+PartialEuropeanNorm3D
+PartialHeatPumpCycle3D
+PartialRefrigerantCycle3D
+HeatPumpUnitTest

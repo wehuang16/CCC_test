@@ -6,7 +6,7 @@ model testPIDControl
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater;
   Modelica.Blocks.Sources.Constant const1(k=5)
-    annotation (Placement(transformation(extent={{-84,22},{-64,42}})));
+    annotation (Placement(transformation(extent={{-98,16},{-78,36}})));
   Modelica.Blocks.Sources.Ramp     ramp(
     height=1.25,
     duration=60,
@@ -21,13 +21,17 @@ model testPIDControl
     y_start=0.2,
     reverseActing=true)
     annotation (Placement(transformation(extent={{-30,20},{-10,40}})));
-  Modelica.Blocks.Sources.Constant const2(k=4)
+  Modelica.Blocks.Sources.Step     step(
+    height=21,
+    offset=-15,
+    startTime=6600)
     annotation (Placement(transformation(extent={{-32,-54},{-12,-34}})));
+  Modelica.Blocks.Sources.Constant const2(k=5)
+    annotation (Placement(transformation(extent={{-74,-22},{-54,-2}})));
 equation
-  connect(conPID.u_m, const2.y) annotation (Line(points={{-20,18},{-20,-30},{
-          -11,-30},{-11,-44}}, color={0,0,127}));
   connect(const1.y, conPID.u_s)
-    annotation (Line(points={{-63,32},{-32,32},{-32,30}}, color={0,0,127}));
+    annotation (Line(points={{-77,26},{-42,26},{-42,30},{-32,30}},
+                                                          color={0,0,127}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false)),
     Diagram(coordinateSystem(preserveAspectRatio=false)),

@@ -1,18 +1,7 @@
-HP_TES_water_test
-TestVesselPorts
-testSpawnNoAhu
 testHx
-AirHeating
 testTank
-GlycolWaterBufferTankTest
-RadiantHeatingCooling_TRoom
-VAVReheatBox
 testPump
 ReversibleAirToWaterEuropeanNorm2D_withPowerData
-CCC_HP_wTSup_ctr_withPowerData_Test
-ModularReversible
-FlexlabX1aNoLeakBaseline_Calib_G36Paper_Shift_corrected_occupancy_schedule_useSpawn_Flexlab_withAuxRooms_noDoor
-NonArisMultiFamilyTest3
 testFCU1A
 refrigerantCycleTest
 testCombiTable2D
@@ -46,3 +35,5 @@ testPumpValve
 OutputNotZero
 FanCoilUnitUnitTest2
 containedTempSensor
+testAixLibHeatPump2
+VariablePrimary

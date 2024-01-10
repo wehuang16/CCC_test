@@ -92,8 +92,7 @@ partial model PartialFloor_withPlenum
   Buildings.Airflow.Multizone.DoorOpen opeNorCor(redeclare package Medium =
         Medium, wOpe=10) "Opening between perimeter3 and core"
     annotation (Placement(transformation(extent={{80,74},{100,94}})));
-  Buildings.Fluid.Sensors.RelativePressure senRelPre(redeclare package Medium
-      =                                                                         Medium)
+  Buildings.Fluid.Sensors.RelativePressure senRelPre(redeclare package Medium = Medium)
     "Building pressure measurement"
     annotation (Placement(transformation(extent={{60,240},{40,260}})));
   Buildings.Fluid.Sources.Outside out(nPorts=1, redeclare package Medium = Medium)

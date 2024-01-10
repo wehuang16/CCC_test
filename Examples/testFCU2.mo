@@ -5,8 +5,7 @@ model testFCU2
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
-  CCC.Fluid.HeatExchangers.BaseClasses.FanCoilUnit
-                       fanCoilUnitEps(
+  CCC.Fluid.HeatExchangers.FanCoilUnit fanCoilUnitEps(
     redeclare package Medium1 = MediumPropyleneGlycol,
     redeclare package Medium2 = MediumAir,
     m1_flow_nominal=0.06393,
