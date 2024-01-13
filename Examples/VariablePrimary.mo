@@ -5,8 +5,8 @@ model VariablePrimary
     package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
-  Buildings.Fluid.Sensors.RelativePressure senRelPre(redeclare package Medium
-      = MediumPropyleneGlycol)         "Pressure difference across resistance"
+  Buildings.Fluid.Sensors.RelativePressure senRelPre(redeclare package Medium =
+        MediumPropyleneGlycol)         "Pressure difference across resistance"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=270,
         origin={2,-6})));
@@ -93,8 +93,8 @@ model VariablePrimary
     annotation (Placement(transformation(extent={{72,-8},{90,10}})));
   Modelica.Blocks.Sources.Constant const2(final k=273.15 + 20)
     annotation (Placement(transformation(extent={{58,72},{76,90}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort TWatRet(redeclare package Medium
-      = MediumPropyleneGlycol, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.TemperatureTwoPort TWatRet(redeclare package Medium =
+        MediumPropyleneGlycol, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=180,
         origin={68,-64})));

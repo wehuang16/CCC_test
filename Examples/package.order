@@ -14,10 +14,6 @@ TableHpPerformance
 CCC_HP_wTSup_ctr_withPowerData
 testPIDControl
 testBufferTank
-FanCoilUnitTest1
-ArisMultiFamilyOriginal1
-FlowRouterTest
-FlowRouterTest2
 testAnyBlock
 HpModeSelectorTest
 FanCoilUnitPidTest1A
@@ -37,3 +33,7 @@ FanCoilUnitUnitTest2
 containedTempSensor
 testAixLibHeatPump2
 VariablePrimary
+FanCoilUnitPidNoMoverEffectivenessSimple
+ArisMultiFamily2Test
+VisualHeatPumpPcmZone
+TestVesselPorts

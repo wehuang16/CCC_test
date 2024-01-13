@@ -1,10 +1,10 @@
-within CCC_test.Examples;
-model FanCoilUnitTest1
+within CCC_test.obsolete_eas_e;
+model FanCoilUnit
     replaceable package Medium1 = Buildings.Media.Water "Medium 1 in the component";
       replaceable package Medium2 = Buildings.Media.Air "Medium 2 in the component";
   replaceable parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal=0.126
     "Nominal mass flow rate for Medium 1";
-      replaceable parameter Modelica.Units.SI.Pressure dp1_nominal
+         replaceable parameter Modelica.Units.SI.Pressure dp1_nominal
     "Nominal pressure drop for Medium 1";
   replaceable parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal=0.126
     "Nominal mass flow rate for Medium 2";
@@ -142,4 +142,4 @@ equation
           {{-120,78},{-94,78},{-94,76},{-68,76},{-68,38}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
-end FanCoilUnitTest1;
+end FanCoilUnit;

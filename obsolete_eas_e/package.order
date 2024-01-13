@@ -3,9 +3,13 @@ RefrigerantCycle_3D
 ModularReversible_3D
 ReversibleAirToWaterEuropeanNorm3D_withPowerData
 EuropeanNorm3D
-ArisMultiFamily
+ArisMultiFamily_old_v0
 PartialReversibleRefrigerantMachine3D
 PartialEuropeanNorm3D
 PartialHeatPumpCycle3D
 PartialRefrigerantCycle3D
 HeatPumpUnitTest
+FanCoilUnit
+FanCoilUnitPidNoMover
+FanCoilUnitPid
+ArisMultiFamily_old_v1
