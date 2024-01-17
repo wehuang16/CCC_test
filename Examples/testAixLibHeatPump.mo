@@ -5,7 +5,7 @@ model testAixLibHeatPump
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
-  CCC.Fluid.HeatPumps.Aixlib_HP_3D aixlib_HP_3D(
+  obsolete_eas_e.Aixlib_HP_3D aixlib_HP_3D(
     redeclare package Medium_con = MediumPropyleneGlycol,
     redeclare package Medium_eva = MediumAir,
     redeclare model PerDataMainHP =
@@ -15,26 +15,30 @@ model testAixLibHeatPump
         extrapMethod=SDF.Types.ExtrapolationMethod.Hold,
         filename_Pel=
             "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_heating.sdf",
+
         dataset_Pel="/elec_power",
         dataUnit_Pel="W",
         scaleUnits_Pel={"K","K",""},
         filename_QCon=
             "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_heating.sdf",
+
         dataset_QCon="/condenser_heat",
         dataUnit_QCon="W",
         scaleUnits_QCon={"K","K",""}),
-    redeclare model PerDataRevHP = CCC.Fluid.Chillers.BaseClasses.LookUpTableND
-        (
+    redeclare model PerDataRevHP =
+        CCC.Fluid.Chillers.BaseClasses.LookUpTableND_AirToWater (
         nConv=1,
         interpMethod=SDF.Types.InterpolationMethod.Akima,
         extrapMethod=SDF.Types.ExtrapolationMethod.Hold,
         filename_Pel=
             "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_cooling.sdf",
+
         dataset_Pel="/elec_power",
         dataUnit_Pel="W",
         scaleUnits_Pel={"K","K",""},
         filename_QCon=
             "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_cooling.sdf",
+
         dataset_QCon="/evaporator_heat",
         dataUnit_QCon="W",
         scaleUnits_QCon={"K","K",""}))

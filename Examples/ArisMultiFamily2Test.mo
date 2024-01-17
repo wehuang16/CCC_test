@@ -1,7 +1,7 @@
 within CCC_test.Examples;
 model ArisMultiFamily2Test
     extends Modelica.Icons.Example;
-  extends CCC.Fluid.BaseClasses.ArisHeatPumpConfiguration;
+  extends obsolete_eas_e.ArisHeatPumpConfiguration;
 
   extends CCC_test.Baseclasses.ArisWaterTankGroup;
 

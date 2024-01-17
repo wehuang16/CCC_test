@@ -22,7 +22,7 @@ model testAixLibHeatPump2
         scaleUnits_QCon={"K","K",""})
   "Performance data of a heat pump in main operation mode";
   replaceable model PerDataRevHP =
-      CCC.Fluid.Chillers.BaseClasses.LookUpTableND (
+      CCC.Fluid.Chillers.BaseClasses.LookUpTableND_AirToWater (
         nConv=1,
         interpMethod=SDF.Types.InterpolationMethod.Akima,
         extrapMethod=SDF.Types.ExtrapolationMethod.Hold,

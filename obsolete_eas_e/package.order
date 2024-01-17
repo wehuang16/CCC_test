@@ -13,3 +13,12 @@ FanCoilUnit
 FanCoilUnitPidNoMover
 FanCoilUnitPid
 ArisMultiFamily_old_v1
+ArisRoomModel_contained
+ArisMultiFamily3HeatPump_old
+ArisMultiFamily1HeatPump
+ArisHeatPumpConfiguration
+ArisRoomModel
+ArisWaterTankGroup
+ArisBufferTankGroup
+Aixlib_HP_3D
+BaselineMultiFamily

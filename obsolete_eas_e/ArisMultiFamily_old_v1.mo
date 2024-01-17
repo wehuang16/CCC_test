@@ -14,17 +14,17 @@ model ArisMultiFamily_old_v1
     "Water tank heat exchanger glycol nominal mass flow rate";
   parameter Modelica.Units.SI.MassFlowRate mHp_flow_nominal=mFcu_flow_nominal+mTankHx_flow_nominal
     "Heat pump glycol nominal mass flow rate";
-  CCC.Fluid.HeatPumps.Aixlib_HP_3D_integrated aixlib_HP_3D_integrated(
+  CCC.Fluid.HeatPumps.Aixlib_AirToWaterHeatPump_3D aixlib_HP_3D_integrated(
     redeclare package Medium_eva = MediumAir,
     redeclare package Medium_con = MediumPropyleneGlycol,
     mEva_flow_nominal=2.333)
     annotation (Placement(transformation(extent={{-82,72},{-62,88}})));
-  CCC.Fluid.HeatPumps.Aixlib_HP_3D_integrated aixlib_HP_3D_integrated1(
+  CCC.Fluid.HeatPumps.Aixlib_AirToWaterHeatPump_3D aixlib_HP_3D_integrated1(
     redeclare package Medium_eva = MediumAir,
     redeclare package Medium_con = MediumPropyleneGlycol,
     mEva_flow_nominal=2.333)
     annotation (Placement(transformation(extent={{-80,44},{-60,60}})));
-  CCC.Fluid.HeatPumps.Aixlib_HP_3D_integrated aixlib_HP_3D_integrated2(
+  CCC.Fluid.HeatPumps.Aixlib_AirToWaterHeatPump_3D aixlib_HP_3D_integrated2(
     redeclare package Medium_eva = MediumAir,
     redeclare package Medium_con = MediumPropyleneGlycol,
     mEva_flow_nominal=2.333)
