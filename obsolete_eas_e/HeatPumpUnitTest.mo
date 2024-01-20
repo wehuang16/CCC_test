@@ -7,7 +7,7 @@ model HeatPumpUnitTest
      replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Heating datTabHeaHpwh;
   replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling
     datTabCooHpwh;
-    replaceable parameter CCC.Fluid.HeatPumps.Data.ARIS_DATA_EASE datTabHeaHpwh2;
+  replaceable parameter ARIS_DATA_EASE datTabHeaHpwh2;
 
   CCC_test.obsolete_eas_e.CCC_HP_wTSup_ctr_withPowerData_3D
     cCC_HP_wTSup_ctr_withPowerData_3D(

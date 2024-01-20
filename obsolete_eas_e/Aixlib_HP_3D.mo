@@ -92,20 +92,20 @@ model Aixlib_HP_3D
         Medium_eva)
                    annotation (Placement(transformation(extent={{-114,-56},{-94,
             -36}}), iconTransformation(extent={{-120,-82},{-100,-62}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort TWatSup(redeclare package Medium
-      = Medium_con, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.TemperatureTwoPort TWatSup(redeclare package Medium =
+        Medium_con, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{56,46},{76,66}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort TWatRet(redeclare package Medium
-      = Medium_con, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.TemperatureTwoPort TWatRet(redeclare package Medium =
+        Medium_con, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{-74,44},{-54,64}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort TAirRet(redeclare package Medium
-      = Medium_eva, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.TemperatureTwoPort TAirRet(redeclare package Medium =
+        Medium_eva, m_flow_nominal=1)
                    annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={70,18})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort TAirSup(redeclare package Medium
-      = Medium_eva, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.TemperatureTwoPort TAirSup(redeclare package Medium =
+        Medium_eva, m_flow_nominal=1)
                    annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,

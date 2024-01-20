@@ -1,4 +1,4 @@
-within CCC_test.Examples;
+within CCC_test.obsolete;
 model CCC_HP_wTSup_ctr_withPowerData
   "Heat pump model for use with any heat pump data"
   replaceable package MediumAir =
@@ -20,7 +20,7 @@ replaceable parameter IBPSA.Fluid.HeatPumps.ModularReversible.Data.TableData2D.G
  parameter Modelica.Units.SI.MassFlowRate mCon_flow_nominal=0.575;
   parameter Modelica.Units.SI.MassFlowRate  mEva_flow_nominal=1.293;
 
-  obsolete.ReversibleAirToWaterEuropeanNorm2D_withPowerData
+  ReversibleAirToWaterEuropeanNorm2D_withPowerData
     reversibleAirToWaterEuropeanNorm2D_withPowerData(
     redeclare package MediumCon = MediumWat,
     redeclare package MediumEva = MediumAir,

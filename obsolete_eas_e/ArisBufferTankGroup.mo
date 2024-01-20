@@ -133,12 +133,12 @@ model ArisBufferTankGroup
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={354,-356})));
-  CCC.Controls.SetpointController setpointController10(
+  CCC.Controls.SetpointController_constantSetpoint setpointController10(
     gain_value=0.6,
     setpoint=273.15 + 45,
     reverseActing=true)
     annotation (Placement(transformation(extent={{238,-168},{258,-148}})));
-  CCC.Controls.SetpointController setpointController11(
+  CCC.Controls.SetpointController_constantSetpoint setpointController11(
     gain_value=0.6,
     setpoint=273.15 + 45,
     reverseActing=true)

@@ -101,7 +101,7 @@ model ArisWaterTankGroup
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-52,-164})));
-  CCC.Controls.SetpointController setpointController(
+  CCC.Controls.SetpointController_constantSetpoint setpointController(
     gain_value=0.92,
     setpoint=273.15 + 45,
     reverseActing=true)
@@ -111,7 +111,7 @@ model ArisWaterTankGroup
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={8,-126})));
-  CCC.Controls.SetpointController setpointController1(
+  CCC.Controls.SetpointController_constantSetpoint setpointController1(
     gain_value=0.92,
     setpoint=273.15 + 45,
     reverseActing=true)
