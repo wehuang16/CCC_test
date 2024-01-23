@@ -88,7 +88,7 @@ equation
      Line(points={{-115,-4},{-74,-4},{-74,44},{-76,44},{-76,52.6},{-68,52.6}},
         color={255,0,255}));
   connect(const.y, TOut1.u) annotation (Line(points={{45,102},{82,102},{82,100},
-          {124,100},{124,66},{118,66}}, color={0,0,127}));
+          {124,100},{124,60},{110,60}}, color={0,0,127}));
   connect(flowConstraintBreaker.port_b, flowRouterReturn.port_a1) annotation (
       Line(points={{-118,-235.6},{-134,-235.6},{-134,-214},{-148,-214},{-148,
           -51.4},{-12.4,-51.4}}, color={0,127,255}));

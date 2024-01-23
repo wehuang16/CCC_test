@@ -15,13 +15,11 @@ model testAnyBlock
         extrapMethod=SDF.Types.ExtrapolationMethod.Hold,
         filename_Pel=
             "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_heating.sdf",
-
         dataset_Pel="/elec_power",
         dataUnit_Pel="W",
         scaleUnits_Pel={"K","K",""},
         filename_QCon=
             "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_heating.sdf",
-
         dataset_QCon="/condenser_heat",
         dataUnit_QCon="W",
         scaleUnits_QCon={"K","K",""}), redeclare model PerDataRevHP =
@@ -31,13 +29,11 @@ model testAnyBlock
         extrapMethod=SDF.Types.ExtrapolationMethod.Hold,
         filename_Pel=
             "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_cooling.sdf",
-
         dataset_Pel="/elec_power",
         dataUnit_Pel="W",
         scaleUnits_Pel={"K","K",""},
         filename_QCon=
             "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_cooling.sdf",
-
         dataset_QCon="/evaporator_heat",
         dataUnit_QCon="W",
         scaleUnits_QCon={"K","K",""}))

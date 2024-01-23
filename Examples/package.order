@@ -1,11 +1,7 @@
 testHx
-testTank
-testPump
 ReversibleAirToWaterEuropeanNorm2D_withPowerData
 testFCU1A
-refrigerantCycleTest
 testCombiTable2D
-testCombiTableND
 testAixLibHeatPump
 HeatPump
 TabledDiode
@@ -15,7 +11,6 @@ CCC_HP_wTSup_ctr_withPowerData
 testPIDControl
 testBufferTank
 testAnyBlock
-HpModeSelectorTest
 FanCoilUnitPidTest1A
 FanCoilUnitPidTest2
 FanCoilUnitPidTest3
@@ -33,7 +28,8 @@ FanCoilUnitUnitTest2
 containedTempSensor
 testAixLibHeatPump2
 VariablePrimary
-FanCoilUnitPidNoMoverEffectivenessSimple
 ArisMultiFamily2Test
 VisualHeatPumpPcmZone
-TestVesselPorts
+SelectorBlock
+SelectorBlockExecution
+PCMDict
