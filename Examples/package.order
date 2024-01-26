@@ -33,3 +33,4 @@ VisualHeatPumpPcmZone
 SelectorBlock
 SelectorBlockExecution
 PCMDict
+TestLogicalDelay
