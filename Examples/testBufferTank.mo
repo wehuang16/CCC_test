@@ -5,10 +5,7 @@ model testBufferTank
     package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
-     replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Heating datTabHeaHpwh;
-  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling
-    datTabCooHpwh;
-  replaceable parameter obsolete_eas_e.ARIS_DATA_EASE datTabHeaHpwh2;
+
 
   Modelica.Blocks.Sources.BooleanConstant booleanConstant1
     annotation (Placement(transformation(extent={{114,-90},{134,-70}})));

@@ -10,6 +10,7 @@ TableHpPerformance
 CCC_HP_wTSup_ctr_withPowerData
 testPIDControl
 testBufferTank
+testBufferTank2
 testAnyBlock
 FanCoilUnitPidTest1A
 FanCoilUnitPidTest2
@@ -34,3 +35,6 @@ SelectorBlock
 SelectorBlockExecution
 PCMDict
 TestLogicalDelay
+TestNewYorkIdf
+TestNewYorkIdf2
+test3WayValve
