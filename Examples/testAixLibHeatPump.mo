@@ -5,7 +5,8 @@ model testAixLibHeatPump
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
-  obsolete_eas_e.Aixlib_HP_3D aixlib_HP_3D(
+  CCC.Fluid.HeatPumps.Aixlib_AirToWaterHeatPump_3D
+                              aixlib_AirToWaterHeatPump_3D(
     redeclare package Medium_con = MediumPropyleneGlycol,
     redeclare package Medium_eva = MediumAir,
     redeclare model PerDataMainHP =
@@ -106,21 +107,11 @@ model testAixLibHeatPump
     startTime=4320)
     annotation (Placement(transformation(extent={{-102,-6},{-82,14}})));
 equation
-  connect(boundary1.ports[1], aixlib_HP_3D.port_a1) annotation (Line(points={{
-          -32,23},{0,23},{0,30.4},{5,30.4}}, color={0,127,255}));
-  connect(aixlib_HP_3D.port_b1, boundary2.ports[1]) annotation (Line(points={{
-          26.8,30.16},{64,30.16},{64,21},{70,21}}, color={0,127,255}));
-  connect(boundary4.ports[1], aixlib_HP_3D.port_b2) annotation (Line(points={{
-          -74,-25},{-74,-26},{-68,-26},{-68,0},{0,0},{0,13.36},{5,13.36}},
-        color={0,127,255}));
-  connect(aixlib_HP_3D.port_a2, boundary3.ports[1]) annotation (Line(points={{
-          27,13.36},{64,13.36},{64,-35},{76,-35}}, color={0,127,255}));
-  connect(bool.y, aixlib_HP_3D.OnOff) annotation (Line(points={{-13,72},{-32,72},
-          {-32,42},{4.6,42},{4.6,23.2}}, color={255,0,255}));
-  connect(bool1.y, aixlib_HP_3D.Mode) annotation (Line(points={{43,68},{44,68},
-          {44,24.4},{27.2,24.4}}, color={255,0,255}));
-  connect(TSet.y, aixlib_HP_3D.TSupSet) annotation (Line(points={{-35.2,-30},{
-          -30,-30},{-30,10},{-4,10},{-4,17.32},{4.9,17.32}}, color={0,0,127}));
+  connect(bool1.y, aixlib_AirToWaterHeatPump_3D.Mode) annotation (Line(points={
+          {43,68},{44,68},{44,24.4},{27.2,24.4}}, color={255,0,255}));
+  connect(TSet.y, aixlib_AirToWaterHeatPump_3D.TSupSet) annotation (Line(points
+        ={{-35.2,-30},{-30,-30},{-30,10},{-4,10},{-4,17.32},{4.9,17.32}}, color
+        ={0,0,127}));
   connect(step.y, boundary1.m_flow_in)
     annotation (Line(points={{-81,4},{-52,4},{-52,15.8}}, color={0,0,127}));
   annotation (

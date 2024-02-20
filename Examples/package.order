@@ -11,7 +11,7 @@ CCC_HP_wTSup_ctr_withPowerData
 testPIDControl
 testBufferTank
 testBufferTank2
-testAnyBlock
+testFloor
 FanCoilUnitPidTest1A
 FanCoilUnitPidTest2
 FanCoilUnitPidTest3
@@ -37,4 +37,9 @@ PCMDict
 TestLogicalDelay
 TestNewYorkIdf
 TestNewYorkIdf2
-test3WayValve
+ArisRoomModel_3Rooms_NoInfiltration_NewYork_test
+ArisWaterTankGroup_1Tank
+testHvacBlock
+Guideline36_02152024
+FlexlabX1aNoLeakG36Baseline_test
+testreplicator

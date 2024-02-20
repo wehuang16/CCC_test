@@ -6,8 +6,8 @@ model testBufferTank2
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
 
-  Modelica.Fluid.Sensors.TemperatureTwoPort tempSupply(redeclare package Medium
-      = MediumPropyleneGlycol) annotation (Placement(transformation(extent={{-28,
+  Modelica.Fluid.Sensors.TemperatureTwoPort tempSupply(redeclare package Medium =
+        MediumPropyleneGlycol) annotation (Placement(transformation(extent={{-28,
             -2},{-8,18}}, rotation=0)));
   Buildings.Fluid.Movers.FlowControlled_m_flow
                                           fan(
