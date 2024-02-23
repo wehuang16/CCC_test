@@ -1,8 +1,8 @@
 within CCC_test.HIL_testing;
-model FlexlabX1aNoLeakG36Baseline_test0
+model FlexlabX1aNoLeakG36Baseline_test011
   "DR mode - Variable air volume flow system with terminal reheat and five thermal zones at Flexlab X1 cell"
   extends Modelica.Icons.Example;
-  extends CCC_test.HIL_testing.PartialOpenLoopX1aNoLeakage_test0(
+  extends CCC_test.HIL_testing.PartialOpenLoopX1aNoLeakage_test01(
                                                            occSch(occupancy=3600
           *{5,22}), weaDat(filNam=Modelica.Utilities.Files.loadResource("modelica://hil_flexlab_model/Resources/weatherdata/US_Berkeley_20210913.mos")));
 
@@ -25,29 +25,21 @@ model FlexlabX1aNoLeakG36Baseline_test0
     annotation (Placement(transformation(extent={{176,242},{196,262}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant      yOutDam(k=1)
     "Outdoor air damper control signal"
-    annotation (Placement(transformation(extent={{-40,-20},{-20,0}})));
+    annotation (Placement(transformation(extent={{-46,-16},{-26,4}})));
 
-  Buildings.Controls.OBC.CDL.Reals.Switch   swiFreSta "Switch for freeze stat"
-    annotation (Placement(transformation(extent={{60,-202},{80,-182}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant      freStaSetPoi1(k=273.15
-         + 3) "Freeze stat for heating coil"
-    annotation (Placement(transformation(extent={{-40,-96},{-20,-76}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant      yFreHeaCoi(final k=1)
-    "Flow rate signal for heating coil when freeze stat is on"
-    annotation (Placement(transformation(extent={{0,-192},{20,-172}})));
   Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator reaRep(final nout=numZon)
     "Replicate real input"
     annotation (Placement(transformation(extent={{-144,350},{-124,370}})));
   Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booRep(final nout=numZon)
     "Replicate boolean input"
     annotation (Placement(transformation(extent={{-148,316},{-128,336}})));
-  hil_flexlab_model.Test1.BaseClasses1.ModeAndSetPoints TZonSet[numZon](
+  ModeAndSetPoints                                      TZonSet[numZon](
     final TZonHeaOn=fill(273.15 + 21.1, numZon),
     final TZonHeaOff=fill(THeaOff, numZon),
     TZonCooOn=fill(273.15 + 23.3, numZon),
     final TZonCooOff=fill(TCooOff, numZon)) "Zone setpoint temperature"
     annotation (Placement(transformation(extent={{-32,322},{-12,342}})));
-  Buildings.Obsolete.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow.Zone
+  Zone
     zonOutAirSet[numZon](
     final AFlo=AFlo,
     final have_occSen=fill(false, numZon),
@@ -102,21 +94,42 @@ model FlexlabX1aNoLeakG36Baseline_test0
     annotation (Placement(transformation(extent={{112,242},{132,262}})));
   Modelica.Blocks.Sources.IntegerConstant integerConstant1(k=3)
     annotation (Placement(transformation(extent={{302,382},{322,402}})));
+  Modelica.Blocks.Sources.Constant VOut_flow(k=0.04)
+    annotation (Placement(transformation(extent={{-158,40},{-138,60}})));
+  Modelica.Blocks.Sources.Constant ductStaPre(k=350)
+    annotation (Placement(transformation(extent={{-152,104},{-132,124}})));
+  Modelica.Blocks.Sources.Constant TOutCut(k=273.15 + 24)
+    annotation (Placement(transformation(extent={{-100,192},{-80,212}})));
+  Modelica.Blocks.Sources.Constant TSup1(k=273.15 + 10)
+    annotation (Placement(transformation(extent={{132,56},{152,76}})));
+  Modelica.Blocks.Sources.Constant TMix1(k=273.15 + 19.5)
+    annotation (Placement(transformation(extent={{-46,58},{-26,78}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant      yOutDam1(k=0.6)
+    "Outdoor air damper control signal"
+    annotation (Placement(transformation(extent={{-112,0},{-92,20}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant      yOutDam2(k=0.3)
+    "Outdoor air damper control signal"
+    annotation (Placement(transformation(extent={{-88,-34},{-68,-14}})));
+  Modelica.Blocks.Sources.Constant FanSpeed1(k=0.3)
+    annotation (Placement(transformation(extent={{160,-4},{180,16}})));
+  Buildings.Fluid.Movers.FlowControlled_m_flow
+                                           fanSup1(redeclare package Medium =
+        MediumA, m_flow_nominal=m_flow_nominal)                "Supply air fan"
+    annotation (Placement(transformation(extent={{294,8},{314,28}})));
+  Buildings.Fluid.Sources.Boundary_pT
+                                  amb2(
+    redeclare package Medium = MediumA,
+    T=293.15,
+    nPorts=1)   "Ambient conditions"
+    annotation (Placement(transformation(extent={{224,-22},{246,0}})));
+  Buildings.Fluid.Sources.Boundary_pT
+                                  amb3(redeclare package Medium = MediumA,
+      nPorts=1) "Ambient conditions"
+    annotation (Placement(transformation(extent={{-11,-11},{11,11}},
+        rotation=180,
+        origin={393,-17})));
 equation
-  connect(fanSup.port_b, dpDisSupFan.port_a) annotation (Line(
-      points={{320,-40},{320,0},{320,-10},{320,-10}},
-      color={0,0,0},
-      smooth=Smooth.None,
-      pattern=LinePattern.Dot));
 
-  connect(yOutDam.y, eco.yExh)
-    annotation (Line(points={{-18,-10},{-3,-10},{-3,-34}}, color={0,0,127}));
-  connect(swiFreSta.y, gaiHeaCoi.u) annotation (Line(points={{82,-192},{88,-192},
-          {88,-210},{98,-210}}, color={0,0,127}));
-  connect(freSta.y, swiFreSta.u2) annotation (Line(points={{22,-92},{40,-92},{40,
-          -192},{58,-192}},    color={255,0,255}));
-  connect(yFreHeaCoi.y, swiFreSta.u1) annotation (Line(points={{22,-182},{40,-182},
-          {40,-184},{58,-184}}, color={0,0,127}));
   connect(occSch.occupied, booRep.u) annotation (Line(points={{-297,-216},{-232,
           -216},{-232,326},{-150,326}}, color={255,0,255}));
   connect(flo.TRooAir, TZonSet.TZon) annotation (Line(points={{675,228.8},{1096,
@@ -131,8 +144,8 @@ equation
           0,127}));
   connect(zonOutAirSet.uReqOutAir, booRep1.y) annotation (Line(points={{226,427},
           {204,427},{204,352},{510,352},{510,448},{502,448}}, color={255,0,255}));
-  connect(flo.TRooAir, zonOutAirSet.TZon) annotation (Line(points={{675,228.8},
-          {1072,228.8},{1072,620},{210,620},{210,424},{226,424}},  color={0,0,127}));
+  connect(flo.TRooAir, zonOutAirSet.TZon) annotation (Line(points={{675,228.8},{
+          1072,228.8},{1072,620},{210,620},{210,424},{226,424}},   color={0,0,127}));
   connect(zonOutAirSet.yDesZonPeaOcc, zonToSys.uDesZonPeaOcc) annotation (Line(
         points={{250,433},{262,433},{262,438},{272,438}}, color={0,0,127}));
   connect(zonOutAirSet.VDesPopBreZon_flow, zonToSys.VDesPopBreZon_flow)
@@ -171,24 +184,8 @@ equation
   connect(TOut.y, conAHU.TOut) annotation (Line(points={{-279,180},{18.5,180},{
           18.5,538.471},{356,538.471}},
                                    color={0,0,127}));
-  connect(dpDisSupFan.p_rel, conAHU.ducStaPre) annotation (Line(points={{311,0},
-          {140,0},{140,532.824},{356,532.824}}, color={0,0,127}));
-  connect(TSup.T, conAHU.TSup) annotation (Line(points={{340,-29},{194,-29},{
-          194,476},{356,476},{356,476.353}},
-                                         color={0,0,127}));
-  connect(TRet.T, conAHU.TOutCut) annotation (Line(points={{100,151},{100,
-          470.706},{356,470.706}},
-                          color={0,0,127}));
-  connect(VOut1.V_flow, conAHU.VOut_flow) annotation (Line(points={{-61,-20.9},
-          {-61,218},{-18,218},{-18,454},{356,454},{356,453.765}},color={0,0,127}));
-  connect(TMix.T, conAHU.TMix) annotation (Line(points={{40,-29},{40,446.235},{
-          356,446.235}},
-                     color={0,0,127}));
   connect(TZonSet[1].yOpeMod, conAHU.uOpeMod) annotation (Line(points={{-10,325},
           {158,325},{158,438.706},{356,438.706}}, color={255,127,0}));
-  connect(conAHU.ySupFanSpe, fanSup.y) annotation (Line(points={{444,530.941},{
-          472,530.941},{472,-12},{310,-12},{310,-28}},
-                                                   color={0,0,127}));
   connect(conAHU.VDesUncOutAir_flow, reaRep1.u) annotation (Line(points={{444,
           508.353},{447,508.353},{447,488},{478,488}},
                                               color={0,0,127}));
@@ -198,19 +195,6 @@ equation
         points={{444,497.059},{430,497.059},{430,414},{266,414},{266,432},{272,
           432}},
         color={0,0,127}));
-  connect(conAHU.yHea, swiFreSta.u3) annotation (Line(points={{444,463.176},{
-          444,-240},{40,-240},{40,-200},{58,-200}},
-                                                color={0,0,127}));
-  connect(conAHU.yCoo, gaiCooCoi.u) annotation (Line(points={{444,451.882},{460,
-          451.882},{460,-272},{80,-272},{80,-248},{98,-248}},
-                                                     color={0,0,127}));
-  connect(conAHU.yRetDamPos, eco.yRet) annotation (Line(points={{444,440.588},{
-          444,442},{422,442},{422,202},{-16.8,202},{-16.8,-34}},
-                                                             color={0,0,127}));
-  connect(conAHU.yOutDamPos, eco.yOut) annotation (Line(points={{444,429.294},{
-          416,429.294},{416,430},{420,430},{420,168},{-10,168},{-10,-34}},
-                                                                       color={0,
-          0,127}));
   connect(TZonSet[1].TZonCooSet, conAHU.TZonCooSet) annotation (Line(points={{-10,339},
           {174,339},{174,544.118},{356,544.118}},      color={0,0,127}));
   connect(TZonSet[1].TZonHeaSet, conAHU.TZonHeaSet) annotation (Line(points={{-10,332},
@@ -251,9 +235,28 @@ equation
   connect(const1.y, VDis_flow.u3[1])
     annotation (Line(points={{133,252},{133,245},{174,245}}, color={0,0,127}));
   connect(integerConstant1.y, conAHU.uZonTemResReq) annotation (Line(points={{323,392},
-          {336,392},{336,433.059},{356,433.059}},          color={255,127,0}));
+          {336,392},{336,433.059},{356,433.059}},      color={255,127,0}));
   connect(integerConstant1.y, conAHU.uZonPreResReq) annotation (Line(points={{323,392},
-          {336,392},{336,427.412},{356,427.412}},          color={255,127,0}));
+          {336,392},{336,427.412},{356,427.412}},      color={255,127,0}));
+  connect(ductStaPre.y, conAHU.ducStaPre) annotation (Line(points={{-131,114},{
+          152,114},{152,532.824},{356,532.824}},
+                                             color={0,0,127}));
+  connect(TOutCut.y, conAHU.TOutCut) annotation (Line(points={{-79,202},{10,202},
+          {10,222},{100,222},{100,470.706},{356,470.706}}, color={0,0,127}));
+  connect(VOut_flow.y, conAHU.VOut_flow) annotation (Line(points={{-137,50},{
+          -98,50},{-98,68},{-61,68},{-61,218},{-18,218},{-18,454},{356,454},{
+          356,453.765}},
+        color={0,0,127}));
+  connect(TMix1.y, conAHU.TMix) annotation (Line(points={{-25,68},{8,68},{8,70},
+          {40,70},{40,446.235},{356,446.235}}, color={0,0,127}));
+  connect(TSup1.y, conAHU.TSup) annotation (Line(points={{153,66},{174,66},{174,
+          72},{194,72},{194,476},{356,476},{356,476.353}}, color={0,0,127}));
+  connect(amb2.ports[1], fanSup1.port_a) annotation (Line(points={{246,-11},{
+          272,-11},{272,18},{294,18}}, color={0,127,255}));
+  connect(fanSup1.port_b, amb3.ports[1]) annotation (Line(points={{314,18},{368,
+          18},{368,-17},{382,-17}}, color={0,127,255}));
+  connect(FanSpeed1.y, fanSup1.m_flow_in) annotation (Line(points={{181,6},{208,
+          6},{208,56},{304,56},{304,30}}, color={0,0,127}));
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-380,-320},{1400,
             640}}), graphics={Line(
@@ -339,4 +342,4 @@ This is for
       Interval=60,
       Tolerance=1e-06,
       __Dymola_Algorithm="Dassl"));
-end FlexlabX1aNoLeakG36Baseline_test0;
+end FlexlabX1aNoLeakG36Baseline_test011;

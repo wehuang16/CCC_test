@@ -432,7 +432,7 @@ equation
       extent={{6,3},{6,3}},
       horizontalAlignment=TextAlignment.Left));
   connect(weaBus.TDryBul, TOut.u) annotation (Line(
-      points={{414.05,-45.95},{414.05,-40},{454,-40}},
+      points={{414,-46},{414,-40},{454,-40}},
       color={255,204,51},
       thickness=0.5), Text(
       string="%first",

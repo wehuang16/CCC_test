@@ -80,5 +80,9 @@ equation
           -20},{-156,6},{-74,6},{-74,28},{-50,28},{-50,70},{0,70},{0,85},{8,85}},
         color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)));
+        coordinateSystem(preserveAspectRatio=false)),
+    experiment(
+      StopTime=86400,
+      Interval=60,
+      __Dymola_Algorithm="Dassl"));
 end testSpeedControlledPump;

@@ -28,6 +28,8 @@ model testPIDControl
     annotation (Placement(transformation(extent={{-32,-54},{-12,-34}})));
   Modelica.Blocks.Sources.Constant const2(k=5)
     annotation (Placement(transformation(extent={{-74,-22},{-54,-2}})));
+  Modelica.Blocks.Continuous.LimPID PID
+    annotation (Placement(transformation(extent={{24,14},{44,34}})));
 equation
   connect(const1.y, conPID.u_s)
     annotation (Line(points={{-77,26},{-42,26},{-42,30},{-32,30}},

@@ -8,7 +8,16 @@ FlexlabX1aNoLeakG36Baseline_test1
 PartialOpenLoopX1aNoLeakage_test1
 FlexlabX1aNoLeakG36Baseline_test01
 PartialOpenLoopX1aNoLeakage_test01
+FlexlabX1aNoLeakG36Baseline_test011
 testSpeedControlledPump
 Zone
 FlexlabX1aNoLeakG36Baseline_test02
 SpeedControlledPump_storage
+testSpeedControlledPump2
+testSpeedControlledPump3
+OperationMode_v3
+OperationMode_v0
+OperationMode_v1
+OperationMode_v2
+ModeAndSetPoints
+OperationMode
