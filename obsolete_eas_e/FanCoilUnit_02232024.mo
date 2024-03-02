@@ -1,5 +1,5 @@
 within CCC_test.obsolete_eas_e;
-model FanCoilUnit_hysteresis_air_control_02212024
+model FanCoilUnit_02232024
     replaceable package Medium1 = Buildings.Media.Water "Medium 1 in the component";
       replaceable package Medium2 = Buildings.Media.Air "Medium 2 in the component";
   package MediumPropyleneGlycol =
@@ -76,11 +76,6 @@ model FanCoilUnit_hysteresis_air_control_02212024
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={112,-82})));
-  Modelica.Blocks.Tables.CombiTable2Ds combiTable2Ds_heating(table=[0.0,273.15
-         + 0,273.15 + 10,273.15 + 20; 273.15 + 30,0.5731,0.5449,0.4522; 273.15
-         + 50,0.595,0.5869,0.5731; 273.15 + 70,0.6042,0.6004,0.595],
-      extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
-    annotation (Placement(transformation(extent={{-122,-6},{-102,14}})));
   CCC.Controls.SetpointController_constantSetpoint setpointController(
     gain_value=m1_flow_nominal,
     setpoint=5,
@@ -106,24 +101,22 @@ model FanCoilUnit_hysteresis_air_control_02212024
     annotation (Placement(transformation(extent={{124,8},{144,28}})));
   Modelica.Blocks.Logical.Not ModeCommand "true for heating; false for cooling"
     annotation (Placement(transformation(extent={{136,-30},{156,-10}})));
-  FanCoilUnitDoubleHysteresis_old fanCoilUnitDoubleHysteresis(
-      zone_temp_setpoint=zone_temp_setpoint)
-    annotation (Placement(transformation(extent={{86,-116},{106,-96}})));
-  Modelica.Blocks.Logical.Switch switch2
-    annotation (Placement(transformation(extent={{120,-116},{140,-96}})));
-  Modelica.Blocks.Sources.Constant const(k=0)
-    annotation (Placement(transformation(extent={{80,-180},{100,-160}})));
   Modelica.Blocks.Interfaces.RealInput TZon "Zone air temperature" annotation (
       Placement(transformation(
         extent={{-20,-20},{20,20}},
         rotation=90,
         origin={44,-120})));
+  Modelica.Blocks.Tables.CombiTable2Ds combiTable2Ds_heating(table=[0.0,273.15
+         + 0,273.15 + 10,273.15 + 20; 273.15 + 30,0.5731,0.5449,0.4522; 273.15
+         + 50,0.595,0.5869,0.5731; 273.15 + 70,0.6042,0.6004,0.595],
+      extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
+    annotation (Placement(transformation(extent={{-126,6},{-106,26}})));
   Modelica.Blocks.Tables.CombiTable2Ds combiTable2Ds_cooling(table=[0.0,273.15
          + 20,273.15 + 25; 273.15 + 7,0.6,0.5; 273.15 + 15,0.7,0.6],
       extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
-    annotation (Placement(transformation(extent={{-154,-44},{-134,-24}})));
+    annotation (Placement(transformation(extent={{-158,-32},{-138,-12}})));
   Modelica.Blocks.Logical.Switch switch3
-    annotation (Placement(transformation(extent={{-52,2},{-32,22}})));
+    annotation (Placement(transformation(extent={{-50,4},{-30,24}})));
 equation
   connect(port_a1, port_a1)
     annotation (Line(points={{-102,44},{-102,44}}, color={0,127,255}));
@@ -148,11 +141,6 @@ equation
           {-14,28},{-14,12},{-8,12}},     color={0,127,255}));
   connect(hex.port_a2, tempFcuAirSupply.port_b) annotation (Line(points={{12,0},{
           58,0},{58,-28},{64,-28}},   color={0,127,255}));
-  connect(tempFcuWaterSupply.T, combiTable2Ds_heating.u1) annotation (Line(
-        points={{-80,39},{-104,39},{-104,40},{-124,40},{-124,10}}, color={0,0,
-          127}));
-  connect(tempFcuAirSupply.T, combiTable2Ds_heating.u2) annotation (Line(points
-        ={{74,-39},{-36,-39},{-36,-26},{-124,-26},{-124,-2}}, color={0,0,127}));
   connect(setpointController.command, m_flow_water) annotation (Line(points={{89,82.6},
           {100.5,82.6},{100.5,82},{112,82}},        color={0,0,127}));
   connect(not1.y, setpointController1.reverse) annotation (Line(points={{-23,-84},
@@ -174,36 +162,30 @@ equation
         color={255,0,255}));
   connect(ModeCommand.y, switch1.u2) annotation (Line(points={{157,-20},{164,-20},
           {164,64},{18,64},{18,84}}, color={255,0,255}));
-  connect(fanCoilUnitDoubleHysteresis.RunFcuAirSide, switch2.u2) annotation (
-      Line(points={{108,-105.2},{113,-105.2},{113,-106},{118,-106}}, color={255,
-          0,255}));
-  connect(setpointController1.command, switch2.u1) annotation (Line(points={{29,
-          -69.4},{96,-69.4},{96,-92},{100,-92},{100,-94},{110,-94},{110,-98},{
-          118,-98}}, color={0,0,127}));
-  connect(const.y, switch2.u3) annotation (Line(points={{101,-170},{106,-170},{
-          106,-122},{118,-122},{118,-114}}, color={0,0,127}));
-  connect(switch2.y, m_flow_air) annotation (Line(points={{141,-106},{146,-106},
-          {146,-82},{112,-82}}, color={0,0,127}));
-  connect(TZon, fanCoilUnitDoubleHysteresis.TZon) annotation (Line(points={{44,
-          -120},{76,-120},{76,-104.6},{84,-104.6}}, color={0,0,127}));
   connect(hysteresis.u, TZon) annotation (Line(points={{122,18},{112,18},{112,
           -38},{116,-38},{116,-68},{44,-68},{44,-120}}, color={0,0,127}));
   connect(setpointController1.measurement, TZon) annotation (Line(points={{6,
           -71.2},{-6,-71.2},{-6,-120},{44,-120}}, color={0,0,127}));
-  connect(tempFcuWaterSupply.T, combiTable2Ds_cooling.u1) annotation (Line(
-        points={{-80,39},{-122,39},{-122,-28},{-156,-28}}, color={0,0,127}));
-  connect(tempFcuAirSupply.T, combiTable2Ds_cooling.u2) annotation (Line(points
-        ={{74,-39},{74,-58},{-156,-58},{-156,-40}}, color={0,0,127}));
-  connect(combiTable2Ds_heating.y, switch3.u1) annotation (Line(points={{-101,4},
-          {-64,4},{-64,20},{-54,20}}, color={0,0,127}));
-  connect(combiTable2Ds_cooling.y, switch3.u3) annotation (Line(points={{-133,
-          -34},{-100,-34},{-100,-10},{-80,-10},{-80,2},{-62,2},{-62,4},{-54,4}},
-        color={0,0,127}));
-  connect(switch3.y, hex.eps) annotation (Line(points={{-31,12},{-18,12},{-18,
+  connect(setpointController1.command, m_flow_air) annotation (Line(points={{29,
+          -69.4},{42,-69.4},{42,-66},{112,-66},{112,-82}}, color={0,0,127}));
+  connect(combiTable2Ds_heating.y, switch3.u1) annotation (Line(points={{-105,
+          16},{-94,16},{-94,14},{-60,14},{-60,30},{-52,30},{-52,22}}, color={0,
+          0,127}));
+  connect(switch3.y, hex.eps) annotation (Line(points={{-29,14},{-18,14},{-18,
           7.1},{-10,7.1}}, color={0,0,127}));
+  connect(combiTable2Ds_cooling.y, switch3.u3) annotation (Line(points={{-137,
+          -22},{-104,-22},{-104,2},{-62,2},{-62,6},{-52,6}}, color={0,0,127}));
   connect(ModeCommand.y, switch3.u2) annotation (Line(points={{157,-20},{172,
-          -20},{172,-18},{182,-18},{182,-48},{-54,-48},{-54,12}}, color={255,0,
-          255}));
+          -20},{172,-42},{-52,-42},{-52,14}}, color={255,0,255}));
+  connect(tempFcuWaterSupply.T, combiTable2Ds_heating.u1) annotation (Line(
+        points={{-80,39},{-80,60},{-128,60},{-128,22}}, color={0,0,127}));
+  connect(tempFcuWaterSupply.T, combiTable2Ds_cooling.u1) annotation (Line(
+        points={{-80,39},{-80,60},{-128,60},{-128,32},{-170,32},{-170,-16},{
+          -160,-16}}, color={0,0,127}));
+  connect(tempFcuAirSupply.T, combiTable2Ds_cooling.u2) annotation (Line(points
+        ={{74,-39},{74,-58},{-160,-58},{-160,-28}}, color={0,0,127}));
+  connect(tempFcuAirSupply.T, combiTable2Ds_heating.u2) annotation (Line(points
+        ={{74,-39},{72,-39},{72,-54},{-128,-54},{-128,10}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
-end FanCoilUnit_hysteresis_air_control_02212024;
+end FanCoilUnit_02232024;

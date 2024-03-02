@@ -43,3 +43,7 @@ testHvacBlock
 Guideline36_02152024
 FlexlabX1aNoLeakG36Baseline_test
 testreplicator
+testPump
+testVAVBox
+VAVBranch_ResistantReheatCoil
+CccHpTesSystem_v2_test

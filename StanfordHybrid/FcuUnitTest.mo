@@ -35,8 +35,7 @@ model FcuUnitTest
     annotation (Placement(transformation(extent={{10,-9},{-10,9}},
         rotation=0,
         origin={100,-45})));
-  CCC.Fluid.HeatExchangers.FanCoilUnit
-                             fanCoilUnit(
+  obsolete_eas_e.FanCoilUnit_02232024 fanCoilUnit(
     redeclare package Medium1 = MediumWater,
     redeclare package Medium2 = MediumAir,
     m1_flow_nominal=0.2,

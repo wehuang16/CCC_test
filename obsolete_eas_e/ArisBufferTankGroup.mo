@@ -13,14 +13,14 @@ model ArisBufferTankGroup
     fluidVolume=0.1,
     nPorts=6)
     annotation (Placement(transformation(extent={{322,-154},{342,-134}})));
-  CCC.Fluid.HeatExchangers.FanCoilUnit fanCoilUnit(
+  FanCoilUnit_02232024 fanCoilUnit(
     redeclare package Medium1 = MediumPropyleneGlycol,
     m1_flow_nominal=0.2,
     m2_flow_nominal=0.07589,
     zone_temp_setpoint=293.15,
     dp1_nominal(displayUnit="Pa") = 4394)
     annotation (Placement(transformation(extent={{420,-180},{440,-160}})));
-  CCC.Fluid.HeatExchangers.FanCoilUnit fanCoilUnit1(
+  FanCoilUnit_02232024 fanCoilUnit1(
     redeclare package Medium1 = MediumPropyleneGlycol,
     m1_flow_nominal=0.2,
     m2_flow_nominal=0.07589,
@@ -60,14 +60,14 @@ model ArisBufferTankGroup
     fluidVolume=0.1,
     nPorts=6)
     annotation (Placement(transformation(extent={{334,-292},{354,-272}})));
-  CCC.Fluid.HeatExchangers.FanCoilUnit fanCoilUnit2(
+  FanCoilUnit_02232024 fanCoilUnit2(
     redeclare package Medium1 = MediumPropyleneGlycol,
     m1_flow_nominal=0.2,
     m2_flow_nominal=0.07589,
     zone_temp_setpoint=293.15,
     dp1_nominal(displayUnit="Pa") = 4394)
     annotation (Placement(transformation(extent={{540,-308},{560,-288}})));
-  CCC.Fluid.HeatExchangers.FanCoilUnit fanCoilUnit3(
+  FanCoilUnit_02232024 fanCoilUnit3(
     redeclare package Medium1 = MediumPropyleneGlycol,
     m1_flow_nominal=0.2,
     m2_flow_nominal=0.07589,

@@ -28,3 +28,7 @@ ARIS_DATA_EASE
 FlowRouter4To1
 FlowRouter1To4
 FanCoilUnit_hysteresis_air_control_02212024
+FanCoilUnit_02232024
+FanCoilUnit_old
+FanCoilUnitDoubleHysteresis_old
+FanCoilUnitUnitTest_old
