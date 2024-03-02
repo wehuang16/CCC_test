@@ -137,8 +137,8 @@ equation
           38},{8,38},{8,6},{86,6},{86,-8}}, color={0,0,127}));
   connect(gain1.y, pumpFcuAirSupply.m_flow_in) annotation (Line(points={{33,-90},
           {36,-90},{36,-76},{-62,-76},{-62,-70},{-72,-70}}, color={0,0,127}));
-  connect(pumpFcuAirSupply.port_a, temperature3.port_b) annotation (Line(points
-        ={{-62,-58},{-62,-62},{-44,-62}}, color={0,127,255}));
+  connect(pumpFcuAirSupply.port_a, temperature3.port_b) annotation (Line(points=
+         {{-62,-58},{-62,-62},{-44,-62}}, color={0,127,255}));
   connect(port_a1, temperature.port_a) annotation (Line(points={{-100,0},{-58,0},
           {-58,-18},{-52,-18}}, color={0,127,255}));
   connect(pumpFcuWaterSupply.port_b, port_b1) annotation (Line(points={{96,-20},

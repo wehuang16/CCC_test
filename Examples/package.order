@@ -47,3 +47,4 @@ testPump
 testVAVBox
 VAVBranch_ResistantReheatCoil
 CccHpTesSystem_v2_test
+testSpawnExportFmu

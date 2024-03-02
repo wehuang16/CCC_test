@@ -2,9 +2,9 @@ within CCC_test.Examples;
 model TestLogicalDelay
 
 
-  Modelica.Blocks.Logical.LogicalDelay logicalDelay(delayTime(displayUnit="h")
-       = 43200) annotation (Placement(transformation(extent={{-24,0},{-4,20}})));
-  Modelica.Blocks.Sources.BooleanPulse booleanPulse(period(displayUnit="h") =
+  Modelica.Blocks.Logical.LogicalDelay logicalDelay(delayTime(displayUnit="h")=
+         43200) annotation (Placement(transformation(extent={{-24,0},{-4,20}})));
+  Modelica.Blocks.Sources.BooleanPulse booleanPulse(period(displayUnit="h")=
       93600, startTime(displayUnit="s") = 0)
     annotation (Placement(transformation(extent={{-94,-4},{-74,16}})));
   Modelica.Blocks.Logical.LogicalSwitch logicalSwitch
@@ -13,8 +13,8 @@ model TestLogicalDelay
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={38,-16})));
-  CCC.Controls.SingleLogicalDelay singleLogicalDelay(delayTime(displayUnit="h")
-       = 43200)
+  CCC.Controls.SingleLogicalDelay singleLogicalDelay(delayTime(displayUnit="h")=
+         43200)
     annotation (Placement(transformation(extent={{-26,-60},{-6,-40}})));
 equation
   connect(booleanPulse.y, logicalDelay.u) annotation (Line(points={{-73,6},{-36,

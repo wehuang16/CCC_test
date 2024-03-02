@@ -1,7 +1,7 @@
 within CCC_test.Examples;
 model testreplicator
-  Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booRep1(final nout
-      =2)
+  Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booRep1(final nout=
+       2)
     "Replicate boolean input"
     annotation (Placement(transformation(extent={{-34,0},{-14,20}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant

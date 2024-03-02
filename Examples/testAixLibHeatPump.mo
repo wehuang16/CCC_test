@@ -109,9 +109,9 @@ model testAixLibHeatPump
 equation
   connect(bool1.y, aixlib_AirToWaterHeatPump_3D.Mode) annotation (Line(points={
           {43,68},{44,68},{44,24.4},{27.2,24.4}}, color={255,0,255}));
-  connect(TSet.y, aixlib_AirToWaterHeatPump_3D.TSupSet) annotation (Line(points
-        ={{-35.2,-30},{-30,-30},{-30,10},{-4,10},{-4,17.32},{4.9,17.32}}, color
-        ={0,0,127}));
+  connect(TSet.y, aixlib_AirToWaterHeatPump_3D.TSupSet) annotation (Line(points=
+         {{-35.2,-30},{-30,-30},{-30,10},{-4,10},{-4,17.32},{4.9,17.32}}, color=
+         {0,0,127}));
   connect(step.y, boundary1.m_flow_in)
     annotation (Line(points={{-81,4},{-52,4},{-52,15.8}}, color={0,0,127}));
   annotation (
