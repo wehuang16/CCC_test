@@ -1,5 +1,5 @@
 within CCC_test.StanfordHybrid;
-model test3WayValve
+model test3WayValveConverge
             package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
     package MediumPropyleneGlycol =
@@ -56,4 +56,4 @@ equation
       StopTime=8640,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end test3WayValve;
+end test3WayValveConverge;
