@@ -51,3 +51,5 @@ testSpawnExportFmu
 testSatReset
 Controller_G36_SAT_only
 testOurdoorDamper
+ThermalLoadSensor
+ThermalLoadSensor2
