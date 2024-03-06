@@ -48,3 +48,6 @@ testVAVBox
 VAVBranch_ResistantReheatCoil
 CccHpTesSystem_v2_test
 testSpawnExportFmu
+testSatReset
+Controller_G36_SAT_only
+testOurdoorDamper
