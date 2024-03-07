@@ -30,8 +30,8 @@ model ThermalLoadSensor
   Buildings.Fluid.Sensors.TemperatureTwoPort senTem(redeclare package Medium =
         MediumAir, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{-32,-8},{-12,12}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium
-      = MediumAir, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
+        MediumAir, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{36,-10},{56,10}})));
   Buildings.Fluid.Sensors.MassFlowRate MassFlow(redeclare package Medium =
         MediumAir)
