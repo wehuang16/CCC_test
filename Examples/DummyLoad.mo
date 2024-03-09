@@ -30,8 +30,8 @@ model DummyLoad
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-36,56})));
-  Modelica.Fluid.Sensors.TemperatureTwoPort tempSen1(redeclare package Medium
-      = MediumWater) annotation (Placement(transformation(
+  Modelica.Fluid.Sensors.TemperatureTwoPort tempSen1(redeclare package Medium =
+        MediumWater) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-48,4})));

@@ -54,3 +54,5 @@ testOurdoorDamper
 ThermalLoadSensor
 ThermalLoadSensor2
 DummyLoad
+parallelValves
+parallelValvesContainer
