@@ -34,7 +34,7 @@ model CccHpTesSystem
     datTabCoo=CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling(),
     Q_flow_nominal=12000)
     annotation (Placement(transformation(extent={{-74,-24},{-54,-8}})));
-  CCC.Fluid.HeatExchangers.FanCoilUnit fanCoilUnit(
+  CCC.Fluid.HeatExchangers.FanCoilUnitAirSideHysteresisControl fanCoilUnit(
     m1_flow_nominal=0.2,
     m2_flow_nominal=0.07589,
     zone_temp_setpoint=294.15,

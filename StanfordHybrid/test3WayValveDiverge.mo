@@ -8,8 +8,7 @@ model test3WayValveDiverge
   Buildings.Fluid.Actuators.Valves.ThreeWayLinear val(
     redeclare package Medium = MediumWater,
     m_flow_nominal=1,
-    dpValve_nominal=10,
-    fraK=0.7)
+    dpValve_nominal=500)
     annotation (Placement(transformation(extent={{-10,12},{10,32}})));
   Buildings.Fluid.Sources.Boundary_pT bou1(redeclare package Medium =
         MediumWater, nPorts=1)
