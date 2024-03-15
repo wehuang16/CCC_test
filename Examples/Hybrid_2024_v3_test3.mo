@@ -162,14 +162,14 @@ model Hybrid_2024_v3_test3
     annotation (Placement(transformation(extent={{-320,-92},{-300,-72}})));
   Modelica.Blocks.Math.RealToBoolean realToBoolean1
     annotation (Placement(transformation(extent={{-280,-90},{-260,-70}})));
-  Buildings.Fluid.Sensors.MassFlowRate       mFloRet(redeclare package Medium
-      = Buildings.Media.Water)
+  Buildings.Fluid.Sensors.MassFlowRate       mFloRet(redeclare package Medium =
+        Buildings.Media.Water)
                    annotation (Placement(transformation(
         extent={{9,-8},{-9,8}},
         rotation=0,
         origin={9,14})));
-  Buildings.Fluid.Sensors.MassFlowRate       mFloRet1(redeclare package Medium
-      = Buildings.Media.Water)
+  Buildings.Fluid.Sensors.MassFlowRate       mFloRet1(redeclare package Medium =
+        Buildings.Media.Water)
                    annotation (Placement(transformation(
         extent={{9,-8},{-9,8}},
         rotation=0,
@@ -182,20 +182,20 @@ model Hybrid_2024_v3_test3
         extent={{11.5,10.5},{-11.5,-10.5}},
         rotation=180,
         origin={-34.5,12.5})));
-  Buildings.Fluid.Sensors.MassFlowRate       mFloRet2(redeclare package Medium
-      = Buildings.Media.Water)
+  Buildings.Fluid.Sensors.MassFlowRate       mFloRet2(redeclare package Medium =
+        Buildings.Media.Water)
                    annotation (Placement(transformation(
         extent={{-8,-6},{8,6}},
         rotation=0,
         origin={-18,-142})));
-  Buildings.Fluid.Sensors.MassFlowRate       mFloRet3(redeclare package Medium
-      = Buildings.Media.Water)
+  Buildings.Fluid.Sensors.MassFlowRate       mFloRet3(redeclare package Medium =
+        Buildings.Media.Water)
                    annotation (Placement(transformation(
         extent={{-8,-6},{8,6}},
         rotation=270,
         origin={-54,-116})));
-  Buildings.Fluid.Sensors.MassFlowRate       mFloRet4(redeclare package Medium
-      = Buildings.Media.Water)
+  Buildings.Fluid.Sensors.MassFlowRate       mFloRet4(redeclare package Medium =
+        Buildings.Media.Water)
                    annotation (Placement(transformation(
         extent={{-8,-6},{8,6}},
         rotation=90,
@@ -207,8 +207,8 @@ model Hybrid_2024_v3_test3
     annotation (Placement(transformation(extent={{9,-9},{-9,9}},
         rotation=0,
         origin={-119,-5})));
-  Buildings.Fluid.Sensors.MassFlowRate       mFloRet5(redeclare package Medium
-      = Buildings.Media.Water)
+  Buildings.Fluid.Sensors.MassFlowRate       mFloRet5(redeclare package Medium =
+        Buildings.Media.Water)
                    annotation (Placement(transformation(
         extent={{-8,-6},{8,6}},
         rotation=0,
