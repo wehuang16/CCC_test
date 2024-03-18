@@ -171,8 +171,8 @@ equation
   connect(boundary1.ports[1], pump2.port_b) annotation (Line(points={{-198,27},
           {-172,27},{-172,-7},{-128,-7}}, color={0,127,255}));
   connect(boundary2.ports[1], mFloRet3.port_a) annotation (Line(points={{-160,
-          -109},{-160,-110},{-66,-110},{-66,-102},{-54,-102},{-54,-108}}, color
-        ={0,127,255}));
+          -109},{-160,-110},{-66,-110},{-66,-102},{-54,-102},{-54,-108}}, color=
+         {0,127,255}));
   connect(valA3.port_3, boundary3.ports[1]) annotation (Line(points={{-36.5,6},
           {-36.5,4},{-70,4},{-70,-31},{-104,-31}}, color={0,127,255}));
   connect(boundary4.ports[1], pump.port_a) annotation (Line(points={{-78,-69},{

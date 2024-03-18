@@ -34,8 +34,8 @@ equation
     annotation (Line(points={{52.2,85},{52.2,86},{-6,86},{-6,58.2},{-13,58.2}},
         color={0,0,127}));
   connect(arisHeatPumpConfiguration_1HeatPump.port_b1, arisBufferTankFcuGroup.port_a5)
-    annotation (Line(points={{-13.6,66.2},{42,66.2},{42,26.2},{50,26.2}}, color
-        ={0,127,255}));
+    annotation (Line(points={{-13.6,66.2},{42,66.2},{42,26.2},{50,26.2}}, color=
+         {0,127,255}));
   connect(arisBufferTankFcuGroup.port_b5, arisHeatPumpConfiguration_1HeatPump.port_a1)
     annotation (Line(points={{50,-6.2},{48,-6.2},{48,-16},{-50,-16},{-50,72},{-40.4,
           72},{-40.4,66.2}}, color={0,127,255}));

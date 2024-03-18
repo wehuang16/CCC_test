@@ -42,3 +42,6 @@ TestSpeedPumpPressure
 Hybrid_2024_v3_test3
 Aixlib_AirToWaterHeatPump_3D_NoOnOff_03102024
 ArisMultiFamily1HeatPump_test1
+ExampleRoom
+ArisRoomModel_1RoomTestContainer
+ExampleBlock
