@@ -38,3 +38,7 @@ ArisMultiFamily1HeatPump_test1
 ExampleRoom
 ArisRoomModel_1RoomTestContainer
 ExampleBlock
+TestDxSystemHeating
+TestDxSystemCooling
+testPIDControlModelica
+HPWS_cta_several

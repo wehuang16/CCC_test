@@ -82,8 +82,8 @@ model ArisHeatPumpConfiguration_1HeatPump_03202024
         origin={48,-58})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant
     annotation (Placement(transformation(extent={{12,78},{32,98}})));
-  Buildings.Fluid.Sensors.VolumeFlowRate HeaPumWatFlo(redeclare package Medium
-      = MediumPropyleneGlycol, m_flow_nominal=1) annotation (Placement(
+  Buildings.Fluid.Sensors.VolumeFlowRate HeaPumWatFlo(redeclare package Medium =
+        MediumPropyleneGlycol, m_flow_nominal=1) annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,

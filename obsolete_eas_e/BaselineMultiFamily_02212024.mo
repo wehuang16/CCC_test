@@ -1,5 +1,5 @@
 within CCC_test.obsolete_eas_e;
-model BaselineMultiFamily
+model BaselineMultiFamily_02212024
   extends Modelica.Icons.Example;
     package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
@@ -383,7 +383,7 @@ equation
       extent={{6,3},{6,3}},
       horizontalAlignment=TextAlignment.Left));
   connect(weaBus.TDryBul,TOut. u) annotation (Line(
-      points={{450,-60},{450,-54},{490,-54}},
+      points={{450.05,-59.95},{450.05,-54},{490,-54}},
       color={255,204,51},
       thickness=0.5), Text(
       string="%first",
@@ -508,4 +508,4 @@ equation
       StopTime=8640,
       Interval=300,
       __Dymola_Algorithm="Dassl"));
-end BaselineMultiFamily;
+end BaselineMultiFamily_02212024;
