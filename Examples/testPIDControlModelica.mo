@@ -16,10 +16,10 @@ model testPIDControlModelica
   Modelica.Blocks.Sources.CombiTimeTable
                                    combiTimeTable(
     table=[0,4; 21600,4; 21600,5; 43200,5; 43200,7; 64800,7; 64800,5; 86400,5],
-
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
     annotation (Placement(transformation(extent={{-28,-52},{-8,-32}})));
+
   Modelica.Blocks.Sources.Constant const2(k=5)
     annotation (Placement(transformation(extent={{-74,-22},{-54,-2}})));
   Modelica.Blocks.Continuous.LimPID PID(
