@@ -26,7 +26,7 @@ model parallelValvesContainer
     annotation (Placement(transformation(extent={{-156,64},{-136,84}})));
   Buildings.Fluid.Movers.SpeedControlled_y fanSup1(
     redeclare package Medium = MediumWater,
-    redeclare Buildings.Fluid.Movers.Data.Fans.Greenheck.BIDW18 per,
+    redeclare Buildings.Fluid.Movers.Data.Pumps.Wilo.Stratos25slash1to4 per,
     addPowerToMedium=false)                                    "Supply air fan"
     annotation (Placement(transformation(extent={{-98,48},{-78,68}})));
   Buildings.Fluid.Sources.Boundary_pT souCoo1(redeclare package Medium =
