@@ -6,21 +6,13 @@ InterpolationMethods
 TableHpPerformance
 CCC_HP_wTSup_ctr_withPowerData
 testPIDControl
-testFloor
 HeatCapacitySensor
 testPumpValve
 testAixLibHeatPump2
-ArisMultiFamily2Test
 VisualHeatPumpPcmZone
 PCMDict
 TestLogicalDelay
-ArisRoomModel_3Rooms_NoInfiltration_NewYork_test
-ArisWaterTankGroup_1Tank
 testHvacBlock
-Guideline36_02152024
-FlexlabX1aNoLeakG36Baseline_test
-testreplicator
-testPump
 testVAVBox
 VAVBranch_ResistantReheatCoil
 CccHpTesSystem_v2_test
@@ -42,3 +34,5 @@ TestDxSystemHeating
 TestDxSystemCooling
 testPIDControlModelica
 BaselineWaterTankGroup_test
+TestHpwhBaseline
+TestDxSystemCoolingVariable

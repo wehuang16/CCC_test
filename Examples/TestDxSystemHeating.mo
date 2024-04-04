@@ -13,7 +13,7 @@ model TestDxSystemHeating
     minSpeRat=0.3015873015873016,
     sta={
         Buildings.Fluid.DXSystems.Heating.AirSource.Data.Generic.BaseClasses.Stage(
-        spe=1800/60,
+        spe=180/60,
         nomVal=
           Buildings.Fluid.DXSystems.Heating.AirSource.Data.Generic.BaseClasses.NominalValues(
           Q_flow_nominal=12356,
@@ -33,17 +33,16 @@ model TestDxSystemHeating
           TEvaInMin=-34.4 + 273.15,
           TEvaInMax=40 + 273.15))},
     final defOpe=Buildings.Fluid.DXSystems.Heating.BaseClasses.Types.DefrostOperation.reverseCycle,
-
     final defTri=Buildings.Fluid.DXSystems.Heating.BaseClasses.Types.DefrostTimeMethods.onDemand,
     final tDefRun=1/6,
     final TDefLim=277.59444444444,
     final QDefResCap=10500,
     final QCraCap=0,
-    defEIRFunT={0.1528,0,0,0,0,0})
-                       "DX heating coil data record"
+    defEIRFunT={0.1528,0,0,0,0,0}) "DX heating coil data record original"
     annotation (Placement(transformation(extent={{70,38},{90,58}})));
 
-  Buildings.Fluid.DXSystems.Heating.AirSource.SingleSpeed sinSpeDX(
+  Buildings.Fluid.DXSystems.Heating.AirSource.SingleSpeed
+                                sinSpeDX(
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     final datCoi=datCoiHea,
     redeclare package Medium = MediumAir,
@@ -66,9 +65,10 @@ model TestDxSystemHeating
     final nPorts=1)
     "Source"
     annotation (Placement(transformation(extent={{-74,-68},{-54,-48}})));
-  Modelica.Blocks.Sources.BooleanStep onOff(final startTime=600)
+  Modelica.Blocks.Sources.BooleanConstant
+                                      onOff
     "Compressor on-off signal"
-    annotation (Placement(transformation(extent={{-30,48},{-10,68}})));
+    annotation (Placement(transformation(extent={{-74,72},{-54,92}})));
   Modelica.Blocks.Sources.Ramp TConIn(
     final duration=600,
     final startTime=2400,
@@ -92,7 +92,10 @@ model TestDxSystemHeating
     annotation (Placement(transformation(extent={{74,-12},{94,8}})));
   Buildings.Fluid.Movers.SpeedControlled_y mov(
     redeclare package Medium = MediumAir,
-    redeclare Buildings.Fluid.Movers.Data.Fans.Greenheck.BIDW12 per,
+    redeclare Buildings.Fluid.Movers.Data.Fans.Greenheck.BIDW12 per(pressure(
+          V_flow={0.941802252816019,1.41392017800028,1.88603810318454,
+            2.36058962592129,2.82784035600056,3.30239187873731,3.77450980392156,
+            4.17118620497844}*0.1)),
     addPowerToMedium=false) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
@@ -102,15 +105,20 @@ model TestDxSystemHeating
     duration=2700,
     offset=0.15)
     annotation (Placement(transformation(extent={{-112,-42},{-92,-22}})));
+  Buildings.Controls.Continuous.LimPID conPID(
+    k=0.3,
+    Ti=3600,                                           reverseActing=true)
+    annotation (Placement(transformation(extent={{-6,16},{14,36}})));
+  Modelica.Blocks.Sources.Constant const(final k=1)
+    annotation (Placement(transformation(extent={{-106,10},{-86,30}})));
+  Modelica.Blocks.Logical.Hysteresis hysteresis(uLow=0.1, uHigh=0.9)
+    annotation (Placement(transformation(extent={{32,60},{52,80}})));
+  Modelica.Blocks.Sources.Constant const1(final k=273.15 + 43)
+    annotation (Placement(transformation(extent={{-104,56},{-84,76}})));
 equation
   connect(TConIn.y,sou. T_in) annotation (Line(
       points={{-93,-64},{-84,-64},{-84,-54},{-76,-54}},
       color={0,0,127},
-      smooth=Smooth.None));
-  connect(onOff.y,sinSpeDX. on)
-                               annotation (Line(
-      points={{-9,58},{24,58},{24,6},{31,6}},
-      color={255,0,255},
       smooth=Smooth.None));
   connect(TEvaIn.y,sinSpeDX. TOut) annotation (Line(points={{-49,-6},{31,-6}},
                          color={0,0,127}));
@@ -129,10 +137,18 @@ equation
     annotation (Line(points={{-30,-58},{-54,-58}}, color={0,127,255}));
   connect(ramp.y, mov.y)
     annotation (Line(points={{-91,-32},{-20,-32},{-20,-46}}, color={0,0,127}));
+  connect(hysteresis.y, sinSpeDX.on) annotation (Line(points={{53,70},{58,70},{
+          58,12},{28,12},{28,6},{31,6}}, color={255,0,255}));
+  connect(const1.y, conPID.u_s) annotation (Line(points={{-83,66},{-18,66},{-18,
+          26},{-8,26}}, color={0,0,127}));
+  connect(senTem1.T, conPID.u_m)
+    annotation (Line(points={{84,9},{84,14},{4,14}}, color={0,0,127}));
+  connect(conPID.y, hysteresis.u) annotation (Line(points={{15,26},{20,26},{20,
+          70},{30,70}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
-      StopTime=3600,
+      StopTime=86400,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
 end TestDxSystemHeating;

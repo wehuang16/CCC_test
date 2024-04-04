@@ -6,7 +6,7 @@ model TestDxSystemCooling
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
 
-  parameter Modelica.Units.SI.PressureDifference dp_nominal=1400
+  parameter Modelica.Units.SI.PressureDifference dp_nominal=1000
     "Pressure drop at m_flow_nominal";
 
   parameter Buildings.Fluid.DXSystems.Cooling.AirSource.Data.Generic.DXCoil datCoiCoo(sta={
@@ -31,7 +31,8 @@ model TestDxSystemCooling
           TEvaInMax=23.88 + 273.15))},
       nSta=1) "DX cooling coil data record"
     annotation (Placement(transformation(extent={{58,36},{78,56}})));
-  Buildings.Fluid.DXSystems.Cooling.AirSource.SingleSpeed sinSpeDX(
+  Buildings.Fluid.DXSystems.Cooling.AirSource.VariableSpeed
+                                                          sinSpeDX(
     redeclare package Medium = MediumAir,
     final dp_nominal=dp_nominal,
     final datCoi=datCoiCoo,
@@ -85,27 +86,10 @@ model TestDxSystemCooling
         origin={-30,-36})));
   Modelica.Blocks.Sources.Constant const(final k=1)
     annotation (Placement(transformation(extent={{-88,-18},{-68,2}})));
-  Buildings.Fluid.DXSystems.Cooling.AirSource.SingleSpeed sinSpeDX1(
-    redeclare package Medium = MediumAir,
-    final dp_nominal=dp_nominal,
-    final datCoi=datCoiCoo,
-    final T_start=datCoiCoo.sta[1].nomVal.TEvaIn_nominal,
-    final show_T=true,
-    final from_dp=true,
-    final energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "Single speed DX coil"
-    annotation (Placement(transformation(extent={{68,-20},{88,0}})));
-  Modelica.Blocks.Logical.Not not1
-    annotation (Placement(transformation(extent={{22,20},{42,40}})));
 equation
   connect(TEvaIn.y,sou. T_in) annotation (Line(
       points={{-91,-38},{-84,-38},{-84,-34},{-80,-34}},
       color={0,0,127},
-      smooth=Smooth.None));
-  connect(onOff.y,sinSpeDX. on)
-                               annotation (Line(
-      points={{-19,44},{-16,44},{-16,-2},{25,-2}},
-      color={255,0,255},
       smooth=Smooth.None));
   connect(TConIn.y,sinSpeDX. TOut) annotation (Line(points={{-59,24},{-18,24},{-18,
           -7},{25,-7}},  color={0,0,127}));
@@ -119,16 +103,8 @@ equation
     annotation (Line(points={{-20,-36},{-6,-36}}, color={0,127,255}));
   connect(const.y, mov.y)
     annotation (Line(points={{-67,-8},{-30,-8},{-30,-24}}, color={0,0,127}));
-  connect(sinSpeDX.port_b, sinSpeDX1.port_a)
-    annotation (Line(points={{46,-10},{68,-10}}, color={0,127,255}));
-  connect(sinSpeDX1.port_b, senTem1.port_a) annotation (Line(points={{88,-10},{100,
+  connect(sinSpeDX.port_b, senTem1.port_a) annotation (Line(points={{46,-10},{100,
           -10},{100,-22},{106,-22}}, color={0,127,255}));
-  connect(TConIn.y, sinSpeDX1.TOut) annotation (Line(points={{-59,24},{-18,24},{
-          -18,-8},{20,-8},{20,4},{62,4},{62,-7},{67,-7}}, color={0,0,127}));
-  connect(onOff.y, not1.u) annotation (Line(points={{-19,44},{-16,44},{-16,30},{
-          20,30}}, color={255,0,255}));
-  connect(not1.y, sinSpeDX1.on) annotation (Line(points={{43,30},{66,30},{66,4},
-          {64,4},{64,-2},{67,-2}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(

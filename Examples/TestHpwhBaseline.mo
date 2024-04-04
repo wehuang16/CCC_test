@@ -1,76 +1,58 @@
 within CCC_test.Examples;
-model ArisWaterTankGroup_1Tank
-          package MediumAir = Buildings.Media.Air;
+model TestHpwhBaseline
+    package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
     package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
-   parameter Modelica.Units.SI.Temperature TankTempSetpoint;
-   parameter Modelica.Units.SI.TemperatureDifference TempSetpointHpDeadbandBelow;
-   parameter Modelica.Units.SI.TemperatureDifference TempSetpointHpDeadbandAbove;
-   parameter Modelica.Units.SI.TemperatureDifference TempSetpointResistanceDeadbandBelow;
-   parameter Modelica.Units.SI.TemperatureDifference TempSetpointResistanceDeadbandAbove;
-   parameter Modelica.Units.SI.Power ResistanceHeatingPower;
+  Buildings.Fluid.Storage.StratifiedEnhancedInternalHex tan(
+    redeclare package Medium = MediumWater,
+    m_flow_nominal=mOccupant_flow_nominal,
+    VTan=0.3,
+    hTan=1.2,
+    dIns=0.050,
+    nSeg=5,
+    redeclare package MediumHex = MediumWater,
+    hHex_a=1.199,
+    hHex_b=0,
+    Q_flow_nominal=6000,
+    TTan_nominal=313.15,
+    THex_nominal=328.15,
+    mHex_flow_nominal=mTankHx_flow_nominal)
+                annotation (Placement(transformation(
+        extent={{10,-9},{-10,9}},
+        rotation=0,
+        origin={58,-7})));
   Modelica.Fluid.Sources.MassFlowSource_T boundary(
     redeclare package Medium = MediumWater,
     use_m_flow_in=true,
     use_T_in=false,
-    m_flow=0.05,
+    m_flow=0.2,
     T=285.15,
-    nPorts=1) annotation (Placement(transformation(extent={{-94,-156},{-74,-136}})));
-  Buildings.Fluid.Storage.StratifiedEnhancedInternalHex tan(
-    redeclare package Medium = MediumWater,
-    m_flow_nominal=1,
-    VTan=0.2,
-    hTan=1.019,
-    dIns=0.050,
-    nSeg=5,
-    T_start=315.15,
-    redeclare package MediumHex = MediumPropyleneGlycol,
-    hHex_a=1.0189,
-    hHex_b=0,
-    Q_flow_nominal=18500,
-    TTan_nominal=313.15,
-    THex_nominal=328.15,
-    mHex_flow_nominal=1)
-                annotation (Placement(transformation(
-        extent={{10,-9},{-10,9}},
-        rotation=0,
-        origin={-26,-143})));
-  Modelica.Fluid.Sensors.TemperatureTwoPort tempTankOutlet(redeclare package
-      Medium = MediumWater)
-    annotation (Placement(transformation(extent={{44,-152},{64,-132}})));
-  Buildings.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium =
-        MediumWater)
-    annotation (Placement(transformation(extent={{102,-144},{122,-124}})));
-  Modelica.Fluid.Sources.Boundary_pT boundary1(
+    nPorts=1) annotation (Placement(transformation(extent={{-8,-60},{12,-40}})));
+  Modelica.Fluid.Sensors.TemperatureTwoPort tempTankHxReturn(redeclare package
+      Medium = MediumPropyleneGlycol (property_T=293.15, X_a=0.4)) annotation (
+      Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=270,
+        origin={78,-42})));
+  Modelica.Fluid.Sources.Boundary_pT boundary3(
     redeclare package Medium = MediumWater,
     use_T_in=false,
     nPorts=1)
-    annotation (Placement(transformation(extent={{178,-150},{158,-132}})));
-  Buildings.Fluid.Movers.FlowControlled_m_flow tankPump(redeclare package
-      Medium = MediumPropyleneGlycol, m_flow_nominal=1) "pump" annotation (
-      Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={-34,-100})));
-  Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor tempTanBot
-    "bottom tank tempearture"
-    annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={8,-126})));
-  Controls.FlowConstraintBreaker flowConstraintBreaker2(redeclare package
-      Medium = MediumPropyleneGlycol) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
+    annotation (Placement(transformation(extent={{10,-9},{-10,9}},
         rotation=180,
-        origin={-96,-224})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package Medium =
-        MediumPropyleneGlycol)
-    annotation (Placement(transformation(extent={{-134,-186},{-114,-166}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b(redeclare package Medium =
-        MediumPropyleneGlycol)
-    annotation (Placement(transformation(extent={{174,-188},{194,-168}})));
+        origin={4,-77})));
+  Modelica.Blocks.Math.Division division
+    annotation (Placement(transformation(extent={{-8,0},{12,20}})));
+  Modelica.Blocks.Sources.Constant const2(k=1500)
+    annotation (Placement(transformation(extent={{-58,24},{-38,44}})));
+  Modelica.Blocks.Sources.Constant const1(k=5)
+    annotation (Placement(transformation(extent={{-64,-28},{-44,-8}})));
+  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo[5]
+    annotation (Placement(transformation(extent={{54,26},{74,46}})));
+  Modelica.Blocks.Routing.Replicator replicator(nout=5)
+    annotation (Placement(transformation(extent={{20,16},{40,36}})));
   Modelica.Blocks.Sources.CombiTimeTable hotWaterUse(
     tableOnFile=false,
     table=[0,0.13021238827816; 60,0.0623812712154713; 120,0.129920432250631;
@@ -330,124 +312,31 @@ model ArisWaterTankGroup_1Tank
         86100,0; 86160,0; 86220,0; 86280,0; 86340,0; 86400,0],
     smoothness=Modelica.Blocks.Types.Smoothness.ConstantSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
-    annotation (Placement(transformation(extent={{-116,-96},{-96,-76}})));
+    annotation (Placement(transformation(extent={{-98,-64},{-78,-44}})));
   Modelica.Blocks.Math.Gain UnitConversion(k=0.06309)
     "convert gpm to kg/s for water, assuming 1000kg/m3 for water"
-    annotation (Placement(transformation(extent={{-76,-94},{-56,-74}})));
-  Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor tempTanTop
-    "top tank tempearture" annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={22,-196})));
-  Modelica.Blocks.Logical.Hysteresis HpHysteresis(uLow=TankTempSetpoint +
-        TempSetpointHpDeadbandBelow, uHigh=TankTempSetpoint +
-        TempSetpointHpDeadbandAbove)
-    annotation (Placement(transformation(extent={{42,-116},{62,-96}})));
-  Modelica.Blocks.Logical.Hysteresis ResistanceHysteresis(uLow=TankTempSetpoint
-         + TempSetpointResistanceDeadbandBelow,
-                                             uHigh=TankTempSetpoint +
-        TempSetpointResistanceDeadbandAbove)
-    annotation (Placement(transformation(extent={{10,-242},{30,-222}})));
-  Modelica.Blocks.Math.BooleanToReal booleanToReal(realTrue=0.92)
-    annotation (Placement(transformation(extent={{132,-114},{152,-94}})));
-  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo1
-    annotation (Placement(transformation(extent={{148,-204},{168,-184}})));
-  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo2
-    annotation (Placement(transformation(extent={{150,-230},{170,-210}})));
-  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo3
-    annotation (Placement(transformation(extent={{150,-252},{170,-232}})));
-  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo4
-    annotation (Placement(transformation(extent={{148,-280},{168,-260}})));
-  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo5
-    annotation (Placement(transformation(extent={{150,-302},{170,-282}})));
-  Modelica.Blocks.Logical.Not not1
-    annotation (Placement(transformation(extent={{80,-114},{100,-94}})));
-  Modelica.Blocks.Logical.Not not2
-    annotation (Placement(transformation(extent={{54,-242},{74,-222}})));
-  Modelica.Blocks.Math.BooleanToReal booleanToReal1(realTrue=
-        ResistanceHeatingPower/5)
-    annotation (Placement(transformation(extent={{88,-242},{108,-222}})));
-  Modelica.Blocks.Interfaces.BooleanOutput RequestDhw
-    "True if domestic hot water is requested" annotation (Placement(
-        transformation(
-        extent={{-20,-20},{20,20}},
-        rotation=90,
-        origin={104,-40})));
-  Modelica.Blocks.Sources.Constant const(k=TankTempSetpoint)
-    annotation (Placement(transformation(extent={{-102,-272},{-82,-252}})));
-  Modelica.Blocks.Interfaces.RealOutput HotWaterTankTempSetpoint annotation (
-      Placement(transformation(
-        extent={{-20,-20},{20,20}},
-        rotation=180,
-        origin={-140,-252})));
+    annotation (Placement(transformation(extent={{-58,-62},{-38,-42}})));
 equation
-  connect(boundary.ports[1], tan.port_b) annotation (Line(points={{-74,-146},{
-          -60,-146},{-60,-143},{-36,-143}}, color={0,127,255}));
-  connect(tan.port_a, tempTankOutlet.port_a) annotation (Line(points={{-16,-143},
-          {14,-143},{14,-142},{44,-142}}, color={0,127,255}));
-  connect(tempTankOutlet.port_b, senMasFlo.port_a) annotation (Line(points={{64,
-          -142},{96,-142},{96,-134},{102,-134}}, color={0,127,255}));
-  connect(senMasFlo.port_b, boundary1.ports[1]) annotation (Line(points={{122,
-          -134},{152,-134},{152,-141},{158,-141}},     color={0,127,255}));
-  connect(tankPump.port_b, tan.portHex_a) annotation (Line(points={{-24,-100},{
-          -10,-100},{-10,-146.42},{-16,-146.42}}, color={0,127,255}));
-  connect(tan.heaPorVol[5], tempTanBot.port) annotation (Line(points={{-26,
-          -142.784},{-26,-158},{-8,-158},{-8,-126},{-2,-126}}, color={191,0,0}));
-  connect(flowConstraintBreaker2.port_b, port_b) annotation (Line(points={{-106,
-          -225.6},{-106,-178},{184,-178}}, color={0,127,255}));
-  connect(tan.portHex_b, flowConstraintBreaker2.port_a) annotation (Line(points=
-         {{-16,-150.2},{-4,-150.2},{-4,-225.6},{-85.6,-225.6}}, color={0,127,
-          255}));
-  connect(port_a, tankPump.port_a) annotation (Line(points={{-124,-176},{-116,
-          -176},{-116,-178},{-98,-178},{-98,-100},{-44,-100}}, color={0,127,255}));
+  connect(const2.y, division.u1) annotation (Line(points={{-37,34},{-18,34},{
+          -18,16},{-10,16}}, color={0,0,127}));
+  connect(const1.y, division.u2) annotation (Line(points={{-43,-18},{-18,-18},{
+          -18,4},{-10,4}}, color={0,0,127}));
+  connect(preHeaFlo.port, tan.heaPorVol) annotation (Line(points={{74,36},{84,
+          36},{84,-4},{58,-4},{58,-7}}, color={191,0,0}));
+  connect(division.y, replicator.u) annotation (Line(points={{13,10},{13,16},{
+          18,16},{18,26}}, color={0,0,127}));
+  connect(replicator.y, preHeaFlo.Q_flow) annotation (Line(points={{41,26},{46,
+          26},{46,36},{54,36}}, color={0,0,127}));
   connect(hotWaterUse.y[1], UnitConversion.u)
-    annotation (Line(points={{-95,-86},{-95,-84},{-78,-84}}, color={0,0,127}));
-  connect(UnitConversion.y, boundary.m_flow_in) annotation (Line(points={{-55,
-          -84},{-52,-84},{-52,-130},{-94,-130},{-94,-138}}, color={0,0,127}));
-  connect(tempTanTop.port, tan.heaPorVol[1]) annotation (Line(points={{12,-196},
-          {-6,-196},{-6,-158},{-26,-158},{-26,-143.216}}, color={191,0,0}));
-  connect(tempTanBot.T, HpHysteresis.u) annotation (Line(points={{19,-126},{28,-126},
-          {28,-106},{40,-106}}, color={0,0,127}));
-  connect(booleanToReal.y, tankPump.m_flow_in) annotation (Line(points={{153,-104},
-          {158,-104},{158,-78},{-34,-78},{-34,-88}}, color={0,0,127}));
-  connect(tempTanTop.T, ResistanceHysteresis.u) annotation (Line(points={{33,-196},
-          {38,-196},{38,-216},{-2,-216},{-2,-232},{8,-232}}, color={0,0,127}));
-  connect(HpHysteresis.y, not1.u) annotation (Line(points={{63,-106},{63,-104},{
-          78,-104}}, color={255,0,255}));
-  connect(not1.y, booleanToReal.u)
-    annotation (Line(points={{101,-104},{130,-104}}, color={255,0,255}));
-  connect(ResistanceHysteresis.y, not2.u)
-    annotation (Line(points={{31,-232},{52,-232}}, color={255,0,255}));
-  connect(not2.y, booleanToReal1.u)
-    annotation (Line(points={{75,-232},{86,-232}}, color={255,0,255}));
-  connect(booleanToReal1.y, preHeaFlo1.Q_flow) annotation (Line(points={{109,
-          -232},{140,-232},{140,-194},{148,-194}}, color={0,0,127}));
-  connect(booleanToReal1.y, preHeaFlo2.Q_flow) annotation (Line(points={{109,
-          -232},{140,-232},{140,-220},{150,-220}}, color={0,0,127}));
-  connect(booleanToReal1.y, preHeaFlo3.Q_flow) annotation (Line(points={{109,
-          -232},{140,-232},{140,-242},{150,-242}}, color={0,0,127}));
-  connect(booleanToReal1.y, preHeaFlo4.Q_flow) annotation (Line(points={{109,
-          -232},{140,-232},{140,-270},{148,-270}}, color={0,0,127}));
-  connect(booleanToReal1.y, preHeaFlo5.Q_flow) annotation (Line(points={{109,
-          -232},{140,-232},{140,-286},{138,-286},{138,-292},{150,-292}}, color=
-          {0,0,127}));
-  connect(preHeaFlo1.port, tan.heaPorVol[1]) annotation (Line(points={{168,-194},
-          {180,-194},{180,-143.216},{-26,-143.216}}, color={191,0,0}));
-  connect(preHeaFlo2.port, tan.heaPorVol[2]) annotation (Line(points={{170,-220},
-          {178,-220},{178,-214},{-26,-214},{-26,-143.108}}, color={191,0,0}));
-  connect(preHeaFlo3.port, tan.heaPorVol[3]) annotation (Line(points={{170,-242},
-          {178,-242},{178,-238},{-26,-238},{-26,-143}}, color={191,0,0}));
-  connect(preHeaFlo4.port, tan.heaPorVol[4]) annotation (Line(points={{168,-270},
-          {178,-270},{178,-260},{-26,-260},{-26,-142.892}}, color={191,0,0}));
-  connect(preHeaFlo5.port, tan.heaPorVol[5]) annotation (Line(points={{170,-292},
-          {180,-292},{180,-280},{-26,-280},{-26,-142.784}}, color={191,0,0}));
-  connect(not1.y, RequestDhw) annotation (Line(points={{101,-104},{104,-104},{
-          104,-40}}, color={255,0,255}));
-  connect(const.y, HotWaterTankTempSetpoint) annotation (Line(points={{-81,-262},
-          {-76,-262},{-76,-260},{-74,-260},{-74,-252},{-140,-252}}, color={0,0,
-          127}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-120,
-            -300},{180,-60}})),                                  Diagram(
-        coordinateSystem(preserveAspectRatio=false, extent={{-120,-300},{180,
-            -60}})));
-end ArisWaterTankGroup_1Tank;
+    annotation (Line(points={{-77,-54},{-77,-52},{-60,-52}}, color={0,0,127}));
+  connect(UnitConversion.y, boundary.m_flow_in) annotation (Line(points={{-37,
+          -52},{-18,-52},{-18,-42},{-8,-42}}, color={0,0,127}));
+  connect(boundary.ports[1], tan.port_b) annotation (Line(points={{12,-50},{44,
+          -50},{44,-7},{48,-7}}, color={0,127,255}));
+  connect(tan.port_a, tempTankHxReturn.port_a) annotation (Line(points={{68,-7},
+          {78,-7},{78,-6},{80,-6},{80,-32},{78,-32}}, color={0,127,255}));
+  connect(tempTankHxReturn.port_b, boundary3.ports[1])
+    annotation (Line(points={{78,-52},{78,-77},{14,-77}}, color={0,127,255}));
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+        coordinateSystem(preserveAspectRatio=false)));
+end TestHpwhBaseline;
