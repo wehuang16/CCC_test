@@ -80,7 +80,7 @@ equation
       color={255,204,51},
       thickness=0.5));
   connect(weaBus.TDryBul, TOut) annotation (Line(
-      points={{154,152},{154,194},{142,194},{142,210}},
+      points={{154.05,152.05},{154.05,194},{142,194},{142,210}},
       color={255,204,51},
       thickness=0.5), Text(
       string="%first",
