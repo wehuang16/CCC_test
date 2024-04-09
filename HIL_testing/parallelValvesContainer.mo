@@ -22,7 +22,7 @@ model parallelValvesContainer
         rotation=90,
         origin={40,-6})));
   Modelica.Blocks.Sources.Constant
-                               const(k=1)
+                               const(k=0.5)
     annotation (Placement(transformation(extent={{-156,64},{-136,84}})));
   Buildings.Fluid.Movers.SpeedControlled_y fanSup1(
     redeclare package Medium = MediumWater,
