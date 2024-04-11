@@ -36,3 +36,5 @@ testPIDControlModelica
 BaselineWaterTankGroup_test
 TestHpwhBaseline
 TestDxSystemCoolingVariable
+SingleSpeed
+VariableSpeed
