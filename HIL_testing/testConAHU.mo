@@ -59,14 +59,14 @@ equation
           {46,41.0588},{60.8,41.0588}}, color={0,0,127}));
   connect(const6.y, conAHU.VSumUncOutAir_flow) annotation (Line(points={{-53,2},
           {-34,2},{-34,18},{42,18},{42,30.2941},{60.8,30.2941}}, color={0,0,127}));
-  connect(const6.y, conAHU.VSumDesPopBreZon_flow) annotation (Line(points={{-53,
-          2},{-34,2},{-34,18},{42,18},{42,62.5882},{60.8,62.5882}}, color={0,0,
+  connect(const6.y, conAHU.VSumDesPopBreZon_flow) annotation (Line(points={{-53,2},
+          {-34,2},{-34,18},{42,18},{42,62.5882},{60.8,62.5882}},    color={0,0,
           127}));
-  connect(const6.y, conAHU.VSumDesAreBreZon_flow) annotation (Line(points={{-53,
-          2},{-34,2},{-34,18},{42,18},{42,51.8235},{60.8,51.8235}}, color={0,0,
+  connect(const6.y, conAHU.VSumDesAreBreZon_flow) annotation (Line(points={{-53,2},
+          {-34,2},{-34,18},{42,18},{42,51.8235},{60.8,51.8235}},    color={0,0,
           127}));
-  connect(const7.y, conAHU.VSumSysPriAir_flow) annotation (Line(points={{-39,
-          -30},{2,-30},{2,16},{44,16},{44,19.5294},{60.8,19.5294}}, color={0,0,
+  connect(const7.y, conAHU.VSumSysPriAir_flow) annotation (Line(points={{-39,-30},
+          {2,-30},{2,16},{44,16},{44,19.5294},{60.8,19.5294}},      color={0,0,
           127}));
   connect(const5.y, conAHU.uOutAirFra_max) annotation (Line(points={{-7,0},{46,
           0},{46,8.76471},{60.8,8.76471}}, color={0,0,127}));
@@ -81,10 +81,10 @@ equation
           {10,-70.1765},{60.8,-70.1765}}, color={0,0,127}));
   connect(booleanConstant.y, conAHU.u_UnOcc) annotation (Line(points={{27,-160},
           {60.08,-160},{60.08,-128.306}}, color={255,0,255}));
-  connect(integerConstant.y, conAHU.uZonTemResReq) annotation (Line(points={{
-          -75,-156},{0,-156},{0,-95.2941},{60.8,-95.2941}}, color={255,127,0}));
-  connect(integerConstant.y, conAHU.uZonPreResReq) annotation (Line(points={{
-          -75,-156},{0,-156},{0,-136},{46,-136},{46,-106.059},{60.8,-106.059}},
+  connect(integerConstant.y, conAHU.uZonTemResReq) annotation (Line(points={{-75,
+          -156},{0,-156},{0,-95.2941},{60.8,-95.2941}},     color={255,127,0}));
+  connect(integerConstant.y, conAHU.uZonPreResReq) annotation (Line(points={{-75,
+          -156},{0,-156},{0,-136},{46,-136},{46,-106.059},{60.8,-106.059}},
         color={255,127,0}));
   connect(integerConstant1.y, conAHU.uOpeMod) annotation (Line(points={{-87,-74},
           {42,-74},{42,-84.5294},{60.8,-84.5294}}, color={255,127,0}));
