@@ -6570,7 +6570,7 @@ model FloorG36Container
         152.77; 21859020,153.6; 21859080,148.47; 21859140,148.22],
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
-    annotation (Placement(transformation(extent={{-74,-68},{-54,-48}})));
+    annotation (Placement(transformation(extent={{-88,-68},{-68,-48}})));
   Modelica.Blocks.Sources.CombiTimeTable pleTemTab(
     tableOnFile=false,
     table=[21600000,292.21; 21600060,292.32; 21600120,292.31; 21600180,292.37; 21600240,
@@ -11440,7 +11440,7 @@ equation
           -198,86},{-192,86}}, color={0,0,127}));
   connect(souFloTab.y[1], gain2.u) annotation (Line(points={{-149,-40},{-149,-10},
           {-138,-10},{-138,-26}}, color={0,0,127}));
-  connect(pleFloTab.y[1], gain3.u) annotation (Line(points={{-53,-58},{-40,-58},
+  connect(pleFloTab.y[1], gain3.u) annotation (Line(points={{-67,-58},{-40,-58},
           {-40,-56},{-32,-56}}, color={0,0,127}));
   connect(gain.y, norFlo.m_flow_in) annotation (Line(points={{-169,86},{-162,86},
           {-162,64},{-154,64}}, color={0,0,127}));

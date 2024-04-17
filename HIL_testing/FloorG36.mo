@@ -41,19 +41,19 @@ model FloorG36 "Model of a floor of the building"
   Modelica.Units.SI.Temperature TAirWes=clo.TAir "Air temperature west zone";
   Buildings.ThermalZones.EnergyPlus_9_6_0.ThermalZone           sou(
     redeclare package Medium = Medium,
-    nPorts=3,
+    nPorts=2,
     zoneName="FlexLab-X3-ZoneA-South-Zone Thermal Zone")
                                "South zone" annotation (Placement(
         transformation(extent={{144,-44},{184,-4}})));
   Buildings.ThermalZones.EnergyPlus_9_6_0.ThermalZone           ple(
     redeclare package Medium = Medium,
-    nPorts=3,
+    nPorts=2,
     zoneName="FlexLab-X3-PlnmA Thermal Zone")
                                "East zone" annotation (Placement(
         transformation(extent={{300,68},{340,108}})));
   Buildings.ThermalZones.EnergyPlus_9_6_0.ThermalZone           nor(
     redeclare package Medium = Medium,
-    nPorts=3,
+    nPorts=2,
     zoneName="FlexLab-X3-ZoneA-North-Zone Thermal Zone")
                                "North zone" annotation (Placement(
         transformation(extent={{144,116},{184,156}})));
@@ -85,15 +85,52 @@ model FloorG36 "Model of a floor of the building"
     "modelica://Buildings/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")
     "Name of the weather file";
 
-  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor(C=18*
-        51.0157*1005*1.225)
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitorSou(C=10*
+        VRooSou*1005*1.2)
     annotation (Placement(transformation(extent={{202,-66},{222,-46}})));
-  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor1(C=18*
-        51.0157*1005*1.225)
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitorCor(C=10*
+        VRooCor*1005*1.2)
     annotation (Placement(transformation(extent={{186,26},{206,46}})));
-  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor2(C=18*
-        51.0157*1005*1.225)
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitorNor(C=10*
+        VRooNor*1005*1.2)
     annotation (Placement(transformation(extent={{198,142},{218,162}})));
+  Modelica.Blocks.Sources.CombiTimeTable ligSch(
+    table=[0,0; 7,0; 7,0.5; 8,0.5; 8,0.9; 17,0.9; 17,0.5; 21,0.5; 21,0; 24,0],
+    timeScale=3600,
+    extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
+    "internal heat gain from lights"
+    annotation (Placement(transformation(extent={{-296,-116},{-276,-96}})));
+  Modelica.Blocks.Sources.CombiTimeTable pluSch(
+    table=[0,0.4; 9,0.4; 9,0.9; 13,0.9; 13,0.8; 14,0.8; 14,0.9; 18,0.9; 18,0.5;
+        19,0.5; 19,0.4; 24,0.4],
+    timeScale=3600,
+    extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
+    "internal heat gain from plug"
+    annotation (Placement(transformation(extent={{-312,-142},{-292,-122}})));
+  Modelica.Blocks.Sources.CombiTimeTable occSch(
+    table=[0,0; 8,0; 8,0.5; 9,0.5; 9,1; 13,1; 13,0.5; 14,0.5; 14,1; 18,1; 18,
+        0.5; 19,0.5; 19,0.0; 24,0.0],
+    timeScale=3600,
+    extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
+    "internal heat gain from occupant"
+    annotation (Placement(transformation(extent={{-292,-186},{-272,-166}})));
+  Modelica.Blocks.Math.MatrixGain ligGai(K=10*[0.9; 0.1; 0])
+    "Matrix gain to split up heat gain in radiant, convective and latent gain"
+    annotation (Placement(transformation(extent={{-218,-114},{-198,-94}})));
+  Modelica.Blocks.Math.MatrixGain plgGai(K=10*[0.5; 0.5; 0])
+    "Matrix gain to split up heat gain in radiant, convective and latent gain"
+    annotation (Placement(transformation(extent={{-222,-152},{-202,-132}})));
+  Modelica.Blocks.Math.MatrixGain occGai(K=14*[0.15; 0.25; 0.6])
+    "Matrix gain to split up heat gain in radiant, convective and latent gain"
+    annotation (Placement(transformation(extent={{-218,-184},{-198,-164}})));
+  Modelica.Blocks.Math.Add3 RadiantGain
+    annotation (Placement(transformation(extent={{-170,-114},{-150,-94}})));
+  Modelica.Blocks.Math.Add3 ConvectiveGain
+    annotation (Placement(transformation(extent={{-170,-152},{-150,-132}})));
+  Modelica.Blocks.Math.Add3 LatentGain
+    annotation (Placement(transformation(extent={{-170,-186},{-150,-166}})));
+  Modelica.Blocks.Routing.Multiplex3 multiplex3_2
+    annotation (Placement(transformation(extent={{-110,-154},{-90,-134}})));
 protected
   inner Buildings.ThermalZones.EnergyPlus_9_6_0.Building           building(
     idfName=idfName,
@@ -102,9 +139,8 @@ protected
     computeWetBulbTemperature=false) "Building-level declarations"
     annotation (Placement(transformation(extent={{140,460},{160,480}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant qGai_flow[3](
-    k={0,0,0})
-    "Internal heat gain (computed already in EnergyPlus"
-    annotation (Placement(transformation(extent={{-140,-40},{-120,-20}})));
+    k={0,0,0}) "Internal heat gain (computed already in EnergyPlus"
+    annotation (Placement(transformation(extent={{-210,10},{-190,30}})));
 
 initial equation
   assert(
@@ -162,21 +198,20 @@ equation
   connect(cor.heaPorAir,temAirCor.port)
     annotation (Line(points={{164,80},{164,228},{294,228}},color={191,0,0},smooth=Smooth.None));
   connect(sou.ports[1],portsSou[1])
-    annotation (Line(points={{162.667,-43.1},{164,-43.1},{164,-54},{86,-54},{86,
-          -36},{85,-36}},                                                                    color={0,127,255},smooth=Smooth.None));
+    annotation (Line(points={{163,-43.1},{164,-43.1},{164,-54},{86,-54},{86,-36},
+          {85,-36}},                                                                         color={0,127,255},smooth=Smooth.None));
   connect(sou.ports[2],portsSou[2])
-    annotation (Line(points={{164,-43.1},{166,-43.1},{166,-50},{88,-50},{88,-36},
+    annotation (Line(points={{165,-43.1},{166,-43.1},{166,-50},{88,-50},{88,-36},
           {95,-36}},                                                                          color={0,127,255},smooth=Smooth.None));
   connect(ple.ports[1],portsEas[1])
-    annotation (Line(points={{318.667,68.9},{300,68.9},{300,36},{325,36}},
-                                                                        color={0,127,255},smooth=Smooth.None,thickness=0.5));
+    annotation (Line(points={{319,68.9},{300,68.9},{300,36},{325,36}},  color={0,127,255},smooth=Smooth.None,thickness=0.5));
   connect(ple.ports[2],portsEas[2])
-    annotation (Line(points={{320,68.9},{300,68.9},{300,36},{335,36}},  color={0,127,255},smooth=Smooth.None,thickness=0.5));
+    annotation (Line(points={{321,68.9},{300,68.9},{300,36},{335,36}},  color={0,127,255},smooth=Smooth.None,thickness=0.5));
   connect(nor.ports[1],portsNor[1])
-    annotation (Line(points={{162.667,116.9},{164,116.9},{164,104},{88,104},{88,
-          124},{85,124}},                                                                    color={0,127,255},smooth=Smooth.None));
+    annotation (Line(points={{163,116.9},{164,116.9},{164,104},{88,104},{88,124},
+          {85,124}},                                                                         color={0,127,255},smooth=Smooth.None));
   connect(nor.ports[2],portsNor[2])
-    annotation (Line(points={{164,116.9},{164,116.9},{164,110},{88,110},{88,124},
+    annotation (Line(points={{165,116.9},{164,116.9},{164,110},{88,110},{88,124},
           {95,124}},                                                                          color={0,127,255},smooth=Smooth.None));
   connect(clo.ports[1],portsWes[1])
     annotation (Line(points={{31,58.9},{30,58.9},{30,44},{-35,44}},  color={0,127,255},smooth=Smooth.None));
@@ -188,30 +223,17 @@ equation
   connect(cor.ports[2],portsCor[2])
     annotation (Line(points={{163.5,60.9},{164,60.9},{164,32},{90,32},{90,46},{
           95,46}},                                                                        color={0,127,255},smooth=Smooth.None));
-  connect(leaSou.port_b,sou.ports[3])
-    annotation (Line(points={{-22,400},{-2,400},{-2,-72},{134,-72},{134,-54},{
-          165.333,-54},{165.333,-43.1}},                                                            color={0,127,255},smooth=Smooth.None,thickness=0.5));
-  connect(leaPle.port_b,ple.ports[3])
-    annotation (Line(points={{-22,360},{246,360},{246,68.9},{321.333,68.9}},
-                                                                        color={0,127,255},smooth=Smooth.None,thickness=0.5));
-  connect(leaNor.port_b,nor.ports[3])
-    annotation (Line(points={{-20,320},{138,320},{138,116.9},{165.333,116.9}},
-                                                                          color={0,127,255},smooth=Smooth.None,thickness=0.5));
   connect(cor.ports[4], senRelPre.port_a)
     annotation (Line(points={{165.5,60.9},{164,60.9},{164,24},{128,24},{128,250},
           {60,250}},                                                                         color={0,127,255},smooth=Smooth.None,thickness=0.5));
-  connect(sou.qGai_flow,qGai_flow.y)
-    annotation (Line(points={{142,-14},{64,-14},{64,-30},{-118,-30}},color={0,0,127}));
   connect(clo.qGai_flow,qGai_flow.y)
-    annotation (Line(points={{10,88},{-60,88},{-60,-30},{-118,-30}},color={0,0,127}));
+    annotation (Line(points={{10,88},{4,88},{4,112},{-60,112},{-60,20},{-188,20}},
+                                                                    color={0,0,127}));
   connect(ple.qGai_flow,qGai_flow.y)
-    annotation (Line(points={{298,98},{200,98},{200,110},{-60,110},{-60,-30},{-118,-30}},color={0,0,127}));
-  connect(cor.qGai_flow,qGai_flow.y)
-    annotation (Line(points={{142,90},{130,90},{130,110},{-60,110},{-60,-30},{-118,-30}},color={0,0,127}));
-  connect(nor.qGai_flow,qGai_flow.y)
-    annotation (Line(points={{142,146},{-60,146},{-60,-30},{-118,-30}},color={0,0,127}));
+    annotation (Line(points={{298,98},{276,98},{276,60},{216,60},{216,4},{0,4},
+          {0,-16},{-120,-16},{-120,20},{-188,20}},                                       color={0,0,127}));
   connect(ele.qGai_flow,qGai_flow.y)
-    annotation (Line(points={{-110,146},{-120,146},{-120,-12},{-118,-12},{-118,-30}},      color={0,0,127}));
+    annotation (Line(points={{-110,146},{-168,146},{-168,20},{-188,20}},                   color={0,0,127}));
   connect(sou.heaPorAir,heaPorSou)
     annotation (Line(points={{164,-24},{140,-24},{140,-36},{116,-36}},color={191,0,0}));
   connect(ple.heaPorAir,heaPorEas)
@@ -222,14 +244,51 @@ equation
     annotation (Line(points={{32,78},{-30,78},{-30,66}},color={191,0,0}));
   connect(cor.heaPorAir,heaPorCor)
     annotation (Line(points={{164,80},{116,80},{116,46}},color={191,0,0}));
-  connect(heatCapacitor.port, sou.heaPorAir) annotation (Line(points={{212,-66},
+  connect(heatCapacitorSou.port, sou.heaPorAir) annotation (Line(points={{212,-66},
           {186,-66},{186,-22},{164,-22},{164,-24}}, color={191,0,0}));
-  connect(heatCapacitor1.port, cor.heaPorAir) annotation (Line(points={{196,26},
-          {196,24},{160,24},{160,52},{136,52},{136,80},{164,80}}, color={191,0,
-          0}));
-  connect(heatCapacitor2.port, nor.heaPorAir) annotation (Line(points={{208,142},
-          {208,136},{192,136},{192,160},{184,160},{184,164},{164,164},{164,136}},
-        color={191,0,0}));
+  connect(heatCapacitorCor.port, cor.heaPorAir) annotation (Line(points={{196,
+          26},{196,24},{160,24},{160,52},{136,52},{136,80},{164,80}}, color={
+          191,0,0}));
+  connect(heatCapacitorNor.port, nor.heaPorAir) annotation (Line(points={{208,
+          142},{208,136},{192,136},{192,160},{184,160},{184,164},{164,164},{164,
+          136}}, color={191,0,0}));
+  connect(ligGai.y[1], RadiantGain.u1) annotation (Line(points={{-197,-104},{
+          -184,-104},{-184,-96},{-172,-96}}, color={0,0,127}));
+  connect(plgGai.y[1], RadiantGain.u2) annotation (Line(points={{-201,-142},{
+          -201,-144},{-184,-144},{-184,-104},{-172,-104}}, color={0,0,127}));
+  connect(occGai.y[1], RadiantGain.u3) annotation (Line(points={{-197,-174},{
+          -197,-176},{-184,-176},{-184,-112},{-172,-112}}, color={0,0,127}));
+  connect(ligGai.y[2], ConvectiveGain.u1) annotation (Line(points={{-197,-104},
+          {-184,-104},{-184,-134},{-172,-134}}, color={0,0,127}));
+  connect(plgGai.y[2], ConvectiveGain.u2)
+    annotation (Line(points={{-201,-142},{-172,-142}}, color={0,0,127}));
+  connect(occGai.y[2], ConvectiveGain.u3) annotation (Line(points={{-197,-174},
+          {-197,-176},{-184,-176},{-184,-160},{-172,-160},{-172,-150}}, color={
+          0,0,127}));
+  connect(ligGai.y[3], LatentGain.u1) annotation (Line(points={{-197,-104},{
+          -184,-104},{-184,-168},{-172,-168}}, color={0,0,127}));
+  connect(plgGai.y[3], LatentGain.u2) annotation (Line(points={{-201,-142},{
+          -201,-144},{-184,-144},{-184,-176},{-172,-176}}, color={0,0,127}));
+  connect(occGai.y[3], LatentGain.u3) annotation (Line(points={{-197,-174},{
+          -188,-174},{-188,-184},{-172,-184}}, color={0,0,127}));
+  connect(RadiantGain.y, multiplex3_2.u1[1]) annotation (Line(points={{-149,
+          -104},{-112,-104},{-112,-137}}, color={0,0,127}));
+  connect(ConvectiveGain.y, multiplex3_2.u2[1]) annotation (Line(points={{-149,
+          -142},{-149,-144},{-112,-144}}, color={0,0,127}));
+  connect(LatentGain.y, multiplex3_2.u3[1]) annotation (Line(points={{-149,-176},
+          {-124,-176},{-124,-151},{-112,-151}}, color={0,0,127}));
+  connect(ligSch.y[1], ligGai.u[1]) annotation (Line(points={{-275,-106},{
+          -247.5,-106},{-247.5,-104},{-220,-104}}, color={0,0,127}));
+  connect(occSch.y[1], occGai.u[1]) annotation (Line(points={{-271,-176},{-271,
+          -174},{-220,-174}}, color={0,0,127}));
+  connect(nor.qGai_flow, multiplex3_2.y) annotation (Line(points={{142,146},{60,
+          146},{60,148},{-56,148},{-56,-144},{-89,-144}}, color={0,0,127}));
+  connect(multiplex3_2.y, cor.qGai_flow) annotation (Line(points={{-89,-144},{
+          -56,-144},{-56,148},{132,148},{132,90},{142,90}}, color={0,0,127}));
+  connect(multiplex3_2.y, sou.qGai_flow) annotation (Line(points={{-89,-144},{
+          -56,-144},{-56,-20},{60,-20},{60,-14},{142,-14}}, color={0,0,127}));
+  connect(pluSch.y[1], plgGai.u[1]) annotation (Line(points={{-291,-132},{-236,
+          -132},{-236,-142},{-224,-142}}, color={0,0,127}));
   annotation (
     Diagram(
       coordinateSystem(
