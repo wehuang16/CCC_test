@@ -1,5 +1,5 @@
 within CCC_test.HIL_testing;
-model FlexlabX1aG36NoDemandFlexibility_03152024
+model FlexlabX1aG36NoDemandFlexibility_04182024
   "DR mode - Variable air volume flow system with terminal reheat and five thermal zones at Flexlab X1 cell"
   extends Modelica.Icons.Example;
   extends
@@ -208,6 +208,12 @@ model FlexlabX1aG36NoDemandFlexibility_03152024
   Modelica.Blocks.Sources.BooleanConstant booleanConstant1
                                                          [numZon](k=false)
     annotation (Placement(transformation(extent={{-210,492},{-190,512}})));
+  Modelica.Blocks.Sources.CombiTimeTable leakageReheatSignal(
+    table=[0.0,0.02; 36000,0.02; 36000,0.05; 64800,0.05; 64800,0.02; 86400,0.02],
+    smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
+    extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
+    annotation (Placement(transformation(extent={{652,-172},{672,-152}})));
+
 equation
   connect(fanSup.port_b, dpDisSupFan.port_a) annotation (Line(
       points={{320,-40},{320,0},{320,-10},{320,-10}},
@@ -457,8 +463,15 @@ equation
           127}));
   connect(TOut.y, eco_Enable_OAT.TOut) annotation (Line(points={{-279,180},{
           -274,180},{-274,-106},{-78,-106},{-78,-110}}, color={0,0,127}));
-  connect(parallelValvesFlow.u, conAHU.yCoo) annotation (Line(points={{98,-248},
-          {30,-248},{30,444},{444,444},{444,451.882}}, color={0,0,127}));
+  connect(parallelValvesFlow.CoolingSignal, conAHU.yCoo) annotation (Line(
+        points={{250,-140},{226,-140},{226,-272},{96,-272},{96,-250},{56,-250},
+          {56,442},{444,442},{444,451.882}}, color={0,0,127}));
+  connect(leakageReheatSignal.y[1], sou.yLea) annotation (Line(points={{673,-162},
+          {1066,-162},{1066,16.4}}, color={0,0,127}));
+  connect(leakageReheatSignal.y[1], cor.yLea) annotation (Line(points={{673,-162},
+          {820,-162},{820,24.4}}, color={0,0,127}));
+  connect(leakageReheatSignal.y[1], nor.yLea) annotation (Line(points={{673,-162},
+          {692,-162},{692,20.4},{692,20.4}}, color={0,0,127}));
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-380,-320},{1400,
             640}}), graphics={Line(
@@ -539,9 +552,9 @@ This is for
           "modelica://Buildings/Resources/Scripts/Dymola/Examples/VAVReheat/Guideline36.mos"
         "Simulate and plot"),
     experiment(
-      StartTime=21427200,
-      StopTime=21513600,
+      StartTime=20736000,
+      StopTime=22032000,
       Interval=60,
       Tolerance=1e-06,
       __Dymola_Algorithm="Dassl"));
-end FlexlabX1aG36NoDemandFlexibility_03152024;
+end FlexlabX1aG36NoDemandFlexibility_04182024;
