@@ -12,7 +12,7 @@ testAixLibHeatPump2
 VisualHeatPumpPcmZone
 PCMDict
 TestLogicalDelay
-testHvacBlock
+testAnyBlock
 testVAVBox
 VAVBranch_ResistantReheatCoil
 CccHpTesSystem_v2_test
