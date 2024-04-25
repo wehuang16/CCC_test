@@ -41,3 +41,7 @@ VariableSpeed
 TestMultipleFluidPort
 TestMultipleFluidPortContainer
 Aixlib_AirToWaterHeatPump_3D_04182024
+StorageSystem
+ChargingDischarging
+testDynamicHysteresis
+testHpwh
