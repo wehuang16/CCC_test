@@ -14,19 +14,15 @@ model FlexlabX1aG36NoDemandFlexibility_03152024
       sou(T_start=294.96),
       idfName=Modelica.Utilities.Files.loadResource(
           "modelica://hil_flexlab_model/Resources/energyPlusFiles/X1-2021-V8_v2_correctedInternalGain.idf"),
-
       epwName=Modelica.Utilities.Files.loadResource(
           "modelica://hil_flexlab_model/Resources/weatherdata/US_Berkeley_20210913.epw"),
-
       weaName=Modelica.Utilities.Files.loadResource(
           "modelica://hil_flexlab_model/Resources/weatherdata/US_Berkeley_20210913.mos"),
-
       ele(T_start=294.96),
       clo(T_start=294.96),
       ple(T_start=294.96)),
     weaDat(filNam=Modelica.Utilities.Files.loadResource(
           "modelica://hil_flexlab_model/Resources/weatherdata/US_Berkeley_20210913.mos")),
-
     fanSup(addPowerToMedium=false));
 
                               //,

@@ -17,13 +17,12 @@ model testAnyBlock
   inner Buildings.ThermalZones.EnergyPlus_9_6_0.Building building(
     idfName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC/Resources/Data/energyPlusFiles/400_3rd_Street_v2.2_V960.idf"),
-
     epwName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC/Resources/weatherdata/USA_NY_New.York-J.F.Kennedy.Intl.AP.744860_TMY3.epw"),
-
     weaName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC/Resources/weatherdata/USA_NY_New.York-J.F.Kennedy.Intl.AP.744860_TMY3.mos"))
     annotation (Placement(transformation(extent={{-48,-8},{-28,12}})));
+
 equation
   connect(const.y, designInfiltration.zonAirTem) annotation (Line(points={{-35,
           38},{-6,38},{-6,32.2},{4,32.2}}, color={0,0,127}));
