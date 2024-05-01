@@ -41,28 +41,28 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork_v2_for_logistical
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={90,-96})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_Liv[8](redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{74,82},{104,110}}),
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_Liv[8](redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{74,82},{104,110}}),
         iconTransformation(extent={{74,82},{104,110}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_Liv[8](redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{82,60},{102,80}}),
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_Liv[8](redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{82,60},{102,80}}),
         iconTransformation(extent={{82,60},{102,80}})));
   Modelica.Blocks.Interfaces.RealInput SensibleGain_Liv[8] annotation (
       Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={90,120}), iconTransformation(extent={{80,110},{100,130}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_BedA[8](redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{80,-2},{110,26}}),
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_BedA[8](redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{80,-2},{110,26}}),
         iconTransformation(extent={{82,4},{112,32}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_BedB[8](redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{80,-68},{110,-40}}),
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_BedB[8](redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{80,-68},{110,-40}}),
         iconTransformation(extent={{80,-68},{110,-40}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_BedA[8](redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{86,-16},{106,4}}),
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_BedA[8](redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{86,-16},{106,4}}),
         iconTransformation(extent={{86,-16},{106,4}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_BedB[8](redeclare package Medium
-      = MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_BedB[8](redeclare package Medium =
+        MediumAir)
     annotation (Placement(transformation(extent={{86,-88},{106,-68}})));
   Buildings.ThermalZones.EnergyPlus_9_6_0.ThermalZone RBedB1(
     zoneName="Level1:1RBedroom2",

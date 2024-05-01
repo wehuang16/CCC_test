@@ -6,40 +6,31 @@ model testAnyBlock
     package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
-  CCC.Controls.SeparateHeatingCoolingThermalEnergy
-    separateHeatingCoolingThermalEnergy[3]
-    annotation (Placement(transformation(extent={{-6,0},{14,20}})));
-  Modelica.Blocks.Sources.CombiTimeTable combiTimeTable(
-    table=[0,15; 21600,15; 21600,30; 43200,30; 43200,-9; 64800,-9; 64800,0;
-        86400,0],
-    smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
-    extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
-    annotation (Placement(transformation(extent={{-70,2},{-50,22}})));
-  Modelica.Blocks.Sources.Constant const(k=-6)
-    annotation (Placement(transformation(extent={{-54,-36},{-34,-16}})));
-  Modelica.Blocks.Math.MultiSum multiSum(nu=3)
-    annotation (Placement(transformation(extent={{40,0},{52,12}})));
+  Modelica.Blocks.Sources.Constant const(k=273.15 - 6)
+    annotation (Placement(transformation(extent={{-56,28},{-36,48}})));
   Modelica.Blocks.Sources.Constant const1(k=4)
-    annotation (Placement(transformation(extent={{-60,-64},{-40,-44}})));
+    annotation (Placement(transformation(extent={{-88,-4},{-68,16}})));
   Modelica.Blocks.Sources.Constant const2(k=9)
-    annotation (Placement(transformation(extent={{-44,-96},{-24,-76}})));
-  Modelica.Blocks.Math.MultiSum multiSum1(nu=3)
-    annotation (Placement(transformation(extent={{44,-32},{56,-20}})));
+    annotation (Placement(transformation(extent={{-88,-50},{-68,-30}})));
+  CCC.Controls.DesignInfiltration designInfiltration(desFloRat=0.04)
+    annotation (Placement(transformation(extent={{6,18},{26,38}})));
+  inner Buildings.ThermalZones.EnergyPlus_9_6_0.Building building(
+    idfName=Modelica.Utilities.Files.loadResource(
+        "modelica://CCC/Resources/Data/energyPlusFiles/400_3rd_Street_v2.2_V960.idf"),
+
+    epwName=Modelica.Utilities.Files.loadResource(
+        "modelica://CCC/Resources/weatherdata/USA_NY_New.York-J.F.Kennedy.Intl.AP.744860_TMY3.epw"),
+
+    weaName=Modelica.Utilities.Files.loadResource(
+        "modelica://CCC/Resources/weatherdata/USA_NY_New.York-J.F.Kennedy.Intl.AP.744860_TMY3.mos"))
+    annotation (Placement(transformation(extent={{-48,-8},{-28,12}})));
 equation
-  connect(const.y, separateHeatingCoolingThermalEnergy[1].EffectiveThermalEnergy)
-    annotation (Line(points={{-33,-26},{-18,-26},{-18,10},{-8,10}}, color={0,0,
-          127}));
-  connect(const1.y, separateHeatingCoolingThermalEnergy[2].EffectiveThermalEnergy)
-    annotation (Line(points={{-39,-54},{-18,-54},{-18,10},{-8,10}}, color={0,0,
-          127}));
-  connect(const2.y, separateHeatingCoolingThermalEnergy[3].EffectiveThermalEnergy)
-    annotation (Line(points={{-23,-86},{-18,-86},{-18,10},{-8,10}}, color={0,0,
-          127}));
-  connect(separateHeatingCoolingThermalEnergy.HeatingThermalEnergy, multiSum.u)
-    annotation (Line(points={{16,13.6},{34,13.6},{34,6},{40,6}}, color={0,0,127}));
-  connect(separateHeatingCoolingThermalEnergy.CoolingThermalEnergy, multiSum1.u[
-    1:3]) annotation (Line(points={{16,4.2},{16,-24.6},{44,-24.6}}, color={0,0,
-          127}));
+  connect(const.y, designInfiltration.zonAirTem) annotation (Line(points={{-35,
+          38},{-6,38},{-6,32.2},{4,32.2}}, color={0,0,127}));
+  connect(building.weaBus, designInfiltration.weaBus) annotation (Line(
+      points={{-28,2},{0,2},{0,22.6},{5.6,22.6}},
+      color={255,204,51},
+      thickness=0.5));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(

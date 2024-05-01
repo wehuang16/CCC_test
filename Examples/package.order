@@ -45,3 +45,5 @@ StorageSystem
 ChargingDischarging
 testDynamicHysteresis
 testHpwh
+Infiltration
+AirHeating
