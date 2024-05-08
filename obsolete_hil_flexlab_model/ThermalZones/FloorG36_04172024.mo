@@ -1,4 +1,4 @@
-within CCC_test.obsolete_hil_flexlab_model;
+within CCC_test.obsolete_hil_flexlab_model.ThermalZones;
 model FloorG36_04172024 "Model of a floor of the building"
   extends hil_flexlab_model.Test1.ThermalZones.PartialFloor(
     leaPle(s=6.49/9.33, azi=Buildings.Types.Azimuth.W),

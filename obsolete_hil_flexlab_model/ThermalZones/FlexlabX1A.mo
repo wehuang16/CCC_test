@@ -752,7 +752,7 @@ equation
         initialScale=0.1)),     Icon(coordinateSystem(
           preserveAspectRatio=true, extent={{-160,-100},{400,500}}), graphics={
         Rectangle(
-          extent={{-80,-80},{380,180}},
+          extent={{-418,206},{42,466}},
           lineColor={95,95,95},
           fillColor={95,95,95},
           fillPattern=FillPattern.Solid),
@@ -773,18 +773,18 @@ equation
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Rectangle(
-          extent={{8,8},{294,100}},
+          extent={{390,342},{676,434}},
           lineColor={95,95,95},
           fillColor={95,95,95},
           fillPattern=FillPattern.Solid),
         Rectangle(
-          extent={{20,88},{280,22}},
+          extent={{-306,328},{-46,262}},
           pattern=LinePattern.None,
           lineColor={117,148,176},
           fillColor={170,213,255},
           fillPattern=FillPattern.Sphere),
         Polygon(
-          points={{-56,170},{20,94},{12,88},{-62,162},{-56,170}},
+          points={{-122,168},{-46,92},{-54,86},{-128,160},{-122,168}},
           smooth=Smooth.None,
           fillColor={95,95,95},
           fillPattern=FillPattern.Solid,
@@ -796,7 +796,7 @@ equation
           fillPattern=FillPattern.Solid,
           pattern=LinePattern.None),
         Polygon(
-          points={{284,96},{360,168},{368,162},{292,90},{284,96}},
+          points={{564,86},{640,158},{648,152},{572,80},{564,86}},
           smooth=Smooth.None,
           fillColor={95,95,95},
           fillPattern=FillPattern.Solid,
@@ -833,12 +833,12 @@ equation
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Rectangle(
-          extent={{2,160},{296,180}},
+          extent={{78,378},{372,398}},
           lineColor={95,95,95},
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid),
         Rectangle(
-          extent={{2,166},{296,174}},
+          extent={{-126,192},{168,200}},
           lineColor={95,95,95},
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),

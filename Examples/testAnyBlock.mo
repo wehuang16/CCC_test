@@ -23,6 +23,8 @@ model testAnyBlock
         "modelica://CCC/Resources/weatherdata/USA_NY_New.York-J.F.Kennedy.Intl.AP.744860_TMY3.mos"))
     annotation (Placement(transformation(extent={{-48,-8},{-28,12}})));
 
+  CCC.Fluid.Validation.ArisRoomModelUnitTest2 arisRoomModelUnitTest2_1
+    annotation (Placement(transformation(extent={{-28,-50},{-8,-30}})));
 equation
   connect(const.y, designInfiltration.zonAirTem) annotation (Line(points={{-35,
           38},{-6,38},{-6,32.2},{4,32.2}}, color={0,0,127}));
