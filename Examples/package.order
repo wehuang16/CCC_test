@@ -47,3 +47,5 @@ testDynamicHysteresis
 testHpwh
 Infiltration
 AirHeating
+testLoop
+testFan

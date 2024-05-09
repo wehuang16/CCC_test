@@ -6,32 +6,36 @@ model testAnyBlock
     package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
-  Modelica.Blocks.Sources.Constant const(k=273.15 - 6)
-    annotation (Placement(transformation(extent={{-56,28},{-36,48}})));
   Modelica.Blocks.Sources.Constant const1(k=4)
     annotation (Placement(transformation(extent={{-88,-4},{-68,16}})));
-  Modelica.Blocks.Sources.Constant const2(k=9)
+  Modelica.Blocks.Sources.Constant const2(k=0)
     annotation (Placement(transformation(extent={{-88,-50},{-68,-30}})));
-  CCC.Controls.DesignInfiltration designInfiltration(desFloRat=0.04)
-    annotation (Placement(transformation(extent={{6,18},{26,38}})));
-  inner Buildings.ThermalZones.EnergyPlus_9_6_0.Building building(
-    idfName=Modelica.Utilities.Files.loadResource(
-        "modelica://CCC/Resources/Data/energyPlusFiles/400_3rd_Street_v2.2_V960.idf"),
-    epwName=Modelica.Utilities.Files.loadResource(
-        "modelica://CCC/Resources/weatherdata/USA_NY_New.York-J.F.Kennedy.Intl.AP.744860_TMY3.epw"),
-    weaName=Modelica.Utilities.Files.loadResource(
-        "modelica://CCC/Resources/weatherdata/USA_NY_New.York-J.F.Kennedy.Intl.AP.744860_TMY3.mos"))
-    annotation (Placement(transformation(extent={{-48,-8},{-28,12}})));
 
-  CCC.Fluid.Validation.ArisRoomModelUnitTest2 arisRoomModelUnitTest2_1
-    annotation (Placement(transformation(extent={{-28,-50},{-8,-30}})));
+  CCC.Controls.calculateCOP calculateCOP1
+    annotation (Placement(transformation(extent={{-12,-30},{8,-10}})));
+  Modelica.Blocks.Interfaces.RealOutput COP
+    annotation (Placement(transformation(extent={{98,32},{118,52}})));
+  Modelica.Blocks.Interfaces.RealOutput COP1
+    annotation (Placement(transformation(extent={{98,-14},{118,6}})));
+  Modelica.Blocks.Interfaces.RealOutput COP2
+    annotation (Placement(transformation(extent={{102,-64},{122,-44}})));
+  Modelica.Blocks.Math.MultiSum multiSum(nu=2)
+    annotation (Placement(transformation(extent={{132,12},{144,24}})));
 equation
-  connect(const.y, designInfiltration.zonAirTem) annotation (Line(points={{-35,
-          38},{-6,38},{-6,32.2},{4,32.2}}, color={0,0,127}));
-  connect(building.weaBus, designInfiltration.weaBus) annotation (Line(
-      points={{-28,2},{0,2},{0,22.6},{5.6,22.6}},
-      color={255,204,51},
-      thickness=0.5));
+  connect(const1.y, calculateCOP1.QUse) annotation (Line(points={{-67,6},{-22,6},
+          {-22,-15},{-14,-15}}, color={0,0,127}));
+  connect(const2.y, calculateCOP1.ElePow) annotation (Line(points={{-67,-40},{
+          -22,-40},{-22,-26},{-14,-26}}, color={0,0,127}));
+  connect(const1.y, COP) annotation (Line(points={{-67,6},{94,6},{94,42},{108,
+          42}}, color={0,0,127}));
+  connect(const2.y, COP1) annotation (Line(points={{-67,-40},{-22,-40},{-22,-34},
+          {94,-34},{94,-4},{108,-4}}, color={0,0,127}));
+  connect(COP, multiSum.u[1]) annotation (Line(points={{108,42},{108,16.95},{
+          132,16.95}}, color={0,0,127}));
+  connect(COP1, multiSum.u[2]) annotation (Line(points={{108,-4},{108,19.05},{
+          132,19.05}}, color={0,0,127}));
+  connect(multiSum.y, COP2) annotation (Line(points={{145.02,18},{150,18},{150,
+          -54},{112,-54}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
