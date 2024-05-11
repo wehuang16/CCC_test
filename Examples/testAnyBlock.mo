@@ -21,6 +21,21 @@ model testAnyBlock
     annotation (Placement(transformation(extent={{102,-64},{122,-44}})));
   Modelica.Blocks.Math.MultiSum multiSum(nu=2)
     annotation (Placement(transformation(extent={{132,12},{144,24}})));
+  hil_flexlab_model.Test1.Examples.FlexlabX1aG36NoDemandFlexibility
+    flexlabX1aG36NoDemandFlexibility
+    annotation (Placement(transformation(extent={{-138,36},{-118,56}})));
+  hil_flexlab_model.Validation.SupplyAirPressureTrimAndRespond
+    supplyAirPressureTrimAndRespond
+    annotation (Placement(transformation(extent={{-44,-92},{-24,-72}})));
+  hil_flexlab_model.Validation.G36ZoneAirTemperatureCalibration
+    g36ZoneAirTemperatureCalibration
+    annotation (Placement(transformation(extent={{-16,40},{4,60}})));
+  hil_flexlab_model.Validation.SupplyAirTempTrimAndRespond
+    supplyAirTempTrimAndRespond
+    annotation (Placement(transformation(extent={{-94,54},{-74,74}})));
+  hil_flexlab_model.Validation.SupplyAirTempTrimAndRespond
+    supplyAirTempTrimAndRespond1
+    annotation (Placement(transformation(extent={{-142,2},{-122,22}})));
 equation
   connect(const1.y, calculateCOP1.QUse) annotation (Line(points={{-67,6},{-22,6},
           {-22,-15},{-14,-15}}, color={0,0,127}));
