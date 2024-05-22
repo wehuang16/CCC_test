@@ -3,8 +3,7 @@ model Flexlab_Summer_2021_Test_LoadShed_02262024
   "DR mode - Variable air volume flow system with terminal reheat and five thermal zones at Flexlab X1 cell"
   extends Modelica.Icons.Example;
   extends
-    hil_flexlab_model.Test1.BaseClasses1.PartialFlexlab_Summer_2021_Test_NonG36
-    (
+    hil_flexlab_model.Test1.BaseClasses1.PartialFlexlab_Summer_2021_Test_NonG36(
     occSch(
       occupancy={0,86399},
       firstEntryOccupied=true,
@@ -17,13 +16,10 @@ model Flexlab_Summer_2021_Test_LoadShed_02262024
       sou(T_start=294.96),
       idfName=Modelica.Utilities.Files.loadResource(
           "modelica://hil_flexlab_model/Resources/energyPlusFiles/X1-2021-V8_v2_correctedInternalGain.idf"),
-
       epwName=Modelica.Utilities.Files.loadResource(
           "modelica://hil_flexlab_model/Resources/weatherdata/US_Berkeley_20210913.epw"),
-
       weaName=Modelica.Utilities.Files.loadResource(
           "modelica://hil_flexlab_model/Resources/weatherdata/US_Berkeley_20210913.mos"),
-
       ele(T_start=294.96),
       clo(T_start=294.96),
       ple(T_start=294.96)),

@@ -58,11 +58,11 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={90,-96})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LLiv1(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{74,82},{104,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LLiv1(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{74,82},{104,
             110}}), iconTransformation(extent={{74,82},{104,110}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LLiv1(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{82,60},{102,80}}),
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LLiv1(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{82,60},{102,80}}),
         iconTransformation(extent={{82,60},{102,80}})));
   Modelica.Blocks.Interfaces.RealOutput RelHum annotation (Placement(
         transformation(
@@ -78,17 +78,17 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
     annotation (Placement(transformation(extent={{128,84},{148,104}})));
   Modelica.Blocks.Sources.Constant LatentGain_LLiv1(each k=0)
     annotation (Placement(transformation(extent={{136,36},{156,56}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedA1(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{80,-2},{110,26}}),
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedA1(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{80,-2},{110,26}}),
         iconTransformation(extent={{82,4},{112,32}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedB1(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{80,-68},{110,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedB1(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{80,-68},{110,
             -40}}), iconTransformation(extent={{80,-68},{110,-40}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedA1(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{86,-16},{106,4}}),
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedA1(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{86,-16},{106,4}}),
         iconTransformation(extent={{86,-16},{106,4}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedB1(redeclare package Medium
-      = MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedB1(redeclare package Medium =
+        MediumAir)
     annotation (Placement(transformation(extent={{86,-88},{106,-68}})));
   Modelica.Blocks.Sources.Constant HeatGain_RBed1[3](each k=0)
     annotation (Placement(transformation(extent={{376,-92},{396,-72}})));
@@ -133,11 +133,11 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         rotation=180,
         origin={522,-96}), iconTransformation(extent={{520,-112},{540,-92}},
           rotation=0)));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RLiv1(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{506,82},{536,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RLiv1(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{506,82},{536,
             110}}), iconTransformation(extent={{516,80},{546,108}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RLiv1(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{514,60},{534,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RLiv1(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{514,60},{534,
             80}}), iconTransformation(extent={{518,60},{538,80}})));
   Modelica.Blocks.Interfaces.RealInput SensibleGain_RLiv1 annotation (Placement(
         transformation(
@@ -147,17 +147,17 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={530,116})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedA1(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{512,-2},{542,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedA1(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{512,-2},{542,
             26}}), iconTransformation(extent={{516,4},{546,32}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedB1(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{512,-68},{542,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedB1(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{512,-68},{542,
             -40}}), iconTransformation(extent={{516,-66},{546,-38}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedA1(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{520,-16},{540,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedA1(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{520,-16},{540,
             4}}), iconTransformation(extent={{520,-16},{540,4}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedB1(redeclare package Medium
-      = MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedB1(redeclare package Medium =
+        MediumAir)
     annotation (Placement(transformation(extent={{518,-88},{538,-68}})));
   Modelica.Blocks.Sources.Constant HeatGain_LBed2[3](each k=0)
     annotation (Placement(transformation(extent={{128,194},{148,214}})));
@@ -201,28 +201,28 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={88,154})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LLiv2(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{72,332},{102,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LLiv2(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{72,332},{102,
             360}}), iconTransformation(extent={{78,334},{108,362}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LLiv2(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{82,312},{102,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LLiv2(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{82,312},{102,
             332}}), iconTransformation(extent={{82,312},{102,332}})));
   Modelica.Blocks.Interfaces.RealInput SensibleGain_LLiv2 annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={90,362}), iconTransformation(extent={{84,362},{104,382}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedA2(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{78,248},{108,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedA2(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{78,248},{108,
             276}}), iconTransformation(extent={{78,256},{108,284}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedB2(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{78,184},{108,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedB2(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{78,184},{108,
             212}}), iconTransformation(extent={{78,184},{108,212}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedA2(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{84,236},{104,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedA2(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{84,236},{104,
             256}}), iconTransformation(extent={{84,236},{104,256}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedB2(redeclare package Medium
-      = MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedB2(redeclare package Medium =
+        MediumAir)
     annotation (Placement(transformation(extent={{84,162},{104,182}})));
   Modelica.Blocks.Sources.Constant HeatGain_RBed2[3](each k=0)
     annotation (Placement(transformation(extent={{380,162},{400,182}})));
@@ -268,11 +268,11 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         rotation=180,
         origin={526,158}), iconTransformation(extent={{520,144},{540,164}},
           rotation=0)));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RLiv2(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{510,336},{540,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RLiv2(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{510,336},{540,
             364}}), iconTransformation(extent={{510,336},{540,364}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RLiv2(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{518,316},{538,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RLiv2(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{518,316},{538,
             336}}), iconTransformation(extent={{518,316},{538,336}})));
   Modelica.Blocks.Interfaces.RealInput SensibleGain_RLiv2 annotation (Placement(
         transformation(
@@ -282,17 +282,17 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={524,372})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedA2(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{516,252},{546,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedA2(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{516,252},{546,
             280}}), iconTransformation(extent={{516,260},{546,288}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedB2(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{516,186},{546,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedB2(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{516,186},{546,
             214}}), iconTransformation(extent={{516,190},{546,218}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedA2(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{524,238},{544,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedA2(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{524,238},{544,
             258}}), iconTransformation(extent={{520,240},{540,260}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedB2(redeclare package Medium
-      = MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedB2(redeclare package Medium =
+        MediumAir)
     annotation (Placement(transformation(extent={{522,166},{542,186}})));
   Modelica.Blocks.Sources.Constant HeatGain_LBed3[3](each k=0)
     annotation (Placement(transformation(extent={{130,456},{150,476}})));
@@ -336,28 +336,28 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={90,416})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LLiv3(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{76,598},{106,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LLiv3(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{76,598},{106,
             626}}), iconTransformation(extent={{76,598},{106,626}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LLiv3(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{80,576},{100,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LLiv3(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{80,576},{100,
             596}}), iconTransformation(extent={{80,576},{100,596}})));
   Modelica.Blocks.Interfaces.RealInput SensibleGain_LLiv3 annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={92,624}), iconTransformation(extent={{82,626},{102,646}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedA3(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{80,510},{110,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedA3(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{80,510},{110,
             538}}), iconTransformation(extent={{76,520},{106,548}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedB3(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{76,448},{106,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedB3(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{76,448},{106,
             476}}), iconTransformation(extent={{76,448},{106,476}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedA3(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{82,500},{102,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedA3(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{82,500},{102,
             520}}), iconTransformation(extent={{82,500},{102,520}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedB3(redeclare package Medium
-      = MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedB3(redeclare package Medium =
+        MediumAir)
     annotation (Placement(transformation(extent={{86,424},{106,444}})));
   Modelica.Blocks.Sources.Constant HeatGain_RBed3[3](each k=0)
     annotation (Placement(transformation(extent={{372,420},{392,440}})));
@@ -403,11 +403,11 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         rotation=180,
         origin={518,416}), iconTransformation(extent={{520,400},{540,420}},
           rotation=0)));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RLiv3(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{502,594},{532,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RLiv3(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{502,594},{532,
             622}}), iconTransformation(extent={{510,592},{540,620}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RLiv3(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{510,574},{530,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RLiv3(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{510,574},{530,
             594}}), iconTransformation(extent={{518,572},{538,592}})));
   Modelica.Blocks.Interfaces.RealInput SensibleGain_RLiv3 annotation (Placement(
         transformation(
@@ -417,17 +417,17 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={524,628})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedA3(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{508,510},{538,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedA3(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{508,510},{538,
             538}}), iconTransformation(extent={{516,516},{546,544}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedB3(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{516,446},{546,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedB3(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{516,446},{546,
             474}}), iconTransformation(extent={{516,446},{546,474}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedA3(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{520,496},{540,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedA3(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{520,496},{540,
             516}}), iconTransformation(extent={{520,496},{540,516}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedB3(redeclare package Medium
-      = MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedB3(redeclare package Medium =
+        MediumAir)
     annotation (Placement(transformation(extent={{514,424},{534,444}})));
   Modelica.Blocks.Sources.Constant HeatGain_LBed4[3](each k=0)
     annotation (Placement(transformation(extent={{128,728},{148,748}})));
@@ -471,28 +471,28 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={88,688})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LLiv4(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{76,868},{106,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LLiv4(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{76,868},{106,
             896}}), iconTransformation(extent={{76,868},{106,896}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LLiv4(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{80,846},{100,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LLiv4(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{80,846},{100,
             866}}), iconTransformation(extent={{80,846},{100,866}})));
   Modelica.Blocks.Interfaces.RealInput SensibleGain_LLiv4 annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={90,896}), iconTransformation(extent={{82,896},{102,916}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedA4(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{78,782},{108,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedA4(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{78,782},{108,
             810}}), iconTransformation(extent={{76,790},{106,818}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedB4(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{76,718},{106,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_LBedB4(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{76,718},{106,
             746}}), iconTransformation(extent={{76,718},{106,746}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedA4(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{82,770},{102,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedA4(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{82,770},{102,
             790}}), iconTransformation(extent={{82,770},{102,790}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedB4(redeclare package Medium
-      = MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_LBedB4(redeclare package Medium =
+        MediumAir)
     annotation (Placement(transformation(extent={{84,696},{104,716}})));
   Modelica.Blocks.Sources.Constant HeatGain_RBed4[3](each k=0)
     annotation (Placement(transformation(extent={{378,694},{398,714}})));
@@ -538,11 +538,11 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         rotation=180,
         origin={524,690}), iconTransformation(extent={{518,674},{538,694}},
           rotation=0)));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RLiv4(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{508,868},{538,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RLiv4(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{508,868},{538,
             896}}), iconTransformation(extent={{508,866},{538,894}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RLiv4(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{516,848},{536,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RLiv4(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{516,848},{536,
             868}}), iconTransformation(extent={{516,846},{536,866}})));
   Modelica.Blocks.Interfaces.RealInput SensibleGain_RLiv4 annotation (Placement(
         transformation(
@@ -552,17 +552,17 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={522,902})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedA4(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{514,784},{544,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedA4(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{514,784},{544,
             812}}), iconTransformation(extent={{514,790},{544,818}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedB4(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{522,720},{552,
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_RBedB4(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{522,720},{552,
             748}}), iconTransformation(extent={{514,720},{544,748}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedA4(redeclare package Medium
-      = MediumAir) annotation (Placement(transformation(extent={{526,770},{546,
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedA4(redeclare package Medium =
+        MediumAir) annotation (Placement(transformation(extent={{526,770},{546,
             790}}), iconTransformation(extent={{518,770},{538,790}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedB4(redeclare package Medium
-      = MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_RBedB4(redeclare package Medium =
+        MediumAir)
     annotation (Placement(transformation(extent={{520,698},{540,718}})));
 equation
   connect(HeatGain_LBed1.y, LBedB1.qGai_flow) annotation (Line(points={{151,-46},
