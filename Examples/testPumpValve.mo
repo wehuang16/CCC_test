@@ -37,9 +37,9 @@ model testPumpValve
     annotation (Placement(transformation(extent={{-70,50},{-50,70}})));
   Modelica.Blocks.Sources.Ramp     ramp(
     height=-0.8,
-    duration=4320,
+    duration=43200,
     offset=1,
-    startTime=2160)
+    startTime=21600)
     annotation (Placement(transformation(extent={{12,40},{32,60}})));
 equation
   connect(pumpFcuWaterSupply.port_b, val.port_a) annotation (Line(points={{-16,

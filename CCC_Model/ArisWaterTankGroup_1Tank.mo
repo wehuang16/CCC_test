@@ -396,8 +396,8 @@ equation
           -142.784},{-26,-158},{-8,-158},{-8,-126},{-2,-126}}, color={191,0,0}));
   connect(flowConstraintBreaker2.port_b, port_b) annotation (Line(points={{-106,
           -225.6},{-106,-178},{184,-178}}, color={0,127,255}));
-  connect(tan.portHex_b, flowConstraintBreaker2.port_a) annotation (Line(points
-        ={{-16,-150.2},{-4,-150.2},{-4,-225.6},{-85.6,-225.6}}, color={0,127,
+  connect(tan.portHex_b, flowConstraintBreaker2.port_a) annotation (Line(points=
+         {{-16,-150.2},{-4,-150.2},{-4,-225.6},{-85.6,-225.6}}, color={0,127,
           255}));
   connect(port_a, tankPump.port_a) annotation (Line(points={{-124,-176},{-116,
           -176},{-116,-178},{-98,-178},{-98,-100},{-44,-100}}, color={0,127,255}));

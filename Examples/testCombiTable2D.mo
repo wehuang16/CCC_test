@@ -6,10 +6,10 @@ model testCombiTable2D
     tableName="tab1",
     fileName=
         "/home/huangwp/LBNL_work/HIL/hil_aceee_02122024/calibration_files/outdoor_air_temperature_nonG36.txt",
-
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
     annotation (Placement(transformation(extent={{-28,-12},{-8,8}})));
+
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(

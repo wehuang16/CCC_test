@@ -1,5 +1,5 @@
 within CCC_test.StanfordHybrid;
-model test3WayValveDiverge
+model test3WayValveDivergeWrong
             package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
     package MediumPropyleneGlycol =
@@ -9,7 +9,7 @@ model test3WayValveDiverge
     redeclare package Medium = MediumWater,
     m_flow_nominal=1,
     dpValve_nominal=500)
-    annotation (Placement(transformation(extent={{-10,12},{10,32}})));
+    annotation (Placement(transformation(extent={{4,6},{24,26}})));
   Buildings.Fluid.Sources.Boundary_pT bou1(redeclare package Medium =
         MediumWater, nPorts=1)
     annotation (Placement(transformation(extent={{-90,12},{-70,32}})));
@@ -39,25 +39,25 @@ model test3WayValveDiverge
         origin={-32,-12})));
 equation
   connect(ramp.y, val.y)
-    annotation (Line(points={{35,78},{40,78},{40,44},{0,44},{0,34}},
+    annotation (Line(points={{35,78},{40,78},{40,34},{14,34},{14,28}},
                                                       color={0,0,127}));
   connect(const.y, fan.m_flow_in) annotation (Line(points={{-61,86},{10,86},{10,
           92},{54,92},{54,-4},{70,-4},{70,6}},
                                 color={0,0,127}));
-  connect(fan.port_b, val.port_2) annotation (Line(points={{60,18},{16,18},{16,
-          22},{10,22}}, color={0,127,255}));
   connect(bou.ports[1], fan.port_a) annotation (Line(points={{86,-56},{82,-56},
           {82,4},{84,4},{84,18},{80,18}}, color={0,127,255}));
-  connect(val.port_1, convergingJun.port_3)
-    annotation (Line(points={{-10,22},{-32,22},{-32,-2}}, color={0,127,255}));
-  connect(val.port_3, convergingJun.port_1)
-    annotation (Line(points={{0,12},{0,-12},{-22,-12}}, color={0,127,255}));
   connect(convergingJun.port_2, bou1.ports[1]) annotation (Line(points={{-42,
           -12},{-64,-12},{-64,22},{-70,22}}, color={0,127,255}));
+  connect(fan.port_b, val.port_1) annotation (Line(points={{60,18},{30,18},{30,
+          50},{-12,50},{-12,16},{4,16}}, color={0,127,255}));
+  connect(val.port_3, convergingJun.port_1)
+    annotation (Line(points={{14,6},{14,-12},{-22,-12}}, color={0,127,255}));
+  connect(val.port_2, convergingJun.port_3) annotation (Line(points={{24,16},{
+          36,16},{36,-2},{-32,-2}}, color={0,127,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
       StopTime=8640,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end test3WayValveDiverge;
+end test3WayValveDivergeWrong;
