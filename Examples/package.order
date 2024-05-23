@@ -53,3 +53,5 @@ testPumpWithPressure
 testPumpValveWithPressure
 TwoPortElement
 FourPortElement
+testFmuInitialization
+testFmuInitialization2
