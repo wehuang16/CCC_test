@@ -328,8 +328,8 @@ partial model PartialFlexlab_Summer_2021_Test_G36_03252024
   Buildings.BoundaryConditions.WeatherData.Bus weaBus "Weather Data Bus"
     annotation (Placement(transformation(extent={{-330,170},{-310,190}}),
         iconTransformation(extent={{-360,170},{-340,190}})));
-  hil_flexlab_model.Test1.ThermalZones.FloorG36 flo(redeclare final package
-      Medium = MediumA, final use_windPressure=use_windPressure)
+  obsolete_hil_flexlab_model.Examples.FloorG36_05292024 flo(redeclare final
+      package Medium = MediumA, final use_windPressure=use_windPressure)
     "Model of a floor of the building that is served by this VAV system"
     annotation (Placement(transformation(extent={{794,384},{1108,562}})));
 
