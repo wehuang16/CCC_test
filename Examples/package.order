@@ -55,3 +55,4 @@ FourPortElement
 testFmuInitialization
 testFmuInitialization2
 testAnyBlock
+testFmuInitialization3

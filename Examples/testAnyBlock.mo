@@ -80,10 +80,10 @@ model testAnyBlock
         83100,0; 83400,0; 83700,0; 84000,0; 84300,0; 84600,9192.32617078454;
         84900,14624.2423913189; 85200,13338.3967501766; 85500,13022.5714183419;
         85800,12787.502263903; 86100,12509.0662983275; 86400,12509.0662983275],
-
     smoothness=Modelica.Blocks.Types.Smoothness.ConstantSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{-106,-14},{-86,6}})));
+
   CCC.Fluid.BaseClasses.DummyZone dummyZone
     annotation (Placement(transformation(extent={{12,-4},{32,16}})));
   Modelica.Blocks.Math.Gain gain(k=-1) annotation (Placement(transformation(
