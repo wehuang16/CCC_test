@@ -1,12 +1,22 @@
 within CCC_test.Examples;
 model testAnyBlock
-
-            package MediumAir = Buildings.Media.Air;
+              package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
     package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
-  parameter Modelica.Units.SI.PressureDifference  dpValve_nominal=1;
+  Buildings.Fluid.Sources.MassFlowSource_T boundary(
+    redeclare package Medium = MediumAir,
+    use_m_flow_in=false,
+    m_flow=0,
+    T=298.15,
+    nPorts=1)
+    annotation (Placement(transformation(extent={{-70,-50},{-50,-30}})));
+  Buildings.Fluid.Sources.Boundary_pT bou(redeclare package Medium = MediumAir,
+      nPorts=1) annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=180,
+        origin={122,44})));
   Modelica.Blocks.Sources.CombiTimeTable coolingLoad(
     table=[0,13228.5408035624; 300,12687.4819807613; 600,5730.77302994459; 900,
         0; 1200,0; 1500,0; 1800,0; 2100,0; 2400,3519.38963724903; 2700,
@@ -73,69 +83,26 @@ model testAnyBlock
 
     smoothness=Modelica.Blocks.Types.Smoothness.ConstantSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
-    annotation (Placement(transformation(extent={{-116,-98},{-96,-78}})));
-  Buildings.Fluid.Sources.MassFlowSource_T boundary(
-    redeclare package Medium = MediumAir,
-    use_m_flow_in=false,
-    m_flow=0,
-    T=298.15,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{-80,-70},{-60,-50}})));
-  Buildings.Fluid.Sources.Boundary_pT bou(redeclare package Medium = MediumAir,
-      nPorts=1) annotation (Placement(transformation(
+    annotation (Placement(transformation(extent={{-106,-14},{-86,6}})));
+  CCC.Fluid.BaseClasses.DummyZone dummyZone
+    annotation (Placement(transformation(extent={{12,-4},{32,16}})));
+  Modelica.Blocks.Math.Gain gain(k=-1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
-        rotation=180,
-        origin={132,-56})));
-  Buildings.Fluid.FixedResistances.LosslessPipe pip(redeclare package Medium =
-        MediumAir, m_flow_nominal=1)
-    annotation (Placement(transformation(extent={{-40,-74},{-20,-54}})));
-  Buildings.Fluid.FixedResistances.LosslessPipe pip1(redeclare package Medium
-      = MediumAir, m_flow_nominal=1)
-    annotation (Placement(transformation(extent={{70,-68},{90,-48}})));
-  Modelica.Blocks.Sources.Constant const(k=1)
-    annotation (Placement(transformation(extent={{24,-36},{44,-16}})));
-  Buildings.Fluid.MixingVolumes.MixingVolume
-                             vol2(
-    redeclare package Medium = MediumAir,
-    T_start=293.15,
-    V=1000,
-    m_flow_nominal=1,
-    nPorts=4)
-    annotation (Placement(transformation(extent={{0,-4},{20,16}})));
-  Buildings.Fluid.HeatExchangers.HeaterCooler_u hea(
-    redeclare package Medium = MediumAir,
-    m_flow_nominal=1,
-    dp_nominal=0,
-    Q_flow_nominal=1)
-    annotation (Placement(transformation(extent={{12,-102},{32,-82}})));
-  Buildings.Fluid.Movers.FlowControlled_m_flow mov(
-    redeclare package Medium = MediumAir,
-    addPowerToMedium=false,
-    m_flow_nominal=1)
-    annotation (Placement(transformation(extent={{44,-106},{64,-86}})));
+        rotation=0,
+        origin={-36,6})));
 equation
-  connect(boundary.ports[1], pip.port_a) annotation (Line(points={{-60,-60},{
-          -48,-60},{-48,-56},{-40,-56},{-40,-64}}, color={0,127,255}));
-  connect(pip1.port_b, bou.ports[1]) annotation (Line(points={{90,-58},{92,-58},
-          {92,-56},{122,-56}}, color={0,127,255}));
-  connect(pip.port_b, vol2.ports[1]) annotation (Line(points={{-20,-64},{8.5,
-          -64},{8.5,-4}}, color={0,127,255}));
-  connect(vol2.ports[2], pip1.port_a)
-    annotation (Line(points={{9.5,-4},{9.5,-58},{70,-58}}, color={0,127,255}));
-  connect(coolingLoad.y[1], hea.u) annotation (Line(points={{-95,-88},{0,-88},{
-          0,-86},{10,-86}}, color={0,0,127}));
-  connect(hea.port_b, mov.port_a)
-    annotation (Line(points={{32,-92},{32,-96},{44,-96}}, color={0,127,255}));
-  connect(mov.port_b, vol2.ports[3]) annotation (Line(points={{64,-96},{70,-96},
-          {70,-72},{10.5,-72},{10.5,-4}}, color={0,127,255}));
-  connect(hea.port_a, vol2.ports[4]) annotation (Line(points={{12,-92},{2,-92},
-          {2,-72},{-4,-72},{-4,-4},{11.5,-4}}, color={0,127,255}));
-  connect(const.y, mov.m_flow_in) annotation (Line(points={{45,-26},{50,-26},{
-          50,-76},{54,-76},{54,-84}}, color={0,0,127}));
+  connect(gain.y, dummyZone.zoneLoad)
+    annotation (Line(points={{-25,6},{0,6},{0,12},{10,12}}, color={0,0,127}));
+  connect(coolingLoad.y[1], gain.u) annotation (Line(points={{-85,-4},{-56,-4},
+          {-56,6},{-48,6}}, color={0,0,127}));
+  connect(boundary.ports[1], dummyZone.port_a) annotation (Line(points={{-50,
+          -40},{6,-40},{6,6},{11.8,6}}, color={0,127,255}));
+  connect(dummyZone.port_b, bou.ports[1]) annotation (Line(points={{32.4,6},{76,
+          6},{76,40},{112,40},{112,44}}, color={0,127,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
       StopTime=259200,
-      Interval=59.9999616,
+      Interval=60,
       __Dymola_Algorithm="Dassl"));
 end testAnyBlock;

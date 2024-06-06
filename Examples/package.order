@@ -12,7 +12,6 @@ testAixLibHeatPump2
 VisualHeatPumpPcmZone
 PCMDict
 TestLogicalDelay
-testAnyBlock
 testVAVBox
 VAVBranch_ResistantReheatCoil
 CccHpTesSystem_v2_test
@@ -55,3 +54,4 @@ TwoPortElement
 FourPortElement
 testFmuInitialization
 testFmuInitialization2
+testAnyBlock
