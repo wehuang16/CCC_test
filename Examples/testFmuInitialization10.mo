@@ -26,7 +26,7 @@ model testFmuInitialization10
     amplitude=1,
     f=0.00833333333,
     offset=0.5)
-    annotation (Placement(transformation(extent={{138,24},{158,44}})));
+    annotation (Placement(transformation(extent={{138,44},{158,64}})));
   Modelica.Blocks.Sources.Constant const2(k=0)
     annotation (Placement(transformation(extent={{58,76},{78,96}})));
   Modelica.Blocks.Sources.Constant const3(k=1)
@@ -52,8 +52,8 @@ equation
         color={0,0,127}));
   connect(const2.y, realSwitch2.u1) annotation (Line(points={{79,86},{106,86},{
           106,98},{172,98},{172,44.2},{188,44.2}}, color={0,0,127}));
-  connect(sine.y, realSwitch2.u2) annotation (Line(points={{159,34},{180,34},{
-          180,37},{188,37}}, color={0,0,127}));
+  connect(sine.y, realSwitch2.u2) annotation (Line(points={{159,54},{118,54},{
+          118,37},{188,37}}, color={0,0,127}));
   connect(const3.y, realSwitch2.u3) annotation (Line(points={{83,36},{132,36},{
           132,20},{187.8,20},{187.8,29.8}}, color={0,0,127}));
   annotation (
