@@ -33,7 +33,7 @@ model testPumpValve
     annotation (Placement(transformation(extent={{10,-9},{-10,9}},
         rotation=0,
         origin={86,-3})));
-  Modelica.Blocks.Sources.Constant const1(k=1)
+  Modelica.Blocks.Sources.Constant const1(k=-1)
     annotation (Placement(transformation(extent={{-70,50},{-50,70}})));
   Modelica.Blocks.Sources.Ramp     ramp(
     height=-0.8,
