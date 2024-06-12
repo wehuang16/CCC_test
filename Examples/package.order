@@ -59,7 +59,6 @@ testFmuInitialization3
 testFmuInitialization4
 testFmuInitialization5
 calculateCOP
-realSwitch
 testFmuInitialization6
 testFmuInitialization7
 testAnyBlock2
@@ -68,3 +67,4 @@ realSwitch2
 testFmuInitialization9
 testFmuInitialization10
 testAnyBlock3
+testFmuInitialization11

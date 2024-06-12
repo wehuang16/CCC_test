@@ -18,7 +18,7 @@ model testFmuInitialization5
     annotation (Placement(transformation(extent={{100,-12},{120,8}})));
   Modelica.Blocks.Interfaces.RealOutput y2
     annotation (Placement(transformation(extent={{100,-58},{120,-38}})));
-  realSwitch realSwitch1
+  CCC.Controls.realSwitch realSwitch1
     annotation (Placement(transformation(extent={{-18,-66},{2,-46}})));
   Modelica.Blocks.Sources.Constant const3(k=1)
     annotation (Placement(transformation(extent={{-84,-98},{-64,-78}})));

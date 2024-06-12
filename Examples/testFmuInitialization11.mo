@@ -1,5 +1,5 @@
 within CCC_test.Examples;
-model testFmuInitialization10
+model testFmuInitialization11
   Modelica.Blocks.Interfaces.BooleanInput
                                        u
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
@@ -22,17 +22,8 @@ model testFmuInitialization10
   Modelica.Blocks.Sources.BooleanConstant
                                    booleanConstant1(k=true)
     annotation (Placement(transformation(extent={{-50,-94},{-30,-74}})));
-  Modelica.Blocks.Sources.Sine     sine(
-    amplitude=1,
-    f=0.00833333333,
-    offset=0.5)
-    annotation (Placement(transformation(extent={{138,44},{158,64}})));
-  Modelica.Blocks.Sources.Constant const2(k=0)
-    annotation (Placement(transformation(extent={{58,76},{78,96}})));
-  Modelica.Blocks.Sources.Constant const3(k=1)
-    annotation (Placement(transformation(extent={{62,26},{82,46}})));
-  CCC.Controls.realSwitch realSwitch2
-    annotation (Placement(transformation(extent={{190,28},{210,48}})));
+  CCC.Controls.FmuPatch fmuPatch
+    annotation (Placement(transformation(extent={{94,38},{114,58}})));
 equation
   connect(const.y, switch1.u1) annotation (Line(points={{-41,30},{-22,30},{-22,
           6},{-2,6},{-2,6}}, color={0,0,127}));
@@ -50,12 +41,6 @@ equation
           110,-46}}, color={255,0,255}));
   connect(switch1.y, y) annotation (Line(points={{21,-2},{96,-2},{96,0},{110,0}},
         color={0,0,127}));
-  connect(const2.y, realSwitch2.u1) annotation (Line(points={{79,86},{106,86},{
-          106,98},{172,98},{172,44.2},{188,44.2}}, color={0,0,127}));
-  connect(sine.y, realSwitch2.u2) annotation (Line(points={{159,54},{118,54},{
-          118,37},{188,37}}, color={0,0,127}));
-  connect(const3.y, realSwitch2.u3) annotation (Line(points={{83,36},{132,36},{
-          132,20},{187.8,20},{187.8,29.8}}, color={0,0,127}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false)),
     Diagram(coordinateSystem(preserveAspectRatio=false)),
@@ -63,4 +48,4 @@ equation
       StopTime=86400,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end testFmuInitialization10;
+end testFmuInitialization11;
