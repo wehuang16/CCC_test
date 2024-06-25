@@ -17,6 +17,8 @@ model testAnyBlock2
     f=0.00004629629,
     offset=0.5)
     annotation (Placement(transformation(extent={{-154,-10},{-134,10}})));
+  ZydSystem_picture zydSystem_picture
+    annotation (Placement(transformation(extent={{-26,-46},{4,-26}})));
 equation
   connect(sine.y, testFmuInitialization9_1.u) annotation (Line(points={{-133,0},
           {-28,0},{-28,5.8},{-20,5.8}}, color={0,0,127}));
