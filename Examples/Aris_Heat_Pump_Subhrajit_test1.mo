@@ -123,8 +123,9 @@ model Aris_Heat_Pump_Subhrajit_test1
         origin={-98,82})));
   Modelica.Blocks.Sources.BooleanConstant bool
     annotation (Placement(transformation(extent={{-166,84},{-146,104}})));
-  CCC.Fluid.BaseClasses.HpSetpointController_Subhrajit hpSetpointController_Subhrajit(
-      DomesticHotWaterTempDelta=DomesticHotWaterTempDelta)
+  CCC.Fluid.BaseClasses.HpSetpointController_Subhrajit_alt
+    hpSetpointController_Subhrajit(DomesticHotWaterTempDelta=
+        DomesticHotWaterTempDelta)
     annotation (Placement(transformation(extent={{-200,50},{-180,74}})));
   Modelica.Blocks.Sources.Constant const(k=0.92)
     annotation (Placement(transformation(extent={{-270,46},{-250,66}})));
@@ -137,7 +138,7 @@ model Aris_Heat_Pump_Subhrajit_test1
     annotation (Placement(transformation(extent={{-346,80},{-326,100}})));
   Modelica.Blocks.Math.RealToBoolean realToBoolean
     annotation (Placement(transformation(extent={{-296,74},{-276,94}})));
-  Modelica.Blocks.Sources.Constant const2(k=0.64)
+  Modelica.Blocks.Sources.Constant const2(k=0.05)
     annotation (Placement(transformation(extent={{-248,18},{-228,38}})));
   Buildings.Fluid.HeatExchangers.Heater_T hea1(
     redeclare package Medium = MediumWater,
@@ -266,8 +267,8 @@ equation
   connect(hpSetpointController_Subhrajit.ValCon, val.y) annotation (Line(points
         ={{-178,71.2},{-160,71.2},{-160,72},{-144,72},{-144,56}}, color={0,0,127}));
   connect(hpSetpointController_Subhrajit.ModeHp, aixlib_AirToWaterHeatPump_3D.Mode)
-    annotation (Line(points={{-178,64.8},{-128,64.8},{-128,60},{-80,60},{-80,46},
-          {-88.8,46}}, color={255,0,255}));
+    annotation (Line(points={{-178,68},{-128,68},{-128,60},{-80,60},{-80,46},{
+          -88.8,46}},  color={255,0,255}));
   connect(hpSetpointController_Subhrajit.TSupSet, aixlib_AirToWaterHeatPump_3D.TSupSet)
     annotation (Line(points={{-178,58.6},{-168,58.6},{-168,32},{-116,32},{-116,40.1},
           {-111.1,40.1}}, color={0,0,127}));
@@ -283,9 +284,6 @@ equation
     annotation (Line(points={{-249,6},{-202,6},{-202,56.6}}, color={0,0,127}));
   connect(combiTimeTable.y[1], realToBoolean.u) annotation (Line(points={{-325,
           90},{-308,90},{-308,84},{-298,84}}, color={0,0,127}));
-  connect(const2.y, hpSetpointController_Subhrajit.PumSpSpaceConditioning)
-    annotation (Line(points={{-227,28},{-212,28},{-212,54},{-210,54},{-210,61.8},
-          {-202,61.8}}, color={0,0,127}));
   connect(val1.port_3, hea1.port_a) annotation (Line(points={{1,42},{12,42},{12,
           -42},{40,-42},{40,-36}}, color={0,127,255}));
   connect(hea1.port_b, val.port_3) annotation (Line(points={{60,-36},{66,-36},{
@@ -319,6 +317,9 @@ equation
         points={{149,102},{154,102},{154,118},{-212,118},{-212,70},{-202,70}},
                                                                      color={255,
           0,255}));
+  connect(const2.y, hpSetpointController_Subhrajit.PumSpSpaceConditioning)
+    annotation (Line(points={{-227,28},{-212,28},{-212,54},{-210,54},{-210,61.8},
+          {-202,61.8}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(

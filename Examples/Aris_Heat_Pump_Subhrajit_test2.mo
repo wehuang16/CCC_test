@@ -133,8 +133,9 @@ model Aris_Heat_Pump_Subhrajit_test2
         origin={-98,82})));
   Modelica.Blocks.Sources.BooleanConstant bool
     annotation (Placement(transformation(extent={{-166,84},{-146,104}})));
-  CCC.Fluid.BaseClasses.HpSetpointController_Subhrajit hpSetpointController_Subhrajit(
-      DomesticHotWaterTempDelta=DomesticHotWaterTempDelta)
+  CCC.Fluid.BaseClasses.HpSetpointController_Subhrajit
+    hpSetpointController_Subhrajit(DomesticHotWaterTempDelta=
+        DomesticHotWaterTempDelta)
     annotation (Placement(transformation(extent={{-200,50},{-180,74}})));
   Modelica.Blocks.Sources.Constant const(k=0.92)
     annotation (Placement(transformation(extent={{-270,46},{-250,66}})));
@@ -284,8 +285,8 @@ equation
   connect(hpSetpointController_Subhrajit.ValCon, val.y) annotation (Line(points
         ={{-178,71.2},{-160,71.2},{-160,72},{-144,72},{-144,56}}, color={0,0,127}));
   connect(hpSetpointController_Subhrajit.ModeHp, aixlib_AirToWaterHeatPump_3D.Mode)
-    annotation (Line(points={{-178,64.8},{-128,64.8},{-128,60},{-80,60},{-80,46},
-          {-88.8,46}}, color={255,0,255}));
+    annotation (Line(points={{-178,68},{-128,68},{-128,60},{-80,60},{-80,46},{
+          -88.8,46}},  color={255,0,255}));
   connect(hpSetpointController_Subhrajit.TSupSet, aixlib_AirToWaterHeatPump_3D.TSupSet)
     annotation (Line(points={{-178,58.6},{-168,58.6},{-168,32},{-116,32},{-116,40.1},
           {-111.1,40.1}}, color={0,0,127}));

@@ -5,7 +5,7 @@ model TestTrimAndRespond
     final iniSet=120,
     final minSet=45,
     final maxSet=250,
-    final delTim=300,
+    final delTim=0,
     final samplePeriod=180,
     final numIgnReq=0,
     final triAmo=-12,

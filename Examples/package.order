@@ -71,3 +71,8 @@ testFmuInitialization11
 Aris_Heat_Pump_Subhrajit_test1
 Aris_Heat_Pump_Subhrajit_test2
 ZydSystem_picture
+Lg_Heat_Pump_Subhrajit_test1
+testLatch
+testTimer
+testUnitDelay
+testTrueDelay

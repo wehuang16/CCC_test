@@ -304,8 +304,8 @@ parameter Modelica.Units.SI.PressureDifference  dp_nominal=1000;
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={42,40})));
-  Buildings.Fluid.Sensors.MassFlowRate MasFloCityToPcm(redeclare package Medium
-      = MediumWater) annotation (Placement(transformation(
+  Buildings.Fluid.Sensors.MassFlowRate MasFloCityToPcm(redeclare package Medium =
+        MediumWater) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={48,-246})));
