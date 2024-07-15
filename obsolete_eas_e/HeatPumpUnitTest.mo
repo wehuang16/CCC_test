@@ -4,8 +4,9 @@ model HeatPumpUnitTest
   package MediumWater = Buildings.Media.Water;
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater;
-     replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Heating datTabHeaHpwh;
-  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling
+  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Heating_old
+    datTabHeaHpwh;
+  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling_old
     datTabCooHpwh;
   replaceable parameter ARIS_DATA_EASE datTabHeaHpwh2;
 

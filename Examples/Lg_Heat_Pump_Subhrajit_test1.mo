@@ -18,8 +18,8 @@ model Lg_Heat_Pump_Subhrajit_test1
   CCC.Fluid.HeatPumps.CCC_HP_wTSup_ctr cCC_HP_wTSup_ctr(
     redeclare package MediumAir = MediumAir,
     redeclare package MediumWat = MediumWater,
-    datTabHea=CCC.Fluid.HeatPumps.Data.LG_DATA_Heating(),
-    datTabCoo=CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling(),
+    datTabHea=CCC.Fluid.HeatPumps.Data.LG_DATA_Heating_old(),
+    datTabCoo=CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling_old(),
     Q_flow_nominal=QHP_flow_nominal,
     mCon_flow_nominal=mHP_flow_nominal,
     PIDHea(Ti=10))

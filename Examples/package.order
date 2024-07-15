@@ -76,3 +76,5 @@ testLatch
 testTimer
 testUnitDelay
 testTrueDelay
+testPnnlSystem
+testPnnlSystem2

@@ -19,8 +19,8 @@ model ArisMultiFamily_old_v0
     redeclare package MediumAir = MediumAir,
     redeclare package MediumWat = MediumPropyleneGlycol (property_T=293.15, X_a
           =0.4),
-    datTabHea=CCC.Fluid.HeatPumps.Data.LG_DATA_Heating(),
-    datTabCoo=CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling(),
+    datTabHea=CCC.Fluid.HeatPumps.Data.LG_DATA_Heating_old(),
+    datTabCoo=CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling_old(),
     Q_flow_nominal=18500,
     TCon_nominal=308.15,
     TEva_nominal=280.15,

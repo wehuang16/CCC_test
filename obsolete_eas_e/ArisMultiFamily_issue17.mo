@@ -14,12 +14,13 @@ model ArisMultiFamily_issue17
     "Water tank heat exchanger glycol nominal mass flow rate";
   parameter Modelica.Units.SI.MassFlowRate mHp_flow_nominal=mFcu_flow_nominal+mTankHx_flow_nominal
     "Heat pump glycol nominal mass flow rate";
-  CCC.Fluid.HeatPumps.BaseClasses.CCC_HP_wTSup_ctr_withPowerData_3D cCC_HP_wTSup_ctr_withPowerData_3D(
+  CCC.Fluid.HeatPumps.BaseClasses.CCC_HP_wTSup_ctr_withPowerData_3D
+    cCC_HP_wTSup_ctr_withPowerData_3D(
     redeclare package MediumAir = MediumAir,
     redeclare package MediumWat = MediumPropyleneGlycol (property_T=293.15, X_a
           =0.4),
-    datTabHea=CCC.Fluid.HeatPumps.Data.LG_DATA_Heating(),
-    datTabCoo=CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling(),
+    datTabHea=CCC.Fluid.HeatPumps.Data.LG_DATA_Heating_old(),
+    datTabCoo=CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling_old(),
     Q_flow_nominal=18500,
     TCon_nominal=308.15,
     TEva_nominal=280.15,

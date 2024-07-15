@@ -6,11 +6,11 @@ model NonArisMultiFamily_issue17
   package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater;
 
-  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Heating datTabHea;
-  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling
-    datTabCoo;
-    replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Heating datTabHeaHpwh;
-  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling
+  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Heating_old datTabHea;
+  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling_old datTabCoo;
+  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Heating_old
+    datTabHeaHpwh;
+  replaceable parameter CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling_old
     datTabCooHpwh;
 
     parameter Modelica.Units.SI.MassFlowRate mTankHx_flow_nominal=0.5
