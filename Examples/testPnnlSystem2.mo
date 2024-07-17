@@ -31,10 +31,10 @@ model testPnnlSystem2
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic,
     fileName=Modelica.Utilities.Files.loadResource(
         "modelica://Buildings/Resources/Data/Controls/DemandResponse/Examples/B90_DR_Data.mos"),
-
     columns={2,3,4,5})
                      "LBNL building 90 data"
     annotation (Placement(transformation(extent={{-166,76},{-146,96}})));
+
   Buildings.Controls.OBC.CDL.Logical.Sources.Constant
                                             con(k=false)
     annotation (Placement(transformation(extent={{-126,46},{-106,66}})));

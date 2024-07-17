@@ -7,9 +7,9 @@ model testPnnlSystem
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic,
     fileName=Modelica.Utilities.Files.loadResource(
         "modelica://Buildings/Resources/Data/Examples/VAVReheat/DR_input_data.mos"),
-
     columns={2})     "LBNL building 90 data"
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
+
   Buildings.Controls.OBC.CDL.Conversions.RealToInteger
                                              reaToInt
     annotation (Placement(transformation(extent={{0,0},{20,20}})));

@@ -8,7 +8,7 @@ model TestVavDamper
   Buildings.Fluid.Actuators.Dampers.Exponential         vav(
     redeclare package Medium = MediumAir,
     m_flow_nominal=0.2775,
-    dpDamper_nominal=220 + 20)           "VAV box for room" annotation (
+    dpDamper_nominal=0.25*240)           "VAV box for room" annotation (
       Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
