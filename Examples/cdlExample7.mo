@@ -1,5 +1,5 @@
 within CCC_test.Examples;
-model cdlExample2
+model cdlExample7
   Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel(final samplePeriod=180,
       final y_start=21)
     "Output the input signal with a unit delay"
@@ -48,6 +48,8 @@ model cdlExample2
           extent={{100,-20},{140,20}})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter valueToIncrease(k=1)
     annotation (Placement(transformation(extent={{-120,-30},{-88,2}})));
+  Buildings.Controls.OBC.CDL.Logical.TrueFalseHold truFalHol(trueHoldDuration=
+        135) annotation (Placement(transformation(extent={{34,-106},{54,-86}})));
 equation
   connect(uniDel.y,add1. u1)
     annotation (Line(points={{-84,24},{-48,24}},
@@ -86,8 +88,10 @@ equation
   connect(swi.y, valueToIncrease.u) annotation (Line(points={{150,-102},{158,
           -102},{158,-56},{-130,-56},{-130,-22},{-132,-22},{-132,-14},{-123.2,
           -14}}, color={0,0,127}));
-  connect(lesThr.y, swi.u2) annotation (Line(points={{4,-96},{116,-96},{116,
+  connect(lesThr.y, truFalHol.u)
+    annotation (Line(points={{4,-96},{32,-96}}, color={255,0,255}));
+  connect(truFalHol.y, swi.u2) annotation (Line(points={{56,-96},{116,-96},{116,
           -102},{126,-102}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
-end cdlExample2;
+end cdlExample7;

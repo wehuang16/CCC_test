@@ -1,5 +1,5 @@
 within CCC_test.Examples;
-model cdlExample2
+model cdlExample5
   Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel(final samplePeriod=180,
       final y_start=21)
     "Output the input signal with a unit delay"
@@ -46,8 +46,16 @@ model cdlExample2
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput myOutput2 annotation (
       Placement(transformation(extent={{106,-42},{146,-2}}), iconTransformation(
           extent={{100,-20},{140,20}})));
+  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel(delayTime=150)
+    annotation (Placement(transformation(extent={{14,-106},{34,-86}})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter valueToIncrease(k=1)
     annotation (Placement(transformation(extent={{-120,-30},{-88,2}})));
+  Buildings.Controls.OBC.CDL.Logical.Not not1
+    annotation (Placement(transformation(extent={{40,-108},{60,-88}})));
+  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel1(delayTime=150)
+    annotation (Placement(transformation(extent={{72,-108},{92,-88}})));
+  Buildings.Controls.OBC.CDL.Logical.Not not2
+    annotation (Placement(transformation(extent={{102,-108},{122,-88}})));
 equation
   connect(uniDel.y,add1. u1)
     annotation (Line(points={{-84,24},{-48,24}},
@@ -81,13 +89,21 @@ equation
           -110},{126,-110}}, color={0,0,127}));
   connect(combiTimeTable2.y[1], myOutput2) annotation (Line(points={{-141,-64},
           {-92,-64},{-92,-40},{78,-40},{78,-22},{126,-22}}, color={0,0,127}));
+  connect(lesThr.y, truDel.u) annotation (Line(points={{4,-96},{12,-96}},
+                     color={255,0,255}));
   connect(valueToIncrease.y, add1.u2) annotation (Line(points={{-84.8,-14},{-58,
           -14},{-58,12},{-48,12}}, color={0,0,127}));
   connect(swi.y, valueToIncrease.u) annotation (Line(points={{150,-102},{158,
           -102},{158,-56},{-130,-56},{-130,-22},{-132,-22},{-132,-14},{-123.2,
           -14}}, color={0,0,127}));
-  connect(lesThr.y, swi.u2) annotation (Line(points={{4,-96},{116,-96},{116,
-          -102},{126,-102}}, color={255,0,255}));
+  connect(not1.y, truDel1.u)
+    annotation (Line(points={{62,-98},{70,-98}}, color={255,0,255}));
+  connect(truDel1.y, not2.u)
+    annotation (Line(points={{94,-98},{100,-98}}, color={255,0,255}));
+  connect(truDel.y, not1.u)
+    annotation (Line(points={{36,-96},{36,-98},{38,-98}}, color={255,0,255}));
+  connect(not2.y, swi.u2) annotation (Line(points={{124,-98},{124,-102},{126,
+          -102}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
-end cdlExample2;
+end cdlExample5;

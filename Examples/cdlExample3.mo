@@ -46,7 +46,7 @@ model cdlExample3
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput myOutput2 annotation (
       Placement(transformation(extent={{106,-42},{146,-2}}), iconTransformation(
           extent={{100,-20},{140,20}})));
-  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel(delayTime=0.1)
+  Buildings.Controls.OBC.CDL.Logical.Pre pre
     annotation (Placement(transformation(extent={{36,-98},{56,-78}})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter valueToIncrease(k=1)
     annotation (Placement(transformation(extent={{-120,-30},{-88,2}})));
@@ -83,10 +83,10 @@ equation
           -110},{126,-110}}, color={0,0,127}));
   connect(combiTimeTable2.y[1], myOutput2) annotation (Line(points={{-141,-64},
           {-92,-64},{-92,-40},{78,-40},{78,-22},{126,-22}}, color={0,0,127}));
-  connect(lesThr.y, truDel.u) annotation (Line(points={{4,-96},{24,-96},{24,-88},
-          {34,-88}}, color={255,0,255}));
-  connect(truDel.y, swi.u2) annotation (Line(points={{58,-88},{72,-88},{72,-102},
-          {126,-102}}, color={255,0,255}));
+  connect(lesThr.y, pre.u) annotation (Line(points={{4,-96},{24,-96},{24,-88},{
+          34,-88}}, color={255,0,255}));
+  connect(pre.y, swi.u2) annotation (Line(points={{58,-88},{72,-88},{72,-102},{
+          126,-102}}, color={255,0,255}));
   connect(valueToIncrease.y, add1.u2) annotation (Line(points={{-84.8,-14},{-58,
           -14},{-58,12},{-48,12}}, color={0,0,127}));
   connect(swi.y, valueToIncrease.u) annotation (Line(points={{150,-102},{158,
