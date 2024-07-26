@@ -88,3 +88,7 @@ cdlExample6
 cdlExample7
 testIntegral
 UnnamedA
+IntegratorWithReset
+IntegratorWithReset2
+IntegratorWithReset3
+UnitDelayAndSampleBlock
