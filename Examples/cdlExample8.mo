@@ -10,12 +10,6 @@ model cdlExample8
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput myOutput1 annotation (
       Placement(transformation(extent={{110,-10},{150,30}}), iconTransformation(
           extent={{100,-20},{140,20}})));
-  Modelica.Blocks.Sources.CombiTimeTable combiTimeTable1(
-    table=[0,0.15; 10800,0.25; 21600,-0.1; 32400,0.05; 43200,0; 54000,-0.15;
-        64800,0.2; 75600,-0.05; 86400,0.1],
-    smoothness=Modelica.Blocks.Types.Smoothness.ConstantSegments,
-    extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
-    annotation (Placement(transformation(extent={{-162,-6},{-142,14}})));
   Buildings.Controls.OBC.CDL.Reals.LessThreshold lesThr(t=1)
     annotation (Placement(transformation(extent={{-18,-106},{2,-86}})));
   Modelica.Blocks.Sources.CombiTimeTable combiTimeTable2(
@@ -38,26 +32,16 @@ model cdlExample8
     annotation (Placement(transformation(extent={{-120,-30},{-88,2}})));
   Buildings.Controls.OBC.CDL.Reals.Limiter lim(uMax=270, uMin=210)
     annotation (Placement(transformation(extent={{14,28},{34,48}})));
-  Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel1(final samplePeriod=300,
-      final y_start=210)
+  Buildings.Controls.OBC.CDL.Discrete.Sampler   sam(final samplePeriod=180)
     "Output the input signal with a unit delay"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        rotation=90,
+        origin={-130,-42})));
+  Buildings.Controls.OBC.CDL.Logical.Pre pre annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
         rotation=270,
-        origin={56,-22})));
-  Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel2(final samplePeriod=300,
-      final y_start=210)
-    "Output the input signal with a unit delay"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=270,
-        origin={58,12})));
-  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel(delayTime=150)
-    annotation (Placement(transformation(extent={{-30,-162},{-10,-142}})));
-  Buildings.Controls.OBC.CDL.Logical.Not not1
-    annotation (Placement(transformation(extent={{-4,-164},{16,-144}})));
-  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel1(delayTime=150)
-    annotation (Placement(transformation(extent={{28,-164},{48,-144}})));
-  Buildings.Controls.OBC.CDL.Logical.Not not2
-    annotation (Placement(transformation(extent={{58,-164},{78,-144}})));
+        origin={32,-118})));
 equation
   connect(uniDel.y,add1. u1)
     annotation (Line(points={{-84,24},{-48,24}},
@@ -75,31 +59,22 @@ equation
           {-92,-64},{-92,-40},{78,-40},{78,-22},{126,-22}}, color={0,0,127}));
   connect(valueToIncrease.y, add1.u2) annotation (Line(points={{-84.8,-14},{-58,
           -14},{-58,12},{-48,12}}, color={0,0,127}));
-  connect(swi.y, valueToIncrease.u) annotation (Line(points={{150,-102},{158,
-          -102},{158,-56},{-130,-56},{-130,-22},{-132,-22},{-132,-14},{-123.2,
-          -14}}, color={0,0,127}));
   connect(add1.y, lim.u) annotation (Line(points={{-24,18},{2,18},{2,38},{12,38}},
         color={0,0,127}));
   connect(lim.y, myOutput1) annotation (Line(points={{36,38},{94,38},{94,10},{
           130,10}}, color={0,0,127}));
-  connect(uniDel1.y, subt.u1)
-    annotation (Line(points={{56,-34},{56,-74},{-82,-74}}, color={0,0,127}));
-  connect(uniDel.u, uniDel1.y) annotation (Line(points={{-108,24},{-124,24},{
-          -124,-34},{56,-34}}, color={0,0,127}));
-  connect(uniDel2.y, uniDel1.u) annotation (Line(points={{58,0},{58,-4},{56,-4},
-          {56,-10}}, color={0,0,127}));
-  connect(lim.y, uniDel2.u)
-    annotation (Line(points={{36,38},{58,38},{58,24}}, color={0,0,127}));
-  connect(truDel.y, not1.u) annotation (Line(points={{-8,-152},{-8,-154},{-6,
-          -154}}, color={255,0,255}));
-  connect(not1.y, truDel1.u)
-    annotation (Line(points={{18,-154},{26,-154}}, color={255,0,255}));
-  connect(truDel1.y, not2.u)
-    annotation (Line(points={{50,-154},{56,-154}}, color={255,0,255}));
-  connect(lesThr.y, truDel.u) annotation (Line(points={{4,-96},{12,-96},{12,
-          -134},{-40,-134},{-40,-152},{-32,-152}}, color={255,0,255}));
-  connect(not2.y, swi.u2) annotation (Line(points={{80,-154},{116,-154},{116,
-          -102},{126,-102}}, color={255,0,255}));
+  connect(swi.y, sam.u) annotation (Line(points={{150,-102},{158,-102},{158,-56},
+          {-130,-54}}, color={0,0,127}));
+  connect(sam.y, valueToIncrease.u) annotation (Line(points={{-130,-30},{-130,
+          -22},{-132,-22},{-132,-14},{-123.2,-14}}, color={0,0,127}));
+  connect(lim.y, subt.u1) annotation (Line(points={{36,38},{44,38},{44,-62},{
+          -90,-62},{-90,-74},{-82,-74}}, color={0,0,127}));
+  connect(lim.y, uniDel.u) annotation (Line(points={{36,38},{38,38},{38,50},{
+          -108,50},{-108,24}}, color={0,0,127}));
+  connect(lesThr.y, pre.u)
+    annotation (Line(points={{4,-96},{32,-96},{32,-106}}, color={255,0,255}));
+  connect(pre.y, swi.u2) annotation (Line(points={{32,-130},{32,-138},{116,-138},
+          {116,-102},{126,-102}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(

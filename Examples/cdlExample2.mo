@@ -38,19 +38,11 @@ model cdlExample2
     annotation (Placement(transformation(extent={{-120,-30},{-88,2}})));
   Buildings.Controls.OBC.CDL.Reals.Limiter lim(uMax=270, uMin=210)
     annotation (Placement(transformation(extent={{14,28},{34,48}})));
-  Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel1(final samplePeriod=
-        210.4,
-      final y_start=210)
+  Buildings.Controls.OBC.CDL.Discrete.Sampler   sam(final samplePeriod=180)
     "Output the input signal with a unit delay"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=270,
-        origin={56,-22})));
-  Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel2(final samplePeriod=
-        210.4, final y_start=210)
-    "Output the input signal with a unit delay"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=270,
-        origin={58,12})));
+        rotation=90,
+        origin={-130,-40})));
 equation
   connect(uniDel.y,add1. u1)
     annotation (Line(points={{-84,24},{-48,24}},
@@ -67,23 +59,20 @@ equation
           {-92,-64},{-92,-40},{78,-40},{78,-22},{126,-22}}, color={0,0,127}));
   connect(valueToIncrease.y, add1.u2) annotation (Line(points={{-84.8,-14},{-58,
           -14},{-58,12},{-48,12}}, color={0,0,127}));
-  connect(swi.y, valueToIncrease.u) annotation (Line(points={{150,-102},{158,
-          -102},{158,-56},{-130,-56},{-130,-22},{-132,-22},{-132,-14},{-123.2,
-          -14}}, color={0,0,127}));
   connect(lesThr.y, swi.u2) annotation (Line(points={{4,-96},{116,-96},{116,
           -102},{126,-102}}, color={255,0,255}));
   connect(add1.y, lim.u) annotation (Line(points={{-24,18},{2,18},{2,38},{12,38}},
         color={0,0,127}));
   connect(lim.y, myOutput1) annotation (Line(points={{36,38},{94,38},{94,10},{
           130,10}}, color={0,0,127}));
-  connect(uniDel1.y, subt.u1)
-    annotation (Line(points={{56,-34},{56,-74},{-82,-74}}, color={0,0,127}));
-  connect(uniDel2.y, uniDel1.u) annotation (Line(points={{58,0},{58,-4},{56,-4},
-          {56,-10}}, color={0,0,127}));
-  connect(lim.y, uniDel2.u)
-    annotation (Line(points={{36,38},{58,38},{58,24}}, color={0,0,127}));
   connect(lim.y, uniDel.u) annotation (Line(points={{36,38},{48,38},{48,70},{
           -108,70},{-108,24}}, color={0,0,127}));
+  connect(lim.y, subt.u1) annotation (Line(points={{36,38},{-26,38},{-26,-74},{
+          -82,-74}}, color={0,0,127}));
+  connect(swi.y, sam.u) annotation (Line(points={{150,-102},{158,-102},{158,-56},
+          {-130,-56},{-130,-52}}, color={0,0,127}));
+  connect(sam.y, valueToIncrease.u) annotation (Line(points={{-130,-28},{-130,
+          -22},{-132,-22},{-132,-14},{-123.2,-14}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
