@@ -1,5 +1,5 @@
 within CCC_test.Examples;
-model cdlExample2
+model cdlExample1B
   Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel(final samplePeriod=180, final
       y_start=210)
     "Output the input signal with a unit delay"
@@ -17,14 +17,14 @@ model cdlExample2
     extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
     annotation (Placement(transformation(extent={{-162,-6},{-142,14}})));
   Buildings.Controls.OBC.CDL.Reals.LessThreshold lesThr(t=1)
-    annotation (Placement(transformation(extent={{-18,-106},{2,-86}})));
+    annotation (Placement(transformation(extent={{-44,-114},{-24,-94}})));
   Modelica.Blocks.Sources.CombiTimeTable combiTimeTable2(
     table=[0,205; 43200,265; 86400,290],
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
     annotation (Placement(transformation(extent={{-162,-74},{-142,-54}})));
   Buildings.Controls.OBC.CDL.Reals.Subtract subt
-    annotation (Placement(transformation(extent={{-80,-90},{-60,-70}})));
+    annotation (Placement(transformation(extent={{-80,-102},{-60,-82}})));
   Buildings.Controls.OBC.CDL.Reals.Switch swi
     annotation (Placement(transformation(extent={{128,-112},{148,-92}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=3)
@@ -38,27 +38,22 @@ model cdlExample2
     annotation (Placement(transformation(extent={{-120,-30},{-88,2}})));
   Buildings.Controls.OBC.CDL.Reals.Limiter lim(uMax=270, uMin=210)
     annotation (Placement(transformation(extent={{14,28},{34,48}})));
-  Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel1(final samplePeriod=
-        210.4,
-      final y_start=210)
-    "Output the input signal with a unit delay"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=270,
-        origin={56,-22})));
-  Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel2(final samplePeriod=
-        210.4, final y_start=210)
-    "Output the input signal with a unit delay"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=270,
-        origin={58,12})));
+  Buildings.Controls.OBC.CDL.Logical.Not not1
+    annotation (Placement(transformation(extent={{26,-174},{46,-154}})));
+  Buildings.Controls.OBC.CDL.Logical.Not not2
+    annotation (Placement(transformation(extent={{88,-174},{108,-154}})));
+  Modelica.Blocks.Logical.LessThreshold lessThreshold(threshold=1)
+    annotation (Placement(transformation(extent={{-18,-30},{2,-10}})));
+  Modelica.Blocks.Logical.LogicalDelay logicalDelay(delayTime=150)
+    annotation (Placement(transformation(extent={{-12,-178},{8,-158}})));
+  Modelica.Blocks.Logical.LogicalDelay logicalDelay1(delayTime=150)
+    annotation (Placement(transformation(extent={{56,-198},{76,-178}})));
 equation
-  connect(uniDel.y,add1. u1)
-    annotation (Line(points={{-84,24},{-48,24}},
-      color={0,0,127}));
-  connect(lesThr.u, subt.y) annotation (Line(points={{-20,-96},{-50,-96},{-50,
-          -80},{-58,-80}}, color={0,0,127}));
+  connect(lesThr.u, subt.y) annotation (Line(points={{-46,-104},{-54,-104},{-54,
+          -98},{-50,-98},{-50,-92},{-58,-92}},
+                           color={0,0,127}));
   connect(combiTimeTable2.y[1], subt.u2) annotation (Line(points={{-141,-64},{
-          -136,-64},{-136,-86},{-82,-86}}, color={0,0,127}));
+          -92,-64},{-92,-98},{-82,-98}},   color={0,0,127}));
   connect(con.y, swi.u1) annotation (Line(points={{100,-74},{118,-74},{118,-94},
           {126,-94}}, color={0,0,127}));
   connect(con1.y, swi.u3) annotation (Line(points={{52,-128},{118,-128},{118,
@@ -70,24 +65,34 @@ equation
   connect(swi.y, valueToIncrease.u) annotation (Line(points={{150,-102},{158,
           -102},{158,-56},{-130,-56},{-130,-22},{-132,-22},{-132,-14},{-123.2,
           -14}}, color={0,0,127}));
-  connect(lesThr.y, swi.u2) annotation (Line(points={{4,-96},{116,-96},{116,
-          -102},{126,-102}}, color={255,0,255}));
   connect(add1.y, lim.u) annotation (Line(points={{-24,18},{2,18},{2,38},{12,38}},
         color={0,0,127}));
   connect(lim.y, myOutput1) annotation (Line(points={{36,38},{94,38},{94,10},{
           130,10}}, color={0,0,127}));
-  connect(uniDel1.y, subt.u1)
-    annotation (Line(points={{56,-34},{56,-74},{-82,-74}}, color={0,0,127}));
-  connect(uniDel2.y, uniDel1.u) annotation (Line(points={{58,0},{58,-4},{56,-4},
-          {56,-10}}, color={0,0,127}));
-  connect(lim.y, uniDel2.u)
-    annotation (Line(points={{36,38},{58,38},{58,24}}, color={0,0,127}));
   connect(lim.y, uniDel.u) annotation (Line(points={{36,38},{48,38},{48,70},{
           -108,70},{-108,24}}, color={0,0,127}));
+  connect(lim.y, subt.u1) annotation (Line(points={{36,38},{48,38},{48,70},{
+          -108,70},{-108,32},{-136,32},{-136,-68},{-88,-68},{-88,-78},{-90,-78},
+          {-90,-86},{-82,-86}}, color={0,0,127}));
+  connect(not2.y, swi.u2) annotation (Line(points={{110,-164},{120,-164},{120,
+          -108},{118,-108},{118,-102},{126,-102}}, color={255,0,255}));
+  connect(subt.y, lessThreshold.u) annotation (Line(points={{-58,-92},{-48,-92},
+          {-48,-20},{-20,-20}}, color={0,0,127}));
+  connect(logicalDelay.y1, not1.u)
+    annotation (Line(points={{9,-162},{9,-164},{24,-164}}, color={255,0,255}));
+  connect(not1.y, logicalDelay1.u) annotation (Line(points={{48,-164},{56,-164},
+          {56,-174},{52,-174},{52,-180},{46,-180},{46,-188},{54,-188}}, color={
+          255,0,255}));
+  connect(logicalDelay1.y1, not2.u) annotation (Line(points={{77,-182},{84,-182},
+          {84,-172},{78,-172},{78,-164},{86,-164}}, color={255,0,255}));
+  connect(lessThreshold.y, logicalDelay.u) annotation (Line(points={{3,-20},{8,
+          -20},{8,-154},{-24,-154},{-24,-168},{-14,-168}}, color={255,0,255}));
+  connect(uniDel.y, add1.u1)
+    annotation (Line(points={{-84,24},{-48,24}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
       StopTime=86400,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end cdlExample2;
+end cdlExample1B;

@@ -80,12 +80,14 @@ testPnnlSystem
 testPnnlSystem2
 testPcm
 cdlExample1
+cdlExample1B
 cdlExample2
 cdlExample3
 cdlExample4
 cdlExample5
 cdlExample6
 cdlExample7
+cdlExample8
 testIntegral
 UnnamedA
 IntegratorWithReset
