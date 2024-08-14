@@ -3,8 +3,7 @@ model FlexlabX1aNonG36LoadShift_05292024
   "DR mode - Variable air volume flow system with terminal reheat and five thermal zones at Flexlab X1 cell"
   extends Modelica.Icons.Example;
   extends
-    hil_flexlab_model.Test1.BaseClasses1.PartialFlexlab_Summer_2021_Test_NonG36
-    (
+    hil_flexlab_model.Test1.BaseClasses1.PartialFlexlab_Summer_2021_Test_NonG36(
     occSch(
       occupancy={0,86399},
       firstEntryOccupied=true,

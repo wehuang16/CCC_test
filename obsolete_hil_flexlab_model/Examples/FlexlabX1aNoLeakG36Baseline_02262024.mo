@@ -370,8 +370,8 @@ equation
   connect(add1.y, add2.u1) annotation (Line(points={{-143,280},{-448,280},{-448,
           416},{-368,416},{-368,388},{-334,388}}, color={0,0,127}));
   connect(greater_unocc.y, conAHU.u_UnOcc) annotation (Line(points={{-431,386},
-          {-414,386},{-414,438},{264,438},{264,415.741},{355.6,415.741}}, color
-        ={255,0,255}));
+          {-414,386},{-414,438},{264,438},{264,415.741},{355.6,415.741}}, color=
+         {255,0,255}));
   connect(outdoorDamperPositionBlock.OutdoorDamperPosition, eco.yOut)
     annotation (Line(points={{-85,-66},{-36,-66},{-36,-10},{-10,-10},{-10,-34}},
         color={0,0,127}));

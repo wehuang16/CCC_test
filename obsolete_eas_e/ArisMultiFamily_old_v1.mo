@@ -44,8 +44,8 @@ model ArisMultiFamily_old_v1
     dIns=0.050,
     nSeg=5,
     T_start=318.15,
-    redeclare package MediumHex = MediumPropyleneGlycol (property_T=293.15, X_a
-          =0.4),
+    redeclare package MediumHex = MediumPropyleneGlycol (property_T=293.15, X_a=
+           0.4),
     hHex_a=1.199,
     hHex_b=0,
     Q_flow_nominal=18500,
@@ -421,13 +421,13 @@ equation
       thickness=0.5));
   connect(cor.TAir, fanCoilUnitPidNoMover1.zonAirTem) annotation (Line(points={
           {295,32},{302,32},{302,-152.8},{206,-152.8}}, color={0,0,127}));
-  connect(fanCoilUnitPidNoMover1.port_a2, cor.ports[3]) annotation (Line(points
-        ={{228.2,-149.2},{274.5,-149.2},{274.5,-5.1}}, color={0,127,255}));
+  connect(fanCoilUnitPidNoMover1.port_a2, cor.ports[3]) annotation (Line(points=
+         {{228.2,-149.2},{274.5,-149.2},{274.5,-5.1}}, color={0,127,255}));
   connect(fan.port_b, fanCoilUnitPidNoMover.port_a1) annotation (Line(points={{
           182,-68},{182,-65.6},{199.8,-65.6}}, color={0,127,255}));
   connect(fanCoilUnitPidNoMover.m_flow_water, fan.m_flow_in) annotation (Line(
-        points={{221.2,-61.8},{226,-61.8},{226,-48},{172,-48},{172,-56}}, color
-        ={0,0,127}));
+        points={{221.2,-61.8},{226,-61.8},{226,-48},{172,-48},{172,-56}}, color=
+         {0,0,127}));
   connect(fanCoilUnitPidNoMover.port_b2, fan1.port_a) annotation (Line(points={
           {199.8,-75},{199.8,-76},{188,-76},{188,-102},{182,-102}}, color={0,
           127,255}));
@@ -468,8 +468,8 @@ equation
     annotation (Line(points={{-59.2,57.44},{-59.2,60},{-18,60},{-18,7.4},{-4.4,
           7.4}}, color={0,127,255}));
   connect(aixlib_HP_3D_integrated2.port_b, flowRouterSupply.port_a2)
-    annotation (Line(points={{-59.2,31.44},{-22,31.44},{-22,4},{-4.4,4}}, color
-        ={0,127,255}));
+    annotation (Line(points={{-59.2,31.44},{-22,31.44},{-22,4},{-4.4,4}}, color=
+         {0,127,255}));
   connect(aixlib_HP_3D_integrated.port_a, flowRouterReturn.port_b) annotation (
       Line(points={{-83,85.6},{-94,85.6},{-94,14.4},{-115.6,14.4}}, color={0,
           127,255}));
@@ -477,8 +477,8 @@ equation
     annotation (Line(points={{-81,57.6},{-98,57.6},{-98,8.4},{-115.6,8.4}},
         color={0,127,255}));
   connect(aixlib_HP_3D_integrated2.port_a, flowRouterReturn.port_b2)
-    annotation (Line(points={{-81,31.6},{-100,31.6},{-100,0},{-115.6,0}}, color
-        ={0,127,255}));
+    annotation (Line(points={{-81,31.6},{-100,31.6},{-100,0},{-115.6,0}}, color=
+         {0,127,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-220,
             -220},{260,160}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-220,-220},{260,

@@ -13,8 +13,8 @@ model HeatPumpUnitTest
   CCC_test.obsolete_eas_e.CCC_HP_wTSup_ctr_withPowerData_3D
     cCC_HP_wTSup_ctr_withPowerData_3D(
     redeclare package MediumAir = MediumAir,
-    redeclare package MediumWat = MediumPropyleneGlycol (property_T=293.15, X_a
-          =0.4),
+    redeclare package MediumWat = MediumPropyleneGlycol (property_T=293.15, X_a=
+           0.4),
     datTabHea=datTabHeaHpwh2,
     datTabCoo=datTabCooHpwh,
     Q_flow_nominal=18500,

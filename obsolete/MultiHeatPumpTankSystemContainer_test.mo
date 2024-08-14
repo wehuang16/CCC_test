@@ -282,8 +282,8 @@ equation
   connect(hotWaterUse.y[1], UnitConversion1.u) annotation (Line(points={{-173,-44},
           {-160,-44},{-160,-52},{-152,-52}}, color={0,0,127}));
   connect(TAirSouSte1.y, multiHeatPumpTankSystem_test1_1.CityWaterTemperature)
-    annotation (Line(points={{-109,10},{-42,10},{-42,-13.4},{-22,-13.4}}, color
-        ={0,0,127}));
+    annotation (Line(points={{-109,10},{-42,10},{-42,-13.4},{-22,-13.4}}, color=
+         {0,0,127}));
   connect(TAirSouSte2.y, multiHeatPumpTankSystem_test1_1.HeatPumSupplyTempSetpoint)
     annotation (Line(points={{-57,30},{-38,30},{-38,-1.8},{-22,-1.8}}, color={0,
           0,127}));
@@ -295,8 +295,8 @@ equation
     annotation (Line(points={{-2.2,-22.2},{43,-22.2},{43,-74}}, color={255,127,
           0}));
   connect(UnitConversion1.y, multiHeatPumpTankSystem_test1_1.OccupantHotWaterUsageFlow)
-    annotation (Line(points={{-129,-52},{-40,-52},{-40,-7.8},{-22,-7.8}}, color
-        ={0,0,127}));
+    annotation (Line(points={{-129,-52},{-40,-52},{-40,-7.8},{-22,-7.8}}, color=
+         {0,0,127}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false)),
     Diagram(coordinateSystem(preserveAspectRatio=false)),

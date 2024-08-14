@@ -75,8 +75,8 @@ equation
                  color={0,127,255}));
   connect(aixlib_HP_3D_integrated2.port_b,flowRouterSupply. port_a2)
     annotation (Line(points={{64.8,-20.56},{110,-20.56},{110,-48},{119.6,-48}},
-                                                                          color
-        ={0,127,255}));
+                                                                          color=
+         {0,127,255}));
   connect(aixlib_HP_3D_integrated.port_a,flowRouterReturn. port_b) annotation (
       Line(points={{41,33.6},{14,33.6},{14,-37.6},{8.4,-37.6}},     color={0,
           127,255}));
@@ -84,8 +84,8 @@ equation
     annotation (Line(points={{43,5.6},{14,5.6},{14,-43.6},{8.4,-43.6}},
         color={0,127,255}));
   connect(aixlib_HP_3D_integrated2.port_a,flowRouterReturn. port_b2)
-    annotation (Line(points={{43,-20.4},{14,-20.4},{14,-52},{8.4,-52}},   color
-        ={0,127,255}));
+    annotation (Line(points={{43,-20.4},{14,-20.4},{14,-52},{8.4,-52}},   color=
+         {0,127,255}));
   connect(TOut1.y, aixlib_HP_3D_integrated.TOutAir) annotation (Line(points={{
           87,60},{70,60},{70,25.36},{63.3,25.36}}, color={0,0,127}));
   connect(TOut1.y, aixlib_HP_3D_integrated1.TOutAir) annotation (Line(points={{

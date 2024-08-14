@@ -78,8 +78,8 @@ model Aixlib_HP_3D
     annotation (Placement(transformation(extent={{126,-14},{102,10}}),
         iconTransformation(extent={{124,8},{100,32}})));
   Modelica.Blocks.Interfaces.BooleanInput OnOff annotation (Placement(
-        transformation(extent={{-126,-2},{-102,22}}), iconTransformation(extent
-          ={{-126,-2},{-102,22}})));
+        transformation(extent={{-126,-2},{-102,22}}), iconTransformation(extent=
+           {{-126,-2},{-102,22}})));
   Modelica.Blocks.Logical.Switch nSet "compressor speed setpoint"
     annotation (Placement(transformation(extent={{56,-104},{76,-84}})));
   Modelica.Blocks.Sources.Constant const(final k=0)

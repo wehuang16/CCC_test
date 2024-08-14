@@ -264,8 +264,8 @@ equation
           {-118,82},{-108,82}}, color={0,127,255}));
   connect(bool.y, aixlib_AirToWaterHeatPump_3D.OnOff) annotation (Line(points={{
           -145,94},{-122,94},{-122,46},{-111.2,46}}, color={255,0,255}));
-  connect(hpSetpointController_Subhrajit.ValCon, val.y) annotation (Line(points
-        ={{-178,71.2},{-160,71.2},{-160,72},{-144,72},{-144,56}}, color={0,0,127}));
+  connect(hpSetpointController_Subhrajit.ValCon, val.y) annotation (Line(points=
+         {{-178,71.2},{-160,71.2},{-160,72},{-144,72},{-144,56}}, color={0,0,127}));
   connect(hpSetpointController_Subhrajit.ModeHp, aixlib_AirToWaterHeatPump_3D.Mode)
     annotation (Line(points={{-178,68},{-128,68},{-128,60},{-80,60},{-80,46},{
           -88.8,46}},  color={255,0,255}));

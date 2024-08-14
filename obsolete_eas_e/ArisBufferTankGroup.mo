@@ -215,8 +215,8 @@ equation
         color={0,0,127}));
   connect(pump2.port_b, conservationEquation.ports[5]) annotation (Line(points=
           {{286,-186},{333,-186},{333,-154}}, color={0,127,255}));
-  connect(pump3.port_b, conservationEquation1.ports[5]) annotation (Line(points
-        ={{292,-328},{345,-328},{345,-292}}, color={0,127,255}));
+  connect(pump3.port_b, conservationEquation1.ports[5]) annotation (Line(points=
+         {{292,-328},{345,-328},{345,-292}}, color={0,127,255}));
   connect(jun3.port_2, pump2.port_a) annotation (Line(points={{234,-192},{252,
           -192},{252,-186},{266,-186}}, color={0,127,255}));
   connect(jun3.port_3, pump3.port_a) annotation (Line(points={{224,-202},{224,

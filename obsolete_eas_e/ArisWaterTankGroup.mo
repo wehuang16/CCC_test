@@ -158,8 +158,8 @@ equation
           {-20,-164},{-20,-192.42},{-26,-192.42}}, color={0,127,255}));
   connect(tan.heaPorVol[5], tempTanBot.port) annotation (Line(points={{-26,
           -142.784},{-26,-158},{-8,-158},{-8,-126},{-2,-126}}, color={191,0,0}));
-  connect(tempTanBot.T, setpointController.measurement) annotation (Line(points
-        ={{19,-126},{19,-109.2},{30,-109.2}}, color={0,0,127}));
+  connect(tempTanBot.T, setpointController.measurement) annotation (Line(points=
+         {{19,-126},{19,-109.2},{30,-109.2}}, color={0,0,127}));
   connect(setpointController.command, tankPump.m_flow_in) annotation (Line(
         points={{53,-107.4},{58,-107.4},{58,-78},{-34,-78},{-34,-88}}, color={0,
           0,127}));

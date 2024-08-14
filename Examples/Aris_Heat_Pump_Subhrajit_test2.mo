@@ -248,8 +248,8 @@ model Aris_Heat_Pump_Subhrajit_test2
     annotation (Placement(transformation(extent={{-254,116},{-234,136}})));
   Modelica.Blocks.Logical.Switch switch1
     annotation (Placement(transformation(extent={{-118,-44},{-98,-24}})));
-  Modelica.Blocks.Logical.GreaterEqualThreshold greaterEqualThreshold(threshold
-      =0.01)
+  Modelica.Blocks.Logical.GreaterEqualThreshold greaterEqualThreshold(threshold=
+       0.01)
     annotation (Placement(transformation(extent={{-190,-44},{-170,-24}})));
   Modelica.Blocks.Sources.Constant const3(k=0.01)
     annotation (Placement(transformation(extent={{-162,-70},{-142,-50}})));
@@ -282,8 +282,8 @@ equation
           {-118,82},{-108,82}}, color={0,127,255}));
   connect(bool.y, aixlib_AirToWaterHeatPump_3D.OnOff) annotation (Line(points={{
           -145,94},{-122,94},{-122,46},{-111.2,46}}, color={255,0,255}));
-  connect(hpSetpointController_Subhrajit.ValCon, val.y) annotation (Line(points
-        ={{-178,71.2},{-160,71.2},{-160,72},{-144,72},{-144,56}}, color={0,0,127}));
+  connect(hpSetpointController_Subhrajit.ValCon, val.y) annotation (Line(points=
+         {{-178,71.2},{-160,71.2},{-160,72},{-144,72},{-144,56}}, color={0,0,127}));
   connect(hpSetpointController_Subhrajit.ModeHp, aixlib_AirToWaterHeatPump_3D.Mode)
     annotation (Line(points={{-178,68},{-128,68},{-128,60},{-80,60},{-80,46},{
           -88.8,46}},  color={255,0,255}));
@@ -327,8 +327,8 @@ equation
   connect(fanCoilUnit.m_flow_water, switch1.u1) annotation (Line(points={{7.2,
           -13.8},{-120,-13.8},{-120,-26}}, color={0,0,127}));
   connect(hpSetpointController_Subhrajit.PumSpSpaceConditioning, fanCoilUnit.m_flow_water)
-    annotation (Line(points={{-202,61.8},{-202,22},{7.2,22},{7.2,-13.8}}, color
-        ={0,0,127}));
+    annotation (Line(points={{-202,61.8},{-202,22},{7.2,22},{7.2,-13.8}}, color=
+         {0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(

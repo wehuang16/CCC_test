@@ -396,13 +396,13 @@ equation
           {2,-182},{64,-182},{64,-154},{70,-154}}, color={0,127,255}));
   connect(jun2.port_3, fanMultiSplitAirSupply3.port_a) annotation (Line(points={
           {-8,-192},{-8,-212},{162,-212}}, color={0,127,255}));
-  connect(fanMultiSplitAirSupply1.port_b, nor.ports[3]) annotation (Line(points
-        ={{34,-88},{90,-88},{90,-96},{348.5,-96},{348.5,34.9}}, color={0,127,255}));
-  connect(fanMultiSplitAirSupply3.port_b, sou.ports[3]) annotation (Line(points
-        ={{182,-212},{296,-212},{296,-210},{404.5,-210},{404.5,-119.1}}, color={
+  connect(fanMultiSplitAirSupply1.port_b, nor.ports[3]) annotation (Line(points=
+         {{34,-88},{90,-88},{90,-96},{348.5,-96},{348.5,34.9}}, color={0,127,255}));
+  connect(fanMultiSplitAirSupply3.port_b, sou.ports[3]) annotation (Line(points=
+         {{182,-212},{296,-212},{296,-210},{404.5,-210},{404.5,-119.1}}, color={
           0,127,255}));
-  connect(fanMultiSplitAirSupply2.port_b, cor.ports[3]) annotation (Line(points
-        ={{90,-154},{164,-154},{164,-148},{372.5,-148},{372.5,-39.1}}, color={0,
+  connect(fanMultiSplitAirSupply2.port_b, cor.ports[3]) annotation (Line(points=
+         {{90,-154},{164,-154},{164,-148},{372.5,-148},{372.5,-39.1}}, color={0,
           127,255}));
   connect(cor.ports[4], jun4.port_3) annotation (Line(points={{373.5,-39.1},{373.5,
           -62},{136,-62}}, color={0,127,255}));

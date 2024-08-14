@@ -17,8 +17,8 @@ model ArisMultiFamily_issue17
   CCC.Fluid.HeatPumps.BaseClasses.CCC_HP_wTSup_ctr_withPowerData_3D
     cCC_HP_wTSup_ctr_withPowerData_3D(
     redeclare package MediumAir = MediumAir,
-    redeclare package MediumWat = MediumPropyleneGlycol (property_T=293.15, X_a
-          =0.4),
+    redeclare package MediumWat = MediumPropyleneGlycol (property_T=293.15, X_a=
+           0.4),
     datTabHea=CCC.Fluid.HeatPumps.Data.LG_DATA_Heating_old(),
     datTabCoo=CCC.Fluid.HeatPumps.Data.LG_DATA_Cooling_old(),
     Q_flow_nominal=18500,
@@ -496,8 +496,8 @@ equation
           {342,12},{342,10},{288,10},{288,-216.8}}, color={0,0,127}));
   connect(sou.TAir, fanCoilUnitPid2.zonAirTem) annotation (Line(points={{389,
           -68},{400,-68},{400,-358},{416,-358},{416,-354.8}}, color={0,0,127}));
-  connect(not1.y, cCC_HP_wTSup_ctr_withPowerData_3D.IO) annotation (Line(points
-        ={{-43,66},{-24,66},{-24,56},{6.8,56},{6.8,53.6}}, color={255,0,255}));
+  connect(not1.y, cCC_HP_wTSup_ctr_withPowerData_3D.IO) annotation (Line(points=
+         {{-43,66},{-24,66},{-24,56},{6.8,56},{6.8,53.6}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,
             -400},{560,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-200,-400},{560,

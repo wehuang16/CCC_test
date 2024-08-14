@@ -78,20 +78,20 @@ model Aixlib_AirToWaterHeatPump_3D_issue20_05222024
     "Current operation mode: true: main operation mode, false: reversible operation mode"
     annotation (Placement(transformation(extent={{126,-14},{102,10}}),
         iconTransformation(extent={{124,8},{100,32}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort TWatSup(redeclare package Medium
-      = Medium_con, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.TemperatureTwoPort TWatSup(redeclare package Medium =
+        Medium_con, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{56,46},{76,66}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort TWatRet(redeclare package Medium
-      = Medium_con, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.TemperatureTwoPort TWatRet(redeclare package Medium =
+        Medium_con, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{-74,44},{-54,64}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort TAirRet(redeclare package Medium
-      = Medium_eva, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.TemperatureTwoPort TAirRet(redeclare package Medium =
+        Medium_eva, m_flow_nominal=1)
                    annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={70,18})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort TAirSup(redeclare package Medium
-      = Medium_eva, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.TemperatureTwoPort TAirSup(redeclare package Medium =
+        Medium_eva, m_flow_nominal=1)
                    annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,

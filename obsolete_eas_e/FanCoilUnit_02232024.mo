@@ -182,10 +182,10 @@ equation
   connect(tempFcuWaterSupply.T, combiTable2Ds_cooling.u1) annotation (Line(
         points={{-80,39},{-80,60},{-128,60},{-128,32},{-170,32},{-170,-16},{
           -160,-16}}, color={0,0,127}));
-  connect(tempFcuAirSupply.T, combiTable2Ds_cooling.u2) annotation (Line(points
-        ={{74,-39},{74,-58},{-160,-58},{-160,-28}}, color={0,0,127}));
-  connect(tempFcuAirSupply.T, combiTable2Ds_heating.u2) annotation (Line(points
-        ={{74,-39},{72,-39},{72,-54},{-128,-54},{-128,10}}, color={0,0,127}));
+  connect(tempFcuAirSupply.T, combiTable2Ds_cooling.u2) annotation (Line(points=
+         {{74,-39},{74,-58},{-160,-58},{-160,-28}}, color={0,0,127}));
+  connect(tempFcuAirSupply.T, combiTable2Ds_heating.u2) annotation (Line(points=
+         {{74,-39},{72,-39},{72,-54},{-128,-54},{-128,10}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 end FanCoilUnit_02232024;

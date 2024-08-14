@@ -151,8 +151,8 @@ equation
   connect(tempFcuWaterSupply.T, combiTable2Ds_heating.u1) annotation (Line(
         points={{-80,39},{-104,39},{-104,40},{-124,40},{-124,10}}, color={0,0,
           127}));
-  connect(tempFcuAirSupply.T, combiTable2Ds_heating.u2) annotation (Line(points
-        ={{74,-39},{-36,-39},{-36,-26},{-124,-26},{-124,-2}}, color={0,0,127}));
+  connect(tempFcuAirSupply.T, combiTable2Ds_heating.u2) annotation (Line(points=
+         {{74,-39},{-36,-39},{-36,-26},{-124,-26},{-124,-2}}, color={0,0,127}));
   connect(setpointController.command, m_flow_water) annotation (Line(points={{89,82.6},
           {100.5,82.6},{100.5,82},{112,82}},        color={0,0,127}));
   connect(not1.y, setpointController1.reverse) annotation (Line(points={{-23,-84},
@@ -192,8 +192,8 @@ equation
           -71.2},{-6,-71.2},{-6,-120},{44,-120}}, color={0,0,127}));
   connect(tempFcuWaterSupply.T, combiTable2Ds_cooling.u1) annotation (Line(
         points={{-80,39},{-122,39},{-122,-28},{-156,-28}}, color={0,0,127}));
-  connect(tempFcuAirSupply.T, combiTable2Ds_cooling.u2) annotation (Line(points
-        ={{74,-39},{74,-58},{-156,-58},{-156,-40}}, color={0,0,127}));
+  connect(tempFcuAirSupply.T, combiTable2Ds_cooling.u2) annotation (Line(points=
+         {{74,-39},{74,-58},{-156,-58},{-156,-40}}, color={0,0,127}));
   connect(combiTable2Ds_heating.y, switch3.u1) annotation (Line(points={{-101,4},
           {-64,4},{-64,20},{-54,20}}, color={0,0,127}));
   connect(combiTable2Ds_cooling.y, switch3.u3) annotation (Line(points={{-133,
