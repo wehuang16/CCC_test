@@ -30,27 +30,23 @@ model testFan
     duration=64800,
     offset=0)
     annotation (Placement(transformation(extent={{-50,42},{-30,62}})));
-  Buildings.Fluid.FixedResistances.PressureDrop res(
-    redeclare package Medium = MediumAir,
-    m_flow_nominal=0.15,
-    dp_nominal=2.2)
-    annotation (Placement(transformation(extent={{46,-8},{66,12}})));
-  Buildings.Fluid.Movers.SpeedControlled_y fanSup(
-    addPowerToMedium=false,
-    redeclare package Medium = MediumAir,
-    per(pressure(V_flow={0,0.8022}, dp={1604,0})),
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Supply air fan"
-    annotation (Placement(transformation(extent={{-12,-6},{8,14}})));
 
+  Buildings.Fluid.Movers.FlowControlled_m_flow
+                                     fan(
+    redeclare package Medium = MediumAir,
+    addPowerToMedium=false,
+    m_flow_nominal=0.5)
+    "Fan"
+    annotation (Placement(transformation(extent={{0,-16},{20,4}})));
+  Modelica.Blocks.Sources.Constant const(k=0.5)
+    annotation (Placement(transformation(extent={{-12,50},{8,70}})));
 equation
-  connect(res.port_b, boundary1.ports[1]) annotation (Line(points={{66,2},{95,2},
-          {95,1},{122,1}}, color={0,127,255}));
-  connect(boundary2.ports[1], fanSup.port_a) annotation (Line(points={{-40,3},{-26,
-          3},{-26,4},{-12,4}}, color={0,127,255}));
-  connect(fanSup.port_b, res.port_a)
-    annotation (Line(points={{8,4},{10,4},{10,2},{46,2}}, color={0,127,255}));
-  connect(ramp.y, fanSup.y)
-    annotation (Line(points={{-29,52},{-2,52},{-2,16}}, color={0,0,127}));
+  connect(boundary2.ports[1], fan.port_a) annotation (Line(points={{-40,3},{-18,
+          3},{-18,-4},{0,-4},{0,-6}}, color={0,127,255}));
+  connect(fan.port_b, boundary1.ports[1]) annotation (Line(points={{20,-6},{116,
+          -6},{116,1},{122,1}}, color={0,127,255}));
+  connect(const.y, fan.m_flow_in) annotation (Line(points={{9,60},{14,60},{14,
+          14},{10,14},{10,6}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
