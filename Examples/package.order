@@ -94,3 +94,7 @@ IntegratorWithReset
 IntegratorWithReset2
 IntegratorWithReset3
 UnitDelayAndSampleBlock
+test_parameter
+test_parameter_container
+block_level1
+block_level2
