@@ -103,7 +103,6 @@ model HeatPump2 "Example for the reversible heat pump model."
     annotation (Placement(transformation(extent={{76,26},{84,34}})));
   AixLib.Fluid.Movers.SpeedControlled_y pumSou(
     redeclare final AixLib.Fluid.Movers.Data.Pumps.Wilo.Stratos25slash1to8 per,
-
     final allowFlowReversal=true,
     final addPowerToMedium=false,
     redeclare final package Medium = Medium_sin,
