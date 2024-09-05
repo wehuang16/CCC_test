@@ -1,7 +1,8 @@
-﻿within CCC_test.Examples;
+﻿within CCC_test.TRC_troubleshooting.test_100;
 model HeatPumpAixlibModel
   "Grey-box model for reversible heat pumps using a black-box to simulate the refrigeration cycle"
-  extends CCC_test.Examples.PartialReversibleVapourCompressionMachine(
+  extends
+    CCC_test.TRC_troubleshooting.test_100.PartialReversibleVapourCompressionMachine(
   use_rev=true,
   final machineType = true,
   redeclare AixLib.Fluid.HeatPumps.BaseClasses.InnerCycle_HeatPump innerCycle(

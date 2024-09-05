@@ -1,5 +1,5 @@
-﻿within CCC_test.Examples;
-model HeatPump2 "Example for the reversible heat pump model."
+﻿within CCC_test.TRC_troubleshooting.test_100;
+model HeatPump "Example for the reversible heat pump model."
  extends Modelica.Icons.Example;
 
   replaceable package Medium_sin = AixLib.Media.Water
@@ -273,4 +273,4 @@ __Dymola_Commands(file="modelica://AixLib/Resources/Scripts/Dymola/Fluid/HeatPum
 </html>"),
     __Dymola_Commands(file="Modelica://AixLib/Resources/Scripts/Dymola/Fluid/HeatPumps/Examples/HeatPump.mos" "Simulate and plot"),
     Icon(coordinateSystem(extent={{-100,-100},{100,80}})));
-end HeatPump2;
+end HeatPump;

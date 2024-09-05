@@ -101,9 +101,7 @@ block_level1_partial
 block_level2
 block_level2_partial
 HeatPump2
-HeatPumpAixlibModel
 testInnerCycle
 testPartialHeatPump
-PartialReversibleVapourCompressionMachine
 HeatPumpAixlibModel2
 PartialReversibleVapourCompressionMachine2

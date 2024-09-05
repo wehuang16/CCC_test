@@ -1,5 +1,5 @@
-﻿within CCC_test.Examples;
-model HeatPump2 "Example for the reversible heat pump model."
+﻿within CCC_test.TRC_troubleshooting.test_50;
+model HeatPump "Example for the reversible heat pump model."
  extends Modelica.Icons.Example;
 
   replaceable package Medium_sin = AixLib.Media.Water
@@ -32,7 +32,7 @@ model HeatPump2 "Example for the reversible heat pump model."
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
         rotation=-90,
         origin={2,-76})));
-  CCC_test.TRC_troubleshooting.test_100.HeatPumpAixlibModel heatPump(
+  CCC_test.TRC_troubleshooting.test_50.HeatPumpAixlibModel heatPump(
     refIneFre_constant=1,
     useBusConnectorOnly=true,
     CEva=100,
@@ -74,15 +74,15 @@ model HeatPump2 "Example for the reversible heat pump model."
         origin={-4,84})));
 
   AixLib.Fluid.Sensors.TemperatureTwoPort senTAct(
-    final m_flow_nominal=heatPump.m1_flow_nominal,
-    final tau=1,
-    final initType=Modelica.Blocks.Types.Init.InitialState,
-    final tauHeaTra=1200,
-    final allowFlowReversal=heatPump.allowFlowReversalCon,
-    final transferHeat=false,
-    redeclare final package Medium = Medium_sin,
-    final T_start=303.15,
-    final TAmb=291.15) "Temperature at sink inlet" annotation (Placement(
+     m_flow_nominal=heatPump.m1_flow_nominal,
+     tau=1,
+     initType=Modelica.Blocks.Types.Init.InitialState,
+     tauHeaTra=1200,
+     allowFlowReversal=heatPump.allowFlowReversalCon,
+     transferHeat=false,
+    redeclare package  Medium = Medium_sin,
+     T_start=303.15,
+     TAmb=291.15) "Temperature at sink inlet" annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
@@ -102,10 +102,10 @@ model HeatPump2 "Example for the reversible heat pump model."
     offset=3000)
     annotation (Placement(transformation(extent={{76,26},{84,34}})));
   AixLib.Fluid.Movers.SpeedControlled_y pumSou(
-    redeclare final AixLib.Fluid.Movers.Data.Pumps.Wilo.Stratos25slash1to8 per,
-    final allowFlowReversal=true,
-    final addPowerToMedium=false,
-    redeclare final package Medium = Medium_sin,
+    redeclare  AixLib.Fluid.Movers.Data.Pumps.Wilo.Stratos25slash1to8 per,
+     allowFlowReversal=true,
+     addPowerToMedium=false,
+    redeclare package  Medium = Medium_sin,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
     "Fan or pump at source side of HP" annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
@@ -114,10 +114,10 @@ model HeatPump2 "Example for the reversible heat pump model."
 
   AixLib.Fluid.MixingVolumes.MixingVolume Room(
     nPorts=2,
-    final use_C_flow=false,
-    final m_flow_nominal=heatPump.m1_flow_nominal,
-    final V=5,
-    final allowFlowReversal=true,
+     use_C_flow=false,
+     m_flow_nominal=heatPump.m1_flow_nominal,
+     V=5,
+     allowFlowReversal=true,
     redeclare package Medium = Medium_sin,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
     "Volume of Condenser" annotation (Placement(transformation(
@@ -151,7 +151,7 @@ model HeatPump2 "Example for the reversible heat pump model."
         extent={{10,-10},{-10,10}},
         rotation=0,
         origin={88,-64})));
-  Modelica.Blocks.Sources.Constant iceFac(final k=1)
+  Modelica.Blocks.Sources.Constant iceFac( k=1)
     "Fixed value for icing factor. 1 means no icing/frosting (full heat transfer in heat exchanger)" annotation (Placement(
         transformation(
         extent={{8,8},{-8,-8}},
@@ -273,4 +273,4 @@ __Dymola_Commands(file="modelica://AixLib/Resources/Scripts/Dymola/Fluid/HeatPum
 </html>"),
     __Dymola_Commands(file="Modelica://AixLib/Resources/Scripts/Dymola/Fluid/HeatPumps/Examples/HeatPump.mos" "Simulate and plot"),
     Icon(coordinateSystem(extent={{-100,-100},{100,80}})));
-end HeatPump2;
+end HeatPump;

@@ -1,16 +1,16 @@
-﻿within CCC_test.Examples;
+﻿within CCC_test.TRC_troubleshooting.test_50;
 partial model PartialReversibleVapourCompressionMachine
   "Grey-box model for reversible heat pumps and chillers using a black-box to simulate the refrigeration cycle"
   extends AixLib.Fluid.Interfaces.PartialFourPortInterface(
-    redeclare final package Medium1 = Medium_con,
-    redeclare final package Medium2 = Medium_eva,
-    final m1_flow_nominal=mFlow_conNominal_final,
-    final m2_flow_nominal=mFlow_evaNominal_final,
-    final allowFlowReversal1=allowFlowReversalCon,
-    final allowFlowReversal2=allowFlowReversalEva,
-    final m1_flow_small=1E-4*abs(mFlow_conNominal_final),
-    final m2_flow_small=1E-4*abs(mFlow_evaNominal_final),
-    final show_T=show_TPort);
+    redeclare package  Medium1 = Medium_con,
+    redeclare package  Medium2 = Medium_eva,
+     m1_flow_nominal=mFlow_conNominal_final,
+     m2_flow_nominal=mFlow_evaNominal_final,
+     allowFlowReversal1=allowFlowReversalCon,
+     allowFlowReversal2=allowFlowReversalEva,
+     m1_flow_small=1E-4*abs(mFlow_conNominal_final),
+     m2_flow_small=1E-4*abs(mFlow_evaNominal_final),
+     show_T=show_TPort);
 
 //General
   replaceable package Medium_con =
@@ -227,57 +227,56 @@ partial model PartialReversibleVapourCompressionMachine
     annotation (Dialog(tab="Advanced", group="Flow resistance"));
 
   AixLib.Fluid.HeatExchangers.EvaporatorCondenserWithCapacity con(
-    redeclare final package Medium = Medium_con,
-    final allowFlowReversal=allowFlowReversalCon,
-    final m_flow_small=1E-4*abs(mFlow_conNominal_final),
-    final show_T=show_TPort,
-    final deltaM=deltaM_con,
-    final T_start=TCon_start,
-    final p_start=pCon_start,
-    final use_cap=use_conCap,
-    final X_start=XCon_start,
-    final from_dp=from_dp,
-    final homotopyInitialization=homotopyInitialization,
-    final energyDynamics=energyDynamics,
-    final is_con=true,
-    final V=VCon_final*scalingFactor,
-    final C=CCon*scalingFactor,
-    final TCap_start=TConCap_start,
-    final GOut=GConOut*scalingFactor,
-    final m_flow_nominal=mFlow_conNominal_final*scalingFactor,
-    final dp_nominal=dpCon_nominal*scalingFactor,
-    final GInn=GConIns*scalingFactor) "Heat exchanger model for the condenser"
+    redeclare package  Medium = Medium_con,
+     allowFlowReversal=allowFlowReversalCon,
+     m_flow_small=1E-4*abs(mFlow_conNominal_final),
+     show_T=show_TPort,
+     deltaM=deltaM_con,
+     T_start=TCon_start,
+     p_start=pCon_start,
+     use_cap=use_conCap,
+     X_start=XCon_start,
+     from_dp=from_dp,
+     homotopyInitialization=homotopyInitialization,
+     energyDynamics=energyDynamics,
+     is_con=true,
+     V=VCon_final*scalingFactor,
+     C=CCon*scalingFactor,
+     TCap_start=TConCap_start,
+     GOut=GConOut*scalingFactor,
+     m_flow_nominal=mFlow_conNominal_final*scalingFactor,
+     dp_nominal=dpCon_nominal*scalingFactor,
+     GInn=GConIns*scalingFactor) "Heat exchanger model for the condenser"
     annotation (Placement(transformation(extent={{-16,78},{16,110}})));
   AixLib.Fluid.HeatExchangers.EvaporatorCondenserWithCapacity eva(
-    redeclare final package Medium = Medium_eva,
-    final deltaM=deltaM_eva,
-    final use_cap=use_evaCap,
-    final allowFlowReversal=allowFlowReversalEva,
-    final m_flow_small=1E-4*abs(mFlow_evaNominal_final),
-    final show_T=show_TPort,
-    final T_start=TEva_start,
-    final p_start=pEva_start,
-    final X_start=XEva_start,
-    final from_dp=from_dp,
-    final homotopyInitialization=homotopyInitialization,
-    final energyDynamics=energyDynamics,
-    final is_con=false,
-    final V=VEva_final*scalingFactor,
-    final C=CEva*scalingFactor,
-    final m_flow_nominal=mFlow_evaNominal_final*scalingFactor,
-    final dp_nominal=dpEva_nominal*scalingFactor,
-    final TCap_start=TEvaCap_start,
-    final GOut=GEvaOut*scalingFactor,
-    final GInn=GEvaIns*scalingFactor) "Heat exchanger model for the evaporator"
+    redeclare package  Medium = Medium_eva,
+     deltaM=deltaM_eva,
+     use_cap=use_evaCap,
+     allowFlowReversal=allowFlowReversalEva,
+     m_flow_small=1E-4*abs(mFlow_evaNominal_final),
+     show_T=show_TPort,
+     T_start=TEva_start,
+     p_start=pEva_start,
+     X_start=XEva_start,
+     from_dp=from_dp,
+     homotopyInitialization=homotopyInitialization,
+     energyDynamics=energyDynamics,
+     is_con=false,
+     V=VEva_final*scalingFactor,
+     C=CEva*scalingFactor,
+     m_flow_nominal=mFlow_evaNominal_final*scalingFactor,
+     dp_nominal=dpEva_nominal*scalingFactor,
+     TCap_start=TEvaCap_start,
+     GOut=GEvaOut*scalingFactor,
+     GInn=GEvaIns*scalingFactor) "Heat exchanger model for the evaporator"
     annotation (Placement(transformation(extent={{16,-70},{-16,-102}})));
   Modelica.Blocks.Continuous.CriticalDamping heatFlowIneEva(
-    final initType=initType,
-    final normalized=true,
-    final n=nthOrder,
-    final f=refIneFre_constant,
-    final x_start=x_start,
-    final y_start=yRefIne_start)
-                                if use_refIne
+     initType=initType,
+     normalized=true,
+     n=nthOrder,
+     f=refIneFre_constant,
+     x_start=x_start,
+     y_start=yRefIne_start)     if use_refIne
     "This n-th order block represents the inertia of the refrigerant cycle and delays the heat flow"
     annotation (Placement(transformation(
         extent={{6,6},{-6,-6}},
@@ -290,13 +289,12 @@ partial model PartialReversibleVapourCompressionMachine
         rotation=90,
         origin={16,58})));
   Modelica.Blocks.Continuous.CriticalDamping heatFlowIneCon(
-    final initType=initType,
-    final normalized=true,
-    final n=nthOrder,
-    final f=refIneFre_constant,
-    final x_start=x_start,
-    final y_start=yRefIne_start)
-                                if use_refIne
+     initType=initType,
+     normalized=true,
+     n=nthOrder,
+     f=refIneFre_constant,
+     x_start=x_start,
+     y_start=yRefIne_start)     if use_refIne
     "This n-th order block represents the inertia of the refrigerant cycle and delays the heat flow"
     annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
@@ -332,13 +330,13 @@ partial model PartialReversibleVapourCompressionMachine
       Placement(transformation(extent={{-120,-60},{-90,-26}}),
         iconTransformation(extent={{-108,-52},{-90,-26}})));
 
-  Modelica.Blocks.Interfaces.RealInput T_amb_eva(final unit="K", final
+  Modelica.Blocks.Interfaces.RealInput T_amb_eva( unit="K",
       displayUnit="degC") if use_evaCap and not useBusConnectorOnly
     "Ambient temperature on the evaporator side"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
         rotation=0,
         origin={110,-100})));
-  Modelica.Blocks.Interfaces.RealInput T_amb_con(final unit="K", final
+  Modelica.Blocks.Interfaces.RealInput T_amb_con( unit="K",
       displayUnit="degC") if use_conCap and not useBusConnectorOnly
     "Ambient temperature on the condenser side"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},
@@ -351,73 +349,73 @@ partial model PartialReversibleVapourCompressionMachine
     annotation (Placement(transformation(extent={{-132,-36},{-100,-4}})));
 
   AixLib.Fluid.Sensors.TemperatureTwoPort senT_a2(
-    redeclare final package Medium = Medium_eva,
-    final allowFlowReversal=allowFlowReversalEva,
-    final m_flow_small=1E-4*mFlow_evaNominal_final,
-    final initType=initType,
-    final T_start=TEva_start,
-    final transferHeat=transferHeat,
-    final TAmb=TAmbEva_nominal,
-    final tauHeaTra=tauHeaTraEva,
-    final tau=tauSenT,
-    final m_flow_nominal=mFlow_evaNominal_final*scalingFactor)
+    redeclare package  Medium = Medium_eva,
+     allowFlowReversal=allowFlowReversalEva,
+     m_flow_small=1E-4*mFlow_evaNominal_final,
+     initType=initType,
+     T_start=TEva_start,
+     transferHeat=transferHeat,
+     TAmb=TAmbEva_nominal,
+     tauHeaTra=tauHeaTraEva,
+     tau=tauSenT,
+     m_flow_nominal=mFlow_evaNominal_final*scalingFactor)
     "Temperature at sink inlet" annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=0,
         origin={38,-86})));
   AixLib.Fluid.Sensors.TemperatureTwoPort senT_b2(
-    redeclare final package Medium = Medium_eva,
-    final allowFlowReversal=allowFlowReversalEva,
-    final m_flow_small=1E-4*mFlow_evaNominal_final,
-    final initType=initType,
-    final T_start=TEva_start,
-    final transferHeat=transferHeat,
-    final TAmb=TAmbEva_nominal,
-    final tauHeaTra=tauHeaTraEva,
-    final tau=tauSenT,
-    final m_flow_nominal=mFlow_evaNominal_final*scalingFactor)
+    redeclare package  Medium = Medium_eva,
+     allowFlowReversal=allowFlowReversalEva,
+     m_flow_small=1E-4*mFlow_evaNominal_final,
+     initType=initType,
+     T_start=TEva_start,
+     transferHeat=transferHeat,
+     TAmb=TAmbEva_nominal,
+     tauHeaTra=tauHeaTraEva,
+     tau=tauSenT,
+     m_flow_nominal=mFlow_evaNominal_final*scalingFactor)
     "Temperature at sink outlet" annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=0,
         origin={-52,-86})));
-  AixLib.Fluid.Sensors.MassFlowRate mFlow_eva(redeclare final package Medium =
-        Medium_eva, final allowFlowReversal=allowFlowReversalEva)
+  AixLib.Fluid.Sensors.MassFlowRate mFlow_eva(redeclare package  Medium =
+        Medium_eva,  allowFlowReversal=allowFlowReversalEva)
     "Mass flow sensor at the evaporator" annotation (Placement(transformation(
         origin={72,-60},
         extent={{10,-10},{-10,10}},
         rotation=0)));
   AixLib.Fluid.Sensors.TemperatureTwoPort senT_b1(
-    final initType=initType,
-    final transferHeat=transferHeat,
-    final TAmb=TAmbCon_nominal,
-    redeclare final package Medium = Medium_con,
-    final allowFlowReversal=allowFlowReversalCon,
-    final m_flow_small=1E-4*mFlow_conNominal_final,
-    final T_start=TCon_start,
-    final tau=tauSenT,
-    final tauHeaTra=tauHeaTraCon,
-    final m_flow_nominal=mFlow_conNominal_final*scalingFactor)
+     initType=initType,
+     transferHeat=transferHeat,
+     TAmb=TAmbCon_nominal,
+    redeclare package  Medium = Medium_con,
+     allowFlowReversal=allowFlowReversalCon,
+     m_flow_small=1E-4*mFlow_conNominal_final,
+     T_start=TCon_start,
+     tau=tauSenT,
+     tauHeaTra=tauHeaTraCon,
+     m_flow_nominal=mFlow_conNominal_final*scalingFactor)
     "Temperature at sink outlet" annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=0,
         origin={38,92})));
   AixLib.Fluid.Sensors.TemperatureTwoPort senT_a1(
-    final initType=initType,
-    final transferHeat=transferHeat,
-    redeclare final package Medium = Medium_con,
-    final allowFlowReversal=allowFlowReversalCon,
-    final m_flow_small=1E-4*mFlow_conNominal_final,
-    final T_start=TCon_start,
-    final TAmb=TAmbCon_nominal,
-    final tau=tauSenT,
-    final m_flow_nominal=mFlow_conNominal_final*scalingFactor,
-    final tauHeaTra=tauHeaTraCon) "Temperature at sink inlet" annotation (
+     initType=initType,
+     transferHeat=transferHeat,
+    redeclare package  Medium = Medium_con,
+     allowFlowReversal=allowFlowReversalCon,
+     m_flow_small=1E-4*mFlow_conNominal_final,
+     T_start=TCon_start,
+     TAmb=TAmbCon_nominal,
+     tau=tauSenT,
+     m_flow_nominal=mFlow_conNominal_final*scalingFactor,
+     tauHeaTra=tauHeaTraCon) "Temperature at sink inlet" annotation (
       Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=0,
         origin={-34,90})));
-  AixLib.Fluid.Sensors.MassFlowRate mFlow_con(final allowFlowReversal=
-        allowFlowReversalEva, redeclare final package Medium = Medium_con)
+  AixLib.Fluid.Sensors.MassFlowRate mFlow_con( allowFlowReversal=
+        allowFlowReversalEva, redeclare package  Medium = Medium_con)
     "Mass flow sensor at the evaporator" annotation (Placement(transformation(
         origin={-76,60},
         extent={{-10,10},{10,-10}},
@@ -425,13 +423,13 @@ partial model PartialReversibleVapourCompressionMachine
 
   //Automatic calculation of mass flow rates and volumes of the evaporator and condenser using linear regressions from data sheets of heat pumps and chillers (water to water)
 
-  Modelica.Blocks.Logical.GreaterThreshold greaterThreshold(final threshold=
+  Modelica.Blocks.Logical.GreaterThreshold greaterThreshold( threshold=
         Modelica.Constants.eps)
     "Use default nSet value" annotation (Placement(transformation(
         extent={{6,-6},{-6,6}},
         rotation=180,
         origin={-66,-28})));
-protected
+
   parameter Modelica.Units.SI.MassFlowRate autoCalc_mFlow_min=0.3
     "Realistic mass flow minimum for simulation plausibility";
   parameter Modelica.Units.SI.Volume autoCalc_Vmin=0.003
@@ -575,8 +573,8 @@ equation
       points={{0,-102},{0,-110},{-24,-110}},
       color={191,0,0},
       pattern=LinePattern.Dash));
-  connect(port_b2, port_b2) annotation (Line(points={{-100,-60},{-100,-60},{-100,
-          -60}}, color={0,127,255}));
+  connect(port_b2, port_b2) annotation (Line(points={{-100,-60},{-100,-60}},
+                 color={0,127,255}));
   connect(realPassThroughnSetCon.y, con.QFlow_in) annotation (Line(
       points={{16,64.6},{16,77.04},{0,77.04}},
       color={0,0,127},
