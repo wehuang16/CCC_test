@@ -305,9 +305,9 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork_v2_04302024
     use_m_flow_in=true,
     nPorts=1) "Outside air supply"
     annotation (Placement(transformation(extent={{-56,104},{-36,124}})));
-  CCC.Controls.DesignInfiltration designInfiltration_Liv[8]
+  CCC.Controls.Infiltration_DesignFlowRate designInfiltration_Liv[8]
     annotation (Placement(transformation(extent={{-122,112},{-102,132}})));
-  CCC.Controls.DesignInfiltration designInfiltration_BedA[8]
+  CCC.Controls.Infiltration_DesignFlowRate designInfiltration_BedA[8]
     annotation (Placement(transformation(extent={{-138,20},{-118,40}})));
   Buildings.Fluid.Sources.Boundary_pT pAtm_BedA(redeclare package Medium =
         MediumAir, nPorts=8) "Boundary condition"
@@ -330,7 +330,7 @@ model ArisRoomModel_8apartments_NoInfiltration_NewYork_v2_04302024
     use_m_flow_in=true,
     nPorts=1) "Outside air supply"
     annotation (Placement(transformation(extent={{-78,-92},{-58,-72}})));
-  CCC.Controls.DesignInfiltration designInfiltration_BedB[8]
+  CCC.Controls.Infiltration_DesignFlowRate designInfiltration_BedB[8]
     annotation (Placement(transformation(extent={{-144,-84},{-124,-64}})));
   Buildings.Fluid.Sources.Boundary_pT pAtm_BedB(redeclare package Medium =
         MediumAir, nPorts=8) "Boundary condition"
