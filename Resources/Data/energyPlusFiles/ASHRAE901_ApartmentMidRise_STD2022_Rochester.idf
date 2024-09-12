@@ -41,7 +41,7 @@
 !Laboratory.  https://www.energycodes.gov/sites/default/files/documents/BECP_Energy_Cost_Savings_STD2010_May2011_v00.pdf.
 !
 !
-! WeatherFile:  USA_MN_Rochester.Intl.AP.726440_TMY3.epw
+! WeatherFile:  USA_MN_International.Falls.Intl.AP.727470_TMY3.epw
 
 
 
@@ -113,7 +113,7 @@ ElectricLoadCenter:Distribution,
 	
 
 ! GPARM parameters as input:
-!    Case = ASHRAE901_ApartmentMidRise_STD2022_Rochester
+!    Case = ASHRAE901_ApartmentMidRise_STD2022_InternationalFalls
 !    AnalysisPurpose = ProgressIndicator
 !    AnalysisCodeName = ASHRAE901
 !    AnalysisCodeYear = 2022
@@ -121,8 +121,8 @@ ElectricLoadCenter:Distribution,
 !    AnalysisPrototype = ApartmentMidRise
 !    AnalysisScope = National
 !    AnalysisState = National
-!    AnalysisClimateZone = 6A
-!    AnalysisCity = USA_MN_Rochester
+!    AnalysisClimateZone = 7
+!    AnalysisCity = USA_MN_InternationalFalls
 !    AnalysisCustomFlag = Default
 !    hvac_autogen = Default
 !    roof_solar_absorp = 0.7
@@ -144,12 +144,12 @@ ElectricLoadCenter:Distribution,
 !    pipe_heat_loss_Gapts = 87
 !    pipe_heat_loss_Mapts = 73
 !    skip_EMSprogram = yes
-!    Wfile_TMY3 = USA_MN_Rochester.Intl.AP.726440_TMY3.epw
+!    Wfile_TMY3 = USA_MN_International.Falls.Intl.AP.727470_TMY3.epw
 !    Door_Switch_Enabled_Thermostat_Reset = TRUE
 !    receptacle_ctrl_occ_reduction_frac = 0.92575
 !    receptacle_ctrl_unocc_reduction_frac = 0.6625
 !    CodeName = ASHRAE90.1_STD2019
-!    CZ_Label = 6A
+!    CZ_Label = 7
 !    office_standby_mode = Yes
 !    resLSG = 1.1
 !    APT_SWH_flow = 3.66e-06
@@ -161,16 +161,16 @@ ElectricLoadCenter:Distribution,
 !    PTAC_COP = 3.81
 !    PTHP_COP_cooling = 
 !    PTHP_COP_heating = 
-!    Filename_left = ASHRAE901_ApartmentMidRise_STD2022_Rochester
-!    Zone_left = Zone 6A
+!    Filename_left = ASHRAE901_ApartmentMidRise_STD2022_InternationalFalls
+!    Zone_left = Zone 7
 !    Roof_Thermal_Emittance_left = 0.9
 !    Roof_Solar_Reflectance_left = 0.3
 !    Exterior_Lights_W_left = 
 !    Economizer_left = No
 !    Door_Infiltration_Rate_left = 694
 !    Off_peak_Fraction_left = 0.131
-!    webposting = yes
 !    hourly_output = no
+!    webposting = yes
 
 ! specify overhang_pf for 1891 codes
 
@@ -308,33 +308,33 @@ Yes,         !- Run Simulation for Weather File Run Periods
 
 !-   ===========  ALL OBJECTS IN CLASS: LOCATION ===========
 ! Site:Location and design-day objects created by:
-! ../../modules/doe_bldg_tools/bin/ddy2idf ../../tools/epw/USA_MN_Rochester.Intl.AP.726440_TMY3.ddy
+! ../../modules/doe_bldg_tools/bin/ddy2idf ../../tools/epw/USA_MN_International.Falls.Intl.AP.727470_TMY3.ddy
 !
 Site:Location,
-  Rochester International Arpt_MN_USA Design_Conditions,     !- Site:Location Name
-      43.90,     !- Latitude {N+ S-}
-     -92.50,     !- Longitude {W- E+}
+  International Falls Intl Ap_MN_USA Design_Conditions,     !- Site:Location Name
+      48.57,     !- Latitude {N+ S-}
+     -93.40,     !- Longitude {W- E+}
       -6.00,     !- Time Zone Relative to GMT {GMT+/-}
-     398.00;     !- Elevation {m}
+     359.00;     !- Elevation {m}
 
 SizingPeriod:DesignDay,
-  Rochester International Arpt Ann Htg 99.6% Condns DB,     !- Name
+  International Falls Intl Ap Ann Htg 99.6% Condns DB,     !- Name
           1,      !- Month
          21,      !- Day of Month
   WinterDesignDay,!- Day Type
-      -26.2,      !- Maximum Dry-Bulb Temperature {C}
+      -32.7,      !- Maximum Dry-Bulb Temperature {C}
         0.0,      !- Daily Dry-Bulb Temperature Range {C}
  DefaultMultipliers, !- Dry-Bulb Temperature Range Modifier Type
            ,      !- Dry-Bulb Temperature Range Modifier Schedule Name
     Wetbulb,      !- Humidity Condition Type
-      -26.2,      !- Wetbulb at Maximum Dry-Bulb {C}
+      -32.7,      !- Wetbulb at Maximum Dry-Bulb {C}
            ,      !- Humidity Indicating Day Schedule Name
            ,      !- Humidity Ratio at Maximum Dry-Bulb {kgWater/kgDryAir}
            ,      !- Enthalpy at Maximum Dry-Bulb {J/kg}
            ,      !- Daily WetBulb Temperature Range {deltaC}
-     96634.,      !- Barometric Pressure {Pa}
-        5.7,      !- Wind Speed {m/s} design conditions vs. traditional 6.71 m/s (15 mph)
-        310,      !- Wind Direction {Degrees; N=0, S=180}
+     97086.,      !- Barometric Pressure {Pa}
+        2.4,      !- Wind Speed {m/s} design conditions vs. traditional 6.71 m/s (15 mph)
+        210,      !- Wind Direction {Degrees; N=0, S=180}
          No,      !- Rain {Yes/No}
          No,      !- Snow on ground {Yes/No}
          No,      !- Daylight Savings Time Indicator
@@ -346,22 +346,22 @@ SizingPeriod:DesignDay,
        0.00;      !- Clearness {0.0 to 1.1}
 
 SizingPeriod:DesignDay,
-  Rochester International Arpt Ann Clg .4% Condns DB=>MWB,     !- Name
+  International Falls Intl Ap Ann Clg .4% Condns DB=>MWB,     !- Name
           7,      !- Month
          21,      !- Day of Month
   SummerDesignDay,!- Day Type
-       31.2,      !- Maximum Dry-Bulb Temperature {C}
-       10.6,      !- Daily Dry-Bulb Temperature Range {C}
+       30.1,      !- Maximum Dry-Bulb Temperature {C}
+       12.4,      !- Daily Dry-Bulb Temperature Range {C}
  DefaultMultipliers, !- Dry-Bulb Temperature Range Modifier Type
            ,      !- Dry-Bulb Temperature Range Modifier Schedule Name
     Wetbulb,      !- Humidity Condition Type
-       23.1,      !- Wetbulb at Maximum Dry-Bulb {C}
+       21.1,      !- Wetbulb at Maximum Dry-Bulb {C}
            ,      !- Humidity Indicating Day Schedule Name
            ,      !- Humidity Ratio at Maximum Dry-Bulb {kgWater/kgDryAir}
            ,      !- Enthalpy at Maximum Dry-Bulb {J/kg}
            ,      !- Daily WetBulb Temperature Range {deltaC}
-     96634.,      !- Barometric Pressure {Pa}
-        6.7,      !- Wind Speed {m/s} design conditions vs. traditional 3.35 m/s (7mph)
+     97086.,      !- Barometric Pressure {Pa}
+        4.7,      !- Wind Speed {m/s} design conditions vs. traditional 3.35 m/s (7mph)
         200,      !- Wind Direction {Degrees; N=0, S=180}
          No,      !- Rain {Yes/No}
          No,      !- Snow on ground {Yes/No}
@@ -369,8 +369,8 @@ SizingPeriod:DesignDay,
        ASHRAETau, !- Solar Model Indicator
            ,      !- Beam Solar Day Schedule Name
            ,      !- Diffuse Solar Day Schedule Name
-      0.404,      !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub)
-      2.226;      !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud)
+      0.405,      !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub)
+      2.200;      !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud)
 
 !-   ===========  ALL OBJECTS IN CLASS: WATER MAINS TEMPERATURES ===========
 
@@ -378,29 +378,29 @@ SizingPeriod:DesignDay,
     Correlation,             !- Calculation Method
     ,                        !- Temperature Schedule Name
     ! Site:WaterMainsTemperature object created by:
-! ../../modules/doe_bldg_tools/bin/stat2idf_mod ../../tools/epw/USA_MN_Rochester.Intl.AP.726440_TMY3.stat
+! ../../modules/doe_bldg_tools/bin/stat2idf_mod ../../tools/epw/USA_MN_International.Falls.Intl.AP.727470_TMY3.stat
 !
-6.375,                       		!- Annual average outdoor air temperature {C}
-33.5;	                     		!- Maximum difference in monthly average outdoor air temperatures {C}
+3.29166666666667,                       		!- Annual average outdoor air temperature {C}
+36.6;	                     		!- Maximum difference in monthly average outdoor air temperatures {C}
 
 !-   ===========  ALL OBJECTS IN CLASS: Site:GroundTemperature:FCfactorMethod ===========
 
 Site:GroundTemperature:FCfactorMethod,
 ! Site:GroundTemperature:FCfactorMethod objects created by:
-! ../../modules/doe_bldg_tools/bin/stat2idf_mod_fcfactors ../../tools/epw/USA_MN_Rochester.Intl.AP.726440_TMY3.stat
+! ../../modules/doe_bldg_tools/bin/stat2idf_mod_fcfactors ../../tools/epw/USA_MN_International.Falls.Intl.AP.727470_TMY3.stat
 !
-7.4,                   !- January Ground Temperature {C}
--0.0,                   !- February Ground Temperature {C}
--7.6,                   !- March Ground Temperature {C}
--12.6,                   !- April Ground Temperature {C}
--7.7,                   !- May Ground Temperature {C}
-0.3,                   !- June Ground Temperature {C}
-7.0,                   !- July Ground Temperature {C}
-14.2,                   !- August Ground Temperature {C}
-19.2,                   !- September Ground Temperature {C}
-20.9,                   !- October Ground Temperature {C}
-20.0,                   !- November Ground Temperature {C}
-15.4;                   !- December Ground Temperature {C}
+5.4,                   !- January Ground Temperature {C}
+-2.0,                   !- February Ground Temperature {C}
+-14.6,                   !- March Ground Temperature {C}
+-16.9,                   !- April Ground Temperature {C}
+-11.5,                   !- May Ground Temperature {C}
+-6.2,                   !- June Ground Temperature {C}
+4.0,                   !- July Ground Temperature {C}
+13.4,                   !- August Ground Temperature {C}
+18.0,                   !- September Ground Temperature {C}
+19.7,                   !- October Ground Temperature {C}
+17.9,                   !- November Ground Temperature {C}
+12.3;                   !- December Ground Temperature {C}
 
 !-   ===========  Opaque Constructions ===========
 
@@ -598,7 +598,7 @@ Site:GroundTemperature:FCfactorMethod,
   Material:NoMass,
     Nonres_Roof_Insulation,  !- Name
     MediumSmooth,            !- Roughness
-    5.30668495131472,
+    6.09289117569807,
             !- Thermal Resistance {m2-K/W}
     0.9,                     !- Absorptance:Thermal
     0.7,                     !- Absorptance:Solar
@@ -607,7 +607,7 @@ Site:GroundTemperature:FCfactorMethod,
   Material:NoMass,
     Res_Roof_Insulation,  !- Name
     MediumSmooth,            !- Roughness
-    5.30668495131472,
+    6.09289117569807,
             !- Thermal Resistance {m2-K/W}
     0.9,                     !- Thermal Absorptance
     0.7,                     !- Solar Absorptance
@@ -616,7 +616,7 @@ Site:GroundTemperature:FCfactorMethod,
   Material:NoMass,
     Semiheated_Roof_Insulation,  !- Name
     MediumSmooth,            !- Roughness
-    2.59864128954982,
+    4.31888738734588,
             !- Thermal Resistance {m2-K/W}
     0.9,                     !- Thermal Absorptance
     0.7,                     !- Solar Absorptance
@@ -654,7 +654,7 @@ Site:GroundTemperature:FCfactorMethod,
   Material:NoMass,
     Res_Exterior_Wall_Insulation_grd,  !- Name
     MediumSmooth,            !- Roughness
-    2.05635112992479,
+    2.31842596706248,
             !- Thermal Resistance {m2-K/W}
     0.9,                     !- Thermal Absorptance
     0.7,                     !- Solar Absorptance
@@ -663,7 +663,7 @@ Site:GroundTemperature:FCfactorMethod,
   Material:NoMass,
     Res_Exterior_Wall_Insulation_mid,  !- Name
     MediumSmooth,            !- Roughness
-    2.0415943404501,
+    2.30034080246652,
             !- Thermal Resistance {m2-K/W}
     0.9,                     !- Thermal Absorptance
     0.7,                     !- Solar Absorptance
@@ -672,7 +672,7 @@ Site:GroundTemperature:FCfactorMethod,
   Material:NoMass,
     Res_Exterior_Wall_Insulation_top,  !- Name
     MediumSmooth,            !- Roughness
-    1.61010924678311,
+    1.78172161669476,
             !- Thermal Resistance {m2-K/W}
     0.9,                     !- Thermal Absorptance
     0.7,                     !- Solar Absorptance
@@ -681,7 +681,7 @@ Site:GroundTemperature:FCfactorMethod,
   Material:NoMass,
     Semiheated_Exterior_Wall_Insulation_grd,  !- Name
     MediumSmooth,            !- Roughness
-    1.2594935842603,
+    1.63648946950221,
             !- Thermal Resistance {m2-K/W}
     0.9,                     !- Thermal Absorptance
     0.7,                     !- Solar Absorptance
@@ -690,7 +690,7 @@ Site:GroundTemperature:FCfactorMethod,
   Material:NoMass,
     Semiheated_Exterior_Wall_Insulation_mid,  !- Name
     MediumSmooth,            !- Roughness
-    1.25278804406298,
+    1.62636360780189,
             !- Thermal Resistance {m2-K/W}
     0.9,                     !- Thermal Absorptance
     0.7,                     !- Solar Absorptance
@@ -699,7 +699,7 @@ Site:GroundTemperature:FCfactorMethod,
   Material:NoMass,
     Semiheated_Exterior_Wall_Insulation_top,  !- Name
     MediumSmooth,            !- Roughness
-    1.0442659289448,
+    1.32066603182869,
             !- Thermal Resistance {m2-K/W}
     0.9,                     !- Thermal Absorptance
     0.7,                     !- Solar Absorptance
@@ -964,22 +964,22 @@ Site:GroundTemperature:FCfactorMethod,
 
   WindowMaterial:SimpleGlazingSystem,
     Nonres Window Glazing Layer,  !- Name
-    2.0441736,  !- U-Factor {W/m2-K}
-    0.37,   !- Solar Heat Gain Coefficient
-    0.407;  !- Visible Transmittance
+    1.74322582,  !- U-Factor {W/m2-K}
+    0.39,   !- Solar Heat Gain Coefficient
+    0.429;  !- Visible Transmittance
 
   Construction,
-    NonresWindow_U_0.36_SHGC_0.37,  !- Name
+    NonresWindow_U_0.307_SHGC_0.39,  !- Name
     Nonres Window Glazing Layer;  !- Outside Layer
 
   WindowMaterial:SimpleGlazingSystem,
     Res Window Glazing Layer,!- Name
-    2.0441736,  !- U-Factor {W/m2-K}
-    0.37,      !- Solar Heat Gain Coefficient
-    0.407;  !- Visible Transmittance
+    1.74322582,  !- U-Factor {W/m2-K}
+    0.39,      !- Solar Heat Gain Coefficient
+    0.429;  !- Visible Transmittance
 
   Construction,
-    ResWindow_U_0.36_SHGC_0.37,  !- Name
+    ResWindow_U_0.307_SHGC_0.39,  !- Name
     Res Window Glazing Layer;!- Outside Layer
 
 !-   ===========  ALL OBJECTS IN CLASS: ZONE ===========
@@ -3660,7 +3660,7 @@ Site:GroundTemperature:FCfactorMethod,
   FenestrationSurface:Detailed,
 GWindow1 S SWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 g SWall SWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3683,7 +3683,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 GWindow1 S S1A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 g SWall S1A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3706,7 +3706,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 GWindow1 S S2A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 g SWall S2A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3729,7 +3729,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 GWindow1 S SEA,  !- Name
 Window,    !- Surface Type
-NonresWindow_U_0.36_SHGC_0.37,    !- Construction Name
+NonresWindow_U_0.307_SHGC_0.39,    !- Construction Name
 g SWall SEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3752,7 +3752,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 S SWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m SWall SWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3775,7 +3775,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 S S1A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m SWall S1A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3798,7 +3798,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 S S2A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m SWall S2A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3821,7 +3821,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 S SEA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m SWall SEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3844,7 +3844,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 S SWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t SWall SWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3867,7 +3867,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 S S1A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t SWall S1A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3890,7 +3890,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 S S2A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t SWall S2A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3913,7 +3913,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 S SEA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t SWall SEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3937,7 +3937,7 @@ autocalculate,   !- View Factor to Ground
   FenestrationSurface:Detailed,
 GWindow1 W NWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 g WWall NWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3960,7 +3960,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 GWindow1 W SWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 g WWall SWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -3983,7 +3983,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 W NWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m WWall NWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4006,7 +4006,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 W SWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m WWall SWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4029,7 +4029,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 W NWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t WWall NWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4052,7 +4052,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 W SWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t WWall SWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4076,7 +4076,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 GWindow1 E NEA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 g EWall NEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4099,7 +4099,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 GWindow1 E SEA,  !- Name
 Window,    !- Surface Type
-NonresWindow_U_0.36_SHGC_0.37,    !- Construction Name
+NonresWindow_U_0.307_SHGC_0.39,    !- Construction Name
 g EWall SEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4122,7 +4122,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 E NEA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m EWall NEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4145,7 +4145,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 E SEA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m EWall SEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4168,7 +4168,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 E NEA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t EWall NEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4191,7 +4191,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 E SEA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t EWall SEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4215,7 +4215,7 @@ autocalculate,   !- View Factor to Ground
  FenestrationSurface:Detailed,
 GWindow1 N NWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 g NWall NWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4238,7 +4238,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 GWindow1 N N1A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 g NWall N1A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4261,7 +4261,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 GWindow1 N N2A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 g NWall N2A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4284,7 +4284,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 GWindow1 N NEA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 g NWall NEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4307,7 +4307,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 N NWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m NWall NWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4330,7 +4330,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 N N1A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m NWall N1A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4353,7 +4353,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 N N2A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m NWall N2A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4376,7 +4376,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 MWindow1 N NEA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 m NWall NEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4399,7 +4399,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 N NWA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t NWall NWA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4422,7 +4422,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 N N1A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t NWall N1A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4445,7 +4445,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 N N2A,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t NWall N2A, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4468,7 +4468,7 @@ autocalculate,   !- View Factor to Ground
 FenestrationSurface:Detailed,
 TWindow1 N NEA,  !- Name
 Window,    !- Surface Type
-ResWindow_U_0.36_SHGC_0.37,   !- Construction Name of the Surface
+ResWindow_U_0.307_SHGC_0.39,   !- Construction Name of the Surface
 t NWall NEA, !- Building Surface Name
 ,     !- Outside Boundary Condition Object
 autocalculate,   !- View Factor to Ground
@@ -4492,7 +4492,7 @@ autocalculate,   !- View Factor to Ground
   FenestrationSurface:Detailed,
     Entrance Door,           !- Name
     Window,                  !- Surface Type
-    NonresWindow_U_0.36_SHGC_0.37,  !- Construction Name
+    NonresWindow_U_0.307_SHGC_0.39,  !- Construction Name
     g EWall C,               !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     autocalculate,           !- View Factor to Ground
@@ -4507,7 +4507,7 @@ autocalculate,   !- View Factor to Ground
   FenestrationSurface:Detailed,
     MWindow14,               !- Name
     Window,                  !- Surface Type
-    NonresWindow_U_0.36_SHGC_0.37,  !- Construction Name
+    NonresWindow_U_0.307_SHGC_0.39,  !- Construction Name
     m EWall C,               !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     autocalculate,           !- View Factor to Ground
@@ -4522,7 +4522,7 @@ autocalculate,   !- View Factor to Ground
   FenestrationSurface:Detailed,
     TWindow14,               !- Name
     Window,                  !- Surface Type
-    NonresWindow_U_0.36_SHGC_0.37,  !- Construction Name
+    NonresWindow_U_0.307_SHGC_0.39,  !- Construction Name
     t EWall C,               !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     autocalculate,           !- View Factor to Ground
@@ -7781,13 +7781,13 @@ OutputControl:ReportingTolerances,
     SumOrAverage;                                                 !- Aggregation Type for Variable or Meter 1
     
   Output:Table:Monthly,
-    NameHolderMonthlySummary ClimateZone 6A,    !- Name   0-8
+    NameHolderMonthlySummary ClimateZone 7,    !- Name   0-8
     3,                                                            !- Digits After Decimal
     Site Outdoor Air Drybulb Temperature,                                     !- Variable or Meter 1 Name
     SumOrAverage;                                                 !- Aggregation Type for Variable or Meter 1
     
   Output:Table:Monthly,
-    NameHolderMonthlySummary RepresentCity USA_MN_Rochester,         !- Name   representative city like Honolulu for national, for each state, for city analysis.  this is not the city of the weather file.  The weather city will be extracted from epw file
+    NameHolderMonthlySummary RepresentCity USA_MN_InternationalFalls,         !- Name   representative city like Honolulu for national, for each state, for city analysis.  this is not the city of the weather file.  The weather city will be extracted from epw file
     3,                                                            !- Digits After Decimal
     Site Outdoor Air Drybulb Temperature,                                     !- Variable or Meter 1 Name
     SumOrAverage;                                                 !- Aggregation Type for Variable or Meter 1
