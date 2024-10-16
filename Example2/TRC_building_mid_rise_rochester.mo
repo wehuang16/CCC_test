@@ -2130,8 +2130,7 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
-      StartTime=15379200,
-      StopTime=15811200,
+      StopTime=86400,
       Interval=900,
       __Dymola_Algorithm="Dassl"));
 end TRC_building_mid_rise_rochester;
