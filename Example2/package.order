@@ -4,3 +4,4 @@ test_flow_routing
 test_flow_routing_container
 HeatPumpRadiantHeatingGroundHeatTransfer
 TRC_building_low_rise_rochester
+TRC_building_mid_rise_rochester
