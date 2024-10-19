@@ -5,3 +5,5 @@ test_flow_routing_container
 HeatPumpRadiantHeatingGroundHeatTransfer
 TRC_building_low_rise_rochester
 TRC_building_mid_rise_rochester
+berg_unit
+ideal_load_5_zone
