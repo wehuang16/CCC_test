@@ -49,12 +49,12 @@ model Stratified "Test model for stratified tank"
     dp_nominal=5000,
     m_flow_nominal=0.1)
     annotation (Placement(transformation(extent={{40,-90},{60,-70}})));
-  Buildings.Fluid.Sensors.EnthalpyFlowRate HOut_flow(redeclare package Medium
-      = Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
+  Buildings.Fluid.Sensors.EnthalpyFlowRate HOut_flow(redeclare package Medium =
+        Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
                                      annotation (Placement(transformation(
           extent={{4,-16},{20,0}})));
-  Buildings.Fluid.Sensors.EnthalpyFlowRate HOut_flow1(redeclare package Medium
-      = Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
+  Buildings.Fluid.Sensors.EnthalpyFlowRate HOut_flow1(redeclare package Medium =
+        Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
                                      annotation (Placement(transformation(
           extent={{20,-88},{36,-72}})));
   Modelica.Blocks.Continuous.Integrator dH

@@ -1,5 +1,5 @@
 within CCC_test.Example2;
-model ideal_load_5_zone
+model ideal_load_5_zone_NoInfiltration
 
           extends Modelica.Icons.Example;
         package MediumAir = Buildings.Media.Air;
@@ -20,7 +20,8 @@ model ideal_load_5_zone
     "Zone heating temperature setpoint";
   inner Buildings.ThermalZones.EnergyPlus_9_6_0.Building
                  building(
-    idfName=Modelica.Utilities.Files.loadResource("modelica://CCC/Resources/Data/energyPlusFiles/5Zone_IdealLoadsAirSystems_ReturnPlenum.idf"),
+    idfName=Modelica.Utilities.Files.loadResource(
+        "modelica://CCC/Resources/Data/energyPlusFiles/5Zone_IdealLoadsAirSystems_ReturnPlenum_NoInfiltration.idf"),
     weaName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC/Resources/weatherdata/USA_MN_Rochester.Intl.AP.726440_TMY3.mos"),
     epwName=Modelica.Utilities.Files.loadResource(
@@ -62,7 +63,8 @@ model ideal_load_5_zone
     nPorts=1) "Outside air supply"
     annotation (Placement(transformation(extent={{-92,12},{-72,32}})));
   CCC.Controls.Infiltration_EffectiveLeakageArea
-                                           infiltration_EffectiveLeakageArea1
+                                           infiltration_EffectiveLeakageArea1(
+      effAirLeaAre=0.01)
     annotation (Placement(transformation(extent={{-140,16},{-120,36}})));
   Modelica.Blocks.Sources.Constant qIntGai2[3](each k=0)
     "Internal heat gains, set to zero because these are modeled in EnergyPlus"
@@ -97,7 +99,8 @@ model ideal_load_5_zone
     nPorts=1) "Outside air supply"
     annotation (Placement(transformation(extent={{-92,-80},{-72,-60}})));
   CCC.Controls.Infiltration_EffectiveLeakageArea
-                                           infiltration_EffectiveLeakageArea2
+                                           infiltration_EffectiveLeakageArea2(
+      effAirLeaAre=0.01)
     annotation (Placement(transformation(extent={{-140,-76},{-120,-56}})));
   Modelica.Blocks.Sources.Constant qIntGai3[3](each k=0)
     "Internal heat gains, set to zero because these are modeled in EnergyPlus"
@@ -131,7 +134,8 @@ model ideal_load_5_zone
     m_flow=mOut_flow_nominal,
     nPorts=1) "Outside air supply"
     annotation (Placement(transformation(extent={{-92,-182},{-72,-162}})));
-  CCC.Controls.Infiltration_EffectiveLeakageArea infiltration_EffectiveLeakageArea3
+  CCC.Controls.Infiltration_EffectiveLeakageArea infiltration_EffectiveLeakageArea3(
+      effAirLeaAre=0.01)
     annotation (Placement(transformation(extent={{-140,-178},{-120,-158}})));
   Modelica.Blocks.Sources.Constant qIntGai4[3](each k=0)
     "Internal heat gains, set to zero because these are modeled in EnergyPlus"
@@ -165,7 +169,8 @@ model ideal_load_5_zone
     m_flow=mOut_flow_nominal,
     nPorts=1) "Outside air supply"
     annotation (Placement(transformation(extent={{-94,-274},{-74,-254}})));
-  CCC.Controls.Infiltration_EffectiveLeakageArea infiltration_EffectiveLeakageArea4
+  CCC.Controls.Infiltration_EffectiveLeakageArea infiltration_EffectiveLeakageArea4(
+      effAirLeaAre=0.01)
     annotation (Placement(transformation(extent={{-142,-270},{-122,-250}})));
   Modelica.Blocks.Sources.Constant qIntGai5[3](each k=0)
     "Internal heat gains, set to zero because these are modeled in EnergyPlus"
@@ -199,7 +204,8 @@ model ideal_load_5_zone
     m_flow=mOut_flow_nominal,
     nPorts=1) "Outside air supply"
     annotation (Placement(transformation(extent={{-88,-370},{-68,-350}})));
-  CCC.Controls.Infiltration_EffectiveLeakageArea infiltration_EffectiveLeakageArea5
+  CCC.Controls.Infiltration_EffectiveLeakageArea infiltration_EffectiveLeakageArea5(
+      effAirLeaAre=0.01)
     annotation (Placement(transformation(extent={{-136,-366},{-116,-346}})));
   Modelica.Blocks.Sources.Constant qIntGai6[3](each k=0)
     "Internal heat gains, set to zero because these are modeled in EnergyPlus"
@@ -453,4 +459,4 @@ equation
       StopTime=31536000,
       Interval=900,
       __Dymola_Algorithm="Dassl"));
-end ideal_load_5_zone;
+end ideal_load_5_zone_NoInfiltration;
