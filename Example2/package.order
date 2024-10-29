@@ -12,3 +12,4 @@ TestDoubleTankSetpointLogic
 Stratified
 Pendulum
 ideal_load_5_zone_NoInfiltration
+ideal_load_1_zone

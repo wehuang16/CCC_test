@@ -1,3 +1,7 @@
 HeatCapacitySensor
 FanCoilUnitEps
 ArisWaterTankGroup
+Infiltration_EffectiveLeakageArea
+Infiltration_DesignFlowRate
+SeparateHeatingCoolingThermalEnergy
+Trc_custom_air_conditioner
