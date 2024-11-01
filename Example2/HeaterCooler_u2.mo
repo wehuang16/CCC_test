@@ -1,5 +1,5 @@
 within CCC_test.Example2;
-model HeaterCooler_u "Model that demonstrates the ideal heater model"
+model HeaterCooler_u2 "Model that demonstrates the ideal heater model"
   extends Modelica.Icons.Example;
 
   package Medium = Buildings.Media.Air;
@@ -42,37 +42,21 @@ model HeaterCooler_u "Model that demonstrates the ideal heater model"
   Buildings.Fluid.Sensors.RelativeHumidity   senRelHum(redeclare package Medium
       = Medium)
     annotation (Placement(transformation(extent={{70,-64},{90,-44}})));
-  Buildings.Fluid.HeatExchangers.PrescribedOutlet preOut(
-    redeclare package Medium = Medium,
-    m_flow_nominal=m_flow_nominal,
-    dp_nominal=0)
-    annotation (Placement(transformation(extent={{78,-20},{98,0}})));
   Buildings.Fluid.Sensors.MassFraction       senMasFra(redeclare package Medium
       = Medium)
     annotation (Placement(transformation(extent={{70,-92},{90,-72}})));
-  Buildings.Fluid.Sensors.RelativeHumidity   senRelHum1(redeclare package
-      Medium = Medium)
-    annotation (Placement(transformation(extent={{142,-54},{162,-34}})));
-  Buildings.Fluid.Sensors.MassFraction       senMasFra1(redeclare package
-      Medium = Medium)
-    annotation (Placement(transformation(extent={{142,-82},{162,-62}})));
   Buildings.Utilities.Psychrometrics.X_pTphi x_pTphi
     annotation (Placement(transformation(extent={{76,24},{96,44}})));
   Buildings.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium
       = Medium, m_flow_nominal=m_flow_nominal) "Temperature sensor"
     annotation (Placement(transformation(extent={{118,-28},{138,-8}})));
-  Modelica.Blocks.Sources.Constant const1(k=1)
-    annotation (Placement(transformation(extent={{28,18},{48,38}})));
   Buildings.Fluid.Sensors.Pressure           senPre(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{24,70},{44,90}})));
-  Modelica.Blocks.Logical.Switch switch1
-    annotation (Placement(transformation(extent={{156,58},{176,78}})));
-  Modelica.Blocks.Logical.Less less
-    annotation (Placement(transformation(extent={{112,58},{132,78}})));
-  Buildings.Fluid.Sensors.Pressure           senPre1(redeclare package Medium
-      = Medium)
-    annotation (Placement(transformation(extent={{180,-26},{200,-6}})));
+  Buildings.Utilities.Psychrometrics.Phi_pTX phi
+    annotation (Placement(transformation(extent={{156,-90},{176,-70}})));
+  Modelica.Blocks.Math.Gain Gain(k=1)
+    annotation (Placement(transformation(extent={{114,-92},{134,-72}})));
 equation
   connect(heaDyn.port_b, senTem.port_a)
     annotation (Line(points={{20,-10},{40,-10}}, color={0,127,255}));
@@ -82,44 +66,32 @@ equation
       color={0,127,255}));
   connect(ramp.y, heaDyn.u) annotation (Line(points={{-3,46},{0,46},{0,4},{-2,4},
           {-2,-4}}, color={0,0,127}));
-  connect(senTem.port_b, preOut.port_a)
-    annotation (Line(points={{60,-10},{78,-10}}, color={0,127,255}));
   connect(senTem.port_b, senRelHum.port)
     annotation (Line(points={{60,-10},{60,-64},{80,-64}}, color={0,127,255}));
   connect(senTem.port_b, senMasFra.port)
     annotation (Line(points={{60,-10},{60,-92},{80,-92}}, color={0,127,255}));
-  connect(preOut.port_b, senTem1.port_a) annotation (Line(points={{98,-10},{112,
-          -10},{112,-18},{118,-18}}, color={0,127,255}));
   connect(senTem1.port_b, sin.ports[1]) annotation (Line(points={{138,-18},{144,
           -18},{144,38},{150,38}}, color={0,127,255}));
-  connect(senTem1.port_b, senRelHum1.port) annotation (Line(points={{138,-18},{
-          168,-18},{168,-58},{152,-58},{152,-54}}, color={0,127,255}));
-  connect(senTem1.port_b, senMasFra1.port) annotation (Line(points={{138,-18},{
-          168,-18},{168,-86},{152,-86},{152,-82}}, color={0,127,255}));
-  connect(const1.y, x_pTphi.phi)
-    annotation (Line(points={{49,28},{74,28}}, color={0,0,127}));
   connect(senTem.T, x_pTphi.T)
     annotation (Line(points={{50,1},{56,1},{56,34},{74,34}}, color={0,0,127}));
   connect(senTem.port_b, senPre.port) annotation (Line(points={{60,-10},{64,-10},
           {64,64},{34,64},{34,70}}, color={0,127,255}));
   connect(senPre.p, x_pTphi.p_in) annotation (Line(points={{45,80},{66,80},{66,
           40},{74,40}}, color={0,0,127}));
-  connect(less.y, switch1.u2)
-    annotation (Line(points={{133,68},{154,68}}, color={255,0,255}));
-  connect(senMasFra.X, less.u2) annotation (Line(points={{91,-82},{100,-82},{
-          100,-78},{110,-78},{110,60}}, color={0,0,127}));
-  connect(senMasFra.X, switch1.u3) annotation (Line(points={{91,-82},{122,-82},
-          {122,60},{154,60}}, color={0,0,127}));
-  connect(switch1.y, preOut.X_wSet) annotation (Line(points={{177,68},{190,68},
-          {190,8},{76,8},{76,-6}}, color={0,0,127}));
-  connect(x_pTphi.X[1], less.u1) annotation (Line(points={{97,34},{104,34},{104,
-          52},{102,52},{102,68},{110,68}}, color={0,0,127}));
-  connect(x_pTphi.X[1], switch1.u1) annotation (Line(points={{97,34},{104,34},{
-          104,52},{102,52},{102,84},{144,84},{144,76},{154,76}}, color={0,0,127}));
-  connect(senTem1.port_b, senPre1.port) annotation (Line(points={{138,-18},{168,
-          -18},{168,-32},{190,-32},{190,-26}}, color={0,127,255}));
-  connect(senTem.T, preOut.TSet)
-    annotation (Line(points={{50,1},{50,-2},{76,-2}}, color={0,0,127}));
+  connect(senRelHum.phi, x_pTphi.phi) annotation (Line(points={{91,-54},{104,
+          -54},{104,18},{74,18},{74,28}}, color={0,0,127}));
+  connect(senTem.port_b, senTem1.port_a) annotation (Line(points={{60,-10},{60,
+          -64},{66,-64},{66,-68},{112,-68},{112,-18},{118,-18}}, color={0,127,
+          255}));
+  connect(senMasFra.X, Gain.u)
+    annotation (Line(points={{91,-82},{112,-82}}, color={0,0,127}));
+  connect(Gain.y, phi.X_w) annotation (Line(points={{135,-82},{152,-82},{152,
+          -80},{155,-80}}, color={0,0,127}));
+  connect(senPre.p, phi.p) annotation (Line(points={{45,80},{146,80},{146,-88},
+          {155,-88}}, color={0,0,127}));
+  connect(senTem.T, phi.T) annotation (Line(points={{50,1},{50,2},{56,2},{56,4},
+          {102,4},{102,-4},{142,-4},{142,-30},{150,-30},{150,-72},{155,-72}},
+        color={0,0,127}));
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{200,
             200}})),
@@ -155,4 +127,4 @@ First implementation.
       Interval=60,
       Tolerance=1e-06,
       __Dymola_Algorithm="Dassl"));
-end HeaterCooler_u;
+end HeaterCooler_u2;

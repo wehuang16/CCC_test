@@ -16,3 +16,5 @@ ideal_load_1_zone
 ideal_load_1_zone_HvacOff
 WetCoilCounterFlowLowWaterFlowRate
 HeaterCooler_u
+HeaterCooler_u2
+Dehumidifier

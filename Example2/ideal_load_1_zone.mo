@@ -8,7 +8,7 @@ model ideal_load_1_zone
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
 
-       parameter Modelica.Units.SI.MassFlowRate mRec_flow_nominal=1
+       parameter Modelica.Units.SI.MassFlowRate mRec_flow_nominal=2
     "Nominal mass flow rate for recirculated air";
 
   parameter Modelica.Units.SI.MassFlowRate mOut_flow_nominal=0.005
@@ -23,7 +23,6 @@ model ideal_load_1_zone
     idfName=Modelica.Utilities.Files.loadResource("modelica://CCC_test/Resources/Data/energyPlusFiles/1zone_model.idf"),
     weaName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC_test/Resources/weatherdata/USA_MN_International.Falls.Intl.AP.727470_TMY3.mos"),
-
     epwName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC_test/Resources/weatherdata/USA_MN_International.Falls.Intl.AP.727470_TMY3.epw"),
     computeWetBulbTemperature=false)
@@ -100,7 +99,7 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
-      StopTime=86400,
+      StopTime=172800,
       Interval=900,
       __Dymola_Algorithm="Dassl"));
 end ideal_load_1_zone;

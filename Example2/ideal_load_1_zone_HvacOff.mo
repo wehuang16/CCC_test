@@ -22,10 +22,8 @@ model ideal_load_1_zone_HvacOff
                  building(
     idfName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC_test/Resources/Data/energyPlusFiles/1zone_model_HvacOff.idf"),
-
     weaName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC_test/Resources/weatherdata/USA_MN_International.Falls.Intl.AP.727470_TMY3.mos"),
-
     epwName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC_test/Resources/weatherdata/USA_MN_International.Falls.Intl.AP.727470_TMY3.epw"),
     computeWetBulbTemperature=false)
