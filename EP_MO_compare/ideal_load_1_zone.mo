@@ -23,7 +23,6 @@ model ideal_load_1_zone
     idfName=Modelica.Utilities.Files.loadResource("modelica://CCC_test/Resources/Data/energyPlusFiles/1zone_model.idf"),
     weaName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC_test/Resources/weatherdata/USA_MN_International.Falls.Intl.AP.727470_TMY3.mos"),
-
     epwName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC_test/Resources/weatherdata/USA_MN_International.Falls.Intl.AP.727470_TMY3.epw"),
     computeWetBulbTemperature=false)

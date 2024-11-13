@@ -68,11 +68,11 @@ equation
     annotation (Line(points={{40,50},{3,50}},      color={0,0,127}));
   connect(zon1.TAir, trc_custom_air_conditioner_test1_1.ZAT) annotation (Line(
         points={{83,58},{104,58},{104,46.4},{126,46.4}}, color={0,0,127}));
-  connect(trc_custom_air_conditioner_test1_1.port_b, zon1.ports[3]) annotation
-    (Line(points={{148.8,32.4},{154,32.4},{154,20.9},{62,20.9}}, color={0,127,
+  connect(trc_custom_air_conditioner_test1_1.port_b, zon1.ports[3]) annotation (
+     Line(points={{148.8,32.4},{154,32.4},{154,20.9},{62,20.9}}, color={0,127,
           255}));
-  connect(zon1.ports[2], trc_custom_air_conditioner_test1_1.port_a) annotation
-    (Line(points={{61.2,20.9},{61.2,18},{122,18},{122,32.6},{127.6,32.6}},
+  connect(zon1.ports[2], trc_custom_air_conditioner_test1_1.port_a) annotation (
+     Line(points={{61.2,20.9},{61.2,18},{122,18},{122,32.6},{127.6,32.6}},
         color={0,127,255}));
   connect(building.weaBus, freshAir1.weaBus) annotation (Line(
       points={{-218,28},{-152,28},{-152,20},{-146,20},{-146,10},{-102,10},{-102,

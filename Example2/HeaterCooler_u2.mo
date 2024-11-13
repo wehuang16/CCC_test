@@ -39,16 +39,16 @@ model HeaterCooler_u2 "Model that demonstrates the ideal heater model"
     duration=43200,
     startTime=21600)
     annotation (Placement(transformation(extent={{-24,36},{-4,56}})));
-  Buildings.Fluid.Sensors.RelativeHumidity   senRelHum(redeclare package Medium
-      = Medium)
+  Buildings.Fluid.Sensors.RelativeHumidity   senRelHum(redeclare package Medium =
+        Medium)
     annotation (Placement(transformation(extent={{70,-64},{90,-44}})));
-  Buildings.Fluid.Sensors.MassFraction       senMasFra(redeclare package Medium
-      = Medium)
+  Buildings.Fluid.Sensors.MassFraction       senMasFra(redeclare package Medium =
+        Medium)
     annotation (Placement(transformation(extent={{70,-92},{90,-72}})));
   Buildings.Utilities.Psychrometrics.X_pTphi x_pTphi
     annotation (Placement(transformation(extent={{76,24},{96,44}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium
-      = Medium, m_flow_nominal=m_flow_nominal) "Temperature sensor"
+  Buildings.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
+        Medium, m_flow_nominal=m_flow_nominal) "Temperature sensor"
     annotation (Placement(transformation(extent={{118,-28},{138,-8}})));
   Buildings.Fluid.Sensors.Pressure           senPre(redeclare package Medium =
         Medium)

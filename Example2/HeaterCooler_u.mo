@@ -39,16 +39,16 @@ model HeaterCooler_u "Model that demonstrates the ideal heater model"
     duration=43200,
     startTime=21600)
     annotation (Placement(transformation(extent={{-24,36},{-4,56}})));
-  Buildings.Fluid.Sensors.RelativeHumidity   senRelHum(redeclare package Medium
-      = Medium)
+  Buildings.Fluid.Sensors.RelativeHumidity   senRelHum(redeclare package Medium =
+        Medium)
     annotation (Placement(transformation(extent={{70,-64},{90,-44}})));
   Buildings.Fluid.HeatExchangers.PrescribedOutlet preOut(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     dp_nominal=0)
     annotation (Placement(transformation(extent={{78,-20},{98,0}})));
-  Buildings.Fluid.Sensors.MassFraction       senMasFra(redeclare package Medium
-      = Medium)
+  Buildings.Fluid.Sensors.MassFraction       senMasFra(redeclare package Medium =
+        Medium)
     annotation (Placement(transformation(extent={{70,-92},{90,-72}})));
   Buildings.Fluid.Sensors.RelativeHumidity   senRelHum1(redeclare package
       Medium = Medium)
@@ -58,8 +58,8 @@ model HeaterCooler_u "Model that demonstrates the ideal heater model"
     annotation (Placement(transformation(extent={{142,-82},{162,-62}})));
   Buildings.Utilities.Psychrometrics.X_pTphi x_pTphi
     annotation (Placement(transformation(extent={{76,24},{96,44}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium
-      = Medium, m_flow_nominal=m_flow_nominal) "Temperature sensor"
+  Buildings.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
+        Medium, m_flow_nominal=m_flow_nominal) "Temperature sensor"
     annotation (Placement(transformation(extent={{118,-28},{138,-8}})));
   Modelica.Blocks.Sources.Constant const1(k=1)
     annotation (Placement(transformation(extent={{28,18},{48,38}})));
@@ -70,8 +70,8 @@ model HeaterCooler_u "Model that demonstrates the ideal heater model"
     annotation (Placement(transformation(extent={{156,58},{176,78}})));
   Modelica.Blocks.Logical.Less less
     annotation (Placement(transformation(extent={{112,58},{132,78}})));
-  Buildings.Fluid.Sensors.Pressure           senPre1(redeclare package Medium
-      = Medium)
+  Buildings.Fluid.Sensors.Pressure           senPre1(redeclare package Medium =
+        Medium)
     annotation (Placement(transformation(extent={{180,-26},{200,-6}})));
 equation
   connect(heaDyn.port_b, senTem.port_a)
