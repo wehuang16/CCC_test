@@ -90,7 +90,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-40,-128},{-20,-108}})));
   Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr(t=280, h=0)
     annotation (Placement(transformation(extent={{-126,-86},{-106,-66}})));
-  cdl_models.Examples.BaseClasses.smallPass smallPass(nValues=3)
+  cdl_models.Examples.BaseClasses.smallPassDemandRatchet smallPass(nValues=3)
     annotation (Placement(transformation(extent={{-88,-80},{-68,-60}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre[3]
     annotation (Placement(transformation(extent={{-56,-80},{-36,-60}})));
