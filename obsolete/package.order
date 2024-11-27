@@ -22,3 +22,5 @@ MultiHeatPumpTankSystemContainer_test
 Trc_fcu_air_conditioner
 demand_flexibility_ratchet_2
 demand_flexibility_ratchet_3
+demand_flexibility_ratchet_ModulatingLoad
+demand_flexibility_ratchet_OnOffLoad
