@@ -8,7 +8,7 @@ replaceable package MediumAir = Buildings.Media.Air;
         parameter Real THeaSet(unit="K")=273.15+16
     "Zone heating temperature setpoint";
        parameter Real demand_limit(unit="W")=200;
-  cdl_models.Controls.DF_Controller_ratchet_cooling_old dF_Controller[nZones](
+  DF_Controller_ratchet_cooling_old dF_Controller[nZones](
     TZonCooSetNominal=TCooSet,
     TZonCooSetMax(displayUnit="degC") = 301.15,
     TRatThreshold=0.2,

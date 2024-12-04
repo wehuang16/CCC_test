@@ -1,6 +1,6 @@
 within CCC_test.Example2;
 model linearSetpointControlContainer
-  linearSetpointControl linearSetpointControl1
+  cdl_models.Examples.BaseClasses.linearSetpointControl linearSetpointControl1
     annotation (Placement(transformation(extent={{62,-28},{82,-8}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=24)
     annotation (Placement(transformation(extent={{-102,2},{-82,22}})));
