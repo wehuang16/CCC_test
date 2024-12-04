@@ -18,3 +18,5 @@ WetCoilCounterFlowLowWaterFlowRate
 HeaterCooler_u
 HeaterCooler_u2
 Dehumidifier
+linearSetpointControl
+linearSetpointControlContainer
