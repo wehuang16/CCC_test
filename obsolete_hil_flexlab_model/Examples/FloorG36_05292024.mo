@@ -1,7 +1,6 @@
 within CCC_test.obsolete_hil_flexlab_model.Examples;
 model FloorG36_05292024 "Model of a floor of the building"
   extends hil_flexlab_model.Test1.ThermalZones.PartialFloor(
-    leaPle(s=6.49/9.33, azi=Buildings.Types.Azimuth.W),
     VRooCor=cor.V,
     VRooSou=sou.V,
     VRooNor=nor.V,
@@ -13,9 +12,7 @@ model FloorG36_05292024 "Model of a floor of the building"
     AFloNor=nor.AFlo,
     AFloEas=ple.AFlo,
     AFloWes=clo.AFlo,
-    AFloEle=ele.AFlo,
-    leaSou(s=6.49/3.05),
-    leaNor(s=6.49/3.23));
+    AFloEle=ele.AFlo);
 
   //final parameter Modelica.Units.SI.Area AFlo=AFloCor + AFloSou + AFloNor "Total floor area";
   final parameter Modelica.Units.SI.Area AFlo=AFloCor + AFloSou + AFloNor + AFloWes +AFloEle "Total floor area";
