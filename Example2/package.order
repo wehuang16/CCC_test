@@ -21,3 +21,7 @@ Dehumidifier
 linearSetpointControlContainer
 testWeatherFile
 testHil4dfBuilding
+TRC_mid_rise
+testScaleUp
+testScaleUp2
+zoneContainer
