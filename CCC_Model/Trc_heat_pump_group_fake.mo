@@ -1,5 +1,5 @@
 within CCC_test.CCC_Model;
-model Trc_heat_pump_group
+model Trc_heat_pump_group_fake
 
     package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
@@ -20,7 +20,7 @@ model Trc_heat_pump_group
   Modelica.Fluid.Interfaces.FluidPort_b port_b1(redeclare package Medium =
         MediumPropyleneGlycol)
     annotation (Placement(transformation(extent={{172,48},{192,68}})));
-  CCC.Fluid.HeatPumps.Aixlib_AirToWaterHeatPump_3D aixlib_HP_3D_integrated[numHeaPum](
+  Aixlib_AirToWaterHeatPump_3D_fake                aixlib_HP_3D_integrated[numHeaPum](
     redeclare package Medium_eva = MediumAir,
     redeclare package Medium_con = MediumPropyleneGlycol,
     mEva_flow_nominal=2.333,
@@ -221,4 +221,4 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
             {180,100}})),                                        Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{180,100}})));
-end Trc_heat_pump_group;
+end Trc_heat_pump_group_fake;

@@ -421,8 +421,7 @@ model TrcWaterTankGroup_1Tank
   Buildings.Fluid.Actuators.Valves.TwoWayLinear val(
     redeclare package Medium = MediumPropyleneGlycol,
     m_flow_nominal=mHP_flow_nominal,
-    dpValve_nominal=1,
-    riseTime=1)
+    dpValve_nominal=1)
     annotation (Placement(transformation(extent={{-114,-206},{-94,-186}})));
   Buildings.Controls.OBC.CDL.Conversions.BooleanToReal    booToRea
     annotation (Placement(transformation(extent={{278,-122},{298,-102}})));

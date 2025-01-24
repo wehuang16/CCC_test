@@ -109,8 +109,8 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
   Buildings.Fluid.Actuators.Valves.TwoWayLinear val(
     redeclare package Medium = MediumPropyleneGlycol,
     m_flow_nominal=mHP_flow_nominal,
-    dpValve_nominal=1,
-    riseTime=1) annotation (Placement(transformation(
+    dpValve_nominal=1)
+                annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={240,-132})));
