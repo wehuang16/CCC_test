@@ -25,7 +25,7 @@ model Trc_heat_pump_group_fake
     redeclare package Medium_con = MediumPropyleneGlycol,
     mEva_flow_nominal=2.333,
     mCon_flow_nominal=mHpCon_flow_nominal)
-    annotation (Placement(transformation(extent={{34,-4},{70,22}})));
+    annotation (Placement(transformation(extent={{36,-4},{72,22}})));
   Buildings.Controls.OBC.CDL.Interfaces.IntegerInput  comHeaPumMod[numHeaPum]
     "a command of heat pump modes" annotation (Placement(transformation(extent={{-140,
             -20},{-100,20}}),      iconTransformation(extent={{-138,-22},{-98,
@@ -142,12 +142,12 @@ equation
   connect(TOutAir, replicator.u) annotation (Line(points={{110,122},{110,70},{108,
           70},{108,62}}, color={0,0,127}));
   connect(replicator.y, aixlib_HP_3D_integrated.TOutAir) annotation (Line(
-        points={{108,39},{106,39},{106,-2},{72.34,-2},{72.34,4.71}}, color={0,0,
+        points={{108,39},{106,39},{106,-2},{74.34,-2},{74.34,4.71}}, color={0,0,
           127}));
   connect(comHeaPumMod, intGreEquThr.u) annotation (Line(points={{-120,0},{-38,0},
           {-38,-4},{-30,-4}}, color={255,127,0}));
-  connect(intGreEquThr.y, aixlib_HP_3D_integrated.Mode) annotation (Line(points=
-         {{-6,-4},{2,-4},{2,44},{92,44},{92,11.6},{72.16,11.6}}, color={255,0,255}));
+  connect(intGreEquThr.y, aixlib_HP_3D_integrated.Mode) annotation (Line(points={{-6,-4},
+          {2,-4},{2,44},{92,44},{92,11.6},{74.16,11.6}},         color={255,0,255}));
   connect(comHeaPumMod, intEqu.u1) annotation (Line(points={{-120,0},{-42,0},{-42,
           26},{-34,26}}, color={255,127,0}));
   connect(conInt.y, intEqu.u2) annotation (Line(points={{-104,34},{-44,34},{-44,
@@ -155,15 +155,15 @@ equation
   connect(intEqu.y, not1.u) annotation (Line(points={{-10,26},{0,26},{0,50},{-2,
           50},{-2,54},{12,54}}, color={255,0,255}));
   connect(not1.y, aixlib_HP_3D_integrated.OnOff) annotation (Line(points={{36,54},
-          {38,54},{38,28},{22,28},{22,11.6},{31.84,11.6}}, color={255,0,255}));
+          {38,54},{38,28},{22,28},{22,11.6},{33.84,11.6}}, color={255,0,255}));
   connect(swi.y, swi1.u3) annotation (Line(points={{-4,-34},{74,-34},{74,-68},{42,
           -68},{42,-60}}, color={0,0,127}));
   connect(intGreEquThr1.y, swi1.u2) annotation (Line(points={{16,-68},{34,-68},{
           34,-52},{42,-52}}, color={255,0,255}));
   connect(comHeaPumMod, intGreEquThr1.u) annotation (Line(points={{-120,0},{-38,
           0},{-38,-68},{-8,-68}}, color={255,127,0}));
-  connect(swi1.y, aixlib_HP_3D_integrated.TSupSet) annotation (Line(points={{66,
-          -52},{76,-52},{76,-12},{26,-12},{26,3.93},{32.02,3.93}}, color={0,0,127}));
+  connect(swi1.y, aixlib_HP_3D_integrated.TSupSet) annotation (Line(points={{66,-52},
+          {76,-52},{76,-12},{26,-12},{26,3.93},{34.02,3.93}},      color={0,0,127}));
   connect(TSubSet_dhw, replicator1.u) annotation (Line(points={{-24,122},{-24,94},
           {-26,94},{-26,86}}, color={0,0,127}));
   connect(replicator1.y, swi1.u1) annotation (Line(points={{-26,63},{-26,50},{-2,
@@ -178,7 +178,7 @@ equation
           {18,-50},{-28,-50},{-28,-42}}, color={0,0,127}));
   connect(intGreEquThr.y, swi.u2) annotation (Line(points={{-6,-4},{2,-4},{2,-26},
           {4,-26},{4,-52},{-36,-52},{-36,-34},{-28,-34}}, color={255,0,255}));
-  connect(aixlib_HP_3D_integrated.port_b, mov.port_a) annotation (Line(points={{71.44,
+  connect(aixlib_HP_3D_integrated.port_b, mov.port_a) annotation (Line(points={{73.44,
           17.84},{74,18},{110,18}},       color={0,127,255}));
   connect(not1.y, booToRea.u) annotation (Line(points={{36,54},{92,54},{92,72},
           {124,72},{124,64},{134,64}}, color={255,0,255}));
@@ -186,8 +186,8 @@ equation
           -68},{40,-90},{62,-90}}, color={255,0,255}));
   connect(mov.port_b, val1.port_2)
     annotation (Line(points={{130,18},{146,18},{146,6}}, color={0,127,255}));
-  connect(val.port_2, aixlib_HP_3D_integrated.port_a) annotation (Line(points={
-          {-58,-20},{-40,-20},{-40,-54},{24,-54},{24,18.1},{32.2,18.1}}, color=
+  connect(val.port_2, aixlib_HP_3D_integrated.port_a) annotation (Line(points={{-58,-20},
+          {-40,-20},{-40,-54},{24,-54},{24,18.1},{34.2,18.1}},           color=
           {0,127,255}));
   connect(booToRea1.y, val1.y) annotation (Line(points={{86,-90},{168,-90},{168,
           -16},{178,-16},{178,20},{156,20},{156,18}}, color={0,0,127}));
