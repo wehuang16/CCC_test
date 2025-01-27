@@ -64,7 +64,7 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
     "top tank tempearture" annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
-        origin={382,-48})));
+        origin={374,-42})));
   Modelica.Blocks.Interfaces.RealInput TZoneAir[3] annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
@@ -143,24 +143,6 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
     dp1_nominal=10,
     dp2_nominal=10,
     eps=0.45) annotation (Placement(transformation(extent={{478,12},{498,32}})));
-  Buildings.Fluid.Movers.SpeedControlled_y     pump[3](
-    redeclare package Medium = MediumPropyleneGlycol,
-    per={Buildings.Fluid.Movers.Data.Generic(
-        pressure=pressure(
-          V_flow={5.55555555556e-07,fcu_water_flow_nominal/1000},
-          dp={17066.9518717,0}))},
-    addPowerToMedium=false)
-    annotation (Placement(transformation(extent={{396,16},{416,36}})));
-  Buildings.Fluid.Movers.SpeedControlled_y     fan[3](
-    redeclare package Medium = MediumAir,
-    per={Buildings.Fluid.Movers.Data.Generic(
-        pressure=pressure(
-          V_flow={0.0941802252816019,fcu_air_flow_nominal/1.2},
-          dp={2684.68468468468,0}))},
-    addPowerToMedium=false) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={542,-30})));
   Buildings.Controls.OBC.CDL.Reals.LessThreshold lesThr[3](t=
         zone_temp_heating_setpoint, h=1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
@@ -181,6 +163,46 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
     annotation (Placement(transformation(extent={{482,148},{502,168}})));
   Buildings.Controls.OBC.CDL.Integers.Sources.Constant conInt5[3](k=0)
     annotation (Placement(transformation(extent={{426,130},{446,150}})));
+  Buildings.Controls.OBC.CDL.Reals.LessThreshold lesThr1
+                                                       [3](t=
+        zone_temp_heating_setpoint, h=1) annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={626,104})));
+  Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr1
+                                                          [3](t=
+        zone_temp_cooling_setpoint, h=1) annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={628,214})));
+  Buildings.Controls.OBC.CDL.Integers.GreaterThreshold intGreThr[3]
+    annotation (Placement(transformation(extent={{622,252},{642,272}})));
+  Buildings.Controls.OBC.CDL.Integers.LessThreshold intLesThr[3]
+    annotation (Placement(transformation(extent={{620,136},{640,156}})));
+  Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator reaScaRep(nout=3)
+    annotation (Placement(transformation(extent={{542,96},{562,116}})));
+  Buildings.Controls.OBC.CDL.Logical.And and2[3]
+    annotation (Placement(transformation(extent={{670,226},{690,246}})));
+  Buildings.Controls.OBC.CDL.Logical.Or or2[3]
+    annotation (Placement(transformation(extent={{730,148},{750,168}})));
+  Buildings.Controls.OBC.CDL.Logical.And and1[3]
+    annotation (Placement(transformation(extent={{674,102},{694,122}})));
+  Buildings.Controls.OBC.CDL.Conversions.BooleanToReal booToRea1[3]
+    annotation (Placement(transformation(extent={{760,82},{780,102}})));
+  Buildings.Fluid.Movers.SpeedControlled_y pump[3](
+    redeclare package Medium = MediumPropyleneGlycol,
+    redeclare Buildings.Fluid.Movers.Data.Pumps.Wilo.Stratos25slash1to4 per(
+        pressure(V_flow={5.55555555556e-07,fcu_water_flow_nominal/1000}, dp={
+            17066.9518717,0})),
+    addPowerToMedium=false)
+    annotation (Placement(transformation(extent={{380,14},{400,34}})));
+  Buildings.Fluid.Movers.SpeedControlled_y fan[3](
+    redeclare package Medium = MediumAir,
+    redeclare Buildings.Fluid.Movers.Data.Fans.Greenheck.BIDW12 per(pressure(
+          V_flow={0.0941802252816019,fcu_air_flow_nominal/1.2}, dp={
+            2684.68468468468,0})),
+    addPowerToMedium=false)
+    annotation (Placement(transformation(extent={{542,-40},{562,-20}})));
 equation
   connect(TOut, heatingTable.u) annotation (Line(points={{408,-440},{408,-388},
           {406,-388},{406,-380}}, color={0,0,127}));
@@ -191,10 +213,12 @@ equation
   connect(switch1.y, BufferTankTempSetpoint) annotation (Line(points={{446,-319},
           {304,-319},{304,-346},{166,-346},{166,-368},{140,-368}}, color={0,0,
           127}));
-  connect(tempBufferTanTop.port, tan.heaPorVol[1]) annotation (Line(points={{372,-48},
-          {314,-48},{314,-106.15}},         color={191,0,0}));
-  connect(tempBufferTanTop.T, BufferTankTemp) annotation (Line(points={{393,-48},
-          {422,-48},{422,-36},{450,-36},{450,-412},{140,-412}}, color={0,0,127}));
+  connect(tempBufferTanTop.port, tan.heaPorVol[1]) annotation (Line(points={{364,-42},
+          {336,-42},{336,-106.15},{314,-106.15}},
+                                            color={191,0,0}));
+  connect(tempBufferTanTop.T, BufferTankTemp) annotation (Line(points={{385,-42},
+          {388,-42},{388,-260},{368,-260},{368,-444},{140,-444},{140,-412}},
+                                                                color={0,0,127}));
   connect(BufTanFlo.port_b, tan.port_a) annotation (Line(points={{274,-190},{
           286,-190},{286,-38},{314,-38},{314,-96}}, color={0,127,255}));
   connect(tan.port_b, port_b5) annotation (Line(points={{314,-116},{314,-422},{
@@ -203,10 +227,12 @@ equation
     annotation (Line(points={{240,-98},{240,-122}}, color={0,127,255}));
   connect(val.port_b, BufTanFlo.port_a) annotation (Line(points={{240,-142},{
           240,-190},{254,-190}}, color={0,127,255}));
-  connect(tempBufferTanTop.T, les.u1) annotation (Line(points={{393,-48},{394,
-          -48},{394,-304},{388,-304}}, color={0,0,127}));
-  connect(gre.u1, tempBufferTanTop.T) annotation (Line(points={{500,-294},{492,
-          -294},{492,-48},{393,-48}}, color={0,0,127}));
+  connect(tempBufferTanTop.T, les.u1) annotation (Line(points={{385,-42},{388,
+          -42},{388,-260},{368,-260},{368,-312},{388,-312},{388,-304}},
+                                       color={0,0,127}));
+  connect(gre.u1, tempBufferTanTop.T) annotation (Line(points={{500,-294},{500,
+          -300},{468,-300},{468,-128},{388,-128},{388,-42},{385,-42}},
+                                      color={0,0,127}));
   connect(les.y, logSwi.u1) annotation (Line(points={{388,-280},{388,-264},{410,
           -264},{410,-242}},
                   color={255,0,255}));
@@ -266,20 +292,12 @@ equation
           -342},{454,-342}}, color={0,0,127}));
   connect(coolingTable.y[1], gre.u2) annotation (Line(points={{482,-365},{482,-308},
           {508,-308},{508,-294}}, color={0,0,127}));
-  connect(FCUWatFlo.port_b, pump.port_a)
-    annotation (Line(points={{344,26},{396,26}}, color={0,127,255}));
-  connect(pump.port_b, hex.port_a1)
-    annotation (Line(points={{416,26},{420,28},{478,28}}, color={0,0,127}));
   connect(hex[1].port_b1, tan.port_b) annotation (Line(points={{498,28},{512,28},
           {512,-116},{314,-116}}, color={0,127,255}));
   connect(hex[2].port_b1, tan.port_b) annotation (Line(points={{498,28},{502,28},
           {502,-116},{314,-116}}, color={0,127,255}));
   connect(hex[3].port_b1, tan.port_b) annotation (Line(points={{498,28},{506,28},
           {506,-124},{314,-124},{314,-116}}, color={0,127,255}));
-  connect(hex.port_b2, fan.port_a) annotation (Line(points={{478,16},{466,16},{466,
-          -30},{532,-30}}, color={0,127,255}));
-  connect(fan.port_b, port_b) annotation (Line(points={{552,-30},{552,-154},{646,
-          -154}}, color={0,0,127}));
   connect(hex.port_a2, port_a) annotation (Line(points={{498,16},{520,16},{520,14},
           {542,14},{542,44},{154,44},{154,-154}}, color={0,127,255}));
   connect(TZoneAir, lesThr.u) annotation (Line(points={{418,-88},{424,-88},{424,
@@ -301,6 +319,43 @@ equation
   connect(intSwi2.y, bufferTankModeController2_1.ModeFcu) annotation (Line(
         points={{530,194},{560,194},{560,196},{598,196},{598,60},{624,60}},
         color={255,127,0}));
+  connect(intSwi2.y, intGreThr.u) annotation (Line(points={{530,194},{608,194},
+          {608,262},{620,262}}, color={255,127,0}));
+  connect(intSwi2.y, intLesThr.u) annotation (Line(points={{530,194},{608,194},
+          {608,146},{618,146}}, color={255,127,0}));
+  connect(tempBufferTanTop.T, reaScaRep.u) annotation (Line(points={{385,-42},{
+          385,-44},{440,-44},{440,80},{528,80},{528,106},{540,106}}, color={0,0,
+          127}));
+  connect(reaScaRep.y, greThr1.u) annotation (Line(points={{564,106},{604,106},
+          {604,214},{616,214}}, color={0,0,127}));
+  connect(reaScaRep.y, lesThr1.u) annotation (Line(points={{564,106},{608,106},
+          {608,104},{614,104}}, color={0,0,127}));
+  connect(intGreThr.y, and2.u1) annotation (Line(points={{644,262},{656,262},{
+          656,236},{668,236}}, color={255,0,255}));
+  connect(greThr1.y, and2.u2) annotation (Line(points={{640,214},{668,214},{668,
+          228}}, color={255,0,255}));
+  connect(intLesThr.y, and1.u1) annotation (Line(points={{642,146},{660,146},{
+          660,112},{672,112}}, color={255,0,255}));
+  connect(lesThr1.y, and1.u2)
+    annotation (Line(points={{638,104},{672,104}}, color={255,0,255}));
+  connect(and2.y, or2.u1) annotation (Line(points={{692,236},{716,236},{716,158},
+          {728,158}}, color={255,0,255}));
+  connect(and1.y, or2.u2) annotation (Line(points={{696,112},{716,112},{716,150},
+          {728,150}}, color={255,0,255}));
+  connect(or2.y, booToRea1.u) annotation (Line(points={{752,158},{760,158},{760,
+          112},{752,112},{752,92},{758,92}}, color={255,0,255}));
+  connect(FCUWatFlo.port_b, pump.port_a) annotation (Line(points={{344,26},{372,
+          26},{372,24},{380,24}}, color={0,127,255}));
+  connect(pump.port_b, hex.port_a1) annotation (Line(points={{400,24},{472,24},
+          {472,28},{478,28}}, color={0,127,255}));
+  connect(hex.port_b2, fan.port_a) annotation (Line(points={{478,16},{480,16},{
+          480,-30},{542,-30}}, color={0,127,255}));
+  connect(fan.port_b, port_b) annotation (Line(points={{562,-30},{586,-30},{586,
+          -34},{602,-34},{602,-154},{646,-154}}, color={0,127,255}));
+  connect(booToRea1.y, fan.y) annotation (Line(points={{782,92},{790,92},{790,
+          -10},{552,-10},{552,-18}}, color={0,0,127}));
+  connect(booToRea1.y, pump.y) annotation (Line(points={{782,92},{808,92},{808,
+          62},{390,62},{390,36}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{160,
             -420},{640,-100}}), graphics={
         Rectangle(
