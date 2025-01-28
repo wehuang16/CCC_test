@@ -1,4 +1,4 @@
-﻿within CCC_test.Examples;
+within CCC_test.Examples;
 model HeatPump "Example for the reversible heat pump model."
  extends Modelica.Icons.Example;
 

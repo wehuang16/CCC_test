@@ -1,4 +1,4 @@
-﻿within CCC_test.Examples;
+within CCC_test.Examples;
 model TableHpPerformance
   "Interpolate diode characteristics using the NDTable block"
   extends Modelica.Icons.Example;

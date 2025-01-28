@@ -1,5 +1,5 @@
 within CCC_test.CCC_Model;
-model TRC_1BufferTank_3fcus_fake2
+model TRC_1BufferTank_3fcus_fake3
             package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
     package MediumPropyleneGlycol =
@@ -189,21 +189,32 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
     annotation (Placement(transformation(extent={{674,102},{694,122}})));
   Buildings.Controls.OBC.CDL.Conversions.BooleanToReal booToRea1[3]
     annotation (Placement(transformation(extent={{760,82},{780,102}})));
-  Buildings.Fluid.Movers.SpeedControlled_y pump[3](
+  Buildings.Fluid.Movers.FlowControlled_m_flow
+                                           pump[3](
     redeclare package Medium = MediumPropyleneGlycol,
-    redeclare each parameter
-      Buildings.Fluid.Movers.Data.Pumps.Wilo.Stratos25slash1to4 per(pressure(
-          V_flow={5.55555555556e-07,fcu_water_flow_nominal/1000}, dp={
-            17066.9518717,0})),
+    m_flow_nominal=fcu_water_flow_nominal,
     addPowerToMedium=false)
     annotation (Placement(transformation(extent={{380,14},{400,34}})));
-  Buildings.Fluid.Movers.SpeedControlled_y fan[3](
+  Buildings.Fluid.Movers.FlowControlled_m_flow
+                                           fan[3](
     redeclare package Medium = MediumAir,
-    redeclare each parameter Buildings.Fluid.Movers.Data.Fans.Greenheck.BIDW12
-      per(pressure(V_flow={0.0941802252816019,fcu_air_flow_nominal/1.2}, dp={
-            2684.68468468468,0})),
+    m_flow_nominal=fcu_air_flow_nominal,
     addPowerToMedium=false)
     annotation (Placement(transformation(extent={{542,-40},{562,-20}})));
+  Buildings.Controls.OBC.CDL.Logical.Not not3
+    annotation (Placement(transformation(extent={{156,-244},{176,-224}})));
+  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel1(delayTime=120)
+    annotation (Placement(transformation(extent={{194,-240},{214,-220}})));
+  Buildings.Controls.OBC.CDL.Logical.Not not4
+    annotation (Placement(transformation(extent={{234,-244},{254,-224}})));
+  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel(delayTime=120)
+    annotation (Placement(transformation(extent={{528,-244},{548,-224}})));
+  Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai[3](k=
+        fcu_water_flow_nominal)
+    annotation (Placement(transformation(extent={{304,92},{324,112}})));
+  Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai1[3](k=
+        fcu_air_flow_nominal)
+    annotation (Placement(transformation(extent={{574,0},{594,20}})));
 equation
   connect(TOut, heatingTable.u) annotation (Line(points={{408,-440},{408,-388},
           {406,-388},{406,-380}}, color={0,0,127}));
@@ -280,11 +291,6 @@ equation
   connect(bufferTankModeController2_1.ModeBufferTank, xor.u2) annotation (Line(
         points={{648,59.8},{660,59.8},{660,74},{94,74},{94,-302},{208,-302},{
           208,-296}}, color={255,0,255}));
-  connect(logSwi.y, intSwi1.u2) annotation (Line(points={{418,-218},{424,-218},
-          {424,-198},{558,-198},{558,-260},{582,-260}}, color={255,0,255}));
-  connect(logSwi1.y, booToRea.u) annotation (Line(points={{352,-286},{360,-286},
-          {360,-266},{362,-266},{362,-208},{266,-208},{266,-238},{284,-238}},
-        color={255,0,255}));
   connect(heatingTable.y[1], switch1.u1) annotation (Line(points={{406,-357},{406,
           -344},{428,-344},{428,-352},{438,-352},{438,-342}}, color={0,0,127}));
   connect(heatingTable.y[1], les.u2) annotation (Line(points={{406,-357},{406,-312},
@@ -353,10 +359,27 @@ equation
           480,-30},{542,-30}}, color={0,127,255}));
   connect(fan.port_b, port_b) annotation (Line(points={{562,-30},{586,-30},{586,
           -34},{602,-34},{602,-154},{646,-154}}, color={0,127,255}));
-  connect(booToRea1.y, fan.y) annotation (Line(points={{782,92},{790,92},{790,
-          -10},{552,-10},{552,-18}}, color={0,0,127}));
-  connect(booToRea1.y, pump.y) annotation (Line(points={{782,92},{808,92},{808,
-          62},{390,62},{390,36}}, color={0,0,127}));
+  connect(logSwi1.y,not3. u) annotation (Line(points={{352,-286},{344,-286},{344,
+          -204},{138,-204},{138,-234},{154,-234}}, color={255,0,255}));
+  connect(not3.y,truDel1. u) annotation (Line(points={{178,-234},{178,-214},{192,
+          -214},{192,-230}},     color={255,0,255}));
+  connect(truDel1.y,not4. u) annotation (Line(points={{216,-230},{224,-230},{224,
+          -234},{232,-234}},     color={255,0,255}));
+  connect(not4.y, booToRea.u) annotation (Line(points={{256,-234},{270,-234},{270,
+          -238},{284,-238}},     color={255,0,255}));
+  connect(truDel.y, intSwi1.u2) annotation (Line(points={{550,-234},{566,-234},{
+          566,-260},{582,-260}},  color={255,0,255}));
+  connect(logSwi.y,truDel. u) annotation (Line(points={{418,-218},{518,-218},{518,
+          -234},{526,-234}},
+                      color={255,0,255}));
+  connect(gai.y, pump.m_flow_in) annotation (Line(points={{326,102},{344,102},{344,
+          100},{390,100},{390,36}}, color={0,0,127}));
+  connect(gai1.y, fan.m_flow_in)
+    annotation (Line(points={{596,10},{596,-18},{552,-18}}, color={0,0,127}));
+  connect(booToRea1.y, gai1.u) annotation (Line(points={{782,92},{792,92},{792,98},
+          {798,98},{798,34},{572,34},{572,10}}, color={0,0,127}));
+  connect(booToRea1.y, gai.u) annotation (Line(points={{782,92},{808,92},{808,-52},
+          {248,-52},{248,102},{302,102}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{160,
             -420},{640,-100}}), graphics={
         Rectangle(
@@ -591,4 +614,4 @@ equation
           fillPattern=FillPattern.Solid)}),                      Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{160,-420},{640,
             -100}})));
-end TRC_1BufferTank_3fcus_fake2;
+end TRC_1BufferTank_3fcus_fake3;
