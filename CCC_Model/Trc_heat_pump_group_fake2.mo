@@ -96,11 +96,13 @@ model Trc_heat_pump_group_fake2
     annotation (Placement(transformation(extent={{136,54},{156,74}})));
   Buildings.Fluid.Actuators.Valves.ThreeWayLinear val[numHeaPum](
     redeclare package Medium = MediumPropyleneGlycol,
+    y_start=0,
     m_flow_nominal=mHpCon_flow_nominal,
     dpValve_nominal=1)
     annotation (Placement(transformation(extent={{-78,-30},{-58,-10}})));
   Buildings.Fluid.Actuators.Valves.ThreeWayLinear val1[numHeaPum](
     redeclare package Medium = MediumPropyleneGlycol,
+    y_start=0,
     m_flow_nominal=mHpCon_flow_nominal,
     dpValve_nominal=1)
     annotation (Placement(transformation(extent={{166,-4},{146,16}})));
