@@ -70,7 +70,7 @@ parameter Integer numZon=54 "number of zones";
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant conRea5[6](k={1.1,1.08,1.05,
         0.6,1.3,0.5}) "Real inputs"
     annotation (Placement(transformation(extent={{46,118},{66,138}})));
-  TRC_1BufferTank_3fcus_fake3                 tRC_1BufferTank_3fcus_fake3_1
+  TRC_1BufferTank_3fcus_fake3Pid              tRC_1BufferTank_3fcus_fake3Pid
                                                                    [numApa](
       zone_temp_cooling_setpoint=297.04, zone_temp_heating_setpoint=294.26)
     annotation (Placement(transformation(extent={{20,-58},{68,-26}})));
@@ -106,27 +106,27 @@ equation
         points={{-37.6,26.2},{-37.6,78},{-152,78}}, color={0,0,127}));
   connect(trc_heat_pump_group_fake2_1.TSubSet_scc, conRea4.y) annotation (Line(
         points={{-33.2,26.2},{-33.2,40},{-146,40}}, color={0,0,127}));
-  connect(tRC_1BufferTank_3fcus_fake3_1.port_a5, vol3.ports[2:numApa + 1])
+  connect(tRC_1BufferTank_3fcus_fake3Pid.port_a5, vol3.ports[2:numApa + 1])
     annotation (Line(points={{28,-25.8},{30,-25.8},{30,-18},{-10,-18},{-10,-26}},
         color={0,127,255}));
-  connect(tRC_1BufferTank_3fcus_fake3_1.port_b5, vol4.ports[2:numApa + 1])
+  connect(tRC_1BufferTank_3fcus_fake3Pid.port_b5, vol4.ports[2:numApa + 1])
     annotation (Line(points={{28,-58.2},{28,-62},{-192,-62},{-192,-16}}, color=
           {0,127,255}));
-  connect(booScaRep.y,tRC_1BufferTank_3fcus_fake3_1. heaCooMod) annotation (
+  connect(booScaRep.y, tRC_1BufferTank_3fcus_fake3Pid.heaCooMod) annotation (
       Line(points={{-30,-44},{8,-44},{8,-39.8},{17.6,-39.8}}, color={255,0,255}));
-  connect(reaScaRep.y,tRC_1BufferTank_3fcus_fake3_1. TOut) annotation (Line(
+  connect(reaScaRep.y, tRC_1BufferTank_3fcus_fake3Pid.TOut) annotation (Line(
         points={{40,-78},{40,-66},{44.8,-66},{44.8,-60}}, color={0,0,127}));
-  connect(tRC_1BufferTank_3fcus_fake3_1.RequestSpaCon,
+  connect(tRC_1BufferTank_3fcus_fake3Pid.RequestSpaCon,
     multipleHeatPumpZoneController.reqSpaCon) annotation (Line(points={{59.4,-60},
           {60,-60},{60,-78},{-148,-78},{-148,-18.6},{-120.2,-18.6}}, color={255,
           127,0}));
 
   connect(low_rise_rochester_designbuilder.TAir[2:4],
-    tRC_1BufferTank_3fcus_fake3_1[1].TZoneAir) annotation (Line(points={{38,
+    tRC_1BufferTank_3fcus_fake3Pid[1].TZoneAir) annotation (Line(points={{38,
           1.72727},{46,1.72727},{46,6},{45.8,6},{45.8,-24.8}}, color={0,0,127}));
 
   connect(low_rise_rochester_designbuilder.TAir[5:7],
-    tRC_1BufferTank_3fcus_fake3_1[2].TZoneAir) annotation (Line(points={{38,
+    tRC_1BufferTank_3fcus_fake3Pid[2].TZoneAir) annotation (Line(points={{38,
           1.83636},{46,1.83636},{46,6},{45.8,6},{45.8,-24.8}}, color={0,0,127}));
 /*
 connect(low_rise_rochester_designbuilder.TAir[44:46], tRC_1BufferTank_3fcus[3].TZoneAir)
@@ -146,12 +146,12 @@ annotation (Line(points={{38,3.58182},{46,3.58182},{46,6},{45.8,6},{45.8,-24.8}}
 color={0,0,127}));
 */
   connect(low_rise_rochester_designbuilder.port_b[2:4],
-    tRC_1BufferTank_3fcus_fake3_1[1].port_a) annotation (Line(points={{36.4,
+    tRC_1BufferTank_3fcus_fake3Pid[1].port_a) annotation (Line(points={{36.4,
           15.3636},{56,15.3636},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}}, color
         ={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_b[5:7],
-    tRC_1BufferTank_3fcus_fake3_1[2].port_a) annotation (Line(points={{36.4,
+    tRC_1BufferTank_3fcus_fake3Pid[2].port_a) annotation (Line(points={{36.4,
           15.4182},{56,15.4182},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}}, color
         ={0,127,255}));
 /*
@@ -177,12 +177,12 @@ annotation (Line(points={{36.4,16.2909},{56,16.2909},{56,-8},{14,-8},{14,-31.4},
                */
 
   connect(low_rise_rochester_designbuilder.port_a[2:4],
-    tRC_1BufferTank_3fcus_fake3_1[1].port_b) annotation (Line(points={{15.6,
+    tRC_1BufferTank_3fcus_fake3Pid[1].port_b) annotation (Line(points={{15.6,
           15.3636},{8,15.3636},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}}, color
         ={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_a[5:7],
-    tRC_1BufferTank_3fcus_fake3_1[2].port_b) annotation (Line(points={{15.6,
+    tRC_1BufferTank_3fcus_fake3Pid[2].port_b) annotation (Line(points={{15.6,
           15.4182},{8,15.4182},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}}, color
         ={0,127,255}));
 /*

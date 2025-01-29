@@ -6,7 +6,7 @@ model BufferTankGroupUnitTest
     package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
-  CCC_test.CCC_Model.TRC_1BufferTank_3fcus_fake3
+  TRC_1BufferTank_3fcus_fake3Pid
     arisBufferTankGroup_contained
     annotation (Placement(transformation(extent={{6,2},{54,34}})));
   Modelica.Fluid.Sources.Boundary_pT boundary3(
@@ -20,9 +20,9 @@ model BufferTankGroupUnitTest
   Modelica.Blocks.Sources.Constant const6(k=273.15 + 50)
     annotation (Placement(transformation(extent={{-178,74},{-158,94}})));
   Modelica.Blocks.Sources.Sine     sine(
-    amplitude=5,
+    amplitude=6,
     f=0.00011574074,
-    offset=273.15 + 18)
+    offset=273.15 + 20)
     annotation (Placement(transformation(extent={{-276,-10},{-256,10}})));
   Modelica.Blocks.Sources.Sine     sine1(
     amplitude=5,
