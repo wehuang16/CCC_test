@@ -93,12 +93,12 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={240,-132})));
-  Buildings.Controls.OBC.CDL.Reals.Greater gre(h=4) annotation (Placement(
+  Buildings.Controls.OBC.CDL.Reals.Greater gre(h=5) annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={500,-282})));
-  Buildings.Controls.OBC.CDL.Reals.Less les(h=4) annotation (Placement(
+  Buildings.Controls.OBC.CDL.Reals.Less les(h=5) annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
@@ -135,8 +135,7 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
     annotation (Placement(transformation(extent={{248,-326},{268,-306}})));
   CCC.Fluid.BaseClasses.BufferTankModeController2 bufferTankModeController2_1
     annotation (Placement(transformation(extent={{626,50},{646,70}})));
-  CCC.Fluid.HeatExchangers.FanCoilUnitConstantEps      fanCoilUnitConstantEps
-                                                          [3](
+  CCC.Fluid.HeatExchangers.FanCoilUnitConstantEps fanCoilUnitConstantEps[3](
     redeclare package Medium1 = MediumPropyleneGlycol,
     redeclare package Medium2 = MediumAir,
     m1_flow_nominal=fcu_water_flow_nominal,

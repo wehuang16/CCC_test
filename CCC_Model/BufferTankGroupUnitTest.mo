@@ -119,7 +119,7 @@ equation
   connect(pump2.port_b, boundary6.ports[1]) annotation (Line(points={{14,-90},{114,
           -90},{114,-91},{118,-91}}, color={0,127,255}));
   connect(arisBufferTankGroup_contained.port_a5, boundary4.ports[1])
-    annotation (Line(points={{14,34.2},{16,34.2},{16,83},{-82,83}}, color={0,127,
+    annotation (Line(points={{14,34.2},{18,34.2},{18,83},{-82,83}}, color={0,127,
           255}));
   connect(booleanConstant.y, arisBufferTankGroup_contained.heaCooMod)
     annotation (Line(points={{-43,10},{-6,10},{-6,20.2},{3.6,20.2}}, color={255,
