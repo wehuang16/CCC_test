@@ -1,5 +1,5 @@
 within CCC_test.CCC_Model;
-model TRC_1BufferTank_3fcus
+model TRC_1BufferTank_3fcus_SimpleConstantAir_NoTable
             package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
     package MediumPropyleneGlycol =
@@ -8,33 +8,11 @@ model TRC_1BufferTank_3fcus
    parameter Modelica.Units.SI.MassFlowRate mHP_flow_nominal=0.92 "Nominal mass flow rate from the heat pump";
     parameter Modelica.Units.SI.MassFlowRate fcu_water_flow_nominal=0.11827;
 parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
-  replaceable parameter Modelica.Units.SI.Temperature zone_temp_cooling_setpoint=273.15+22
+  replaceable parameter Modelica.Units.SI.Temperature zone_temp_cooling_setpoint=273.15+23.89
     "Zone air temperature setpoint";
-     replaceable parameter Modelica.Units.SI.Temperature zone_temp_heating_setpoint=273.15+20
+     replaceable parameter Modelica.Units.SI.Temperature zone_temp_heating_setpoint=273.15+21.11
     "Zone air temperature setpoint";
 
-  CCC.Fluid.HeatExchangers.FanCoilUnitConstantAirSide
-    fanCoilUnit_hysteresis_air_control[3](
-    redeclare package Medium1 = MediumPropyleneGlycol,
-    m1_flow_nominal=fcu_water_flow_nominal,
-    m2_flow_nominal=fcu_air_flow_nominal,
-    zone_temp_cooling_setpoint=zone_temp_cooling_setpoint,
-    zone_temp_heating_setpoint=zone_temp_heating_setpoint,
-    dp1_nominal(displayUnit="Pa"),
-    dp2_nominal(displayUnit="Pa") = 0)
-    annotation (Placement(transformation(extent={{526,40},{546,60}})));
-  Buildings.Fluid.Movers.FlowControlled_m_flow pump[3](
-    redeclare package Medium = MediumPropyleneGlycol,
-    m_flow_nominal=fcu_water_flow_nominal,
-    addPowerToMedium=false)
-    annotation (Placement(transformation(extent={{378,20},{398,40}})));
-  Buildings.Fluid.Movers.FlowControlled_m_flow fan[3](
-    redeclare package Medium = MediumAir,
-    m_flow_nominal=fcu_air_flow_nominal,
-    addPowerToMedium=false) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={464,18})));
   Modelica.Fluid.Interfaces.FluidPort_a port_a[3](redeclare package Medium =
         MediumAir)
     annotation (Placement(transformation(extent={{144,-164},{164,-144}})));
@@ -52,18 +30,6 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
         extent={{-20,-20},{20,20}},
         rotation=90,
         origin={408,-440})));
-  Modelica.Blocks.Tables.CombiTable1Ds heatingTable(table=[273.15 - 6.7,273.15
-         + 45; 273.15 + 4.4,273.15 + 35],   extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
-    annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=90,
-        origin={406,-368})));
-  Modelica.Blocks.Tables.CombiTable1Ds coolingTable(table=[273.15 + 21.1,273.15
-         + 18.3; 273.15 + 37.8,273.15 + 7.2], extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
-    annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=90,
-        origin={482,-376})));
   Modelica.Blocks.Logical.Switch switch1 annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
@@ -86,7 +52,7 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
     "top tank tempearture" annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
-        origin={382,-48})));
+        origin={374,-42})));
   Modelica.Blocks.Interfaces.RealInput TZoneAir[3] annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
@@ -115,12 +81,12 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={240,-132})));
-  Buildings.Controls.OBC.CDL.Reals.Greater gre(h=1) annotation (Placement(
+  Buildings.Controls.OBC.CDL.Reals.Greater gre(h=5) annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={500,-282})));
-  Buildings.Controls.OBC.CDL.Reals.Less les(h=1) annotation (Placement(
+  Buildings.Controls.OBC.CDL.Reals.Less les(h=5) annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
@@ -157,24 +123,56 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
     annotation (Placement(transformation(extent={{248,-326},{268,-306}})));
   CCC.Fluid.BaseClasses.BufferTankModeController2 bufferTankModeController2_1
     annotation (Placement(transformation(extent={{626,50},{646,70}})));
+  CCC.Fluid.HeatExchangers.FanCoilUnitConstantEpsConstantAirSide fanCoilUnit[3](
+    redeclare package Medium1 = MediumPropyleneGlycol,
+    redeclare package Medium2 = MediumAir,
+    m1_flow_nominal=fcu_water_flow_nominal,
+    m2_flow_nominal=fcu_air_flow_nominal,
+    dp1_nominal=10,
+    dp2_nominal=10,
+    eps=0.45) annotation (Placement(transformation(extent={{478,12},{498,32}})));
+  Buildings.Fluid.Movers.FlowControlled_m_flow
+                                           pump[3](
+    redeclare package Medium = MediumPropyleneGlycol,
+    m_flow_nominal=fcu_water_flow_nominal,
+    addPowerToMedium=false)
+    annotation (Placement(transformation(extent={{380,14},{400,34}})));
+  Buildings.Fluid.Movers.FlowControlled_m_flow
+                                           fan[3](
+    redeclare package Medium = MediumAir,
+    m_flow_nominal=fcu_air_flow_nominal,
+    addPowerToMedium=false)
+    annotation (Placement(transformation(extent={{542,-40},{562,-20}})));
+  Buildings.Controls.OBC.CDL.Logical.Not not3
+    annotation (Placement(transformation(extent={{156,-244},{176,-224}})));
+  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel1(delayTime=120)
+    annotation (Placement(transformation(extent={{194,-240},{214,-220}})));
+  Buildings.Controls.OBC.CDL.Logical.Not not4
+    annotation (Placement(transformation(extent={{234,-244},{254,-224}})));
+  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel(delayTime=120)
+    annotation (Placement(transformation(extent={{528,-244},{548,-224}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant conInt3[3](k=
+        zone_temp_cooling_setpoint)
+    annotation (Placement(transformation(extent={{406,-36},{426,-16}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant conInt4[3](k=
+        zone_temp_heating_setpoint)
+    annotation (Placement(transformation(extent={{444,-44},{464,-24}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant conInt5(k=273.15 + 10)
+    annotation (Placement(transformation(extent={{464,-402},{484,-382}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant conInt6(k=273.15 + 40)
+    annotation (Placement(transformation(extent={{382,-396},{402,-376}})));
 equation
-  connect(TOut, heatingTable.u) annotation (Line(points={{408,-440},{408,-388},
-          {406,-388},{406,-380}}, color={0,0,127}));
-  connect(TOut, coolingTable.u) annotation (Line(points={{408,-440},{408,-398},
-          {482,-398},{482,-388}}, color={0,0,127}));
-  connect(switch1.u3, coolingTable.y[1]) annotation (Line(points={{454,-342},{
-          454,-360},{482,-360},{482,-365}}, color={0,0,127}));
   connect(BufferTankTempSetpoint, BufferTankTempSetpoint)
     annotation (Line(points={{140,-368},{140,-368}}, color={0,0,127}));
   connect(switch1.y, BufferTankTempSetpoint) annotation (Line(points={{446,-319},
           {304,-319},{304,-346},{166,-346},{166,-368},{140,-368}}, color={0,0,
           127}));
-  connect(tempBufferTanTop.port, tan.heaPorVol[1]) annotation (Line(points={{372,-48},
-          {314,-48},{314,-106.15}},         color={191,0,0}));
-  connect(heatingTable.y[1], switch1.u1) annotation (Line(points={{406,-357},{
-          406,-354},{438,-354},{438,-342}}, color={0,0,127}));
-  connect(tempBufferTanTop.T, BufferTankTemp) annotation (Line(points={{393,-48},
-          {422,-48},{422,-36},{450,-36},{450,-412},{140,-412}}, color={0,0,127}));
+  connect(tempBufferTanTop.port, tan.heaPorVol[1]) annotation (Line(points={{364,-42},
+          {336,-42},{336,-106.15},{314,-106.15}},
+                                            color={191,0,0}));
+  connect(tempBufferTanTop.T, BufferTankTemp) annotation (Line(points={{385,-42},
+          {388,-42},{388,-260},{368,-260},{368,-444},{140,-444},{140,-412}},
+                                                                color={0,0,127}));
   connect(BufTanFlo.port_b, tan.port_a) annotation (Line(points={{274,-190},{
           286,-190},{286,-38},{314,-38},{314,-96}}, color={0,127,255}));
   connect(tan.port_b, port_b5) annotation (Line(points={{314,-116},{314,-422},{
@@ -183,14 +181,12 @@ equation
     annotation (Line(points={{240,-98},{240,-122}}, color={0,127,255}));
   connect(val.port_b, BufTanFlo.port_a) annotation (Line(points={{240,-142},{
           240,-190},{254,-190}}, color={0,127,255}));
-  connect(heatingTable.y[1], les.u2) annotation (Line(points={{406,-357},{406,
-          -312},{396,-312},{396,-304}}, color={0,0,127}));
-  connect(coolingTable.y[1], gre.u2) annotation (Line(points={{482,-365},{482,
-          -296},{508,-296},{508,-294}}, color={0,0,127}));
-  connect(tempBufferTanTop.T, les.u1) annotation (Line(points={{393,-48},{394,
-          -48},{394,-304},{388,-304}}, color={0,0,127}));
-  connect(gre.u1, tempBufferTanTop.T) annotation (Line(points={{500,-294},{492,
-          -294},{492,-48},{393,-48}}, color={0,0,127}));
+  connect(tempBufferTanTop.T, les.u1) annotation (Line(points={{385,-42},{388,
+          -42},{388,-260},{368,-260},{368,-312},{388,-312},{388,-304}},
+                                       color={0,0,127}));
+  connect(gre.u1, tempBufferTanTop.T) annotation (Line(points={{500,-294},{500,
+          -300},{468,-300},{468,-128},{388,-128},{388,-42},{385,-42}},
+                                      color={0,0,127}));
   connect(les.y, logSwi.u1) annotation (Line(points={{388,-280},{388,-264},{410,
           -264},{410,-242}},
                   color={255,0,255}));
@@ -223,42 +219,8 @@ equation
           324,-96},{324,26}}, color={0,127,255}));
   connect(tan.port_a, FCUWatFlo[2].port_a) annotation (Line(points={{314,-96},{
           324,-96},{324,26}}, color={0,127,255}));
-  connect(tan.port_a, FCUWatFlo[3].port_a) annotation (Line(points={{314,-96},{
-          324,-96},{324,26}}, color={0,127,255}));
-  connect(FCUWatFlo.port_b, pump.port_a) annotation (Line(points={{344,26},{344,
-          -68},{378,-68},{378,30}}, color={0,127,255}));
-  connect(pump.port_b, fanCoilUnit_hysteresis_air_control.port_a1) annotation (
-      Line(points={{398,30},{398,-68},{525.8,-68},{525.8,54.4}}, color={0,127,
-          255}));
-  connect(fanCoilUnit_hysteresis_air_control.m_flow_water, pump.m_flow_in)
-    annotation (Line(points={{547.2,58.2},{547.2,-72},{388,-72},{388,42}},
-        color={0,0,127}));
-  connect(TZoneAir, fanCoilUnit_hysteresis_air_control.TZon) annotation (Line(
-        points={{418,-88},{418,-104},{496,-104},{496,-70},{540.4,-70},{540.4,38}},
-        color={0,0,127}));
-  connect(tan.port_b, fanCoilUnit_hysteresis_air_control[1].port_b1)
-    annotation (Line(points={{314,-116},{314,-118},{316,-118},{316,-128},{382,
-          -128},{382,-68},{546.2,-68},{546.2,54.4}}, color={0,127,255}));
-  connect(tan.port_b, fanCoilUnit_hysteresis_air_control[2].port_b1)
-    annotation (Line(points={{314,-116},{314,-118},{316,-118},{316,-128},{382,
-          -128},{382,-68},{546.2,-68},{546.2,54.4}}, color={0,127,255}));
-  connect(tan.port_b, fanCoilUnit_hysteresis_air_control[3].port_b1)
-    annotation (Line(points={{314,-116},{314,-118},{316,-118},{316,-128},{382,
-          -128},{382,-68},{546.2,-68},{546.2,54.4}}, color={0,127,255}));
-  connect(port_a, fanCoilUnit_hysteresis_air_control.port_a2) annotation (Line(
-        points={{154,-154},{300,-154},{300,-150},{592,-150},{592,44.8},{546.2,
-          44.8}}, color={0,127,255}));
-  connect(fan.port_a, fanCoilUnit_hysteresis_air_control.port_b2) annotation (
-      Line(points={{454,18},{450,18},{450,28},{446,28},{446,45},{525.8,45}},
-        color={0,127,255}));
-  connect(fan.port_b, port_b) annotation (Line(points={{474,18},{576,18},{576,
-          24},{646,24},{646,-154}}, color={0,127,255}));
-  connect(fan.m_flow_in, fanCoilUnit_hysteresis_air_control.m_flow_air)
-    annotation (Line(points={{464,30},{570,30},{570,41.8},{547.2,41.8}}, color=
-          {0,0,127}));
-  connect(fanCoilUnit_hysteresis_air_control.FcuMode,
-    bufferTankModeController2_1.ModeFcu) annotation (Line(points={{528.8,38},{
-          530,38},{530,28},{618,28},{618,60},{624,60}}, color={255,127,0}));
+  connect(tan.port_a, FCUWatFlo[3].port_a) annotation (Line(points={{314,-96},{324,
+          -96},{324,26}},     color={0,127,255}));
   connect(bufferTankModeController2_1.ModeBufferTank, intSwi.u2) annotation (
       Line(points={{648,59.8},{674,59.8},{674,-204},{584,-204}}, color={255,0,
           255}));
@@ -271,11 +233,61 @@ equation
   connect(bufferTankModeController2_1.ModeBufferTank, xor.u2) annotation (Line(
         points={{648,59.8},{660,59.8},{660,74},{94,74},{94,-302},{208,-302},{
           208,-296}}, color={255,0,255}));
-  connect(logSwi.y, intSwi1.u2) annotation (Line(points={{418,-218},{424,-218},
-          {424,-198},{558,-198},{558,-260},{582,-260}}, color={255,0,255}));
-  connect(logSwi1.y, booToRea.u) annotation (Line(points={{352,-286},{360,-286},
-          {360,-266},{362,-266},{362,-208},{266,-208},{266,-238},{284,-238}},
-        color={255,0,255}));
+  connect(fanCoilUnit.port_a2, port_a) annotation (Line(points={{498.111,16.8},
+          {520,16.8},{520,14},{542,14},{542,44},{154,44},{154,-154}}, color={0,
+          127,255}));
+  connect(FCUWatFlo.port_b, pump.port_a) annotation (Line(points={{344,26},{372,
+          26},{372,24},{380,24}}, color={0,127,255}));
+  connect(pump.port_b, fanCoilUnit.port_a1) annotation (Line(points={{400,24},{
+          472,24},{472,26},{477.889,26}}, color={0,127,255}));
+  connect(fanCoilUnit.port_b2, fan.port_a) annotation (Line(points={{477.889,
+          16.6},{480,16.6},{480,-30},{542,-30}}, color={0,127,255}));
+  connect(fan.port_b, port_b) annotation (Line(points={{562,-30},{586,-30},{586,
+          -34},{602,-34},{602,-154},{646,-154}}, color={0,127,255}));
+  connect(logSwi1.y,not3. u) annotation (Line(points={{352,-286},{344,-286},{344,
+          -204},{138,-204},{138,-234},{154,-234}}, color={255,0,255}));
+  connect(not3.y,truDel1. u) annotation (Line(points={{178,-234},{178,-214},{192,
+          -214},{192,-230}},     color={255,0,255}));
+  connect(truDel1.y,not4. u) annotation (Line(points={{216,-230},{224,-230},{224,
+          -234},{232,-234}},     color={255,0,255}));
+  connect(not4.y, booToRea.u) annotation (Line(points={{256,-234},{270,-234},{270,
+          -238},{284,-238}},     color={255,0,255}));
+  connect(truDel.y, intSwi1.u2) annotation (Line(points={{550,-234},{566,-234},{
+          566,-260},{582,-260}},  color={255,0,255}));
+  connect(logSwi.y,truDel. u) annotation (Line(points={{418,-218},{518,-218},{518,
+          -234},{526,-234}},
+                      color={255,0,255}));
+  connect(fanCoilUnit.m_flow_air, fan.m_flow_in) annotation (Line(points={{
+          498.667,13.8},{498.667,4},{552,4},{552,-18}}, color={0,0,127}));
+  connect(pump.m_flow_in, fanCoilUnit.m_flow_water) annotation (Line(points={{
+          390,36},{388,36},{388,50},{498.667,50},{498.667,30.2}}, color={0,0,
+          127}));
+  connect(TZoneAir, fanCoilUnit.TZon) annotation (Line(points={{418,-88},{
+          494.889,-88},{494.889,10}}, color={0,0,127}));
+  connect(fanCoilUnit[1].port_b1, tan.port_b) annotation (Line(points={{498.111,
+          26.4},{498.111,-116},{314,-116}}, color={0,127,255}));
+  connect(fanCoilUnit[2].port_b1, tan.port_b) annotation (Line(points={{498.111,
+          26.4},{498.111,-116},{314,-116}}, color={0,127,255}));
+  connect(fanCoilUnit[3].port_b1, tan.port_b) annotation (Line(points={{498.111,
+          26.4},{498.111,-116},{314,-116}}, color={0,127,255}));
+  connect(fanCoilUnit.FcuMode, bufferTankModeController2_1.ModeFcu) annotation
+    (Line(points={{482,10},{478,10},{478,-22},{616,-22},{616,60},{624,60}},
+        color={255,127,0}));
+  connect(conInt4.y, fanCoilUnit.zone_temp_heating_setpoint) annotation (Line(
+        points={{466,-34},{476,-34},{476,-36},{485.889,-36},{485.889,9.8}},
+        color={0,0,127}));
+  connect(conInt3.y, fanCoilUnit.zone_temp_cooling_setpoint) annotation (Line(
+        points={{428,-26},{460,-26},{460,-14},{490.111,-14},{490.111,10}},
+        color={0,0,127}));
+  connect(conInt6.y, switch1.u1) annotation (Line(points={{404,-386},{404,-388},
+          {438,-388},{438,-342}}, color={0,0,127}));
+  connect(conInt6.y, les.u2) annotation (Line(points={{404,-386},{404,-388},{
+          440,-388},{440,-352},{412,-352},{412,-312},{396,-312},{396,-304}},
+        color={0,0,127}));
+  connect(conInt5.y, gre.u2) annotation (Line(points={{486,-392},{508,-392},{
+          508,-294}}, color={0,0,127}));
+  connect(conInt5.y, switch1.u3) annotation (Line(points={{486,-392},{474,-392},
+          {474,-344},{454,-344},{454,-342}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{160,
             -420},{640,-100}}), graphics={
         Rectangle(
@@ -510,4 +522,4 @@ equation
           fillPattern=FillPattern.Solid)}),                      Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{160,-420},{640,
             -100}})));
-end TRC_1BufferTank_3fcus;
+end TRC_1BufferTank_3fcus_SimpleConstantAir_NoTable;

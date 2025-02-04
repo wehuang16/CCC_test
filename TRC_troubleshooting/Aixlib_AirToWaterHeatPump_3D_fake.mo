@@ -1,4 +1,4 @@
-within CCC_test.CCC_Model;
+within CCC_test.TRC_troubleshooting;
 model Aixlib_AirToWaterHeatPump_3D_fake
               replaceable package Medium_eva = Buildings.Media.Air;
   replaceable package Medium_con = Buildings.Media.Water;

@@ -1,5 +1,5 @@
 within CCC_test.CCC_Model;
-model BufferTankGroupUnitTest2
+model BufferTankGroupUnitTest3
              extends Modelica.Icons.Example;
         package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
@@ -24,8 +24,8 @@ parameter Integer numZon=54 "number of zones";
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={40,-90})));
-  CCC.Fluid.BaseClasses.TRC_1BufferTank_3fcus_SimpleConstantAir
-                                 tRC_1BufferTank_3fcus_SimpleConstantAir
+  TRC_1BufferTank_3fcus_SimpleConstantAir_NoTable
+                                 tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable
                                                                [numApa](
       zone_temp_cooling_setpoint=297.04, zone_temp_heating_setpoint=294.26)
     annotation (Placement(transformation(extent={{20,-58},{68,-26}})));
@@ -90,19 +90,19 @@ parameter Integer numZon=54 "number of zones";
 equation
   connect(low_rise_rochester_designbuilder.TOut, reaScaRep.u) annotation (Line(
         points={{25.8,19.2},{25.8,24},{84,24},{84,-102},{40,-102}}, color={0,0,127}));
-  connect(reaScaRep.y, tRC_1BufferTank_3fcus_SimpleConstantAir.TOut)
+  connect(reaScaRep.y, tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable.TOut)
     annotation (Line(points={{40,-78},{40,-66},{44.8,-66},{44.8,-60}}, color={0,
           0,127}));
 
   connect(low_rise_rochester_designbuilder.TAir[2:4],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[1].TZoneAir) annotation (Line(
-        points={{38,1.72727},{46,1.72727},{46,6},{45.8,6},{45.8,-24.8}}, color=
-          {0,0,127}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable[1].TZoneAir) annotation (
+      Line(points={{38,1.72727},{46,1.72727},{46,6},{45.8,6},{45.8,-24.8}},
+        color={0,0,127}));
 
   connect(low_rise_rochester_designbuilder.TAir[5:7],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[2].TZoneAir) annotation (Line(
-        points={{38,1.83636},{46,1.83636},{46,6},{45.8,6},{45.8,-24.8}}, color=
-          {0,0,127}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable[2].TZoneAir) annotation (
+      Line(points={{38,1.83636},{46,1.83636},{46,6},{45.8,6},{45.8,-24.8}},
+        color={0,0,127}));
 /*
 connect(low_rise_rochester_designbuilder.TAir[44:46], tRC_1BufferTank_3fcus[3].TZoneAir)
 annotation (Line(points={{38,3.25455},{46,3.25455},{46,6},{45.8,6},{45.8,-24.8}},
@@ -121,14 +121,14 @@ annotation (Line(points={{38,3.58182},{46,3.58182},{46,6},{45.8,6},{45.8,-24.8}}
 color={0,0,127}));
 */
   connect(low_rise_rochester_designbuilder.port_b[2:4],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_a) annotation (Line(points=
-          {{36.4,15.3636},{56,15.3636},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
-        color={0,127,255}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable[1].port_a) annotation (Line(
+        points={{36.4,15.3636},{56,15.3636},{56,-8},{14,-8},{14,-31.4},{19.4,
+          -31.4}}, color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_b[5:7],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_a) annotation (Line(points=
-          {{36.4,15.4182},{56,15.4182},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
-        color={0,127,255}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable[2].port_a) annotation (Line(
+        points={{36.4,15.4182},{56,15.4182},{56,-8},{14,-8},{14,-31.4},{19.4,
+          -31.4}}, color={0,127,255}));
 /*
 connect(low_rise_rochester_designbuilder.port_b[44:46], tRC_1BufferTank_3fcus[3].port_a)
 annotation (Line(points={{36.4,16.1273},{56,16.1273},{56,-8},{14,-8},{14,-31.4},
@@ -152,14 +152,14 @@ annotation (Line(points={{36.4,16.2909},{56,16.2909},{56,-8},{14,-8},{14,-31.4},
                */
 
   connect(low_rise_rochester_designbuilder.port_a[2:4],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_b) annotation (Line(points=
-          {{15.6,15.3636},{8,15.3636},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
-        color={0,127,255}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable[1].port_b) annotation (Line(
+        points={{15.6,15.3636},{8,15.3636},{8,-12},{74,-12},{74,-31.4},{68.6,
+          -31.4}}, color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_a[5:7],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_b) annotation (Line(points=
-          {{15.6,15.4182},{8,15.4182},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
-        color={0,127,255}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable[2].port_b) annotation (Line(
+        points={{15.6,15.4182},{8,15.4182},{8,-12},{74,-12},{74,-31.4},{68.6,
+          -31.4}}, color={0,127,255}));
 /*
 connect(low_rise_rochester_designbuilder.port_a[44:46], tRC_1BufferTank_3fcus[3].port_b)
 annotation (Line(points={{15.6,16.1273},{8,16.1273},{8,-12},{74,-12},{74,-31.4},
@@ -206,21 +206,21 @@ annotation (Line(points={{15.6,16.2909},{8,16.2909},{8,-12},{74,-12},{74,-31.4},
           44,59},{44,54},{50,54}}, color={0,127,255}));
   connect(vol3.ports[1], senTem1.port_b) annotation (Line(points={{112.667,50},
           {112.667,44},{76,44},{76,54},{70,54}}, color={0,127,255}));
-  connect(tRC_1BufferTank_3fcus_SimpleConstantAir.port_a5, vol3.ports[2:3])
-    annotation (Line(points={{28,-25.8},{70,-25.8},{70,-6},{115.333,-6},{
+  connect(tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable.port_a5, vol3.ports[2
+    :3]) annotation (Line(points={{28,-25.8},{70,-25.8},{70,-6},{115.333,-6},{
           115.333,50}}, color={0,127,255}));
   connect(pump2.port_a, vol4.ports[1]) annotation (Line(points={{86,-124},{44,
           -124},{44,-144},{26.6667,-144},{26.6667,-138}}, color={0,127,255}));
-  connect(tRC_1BufferTank_3fcus_SimpleConstantAir.port_b5, vol4.ports[2:3])
-    annotation (Line(points={{28,-58.2},{2,-58.2},{2,-138},{29.3333,-138}},
+  connect(tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable.port_b5, vol4.ports[2
+    :3]) annotation (Line(points={{28,-58.2},{2,-58.2},{2,-138},{29.3333,-138}},
         color={0,127,255}));
-  connect(booScaRep.y, tRC_1BufferTank_3fcus_SimpleConstantAir.heaCooMod)
+  connect(booScaRep.y, tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable.heaCooMod)
     annotation (Line(points={{-12,-62},{0,-62},{0,-39.8},{17.6,-39.8}}, color={
           255,0,255}));
   connect(conInt.y,multipleHeatPumpZoneController. reqDomHotWat) annotation (
       Line(points={{-152,-28},{-138,-28},{-138,-30},{-130,-30}},
                                                            color={255,127,0}));
-  connect(tRC_1BufferTank_3fcus_SimpleConstantAir.RequestSpaCon,
+  connect(tRC_1BufferTank_3fcus_SimpleConstantAir_NoTable.RequestSpaCon,
     multipleHeatPumpZoneController.reqSpaCon) annotation (Line(points={{59.4,-60},
           {59.4,-68},{-4,-68},{-4,-78},{-140,-78},{-140,-42.6},{-130.2,-42.6}},
         color={255,127,0}));
@@ -235,4 +235,4 @@ annotation (Line(points={{15.6,16.2909},{8,16.2909},{8,-12},{74,-12},{74,-31.4},
       StopTime=21600,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end BufferTankGroupUnitTest2;
+end BufferTankGroupUnitTest3;

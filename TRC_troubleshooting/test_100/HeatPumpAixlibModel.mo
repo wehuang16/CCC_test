@@ -1,4 +1,4 @@
-﻿within CCC_test.TRC_troubleshooting.test_100;
+within CCC_test.TRC_troubleshooting.test_100;
 model HeatPumpAixlibModel
   "Grey-box model for reversible heat pumps using a black-box to simulate the refrigeration cycle"
   extends

@@ -133,7 +133,8 @@ model Hybrid_2024_v3_test3
         origin={-184,-159})));
   CCC.Fluid.HeatExchangers.Data.MAPR matPro
     annotation (Placement(transformation(extent={{152,72},{172,92}})));
-  CCC.Fluid.HeatExchangers.FanCoilUnit fanCoilUnit_hysteresis_air_control(
+  CCC.Fluid.HeatExchangers.FanCoilUnitConstantAirSide
+    fanCoilUnit_hysteresis_air_control(
     redeclare package Medium1 = MediumW,
     redeclare package Medium2 = MediumA,
     m2_flow_nominal=0.07589,

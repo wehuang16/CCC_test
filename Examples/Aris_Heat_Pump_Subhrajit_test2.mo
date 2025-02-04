@@ -20,7 +20,7 @@ model Aris_Heat_Pump_Subhrajit_test2
       redeclare package Medium_eva = MediumAir, redeclare package Medium_con =
         MediumWater)
     annotation (Placement(transformation(extent={{-110,34},{-90,54}})));
-  CCC.Fluid.HeatExchangers.FanCoilUnit fanCoilUnit(
+  CCC.Fluid.HeatExchangers.FanCoilUnitConstantAirSide fanCoilUnit(
     redeclare package Medium1 = MediumWater,
     redeclare package Medium2 = MediumAir,
     m2_flow_nominal=fcu_air_flow_nominal,

@@ -1,5 +1,5 @@
 within CCC_test.CCC_Model;
-model low_rise_rochester_HVAC_partialSuper_5
+model low_rise_rochester_HVAC_partial_1Hp2Apa_SimpleAir2
             extends Modelica.Icons.Example;
         package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
@@ -22,19 +22,27 @@ parameter Integer numZon=54 "number of zones";
   CCC.Controls.MultipleHeatPumpZoneController multipleHeatPumpZoneController(numHeaPum
       =numHeaPum, numApa=numApa)
     annotation (Placement(transformation(extent={{-118,-24},{-64,-4}})));
-  CCC.Fluid.BaseClasses.Trc_heat_pump_group_fake trc_heat_pump_group_fake2_1(
-      numHeaPum=numHeaPum)
-    annotation (Placement(transformation(extent={{-50,4},{-22,24}})));
+  .CCC.Fluid.BaseClasses.TrcWaterTankGroup_1Tank trcWaterTankGroup_1Tank[numApa](
+    TankTempSetpoint=320.15,
+    TempSetpointHpDeadbandBelow=-7,
+    TempSetpointHpDeadbandAbove=3,
+    TempSetpointResistanceDeadbandBelow=-7,
+    TempSetpointResistanceDeadbandAbove=3,
+    ResistanceHeatingPower=12000)
+    annotation (Placement(transformation(extent={{36,48},{66,72}})));
+  .CCC.Fluid.BaseClasses.Trc_heat_pump_group trc_heat_pump_group(numHeaPum=
+        numHeaPum)
+    annotation (Placement(transformation(extent={{-48,4},{-20,24}})));
   Buildings.Fluid.MixingVolumes.MixingVolume vol1(
     redeclare package Medium = MediumPropyleneGlycol,
     m_flow_nominal=1,
     V=0.001,
-    nPorts=1)         annotation (Placement(transformation(extent={{-20,48},{0,68}})));
+    nPorts=numApa+1)  annotation (Placement(transformation(extent={{-20,48},{0,68}})));
   Buildings.Fluid.MixingVolumes.MixingVolume vol2(
     redeclare package Medium = MediumPropyleneGlycol,
     m_flow_nominal=1,
     V=0.001,
-    nPorts=1)         annotation (Placement(transformation(extent={{-78,44},{-58,64}})));
+    nPorts=numApa+1)  annotation (Placement(transformation(extent={{-78,44},{-58,64}})));
   Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booScaRep(nout=
         numApa)
     annotation (Placement(transformation(extent={{-52,-54},{-32,-34}})));
@@ -53,9 +61,9 @@ parameter Integer numZon=54 "number of zones";
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={40,-90})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant conRea1[24](k={1.1,1.08,
-        1.05,0.6,1.3,0.5,1.3,1.1,1.05,0.6,1.3,0.5,0.6,1.3,0.5,1.3,1.08,1.05,0.6,
-        1.3,0.5,1.25,1.4,0.3}) "Real inputs"
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant conRea1[24](k={1.1,0.64,1.05,
+        0.6,1.3,0.5,1.3,1.1,1.05,0.6,1.3,0.5,0.6,1.3,0.5,1.3,1.08,1.05,0.6,1.3,0.5,
+        1.25,1.4,0.3})         "Real inputs"
     annotation (Placement(transformation(extent={{-30,110},{-10,130}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant conRea2(k=273.15 + 55)
     "Real inputs"
@@ -69,64 +77,76 @@ parameter Integer numZon=54 "number of zones";
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant conRea5[6](k={1.1,1.08,1.05,
         0.6,1.3,0.5}) "Real inputs"
     annotation (Placement(transformation(extent={{46,118},{66,138}})));
-  TRC_1BufferTank_3fcus_fake3Pid              tRC_1BufferTank_3fcus_fake3Pid
+  CCC.Fluid.BaseClasses.TRC_1BufferTank_3fcus_SimpleConstantAir
+                                              tRC_1BufferTank_3fcus_SimpleConstantAir
                                                                    [numApa](
       zone_temp_cooling_setpoint=297.04, zone_temp_heating_setpoint=294.26)
     annotation (Placement(transformation(extent={{20,-58},{68,-26}})));
   CCC.Fluid.BaseClasses.Trc_custom_air_conditioner trc_custom_air_conditioner[48]
         annotation (Placement(transformation(extent={{118,18},{138,38}})));
-  Buildings.Controls.OBC.CDL.Integers.Sources.Constant conInt[numApa](k=0)
-    "Real inputs"
-    annotation (Placement(transformation(extent={{-158,-6},{-138,14}})));
 equation
-  connect(multipleHeatPumpZoneController.comHeaPumMod,
-    trc_heat_pump_group_fake2_1.comHeaPumMod) annotation (Line(points={{-62,
-          -13.8},{-52,-13.8},{-52,6},{-58,6},{-58,13.8},{-51.8,13.8}}, color={
-          255,127,0}));
-  connect(trc_heat_pump_group_fake2_1.port_b1, vol1.ports[1]) annotation (Line(
-        points={{-21.8,19.8},{-10,19.8},{-10,48}}, color={0,127,255}));
-  connect(trc_heat_pump_group_fake2_1.port_a1, vol2.ports[1]) annotation (Line(
-        points={{-50.4,19.8},{-50.4,38},{-68,38},{-68,44}}, color={0,127,255}));
+  connect(trcWaterTankGroup_1Tank.RequestDhw, multipleHeatPumpZoneController.reqDomHotWat)
+    annotation (Line(points={{58.4,74},{58.4,82},{-120,82},{-120,-6}},
+                color={255,127,0}));
+  connect(multipleHeatPumpZoneController.comHeaPumMod, trc_heat_pump_group.comHeaPumMod)
+    annotation (Line(points={{-62,-13.8},{-52,-13.8},{-52,6},{-58,6},{-58,13.8},
+          {-49.8,13.8}}, color={255,127,0}));
+  connect(trc_heat_pump_group.port_b1, vol1.ports[1]) annotation (Line(points={{-19.8,
+          19.8},{-10,19.8},{-10,48}},             color={0,127,255}));
+  connect(vol1.ports[2:numApa+1], trcWaterTankGroup_1Tank.port_a) annotation (Line(
+        points={{-10,48},{-8,48},{-8,34},{35,34},{35,58.4}},   color={0,127,255}));
+  connect(trc_heat_pump_group.port_a1, vol2.ports[1]) annotation (Line(points={{-48.4,
+          19.8},{-48.4,38},{-68,38},{-68,44}},             color={0,127,255}));
+  connect(trcWaterTankGroup_1Tank.port_b, vol2.ports[2:numApa+1]) annotation (Line(
+        points={{66.6,62.2},{86,62.2},{86,78},{-88,78},{-88,44},{-68,44}},
+        color={0,127,255}));
   connect(multipleHeatPumpZoneController.heaCooMod, booScaRep.u) annotation (
       Line(points={{-62,-21.8},{-62,-44},{-54,-44}}, color={255,0,255}));
-  connect(trc_heat_pump_group_fake2_1.port_b2, vol3.ports[1]) annotation (Line(
-        points={{-21.8,8},{-14,8},{-14,-2},{-24,-2},{-24,-30},{-10,-30},{-10,
-          -26}}, color={0,127,255}));
-  connect(trc_heat_pump_group_fake2_1.port_a2, vol4.ports[1]) annotation (Line(
-        points={{-50.2,8},{-50.2,-30},{-192,-30},{-192,-16}}, color={0,127,255}));
+  connect(trc_heat_pump_group.port_b2, vol3.ports[1]) annotation (Line(points={{-19.8,8},
+          {-14,8},{-14,-2},{-24,-2},{-24,-30},{-10,-30},{-10,-26}},
+        color={0,127,255}));
+  connect(trc_heat_pump_group.port_a2, vol4.ports[1]) annotation (Line(points={{-48.2,8},
+          {-48.2,-30},{-192,-30},{-192,-16}},                color={0,127,255}));
   connect(low_rise_rochester_designbuilder.TOut, reaScaRep.u) annotation (Line(
         points={{25.8,19.2},{25.8,24},{84,24},{84,-102},{40,-102}}, color={0,0,127}));
-  connect(low_rise_rochester_designbuilder.TOut, trc_heat_pump_group_fake2_1.TOutAir)
-    annotation (Line(points={{25.8,19.2},{25.8,42},{-29,42},{-29,26.2}}, color=
-          {0,0,127}));
-  connect(trc_heat_pump_group_fake2_1.TSubSet_dhw, conRea2.y) annotation (Line(
-        points={{-42.4,26.2},{-42.4,112},{-168,112}}, color={0,0,127}));
-  connect(trc_heat_pump_group_fake2_1.TSubSet_sch, conRea3.y) annotation (Line(
-        points={{-37.6,26.2},{-37.6,78},{-152,78}}, color={0,0,127}));
-  connect(trc_heat_pump_group_fake2_1.TSubSet_scc, conRea4.y) annotation (Line(
-        points={{-33.2,26.2},{-33.2,40},{-146,40}}, color={0,0,127}));
-  connect(tRC_1BufferTank_3fcus_fake3Pid.port_a5, vol3.ports[2:numApa + 1])
-    annotation (Line(points={{28,-25.8},{30,-25.8},{30,-18},{-10,-18},{-10,-26}},
+  connect(low_rise_rochester_designbuilder.TOut, trc_heat_pump_group.TOutAir)
+    annotation (Line(points={{25.8,19.2},{25.8,42},{-27,42},{-27,26.2}}, color={
+          0,0,127}));
+  connect(trc_heat_pump_group.TSubSet_dhw, conRea2.y) annotation (Line(points={{
+          -40.4,26.2},{-40.4,112},{-168,112}}, color={0,0,127}));
+  connect(trc_heat_pump_group.TSubSet_sch, conRea3.y) annotation (Line(points={{
+          -35.6,26.2},{-35.6,78},{-152,78}}, color={0,0,127}));
+  connect(trc_heat_pump_group.TSubSet_scc, conRea4.y) annotation (Line(points={{
+          -31.2,26.2},{-31.2,40},{-146,40}}, color={0,0,127}));
+  connect(conRea1[1:numApa].y, trcWaterTankGroup_1Tank.hotWatScaFac)
+    annotation (Line(points={{-8,120},{0,120},{0,72},{24,72},{24,69.2},{32,69.2}},
+        color={0,0,127}));
+  connect(tRC_1BufferTank_3fcus_SimpleConstantAir.port_a5, vol3.ports[2:numApa
+     + 1]) annotation (Line(points={{28,-25.8},{30,-25.8},{30,-18},{-10,-18},{-10,
+          -26}}, color={0,127,255}));
+  connect(tRC_1BufferTank_3fcus_SimpleConstantAir.port_b5, vol4.ports[2:numApa
+     + 1]) annotation (Line(points={{28,-58.2},{28,-62},{-192,-62},{-192,-16}},
         color={0,127,255}));
-  connect(tRC_1BufferTank_3fcus_fake3Pid.port_b5, vol4.ports[2:numApa + 1])
-    annotation (Line(points={{28,-58.2},{28,-62},{-192,-62},{-192,-16}}, color=
-          {0,127,255}));
-  connect(booScaRep.y, tRC_1BufferTank_3fcus_fake3Pid.heaCooMod) annotation (
-      Line(points={{-30,-44},{8,-44},{8,-39.8},{17.6,-39.8}}, color={255,0,255}));
-  connect(reaScaRep.y, tRC_1BufferTank_3fcus_fake3Pid.TOut) annotation (Line(
-        points={{40,-78},{40,-66},{44.8,-66},{44.8,-60}}, color={0,0,127}));
-  connect(tRC_1BufferTank_3fcus_fake3Pid.RequestSpaCon,
+  connect(booScaRep.y, tRC_1BufferTank_3fcus_SimpleConstantAir.heaCooMod)
+    annotation (Line(points={{-30,-44},{8,-44},{8,-39.8},{17.6,-39.8}}, color={
+          255,0,255}));
+  connect(reaScaRep.y, tRC_1BufferTank_3fcus_SimpleConstantAir.TOut)
+    annotation (Line(points={{40,-78},{40,-66},{44.8,-66},{44.8,-60}}, color={0,
+          0,127}));
+  connect(tRC_1BufferTank_3fcus_SimpleConstantAir.RequestSpaCon,
     multipleHeatPumpZoneController.reqSpaCon) annotation (Line(points={{59.4,-60},
           {60,-60},{60,-78},{-148,-78},{-148,-18.6},{-120.2,-18.6}}, color={255,
           127,0}));
 
   connect(low_rise_rochester_designbuilder.TAir[2:4],
-    tRC_1BufferTank_3fcus_fake3Pid[1].TZoneAir) annotation (Line(points={{38,
-          1.72727},{46,1.72727},{46,6},{45.8,6},{45.8,-24.8}}, color={0,0,127}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir[1].TZoneAir) annotation (Line(
+        points={{38,1.72727},{46,1.72727},{46,6},{45.8,6},{45.8,-24.8}}, color=
+          {0,0,127}));
 
   connect(low_rise_rochester_designbuilder.TAir[5:7],
-    tRC_1BufferTank_3fcus_fake3Pid[2].TZoneAir) annotation (Line(points={{38,
-          1.83636},{46,1.83636},{46,6},{45.8,6},{45.8,-24.8}}, color={0,0,127}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir[2].TZoneAir) annotation (Line(
+        points={{38,1.83636},{46,1.83636},{46,6},{45.8,6},{45.8,-24.8}}, color=
+          {0,0,127}));
 /*
 connect(low_rise_rochester_designbuilder.TAir[44:46], tRC_1BufferTank_3fcus[3].TZoneAir)
 annotation (Line(points={{38,3.25455},{46,3.25455},{46,6},{45.8,6},{45.8,-24.8}},
@@ -145,14 +165,14 @@ annotation (Line(points={{38,3.58182},{46,3.58182},{46,6},{45.8,6},{45.8,-24.8}}
 color={0,0,127}));
 */
   connect(low_rise_rochester_designbuilder.port_b[2:4],
-    tRC_1BufferTank_3fcus_fake3Pid[1].port_a) annotation (Line(points={{36.4,
-          15.3636},{56,15.3636},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}}, color
-        ={0,127,255}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_a) annotation (Line(points=
+          {{36.4,15.3636},{56,15.3636},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
+        color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_b[5:7],
-    tRC_1BufferTank_3fcus_fake3Pid[2].port_a) annotation (Line(points={{36.4,
-          15.4182},{56,15.4182},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}}, color
-        ={0,127,255}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_a) annotation (Line(points=
+          {{36.4,15.4182},{56,15.4182},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
+        color={0,127,255}));
 /*
 connect(low_rise_rochester_designbuilder.port_b[44:46], tRC_1BufferTank_3fcus[3].port_a)
 annotation (Line(points={{36.4,16.1273},{56,16.1273},{56,-8},{14,-8},{14,-31.4},
@@ -176,14 +196,14 @@ annotation (Line(points={{36.4,16.2909},{56,16.2909},{56,-8},{14,-8},{14,-31.4},
                */
 
   connect(low_rise_rochester_designbuilder.port_a[2:4],
-    tRC_1BufferTank_3fcus_fake3Pid[1].port_b) annotation (Line(points={{15.6,
-          15.3636},{8,15.3636},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}}, color
-        ={0,127,255}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_b) annotation (Line(points=
+          {{15.6,15.3636},{8,15.3636},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
+        color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_a[5:7],
-    tRC_1BufferTank_3fcus_fake3Pid[2].port_b) annotation (Line(points={{15.6,
-          15.4182},{8,15.4182},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}}, color
-        ={0,127,255}));
+    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_b) annotation (Line(points=
+          {{15.6,15.4182},{8,15.4182},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
+        color={0,127,255}));
 /*
 connect(low_rise_rochester_designbuilder.port_a[44:46], tRC_1BufferTank_3fcus[3].port_b)
 annotation (Line(points={{15.6,16.1273},{8,16.1273},{8,-12},{74,-12},{74,-31.4},
@@ -214,12 +234,10 @@ annotation (Line(points={{15.6,16.2909},{8,16.2909},{8,-12},{74,-12},{74,-31.4},
   connect(low_rise_rochester_designbuilder.TAir[8:55],
     trc_custom_air_conditioner.ZAT) annotation (Line(points={{38,3.58182},{74,
           3.58182},{74,4},{104,4},{104,34.4},{116,34.4}}, color={0,0,127}));
-  connect(conInt.y, multipleHeatPumpZoneController.reqDomHotWat) annotation (
-      Line(points={{-136,4},{-128,4},{-128,-6},{-120,-6}}, color={255,127,0}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
-      StopTime=21600,
+      StopTime=10800,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end low_rise_rochester_HVAC_partialSuper_5;
+end low_rise_rochester_HVAC_partial_1Hp2Apa_SimpleAir2;
