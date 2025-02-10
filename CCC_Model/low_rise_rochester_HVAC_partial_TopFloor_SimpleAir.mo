@@ -171,28 +171,28 @@ equation
           {0,0,127}));
 
   connect(low_rise_rochester_designbuilder.port_b[38:40],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_a) annotation (Line(points=
-          {{36.4,16.0182},{56,16.0182},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_a) annotation (Line(points={{36.4,
+          16.0182},{56,16.0182},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_b[41:43],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_a) annotation (Line(points=
-          {{36.4,16.0727},{56,16.0727},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_a) annotation (Line(points={{36.4,
+          16.0727},{56,16.0727},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_b[44:46],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[3].port_a) annotation (Line(points=
-          {{36.4,16.1273},{56,16.1273},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[3].port_a) annotation (Line(points={{36.4,
+          16.1273},{56,16.1273},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_b[47:49],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[4].port_a) annotation (Line(points=
-          {{36.4,16.1818},{56,16.1818},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[4].port_a) annotation (Line(points={{36.4,
+          16.1818},{56,16.1818},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_b[50:52],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[5].port_a) annotation (Line(points=
-          {{36.4,16.2364},{56,16.2364},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[5].port_a) annotation (Line(points={{36.4,
+          16.2364},{56,16.2364},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_b[53:55],
@@ -201,28 +201,28 @@ equation
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_a[38:40],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_b) annotation (Line(points=
-          {{15.6,16.0182},{8,16.0182},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_b) annotation (Line(points={{15.6,
+          16.0182},{8,16.0182},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_a[41:43],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_b) annotation (Line(points=
-          {{15.6,16.0727},{8,16.0727},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_b) annotation (Line(points={{15.6,
+          16.0727},{8,16.0727},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_a[44:46],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[3].port_b) annotation (Line(points=
-          {{15.6,16.1273},{8,16.1273},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[3].port_b) annotation (Line(points={{15.6,
+          16.1273},{8,16.1273},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_a[47:49],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[4].port_b) annotation (Line(points=
-          {{15.6,16.1818},{8,16.1818},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[4].port_b) annotation (Line(points={{15.6,
+          16.1818},{8,16.1818},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_a[50:52],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[5].port_b) annotation (Line(points=
-          {{15.6,16.2364},{8,16.2364},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[5].port_b) annotation (Line(points={{15.6,
+          16.2364},{8,16.2364},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_a[53:55],

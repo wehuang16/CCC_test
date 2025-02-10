@@ -165,13 +165,13 @@ annotation (Line(points={{38,3.58182},{46,3.58182},{46,6},{45.8,6},{45.8,-24.8}}
 color={0,0,127}));
 */
   connect(low_rise_rochester_designbuilder.port_b[2:4],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_a) annotation (Line(points=
-          {{36.4,15.3636},{56,15.3636},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_a) annotation (Line(points={{36.4,
+          15.3636},{56,15.3636},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_b[5:7],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_a) annotation (Line(points=
-          {{36.4,15.4182},{56,15.4182},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_a) annotation (Line(points={{36.4,
+          15.4182},{56,15.4182},{56,-8},{14,-8},{14,-31.4},{19.4,-31.4}},
         color={0,127,255}));
 /*
 connect(low_rise_rochester_designbuilder.port_b[44:46], tRC_1BufferTank_3fcus[3].port_a)
@@ -196,13 +196,13 @@ annotation (Line(points={{36.4,16.2909},{56,16.2909},{56,-8},{14,-8},{14,-31.4},
                */
 
   connect(low_rise_rochester_designbuilder.port_a[2:4],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_b) annotation (Line(points=
-          {{15.6,15.3636},{8,15.3636},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[1].port_b) annotation (Line(points={{15.6,
+          15.3636},{8,15.3636},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
         color={0,127,255}));
 
   connect(low_rise_rochester_designbuilder.port_a[5:7],
-    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_b) annotation (Line(points=
-          {{15.6,15.4182},{8,15.4182},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
+    tRC_1BufferTank_3fcus_SimpleConstantAir[2].port_b) annotation (Line(points={{15.6,
+          15.4182},{8,15.4182},{8,-12},{74,-12},{74,-31.4},{68.6,-31.4}},
         color={0,127,255}));
 /*
 connect(low_rise_rochester_designbuilder.port_a[44:46], tRC_1BufferTank_3fcus[3].port_b)
