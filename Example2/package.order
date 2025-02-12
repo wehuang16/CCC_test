@@ -27,3 +27,4 @@ testScaleUp2
 zoneContainer
 testDoubleScaleUp
 testDoubleScaleUpContainer
+test_timeseries_table
