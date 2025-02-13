@@ -35,6 +35,11 @@ model testPumpValve
     offset=1,
     startTime=21600)
     annotation (Placement(transformation(extent={{12,40},{32,60}})));
+  Modelica.Blocks.Sources.RealExpression realExpression[2](y={
+        pumpFcuWaterSupply[1].port_a.m_flow,pumpFcuWaterSupply[2].port_a.m_flow})
+    annotation (Placement(transformation(extent={{98,10},{118,30}})));
+  Modelica.Blocks.Interfaces.RealOutput y[2]
+    annotation (Placement(transformation(extent={{152,8},{172,30}})));
 equation
   connect(const1.y, pumpFcuWaterSupply.y)
     annotation (Line(points={{-49,60},{-26,60},{-26,32}}, color={0,0,127}));
@@ -47,6 +52,8 @@ equation
           0,127,255}));
   connect(val.port_b, boundary2.ports) annotation (Line(points={{50,-12},{80,
           -12},{80,-72},{-50,-72},{-50,-19},{-64,-19}}, color={0,127,255}));
+  connect(realExpression.y, y)
+    annotation (Line(points={{119,20},{122,19},{162,19}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
