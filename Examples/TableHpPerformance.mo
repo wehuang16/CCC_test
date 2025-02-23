@@ -6,10 +6,10 @@ model TableHpPerformance
   SDF.NDTable elec_power(
     dataset="/elec_power",
     dataUnit="W",
-    scaleUnits={"°C","°C",""},
+    scaleUnits={"K","K",""},
     nin=3,
-    filename=Modelica.Utilities.Files.loadResource(
-        "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_R290_Aris_heating.sdf"),
+    filename=ModelicaServices.ExternalReferences.loadResource(
+        "modelica://CCC/Resources/Data/Heat_Pump_Performance_Maps/heat_pump_performance_map_Aris_heating_v2.sdf"),
     interpMethod=SDF.Types.InterpolationMethod.Akima,
     extrapMethod=SDF.Types.ExtrapolationMethod.Hold,
     data=SDF.Functions.readTableData(
@@ -21,19 +21,19 @@ model TableHpPerformance
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Ramp OAT(
     duration=4320,
-    height=46,
-    offset=-25,
+    height=0,
+    offset=5,
     startTime=2160)
     annotation (Placement(transformation(extent={{-84,-4},{-64,16}})));
   Modelica.Blocks.Sources.Ramp supply_water_temp(
     duration=4320,
     startTime=2160,
-    offset=55,
+    offset=45,
     height=0) annotation (Placement(transformation(extent={{-86,38},{-66,58}})));
   Modelica.Blocks.Sources.Ramp speed(
     duration=4320,
-    height=0,
-    offset=0.5,
+    height=1,
+    offset=0,
     startTime=2160)
     annotation (Placement(transformation(extent={{-78,-56},{-58,-36}})));
 equation

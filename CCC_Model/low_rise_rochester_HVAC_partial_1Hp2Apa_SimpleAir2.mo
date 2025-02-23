@@ -118,9 +118,9 @@ equation
           -35.6,26.2},{-35.6,78},{-152,78}}, color={0,0,127}));
   connect(trc_heat_pump_group.TSubSet_scc, conRea4.y) annotation (Line(points={{
           -31.2,26.2},{-31.2,40},{-146,40}}, color={0,0,127}));
-  connect(conRea1[1:numApa].y, trcWaterTankGroup_1Tank.hotWatScaFac)
-    annotation (Line(points={{-8,120},{0,120},{0,72},{24,72},{24,69.2},{32,69.2}},
-        color={0,0,127}));
+  connect(conRea1[1:numApa].y, trcWaterTankGroup_1Tank.hotWatDraw) annotation (
+      Line(points={{-8,120},{0,120},{0,72},{24,72},{24,69.2},{32,69.2}}, color=
+          {0,0,127}));
   connect(tRC_1BufferTank_3fcus_SimpleConstantAir.port_a5, vol3.ports[2:numApa
      + 1]) annotation (Line(points={{28,-25.8},{30,-25.8},{30,-18},{-10,-18},{-10,
           -26}}, color={0,127,255}));
