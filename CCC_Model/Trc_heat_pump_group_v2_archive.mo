@@ -20,8 +20,7 @@ model Trc_heat_pump_group_v2_archive
   Modelica.Fluid.Interfaces.FluidPort_b port_b1(redeclare package Medium =
         MediumPropyleneGlycol)
     annotation (Placement(transformation(extent={{172,48},{192,68}})));
-  CCC.Fluid.HeatPumps.Aixlib_AirToWaterHeatPump_3D aixlib_HP_3D_integrated[numHeaPum]
-    (
+  CCC.Fluid.HeatPumps.Aixlib_AirToWaterHeatPump_3D aixlib_HP_3D_integrated[numHeaPum](
     redeclare package Medium_eva = MediumAir,
     redeclare package Medium_con = MediumPropyleneGlycol,
     mEva_flow_nominal=2.333,
