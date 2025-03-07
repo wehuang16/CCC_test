@@ -71,8 +71,8 @@ model BufferTankGroupUnitTest
     annotation (Placement(transformation(extent={{10,-9},{-10,9}},
         rotation=0,
         origin={214,27})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort senTem[3](redeclare package Medium
-      = MediumAir, m_flow_nominal=0.14)
+  Buildings.Fluid.Sensors.TemperatureTwoPort senTem[3](redeclare package Medium =
+        MediumAir, m_flow_nominal=0.14)
     annotation (Placement(transformation(extent={{-136,6},{-116,26}})));
   Modelica.Blocks.Sources.Sine     sine2(
     amplitude=0,

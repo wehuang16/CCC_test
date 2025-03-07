@@ -73,8 +73,8 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
   Buildings.Fluid.Sensors.VolumeFlowRate BufTanFlo(redeclare package Medium =
         MediumPropyleneGlycol, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{254,-200},{274,-180}})));
-  Buildings.Fluid.Sensors.VolumeFlowRate FCUWatFlo[3](redeclare package Medium
-      = MediumPropyleneGlycol, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.VolumeFlowRate FCUWatFlo[3](redeclare package Medium =
+        MediumPropyleneGlycol, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{324,16},{344,36}})));
   Modelica.Blocks.Interfaces.RealOutput BufferTankTemp annotation (Placement(
         transformation(

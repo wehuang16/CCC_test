@@ -229,8 +229,8 @@ annotation (Line(points={{15.6,16.2909},{8,16.2909},{8,-12},{74,-12},{74,-31.4},
   connect(low_rise_rochester_designbuilder.TAir[2:37],
     trc_custom_air_conditioner.ZAT) annotation (Line(points={{38,2.92727},{74,
           2.92727},{74,4},{104,4},{104,34.4},{116,34.4}}, color={0,0,127}));
-  connect(intScaRep.y, multipleHeatPumpZoneController.reqDomHotWat) annotation
-    (Line(points={{-136,0},{-128,0},{-128,-6},{-120,-6}}, color={255,127,0}));
+  connect(intScaRep.y, multipleHeatPumpZoneController.reqDomHotWat) annotation (
+     Line(points={{-136,0},{-128,0},{-128,-6},{-120,-6}}, color={255,127,0}));
   connect(conInt.y, intScaRep.u) annotation (Line(points={{-192,30},{-174,30},{
           -174,0},{-160,0}}, color={255,127,0}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(

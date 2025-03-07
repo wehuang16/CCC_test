@@ -1,4 +1,4 @@
-within CCC_test.Examples;
+﻿within CCC_test.Examples;
 partial model PartialReversibleVapourCompressionMachine2
   "Grey-box model for reversible heat pumps and chillers using a black-box to simulate the refrigeration cycle"
 

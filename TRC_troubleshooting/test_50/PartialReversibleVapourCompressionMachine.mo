@@ -1,4 +1,4 @@
-within CCC_test.TRC_troubleshooting.test_50;
+﻿within CCC_test.TRC_troubleshooting.test_50;
 partial model PartialReversibleVapourCompressionMachine
   "Grey-box model for reversible heat pumps and chillers using a black-box to simulate the refrigeration cycle"
   extends AixLib.Fluid.Interfaces.PartialFourPortInterface(

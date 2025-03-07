@@ -10,7 +10,6 @@ model ZoneAirTemperatureCalibration1C
     redeclare package Medium = MediumAir,
     idfName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC_test/Resources/energyPlusFiles/X1-2021-V8_v2_NoInternalGain.idf"),
-
     epwName=Modelica.Utilities.Files.loadResource(
         "modelica://CCC_test/Resources/weatherdata/US_Berkeley_20210913.epw"),
     weaName=Modelica.Utilities.Files.loadResource(

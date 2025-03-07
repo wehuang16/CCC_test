@@ -63,8 +63,8 @@ parameter Integer numZon=54 "number of zones";
     m_flow_nominal=1,
     addPowerToMedium=false)
     annotation (Placement(transformation(extent={{86,-134},{106,-114}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium
-      = MediumPropyleneGlycol, m_flow_nominal=0.92)
+  Buildings.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
+        MediumPropyleneGlycol, m_flow_nominal=0.92)
     annotation (Placement(transformation(extent={{50,44},{70,64}})));
   Buildings.Fluid.MixingVolumes.MixingVolume vol3(
     redeclare package Medium = MediumPropyleneGlycol,

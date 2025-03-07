@@ -61,8 +61,8 @@ parameter Modelica.Units.SI.MassFlowRate fcu_air_flow_nominal=0.14951;
   Buildings.Fluid.Sensors.VolumeFlowRate BufTanFlo(redeclare package Medium =
         MediumPropyleneGlycol, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{254,-200},{274,-180}})));
-  Buildings.Fluid.Sensors.VolumeFlowRate FCUWatFlo[3](redeclare package Medium
-      = MediumPropyleneGlycol, m_flow_nominal=1)
+  Buildings.Fluid.Sensors.VolumeFlowRate FCUWatFlo[3](redeclare package Medium =
+        MediumPropyleneGlycol, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{324,16},{344,36}})));
   Modelica.Blocks.Interfaces.RealOutput BufferTankTemp annotation (Placement(
         transformation(
@@ -270,8 +270,8 @@ equation
           26.4},{498.111,-116},{314,-116}}, color={0,127,255}));
   connect(fanCoilUnit[3].port_b1, tan.port_b) annotation (Line(points={{498.111,
           26.4},{498.111,-116},{314,-116}}, color={0,127,255}));
-  connect(fanCoilUnit.FcuMode, bufferTankModeController2_1.ModeFcu) annotation
-    (Line(points={{482,10},{478,10},{478,-22},{616,-22},{616,60},{624,60}},
+  connect(fanCoilUnit.FcuMode, bufferTankModeController2_1.ModeFcu) annotation (
+     Line(points={{482,10},{478,10},{478,-22},{616,-22},{616,60},{624,60}},
         color={255,127,0}));
   connect(conInt4.y, fanCoilUnit.zone_temp_heating_setpoint) annotation (Line(
         points={{466,-34},{476,-34},{476,-36},{485.889,-36},{485.889,9.8}},
