@@ -194,8 +194,8 @@ model AirToWater "Validation of AWHP plant template"
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=293.15)
     "Constant limiting prescribed return temperature"
     annotation (Placement(transformation(extent={{-180,10},{-160,30}})));
-  Buildings.Templates.Plants.Controls.Utilities.PlaceholderInteger ph[2](each
-      final have_inp=have_chiWat, each final u_internal=0) "Placeholder value"
+  Buildings.Templates.Plants.Controls.Utilities.PlaceholderInteger ph[2](each final
+            have_inp=have_chiWat, each final u_internal=0) "Placeholder value"
     annotation (Placement(transformation(extent={{40,114},{20,134}})));
 equation
   if have_chiWat then

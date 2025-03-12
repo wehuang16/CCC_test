@@ -1,7 +1,6 @@
 within CCC_test.Bakersfield_Model;
 model AllElectricCWStorage "All-electric CHW and HW plant with CW storage"
-  extends Buildings.DHC.Plants.BaseClasses.PartialPlant
-                                  (
+  extends Buildings.DHC.Plants.BaseClasses.PartialPlant(
     final typ=Buildings.DHC.Types.DistrictSystemType.CombinedGeneration2to4,
     final have_weaBus=true,
     final have_fan=true,
