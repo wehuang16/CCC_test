@@ -98,5 +98,6 @@ testPartialHeatPump
 HeatPumpAixlibModel2
 PartialReversibleVapourCompressionMachine2
 testPumpValve2
-testPumpValve3
+testThreeWayValve
+testThreeWayValveB
 testJunction

@@ -1,4 +1,4 @@
-﻿within CCC_test.Examples;
+within CCC_test.Examples;
 model HeatPumpAixlibModel2
   "Grey-box model for reversible heat pumps using a black-box to simulate the refrigeration cycle"
   extends CCC_test.Examples.PartialReversibleVapourCompressionMachine2(
