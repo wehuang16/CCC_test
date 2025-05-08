@@ -31,3 +31,5 @@ test_timeseries_table
 testDivide
 WetCoilCounterFlowMassFlow
 calendarTrueFalse
+heat_exchanger_validation
+FixedHeatFlowTest
