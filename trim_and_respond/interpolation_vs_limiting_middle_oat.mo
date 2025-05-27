@@ -1,5 +1,5 @@
 within CCC_test.trim_and_respond;
-model dual_reset_differences
+model interpolation_vs_limiting_middle_oat
   hil_flexlab_model.Test1.BaseClasses1.Controls.SupplyTemperature_standardized
                                                 ModelSatSetpoint(
     final samplePeriod=180,
@@ -22,7 +22,7 @@ model dual_reset_differences
     annotation (Placement(transformation(extent={{-100,-82},{-80,-62}})));
   Modelica.Blocks.Math.RealToInteger realToInteger
     annotation (Placement(transformation(extent={{-82,-2},{-62,18}})));
-  hil_flexlab_model.Test1.BaseClasses1.Controls.SupplyTemperature_standardized2
+  hil_flexlab_model.Test1.BaseClasses1.Controls.SupplyTemperature_standardized3
                                                 ModelSatSetpoint1(
     final samplePeriod=180,
     final TSupSetMin=284.85,
@@ -110,4 +110,4 @@ equation
       StopTime=86400,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end dual_reset_differences;
+end interpolation_vs_limiting_middle_oat;

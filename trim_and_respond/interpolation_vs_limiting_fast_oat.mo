@@ -1,5 +1,5 @@
 within CCC_test.trim_and_respond;
-model reset_before_applying_limits
+model interpolation_vs_limiting_fast_oat
   hil_flexlab_model.Test1.BaseClasses1.Controls.SupplyTemperature_standardized
                                                 ModelSatSetpoint(
     final samplePeriod=180,
@@ -48,7 +48,7 @@ model reset_before_applying_limits
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput standardized_CDL(unit="K",
       displayUnit="degC")
     annotation (Placement(transformation(extent={{110,34},{130,54}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealOutput logic_with_gradual_TR(unit="K",
+  Buildings.Controls.OBC.CDL.Interfaces.RealOutput custom_logic(unit="K",
       displayUnit="degC")
     annotation (Placement(transformation(extent={{130,-58},{150,-38}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput CDL_upper(unit="K",
@@ -95,8 +95,8 @@ equation
           2},{-94,8},{-84,8}}, color={0,0,127}));
   connect(ModelSatSetpoint.TSupSet, standardized_CDL) annotation (Line(points={
           {78,36},{104,36},{104,44},{120,44}}, color={0,0,127}));
-  connect(ModelSatSetpoint1.TSupSet, logic_with_gradual_TR) annotation (Line(
-        points={{82,-54},{124,-54},{124,-48},{140,-48}}, color={0,0,127}));
+  connect(ModelSatSetpoint1.TSupSet, custom_logic) annotation (Line(points={{82,
+          -54},{124,-54},{124,-48},{140,-48}}, color={0,0,127}));
   connect(ModelSatSetpoint.TSupSet, add1.u1) annotation (Line(points={{78,36},{
           94,36},{94,18},{102,18}}, color={0,0,127}));
   connect(ModelSatSetpoint.TSupSet, add2.u2) annotation (Line(points={{78,36},{
@@ -116,4 +116,4 @@ equation
       StopTime=86400,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end reset_before_applying_limits;
+end interpolation_vs_limiting_fast_oat;

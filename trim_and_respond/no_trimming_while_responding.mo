@@ -38,7 +38,8 @@ model no_trimming_while_responding
     annotation (Placement(transformation(extent={{38,-74},{78,-34}})));
   Modelica.Blocks.Sources.Constant OAT(k=273.15 + 18.3)
     annotation (Placement(transformation(extent={{-144,32},{-124,52}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Pulse SatRequests(period=43200)
+  Buildings.Controls.OBC.CDL.Reals.Sources.Pulse SatRequests(amplitude=1,
+                                                             period=43200)
     annotation (Placement(transformation(extent={{-142,-8},{-122,12}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput
     have_trimming_while_responding(     unit="K", displayUnit="degC")
