@@ -36,12 +36,11 @@ model testTableJan2025_calibration
   CCC.Fluid.HeatPumps.SimpleHeatPump_TimerControl
     simpleHeatPump_TimerControl(
     redeclare package Medium_con = MediumWater,
-    delayOnTime=600,
-    TSupSetHeatingLower=320.25)
+    delayOnTime=600)
     annotation (Placement(transformation(extent={{-66,-148},{-46,-128}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con2(k=17000)
     annotation (Placement(transformation(extent={{-162,-128},{-142,-108}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con3(k=2)
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con3(k=1.67)
     annotation (Placement(transformation(extent={{-142,-174},{-122,-154}})));
   Buildings.Controls.OBC.CDL.Logical.Sources.Constant con4(k=true)
     annotation (Placement(transformation(extent={{-42,-192},{-22,-172}})));
@@ -55,9 +54,6 @@ model testTableJan2025_calibration
     use_T_in=true,
     nPorts=1)
     annotation (Placement(transformation(extent={{-272,-138},{-252,-116}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant pump_flow_rate(k=0.36)
-    "pump_flow_rate in unit of kg/s"
-    annotation (Placement(transformation(extent={{-318,-68},{-298,-48}})));
   Buildings.Fluid.Sources.Boundary_pT bou1(redeclare package Medium =
         MediumWater, nPorts=1)
                 annotation (Placement(transformation(
@@ -72,6 +68,14 @@ model testTableJan2025_calibration
     annotation (Placement(transformation(extent={{-234,-76},{-214,-56}})));
   Buildings.Controls.OBC.UnitConversions.From_degC from_degC
     annotation (Placement(transformation(extent={{-314,-130},{-294,-110}})));
+  Buildings.Controls.OBC.CDL.Reals.Divide COP
+    annotation (Placement(transformation(extent={{-74,52},{-54,72}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con5(k=0.01)
+    annotation (Placement(transformation(extent={{-160,16},{-140,36}})));
+  Buildings.Controls.OBC.CDL.Reals.Max max3
+    annotation (Placement(transformation(extent={{-114,20},{-94,40}})));
+  Buildings.Controls.OBC.CDL.Reals.MovingAverage movAve(delta=1800)
+    annotation (Placement(transformation(extent={{-38,52},{-18,72}})));
 equation
   connect(MassFieldData.y[3], Q_flow_experiment.u) annotation (Line(points={{-129,
           -14},{-20,-14},{-20,26},{-10,26}}, color={0,0,127}));
@@ -128,8 +132,8 @@ equation
   connect(modeController.IO, simpleHeatPump_TimerControl.OnOff) annotation (
       Line(points={{-66,-72},{-58,-72},{-58,-106},{-90,-106},{-90,-138.6},{
           -67.2,-138.6}}, color={255,0,255}));
-  connect(modeController.newMode, simpleHeatPump_TimerControl.Mode) annotation
-    (Line(points={{-66,-64},{-30,-64},{-30,-139.6},{-44.8,-139.6}}, color={255,
+  connect(modeController.newMode, simpleHeatPump_TimerControl.Mode) annotation (
+     Line(points={{-66,-64},{-30,-64},{-30,-139.6},{-44.8,-139.6}}, color={255,
           0,255}));
   connect(booToRea.y, mov.m_flow_in) annotation (Line(points={{-212,-66},{-204,
           -66},{-204,-106},{-216,-106},{-216,-116}}, color={0,0,127}));
@@ -140,6 +144,16 @@ equation
   connect(MassFieldData.y[5], from_degC.u) annotation (Line(points={{-129,-14},
           {-124,-14},{-124,-30},{-326,-30},{-326,-120},{-316,-120}}, color={0,0,
           127}));
+  connect(MassFieldData.y[3], COP.u1)
+    annotation (Line(points={{-129,-14},{-129,68},{-76,68}}, color={0,0,127}));
+  connect(con5.y, max3.u2) annotation (Line(points={{-138,26},{-124,26},{-124,
+          24},{-116,24}}, color={0,0,127}));
+  connect(MassFieldData.y[1], max3.u1) annotation (Line(points={{-129,-14},{
+          -130,-14},{-130,36},{-116,36}}, color={0,0,127}));
+  connect(max3.y, COP.u2) annotation (Line(points={{-92,30},{-82,30},{-82,48},{
+          -84,48},{-84,56},{-76,56}}, color={0,0,127}));
+  connect(COP.y, movAve.u)
+    annotation (Line(points={{-52,62},{-40,62}}, color={0,0,127}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false)),
     Diagram(coordinateSystem(preserveAspectRatio=false)),
