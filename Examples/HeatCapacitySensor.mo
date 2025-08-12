@@ -1,18 +1,18 @@
 within CCC_test.Examples;
 model HeatCapacitySensor
-            package MediumAir = Buildings.Media.Air;
-  package MediumWater = Buildings.Media.Water;
+  package MediumAir = Buildings.Media.Air;
+   package MediumWater = Buildings.Media.Water;
   package MediumPropyleneGlycol =
-      Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
-            0.4);
+      Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+20, X_a=
+            0.5);
   Buildings.Fluid.HeatExchangers.Heater_T hea(
-    redeclare package Medium = MediumAir,
+    redeclare package Medium = MediumPropyleneGlycol,
     m_flow_nominal=1,
     dp_nominal=0)
     annotation (Placement(transformation(extent={{-6,8},{14,28}})));
   Modelica.Fluid.Sources.MassFlowSource_T
                                      boundary2(
-    redeclare package Medium = MediumAir,
+    redeclare package Medium = MediumPropyleneGlycol,
     use_T_in=false,
     m_flow=1,
     T=319.15,
@@ -23,12 +23,12 @@ model HeatCapacitySensor
   Modelica.Blocks.Sources.Constant const1(k=273.15 + 47)
     annotation (Placement(transformation(extent={{-70,56},{-50,76}})));
   Modelica.Fluid.Sources.Boundary_pT boundary4(
-    redeclare package Medium = MediumAir,
+    redeclare package Medium = MediumPropyleneGlycol,
     use_T_in=false,
     nPorts=1)
     annotation (Placement(transformation(extent={{92,-2},{72,16}})));
   Buildings.Fluid.Sensors.DensityTwoPort senDen1(redeclare package Medium =
-        MediumAir,             m_flow_nominal=0.2)
+        MediumPropyleneGlycol, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{-46,8},{-26,28}})));
 equation
   connect(const1.y, hea.TSet)
