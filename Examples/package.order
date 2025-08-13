@@ -4,6 +4,7 @@ HeatPump
 TabledDiode
 InterpolationMethods
 TableHpPerformance
+TableHpPerformance2D
 CCC_HP_wTSup_ctr_withPowerData
 testPIDControl
 HeatCapacitySensor
