@@ -2,8 +2,6 @@ within CCC_test.cdl;
 model testBlock
   trim_and_respond_controller_block trim_and_respond_controller_block1
     annotation (Placement(transformation(extent={{-2,-2},{18,18}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Sin sin(amplitude=100, freqHz=1/
-        21600) annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
   data_point_block data_point_block1
     annotation (Placement(transformation(extent={{50,0},{70,20}})));
 equation

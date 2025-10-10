@@ -97,8 +97,8 @@ replaceable package MediumAir = Buildings.Media.Air;
 equation
   connect(loadShedMode.y[1], realToBoolean.u)
     annotation (Line(points={{-121,42},{-100,42}}, color={0,0,127}));
-  connect(realToBoolean.y, dF_Controller1.loadShed) annotation (Line(points={{
-          -77,42},{-4,42},{-4,80},{4,80}}, color={255,0,255}));
+  connect(realToBoolean.y, dF_Controller1.loaShe) annotation (Line(points={{-77,
+          42},{-4,42},{-4,80},{4,80}}, color={255,0,255}));
   connect(customHeatAddition1.y[1], modelicaRoom1.CustomHeatFlow) annotation (
       Line(points={{73,68},{100,68},{100,59.8},{105,59.8}}, color={0,0,127}));
   connect(heatingSetpoint1.y, custom_air_conditioner1.THeaSet) annotation (Line(
@@ -116,8 +116,8 @@ equation
   connect(modelicaRoom1.port_b2, custom_air_conditioner1.port_a) annotation (
       Line(points={{148.4,74.8},{152,74.8},{152,52},{110,52},{110,18},{77.6,18},
           {77.6,26.6}}, color={0,127,255}));
-  connect(realToBoolean.y, dF_Controller2.loadShed) annotation (Line(points={{
-          -77,42},{-6,42},{-6,-8},{2,-8}}, color={255,0,255}));
+  connect(realToBoolean.y, dF_Controller2.loaShe) annotation (Line(points={{-77,
+          42},{-6,42},{-6,-8},{2,-8}}, color={255,0,255}));
   connect(customHeatAddition2.y[1], modelicaRoom2.CustomHeatFlow) annotation (
       Line(points={{73,-22},{98,-22},{98,-28.2},{103,-28.2}}, color={0,0,127}));
   connect(heatingSetpoint2.y, custom_air_conditioner2.THeaSet) annotation (Line(
@@ -135,8 +135,8 @@ equation
   connect(modelicaRoom2.port_b2, custom_air_conditioner2.port_a) annotation (
       Line(points={{146.4,-13.2},{150,-13.2},{150,-68},{75.6,-68},{75.6,-61.4}},
         color={0,127,255}));
-  connect(realToBoolean.y, dF_Controller3.loadShed) annotation (Line(points={{
-          -77,42},{-6,42},{-6,-8},{-8,-8},{-8,-112},{6,-112}}, color={255,0,255}));
+  connect(realToBoolean.y, dF_Controller3.loaShe) annotation (Line(points={{-77,
+          42},{-6,42},{-6,-8},{-8,-8},{-8,-112},{6,-112}}, color={255,0,255}));
   connect(customHeatAddition3.y[1], modelicaRoom3.CustomHeatFlow) annotation (
       Line(points={{75,-124},{102,-124},{102,-132.2},{107,-132.2}}, color={0,0,
           127}));
@@ -158,34 +158,34 @@ equation
           -165.4}}, color={0,127,255}));
   connect(realExpression.y, totalElectricPower)
     annotation (Line(points={{-145,-26},{-90,-26}}, color={0,0,127}));
-  connect(booleanConstant1.y, dF_Controller1.DoReb) annotation (Line(points={{
+  connect(booleanConstant1.y, dF_Controller1.rebSig) annotation (Line(points={{
           -43,80},{-6,80},{-6,73.8},{4,73.8}}, color={255,0,255}));
-  connect(booleanConstant2.y, dF_Controller2.DoReb) annotation (Line(points={{
+  connect(booleanConstant2.y, dF_Controller2.rebSig) annotation (Line(points={{
           -27,-8},{-28,-8},{-28,-14.2},{2,-14.2}}, color={255,0,255}));
-  connect(booleanConstant3.y, dF_Controller3.DoReb) annotation (Line(points={{
+  connect(booleanConstant3.y, dF_Controller3.rebSig) annotation (Line(points={{
           -19,-118},{-6.5,-118},{-6.5,-118.2},{6,-118.2}}, color={255,0,255}));
   connect(realExpression.y, greThr.u) annotation (Line(points={{-145,-26},{-138,
           -26},{-138,-76},{-128,-76}}, color={0,0,127}));
-  connect(dF_Controller1.TZonTempDiff, smallPass.targetValue[1]) annotation (
-      Line(points={{28,67.6},{36,67.6},{36,40},{-68,40},{-68,-66.0667},{-90,
-          -66.0667}}, color={0,0,127}));
-  connect(dF_Controller2.TZonTempDiff, smallPass.targetValue[2]) annotation (
-      Line(points={{26,-20.4},{34,-20.4},{34,-34},{-68,-34},{-68,-65.4},{-90,
-          -65.4}}, color={0,0,127}));
-  connect(dF_Controller3.TZonTempDiff, smallPass.targetValue[3]) annotation (
-      Line(points={{30,-124.4},{38,-124.4},{38,-76},{-6,-76},{-6,-34},{-68,-34},
-          {-68,-64.7333},{-90,-64.7333}}, color={0,0,127}));
+  connect(dF_Controller1.TZonTemDif, smallPass.targetValue[1]) annotation (Line(
+        points={{28,67.6},{36,67.6},{36,40},{-68,40},{-68,-66.0667},{-90,-66.0667}},
+        color={0,0,127}));
+  connect(dF_Controller2.TZonTemDif, smallPass.targetValue[2]) annotation (Line(
+        points={{26,-20.4},{34,-20.4},{34,-34},{-68,-34},{-68,-65.4},{-90,-65.4}},
+        color={0,0,127}));
+  connect(dF_Controller3.TZonTemDif, smallPass.targetValue[3]) annotation (Line(
+        points={{30,-124.4},{38,-124.4},{38,-76},{-6,-76},{-6,-34},{-68,-34},{-68,
+          -64.7333},{-90,-64.7333}}, color={0,0,127}));
   connect(greThr.y, smallPass.defaultBool) annotation (Line(points={{-104,-76},
           {-102,-76},{-102,-77.2},{-90,-77.2}}, color={255,0,255}));
   connect(smallPass.targetBool, pre.u)
     annotation (Line(points={{-66,-70},{-58,-70}}, color={255,0,255}));
-  connect(pre[1].y, dF_Controller1.DoRat) annotation (Line(points={{-34,-70},{
+  connect(pre[1].y, dF_Controller1.ratSig) annotation (Line(points={{-34,-70},{
           -26,-70},{-26,-22},{-16,-22},{-16,-6},{-4,-6},{-4,42},{-2,42},{-2,82},
           {-4,82},{-4,88},{4,88},{4,77}}, color={255,0,255}));
-  connect(pre[2].y, dF_Controller2.DoRat) annotation (Line(points={{-34,-70},{
+  connect(pre[2].y, dF_Controller2.ratSig) annotation (Line(points={{-34,-70},{
           -26,-70},{-26,-22},{-16,-22},{-16,-6},{-4,-6},{-4,0},{2,0},{2,-11}},
         color={255,0,255}));
-  connect(pre[3].y, dF_Controller3.DoRat) annotation (Line(points={{-34,-70},{
+  connect(pre[3].y, dF_Controller3.ratSig) annotation (Line(points={{-34,-70},{
           -10,-70},{-10,-115},{6,-115}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),

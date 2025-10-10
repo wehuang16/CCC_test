@@ -76,7 +76,7 @@ equation
   connect(combiTimeTable.y[1], realToBoolean.u)
     annotation (Line(points={{-121,42},{-118,42},{-118,68},{-40,68}},
                                                  color={0,0,127}));
-  connect(realToBoolean.y, dF_Controller.loadShed)
+  connect(realToBoolean.y, dF_Controller.loaShe)
     annotation (Line(points={{-17,68},{8,68},{8,26}}, color={255,0,255}));
   connect(modelicaRoom.TZon, dF_Controller.TZon) annotation (Line(points={{
           131.6,-33},{131.6,-28},{8,-28},{8,10}}, color={0,0,127}));
