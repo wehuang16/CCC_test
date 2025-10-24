@@ -1,6 +1,6 @@
 within CCC_test.Example2;
 model testScaleUp
-  Modelica.Blocks.Sources.Constant const[4](k={4,7,2,3})
+  Modelica.Blocks.Sources.Constant const[4](k=1:1:4)
     annotation (Placement(transformation(extent={{-28,40},{-8,60}})));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false)),

@@ -7,7 +7,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     "Zone cooling temperature setpoint";
         parameter Real THeaSet(unit="K")=273.15+18
     "Zone heating temperature setpoint";
-  cdl_models.Controls.DF_Controller_ratchet_cooling dF_Controller(
+  cdl.DF_Controller_ratchet_cooling dF_Controller(
     TZonSetNominal(displayUnit="degC") = TCooSet,
     TMaxSet(displayUnit="degC") = 300.15,
     TRatThreshold=0.2,
@@ -80,9 +80,8 @@ equation
     annotation (Line(points={{-17,68},{8,68},{8,26}}, color={255,0,255}));
   connect(modelicaRoom.TZon, dF_Controller.TZon) annotation (Line(points={{
           131.6,-33},{131.6,-28},{8,-28},{8,10}}, color={0,0,127}));
-  connect(modelicaRoom.port_b2, hea.port_a) annotation (Line(points={{154.4,
-          -45.2},{158,-45.2},{158,-100},{24,-100},{24,-84},{28,-84}}, color={0,
-          127,255}));
+  connect(modelicaRoom.port_b, hea.port_a) annotation (Line(points={{154.4,-45.2},
+          {158,-45.2},{158,-100},{24,-100},{24,-84},{28,-84}}, color={0,127,255}));
   connect(const1.y, conLoo.THeaSet) annotation (Line(points={{-98,-76},{-78,-76},
           {-78,-66},{-70,-66}}, color={0,0,127}));
   connect(modelicaRoom.TZon, conLoo.TZon) annotation (Line(points={{131.6,-33},
@@ -94,7 +93,7 @@ equation
   connect(hea.port_b, mov.port_a)
     annotation (Line(points={{48,-84},{58,-84},{58,-82},{66,-82}},
                                                  color={0,127,255}));
-  connect(mov.port_b, modelicaRoom.port_a2) annotation (Line(points={{86,-82},{
+  connect(mov.port_b, modelicaRoom.port_a) annotation (Line(points={{86,-82},{
           102,-82},{102,-45.6},{111.4,-45.6}}, color={0,127,255}));
   connect(const2.y, mov.m_flow_in)
     annotation (Line(points={{64,-52},{76,-52},{76,-70}}, color={0,0,127}));

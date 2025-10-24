@@ -7,7 +7,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     "Zone cooling temperature setpoint";
         parameter Real THeaSet(unit="K")=273.15+16
     "Zone heating temperature setpoint";
-  cdl_models.Controls.DF_Controller_ratchet_cooling dF_Controller1(
+  cdl.DF_Controller_ratchet_cooling dF_Controller1(
     TZonCooSetNominal=TCooSet,
     TZonCooSetMax(displayUnit="degC") = 301.15,
     TRatThreshold=0.2,
@@ -29,13 +29,13 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,58},{72,78}})));
-  cdl_models.Examples.BaseClasses.custom_air_conditioner custom_air_conditioner1(
-      mRec_flow_nominal=0.7)
+  cdl_models.ThermalZones.BaseClasses.custom_air_conditioner
+    custom_air_conditioner1(mRec_flow_nominal=0.7)
     annotation (Placement(transformation(extent={{78,24},{98,44}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingSetpoint1(final k=
         THeaSet)
     annotation (Placement(transformation(extent={{10,18},{30,38}})));
-  cdl_models.Controls.DF_Controller_ratchet_cooling dF_Controller2(
+  cdl.DF_Controller_ratchet_cooling dF_Controller2(
     TZonCooSetNominal=TCooSet,
     TZonCooSetMax(displayUnit="degC") = 301.15,
     TRatThreshold=0.2,
@@ -49,13 +49,13 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,-32},{72,-12}})));
-  cdl_models.Examples.BaseClasses.custom_air_conditioner custom_air_conditioner2(
-      mRec_flow_nominal=0.7)
+  cdl_models.ThermalZones.BaseClasses.custom_air_conditioner
+    custom_air_conditioner2(mRec_flow_nominal=0.7)
     annotation (Placement(transformation(extent={{76,-64},{96,-44}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingSetpoint2(final k=
         THeaSet)
     annotation (Placement(transformation(extent={{8,-70},{28,-50}})));
-  cdl_models.Controls.DF_Controller_ratchet_cooling dF_Controller3(
+  cdl.DF_Controller_ratchet_cooling dF_Controller3(
     TZonCooSetNominal=TCooSet,
     TZonCooSetMax(displayUnit="degC") = 301.15,
     TRatThreshold=0.2,
@@ -70,8 +70,8 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{54,-134},{74,-114}})));
-  cdl_models.Examples.BaseClasses.custom_air_conditioner custom_air_conditioner3(
-      mRec_flow_nominal=0.7)
+  cdl_models.ThermalZones.BaseClasses.custom_air_conditioner
+    custom_air_conditioner3(mRec_flow_nominal=0.7)
     annotation (Placement(transformation(extent={{80,-168},{100,-148}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingSetpoint3(final k=
         THeaSet)
@@ -90,7 +90,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-40,-128},{-20,-108}})));
   Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr(t=280, h=0)
     annotation (Placement(transformation(extent={{-126,-86},{-106,-66}})));
-  cdl_models.Examples.BaseClasses.smallPassDemandRatchet smallPass(nValues=3)
+  cdl_models.Controls.Subsequences.smallPassDemandRatchet smallPass(nValues=3)
     annotation (Placement(transformation(extent={{-88,-80},{-68,-60}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre[3]
     annotation (Placement(transformation(extent={{-56,-80},{-36,-60}})));
@@ -110,10 +110,10 @@ equation
   connect(modelicaRoom1.TZon, custom_air_conditioner1.ZAT) annotation (Line(
         points={{125.6,87},{125.6,10},{4,10},{4,42},{44,42},{44,36.8},{76,36.8}},
         color={0,0,127}));
-  connect(custom_air_conditioner1.port_b, modelicaRoom1.port_a2) annotation (
+  connect(custom_air_conditioner1.port_b, modelicaRoom1.port_a) annotation (
       Line(points={{98.2,26.6},{98.2,24},{108,24},{108,52},{102,52},{102,74.4},
           {105.4,74.4}}, color={0,127,255}));
-  connect(modelicaRoom1.port_b2, custom_air_conditioner1.port_a) annotation (
+  connect(modelicaRoom1.port_b, custom_air_conditioner1.port_a) annotation (
       Line(points={{148.4,74.8},{152,74.8},{152,52},{110,52},{110,18},{77.6,18},
           {77.6,26.6}}, color={0,127,255}));
   connect(realToBoolean.y, dF_Controller2.loaShe) annotation (Line(points={{-77,
@@ -129,10 +129,10 @@ equation
   connect(modelicaRoom2.TZon, custom_air_conditioner2.ZAT) annotation (Line(
         points={{123.6,-1},{76,-1},{76,-38},{66,-38},{66,-51.2},{74,-51.2}},
         color={0,0,127}));
-  connect(custom_air_conditioner2.port_b, modelicaRoom2.port_a2) annotation (
-      Line(points={{96.2,-61.4},{96.2,-68},{106,-68},{106,-36},{100,-36},{100,
-          -13.6},{103.4,-13.6}}, color={0,127,255}));
-  connect(modelicaRoom2.port_b2, custom_air_conditioner2.port_a) annotation (
+  connect(custom_air_conditioner2.port_b, modelicaRoom2.port_a) annotation (
+      Line(points={{96.2,-61.4},{96.2,-68},{106,-68},{106,-36},{100,-36},{100,-13.6},
+          {103.4,-13.6}}, color={0,127,255}));
+  connect(modelicaRoom2.port_b, custom_air_conditioner2.port_a) annotation (
       Line(points={{146.4,-13.2},{150,-13.2},{150,-68},{75.6,-68},{75.6,-61.4}},
         color={0,127,255}));
   connect(realToBoolean.y, dF_Controller3.loaShe) annotation (Line(points={{-77,
@@ -150,12 +150,12 @@ equation
   connect(modelicaRoom3.TZon, custom_air_conditioner3.ZAT) annotation (Line(
         points={{127.6,-105},{80,-105},{80,-142},{70,-142},{70,-155.2},{78,
           -155.2}}, color={0,0,127}));
-  connect(custom_air_conditioner3.port_b, modelicaRoom3.port_a2) annotation (
+  connect(custom_air_conditioner3.port_b, modelicaRoom3.port_a) annotation (
       Line(points={{100.2,-165.4},{100.2,-172},{110,-172},{110,-140},{104,-140},
           {104,-117.6},{107.4,-117.6}}, color={0,127,255}));
-  connect(modelicaRoom3.port_b2, custom_air_conditioner3.port_a) annotation (
-      Line(points={{150.4,-117.2},{154,-117.2},{154,-172},{79.6,-172},{79.6,
-          -165.4}}, color={0,127,255}));
+  connect(modelicaRoom3.port_b, custom_air_conditioner3.port_a) annotation (
+      Line(points={{150.4,-117.2},{154,-117.2},{154,-172},{79.6,-172},{79.6,-165.4}},
+        color={0,127,255}));
   connect(realExpression.y, totalElectricPower)
     annotation (Line(points={{-145,-26},{-90,-26}}, color={0,0,127}));
   connect(booleanConstant1.y, dF_Controller1.rebSig) annotation (Line(points={{
