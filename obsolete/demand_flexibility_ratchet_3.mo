@@ -21,7 +21,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-142,32},{-122,52}})));
   Modelica.Blocks.Math.RealToBoolean realToBoolean
     annotation (Placement(transformation(extent={{-98,32},{-78,52}})));
-  cdl_models.ThermalZones.ModelicaRoom modelicaRoom1
+  cdl_models.ThermalZones.Subsequences.ModelicaRoom modelicaRoom1
     annotation (Placement(transformation(extent={{106,56},{148,86}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition1(
     table=[0,0; 10800,0; 21600,0; 27000,0; 32400,0; 43200,0; 54000,0.0; 64800,
@@ -29,8 +29,8 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,58},{72,78}})));
-  cdl_models.ThermalZones.BaseClasses.custom_air_conditioner
-    custom_air_conditioner1(mRec_flow_nominal=0.7)
+  cdl_models.HVAC.custom_air_conditioner custom_air_conditioner1(
+      mRec_flow_nominal=0.7)
     annotation (Placement(transformation(extent={{78,24},{98,44}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingSetpoint1(final k=
         THeaSet)
@@ -41,7 +41,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     TRatThreshold=0.2,
     TRat=0.5,
     TReb=0.3) annotation (Placement(transformation(extent={{4,-26},{24,-6}})));
-  cdl_models.ThermalZones.ModelicaRoom modelicaRoom2
+  cdl_models.ThermalZones.Subsequences.ModelicaRoom modelicaRoom2
     annotation (Placement(transformation(extent={{104,-32},{146,-2}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition2(
     table=[0,200; 10800,200; 21600,200; 27000,200; 32400,200; 43200,200; 54000,
@@ -49,8 +49,8 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,-32},{72,-12}})));
-  cdl_models.ThermalZones.BaseClasses.custom_air_conditioner
-    custom_air_conditioner2(mRec_flow_nominal=0.7)
+  cdl_models.HVAC.custom_air_conditioner custom_air_conditioner2(
+      mRec_flow_nominal=0.7)
     annotation (Placement(transformation(extent={{76,-64},{96,-44}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingSetpoint2(final k=
         THeaSet)
@@ -62,7 +62,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     TRat=0.5,
     TReb=0.3)
     annotation (Placement(transformation(extent={{8,-130},{28,-110}})));
-  cdl_models.ThermalZones.ModelicaRoom modelicaRoom3
+  cdl_models.ThermalZones.Subsequences.ModelicaRoom modelicaRoom3
     annotation (Placement(transformation(extent={{108,-136},{150,-106}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition3(
     table=[0,-100; 10800,-100; 21600,-100; 27000,-100; 32400,-100; 43200,-100;
@@ -70,8 +70,8 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{54,-134},{74,-114}})));
-  cdl_models.ThermalZones.BaseClasses.custom_air_conditioner
-    custom_air_conditioner3(mRec_flow_nominal=0.7)
+  cdl_models.HVAC.custom_air_conditioner custom_air_conditioner3(
+      mRec_flow_nominal=0.7)
     annotation (Placement(transformation(extent={{80,-168},{100,-148}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingSetpoint3(final k=
         THeaSet)
@@ -90,7 +90,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-40,-128},{-20,-108}})));
   Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr(t=280, h=0)
     annotation (Placement(transformation(extent={{-126,-86},{-106,-66}})));
-  cdl_models.Controls.Subsequences.smallPassDemandRatchet smallPass(nValues=3)
+  cdl.smallPassDemandRatchet smallPass(nValues=3)
     annotation (Placement(transformation(extent={{-88,-80},{-68,-60}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre[3]
     annotation (Placement(transformation(extent={{-56,-80},{-36,-60}})));

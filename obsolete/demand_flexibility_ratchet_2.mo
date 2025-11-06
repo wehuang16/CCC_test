@@ -21,7 +21,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-142,32},{-122,52}})));
   Modelica.Blocks.Math.RealToBoolean realToBoolean
     annotation (Placement(transformation(extent={{-38,58},{-18,78}})));
-  cdl_models.ThermalZones.ModelicaRoom modelicaRoom
+  cdl_models.ThermalZones.Subsequences.ModelicaRoom modelicaRoom
     annotation (Placement(transformation(extent={{112,-64},{154,-34}})));
   Buildings.Fluid.HeatExchangers.HeaterCooler_u
                    hea(

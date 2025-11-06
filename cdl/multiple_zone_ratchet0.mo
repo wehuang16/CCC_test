@@ -114,8 +114,8 @@ model multiple_zone_ratchet0
     annotation (Placement(transformation(extent={{144,62},{164,82}})));
   Buildings.Controls.OBC.CDL.Logical.Switch logSwi1[nZones]
     annotation (Placement(transformation(extent={{174,-82},{194,-62}})));
-  cdl_models.Controls.Subsequences.zone_setpoint_mock zone_setpoint_mock[nZones]
-    annotation (Placement(transformation(
+  CCC_test.cdl.zone_setpoint_mock zone_setpoint_mock[nZones] annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={204,-150})));

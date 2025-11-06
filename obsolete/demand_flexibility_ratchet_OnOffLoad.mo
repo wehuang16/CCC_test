@@ -21,7 +21,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-152,44},{-132,64}})));
   Modelica.Blocks.Math.RealToBoolean realToBoolean
     annotation (Placement(transformation(extent={{-110,46},{-90,66}})));
-  cdl_models.ThermalZones.ModelicaRoom modelicaRoom[nZones]
+  cdl_models.ThermalZones.Subsequences.ModelicaRoom modelicaRoom[nZones]
     annotation (Placement(transformation(extent={{130,58},{172,88}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition1(
     table=[0,0; 10800,0; 21600,0; 27000,0; 32400,0; 43200,0; 54000,0.0; 64800,
@@ -29,9 +29,8 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,58},{72,78}})));
-  cdl_models.ThermalZones.BaseClasses.custom_air_conditioner_OnOff
-    custom_air_conditioner_OnOff[nZones](mRec_flow_nominal=0.7,
-      heater_cooler_power_nominal=500)
+  cdl.custom_air_conditioner_OnOff custom_air_conditioner_OnOff[nZones](
+      mRec_flow_nominal=0.7, heater_cooler_power_nominal=500)
     annotation (Placement(transformation(extent={{100,12},{120,32}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingSetpoint[nZones](
       final k=THeaSet)
@@ -57,8 +56,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr(t=demand_limit,
                                                                   h=0)
     annotation (Placement(transformation(extent={{-126,-86},{-106,-66}})));
-  cdl_models.Controls.Subsequences.smallPassDemandRatchet smallPass(nValues=
-        nZones)
+  cdl.smallPassDemandRatchet smallPass(nValues=nZones)
     annotation (Placement(transformation(extent={{-88,-80},{-68,-60}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre[nZones]
     annotation (Placement(transformation(extent={{-56,-80},{-36,-60}})));
@@ -79,11 +77,11 @@ equation
     annotation (Line(points={{-66,-70},{-58,-70}}, color={255,0,255}));
   connect(booleanConstant.y, dF_Controller.DoReb) annotation (Line(points={{-43,
           80},{-6,80},{-6,73.8},{4,73.8}}, color={255,0,255}));
-  connect(custom_air_conditioner_OnOff.port_b, modelicaRoom.port_a) annotation
-    (Line(points={{120.2,14.6},{138,14.6},{138,76.4},{129.4,76.4}}, color={0,
+  connect(custom_air_conditioner_OnOff.port_b, modelicaRoom.port_a) annotation (
+     Line(points={{120.2,14.6},{138,14.6},{138,76.4},{129.4,76.4}}, color={0,
           127,255}));
-  connect(modelicaRoom.port_b, custom_air_conditioner_OnOff.port_a) annotation
-    (Line(points={{172.4,76.8},{194,76.8},{194,-6},{99.6,-6},{99.6,14.6}},
+  connect(modelicaRoom.port_b, custom_air_conditioner_OnOff.port_a) annotation (
+     Line(points={{172.4,76.8},{194,76.8},{194,-6},{99.6,-6},{99.6,14.6}},
         color={0,127,255}));
   connect(heatingSetpoint.y, custom_air_conditioner_OnOff.THeaSet) annotation (
       Line(points={{32,28},{44,28},{44,18},{90,18},{90,19.6},{98,19.6}}, color=
