@@ -28,8 +28,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,58},{72,78}})));
-  CCC_test.cdl.custom_air_conditioner_OnOff custom_air_conditioner_OnOff[nZones]
-    (
+  CCC_test.cdl.custom_air_conditioner_OnOff custom_air_conditioner_OnOff[nZones](
     mRec_flow_nominal=0.7,
     heater_thermal_power_nominal=700,
     cooler_thermal_power_nominal=800)

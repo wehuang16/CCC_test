@@ -6,11 +6,9 @@ model simple_heat_pump_2d_openmodelica
       Buildings.Media.Antifreeze.PropyleneGlycolWater (                           property_T = 273.15 + 20, X_a = 0.4);
   parameter Modelica.Units.SI.MassFlowRate mCon_flow_nominal = 0.5;
   parameter Modelica.Units.SI.Volume heat_pump_condenser_evaporator_volume = 0.005;
-  Modelica.Fluid.Interfaces.FluidPort_b port_b(redeclare package Medium = Medium_con)
-                                                                                      annotation (
+  Modelica.Fluid.Interfaces.FluidPort_b port_b(redeclare package Medium = Medium_con) annotation (
     Placement(transformation(origin = {196, -2}, extent = {{96, 48}, {116, 68}}), iconTransformation(origin = {200, 2}, extent = {{98, 22}, {118, 42}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package Medium = Medium_con)
-                                                                                      annotation (
+  Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package Medium = Medium_con) annotation (
     Placement(transformation(extent = {{-112, 46}, {-92, 66}}), iconTransformation(extent = {{-120, 24}, {-100, 44}})));
   Modelica.Blocks.Interfaces.RealInput TSupSetHea annotation (
     Placement(transformation(origin = {2, 16}, extent = {{-126, -142}, {-102, -118}}), iconTransformation(extent = {{-124, -140}, {-102, -118}})));
@@ -22,8 +20,7 @@ model simple_heat_pump_2d_openmodelica
     Placement(transformation(extent = {{-56, 74}, {-36, 94}})));
   Modelica.Blocks.Interfaces.BooleanInput HeaPumOnOff annotation (
     Placement(transformation(origin = {-112, 32}, extent = {{12, -12}, {-12, 12}}, rotation = 180), iconTransformation(origin = {-112, -6}, extent = {{12, -12}, {-12, 12}}, rotation = 180)));
-  Buildings.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium = Medium_con)
-                                                                                        annotation (
+  Buildings.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium = Medium_con) annotation (
     Placement(transformation(extent = {{-86, 50}, {-66, 70}})));
   Buildings.Controls.Continuous.LimPID conPID(controllerType = Modelica.Blocks.Types.SimpleController.PI, k = 0.3, Ti = 900, initType = Modelica.Blocks.Types.Init.InitialOutput, y_start = 0.2, reverseActing = true) annotation (
     Placement(transformation(extent = {{54, -52}, {74, -32}})));
