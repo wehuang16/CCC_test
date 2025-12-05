@@ -35,7 +35,7 @@ block TrimAndRespond "Block to inplement trim and respond logic"
     final delayOnInit=true)
     "Send an on signal after some delay time"
     annotation (Placement(transformation(extent={{-200,160},{-180,180}})));
-  Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr
+  Buildings.Controls.OBC.CDL.Reals.LessThreshold    lesThr
     "Check if the real requests is more than ignored requests setting"
     annotation (Placement(transformation(extent={{20,-60},{40,-40}})));
   Buildings.Controls.OBC.CDL.Reals.Switch netRes "Net setpoint reset value"
@@ -144,8 +144,11 @@ protected
   Buildings.Controls.OBC.CDL.Reals.Abs abs1 "Absolute value of real input"
     annotation (Placement(transformation(extent={{-120,-210},{-100,-190}})));
 
+public
+  Buildings.Controls.OBC.CDL.Logical.Not not2
+    annotation (Placement(transformation(extent={{64,-60},{84,-40}})));
 equation
-  connect(difReqIgnReq.y, greThr.u)
+  connect(difReqIgnReq.y,lesThr. u)
     annotation (Line(points={{-78,-30},{-40,-30},{-40,-50},{18,-50}},
       color={0,0,127}));
   connect(pro.y, minInp.u1)
@@ -153,9 +156,6 @@ equation
       color={0,0,127}));
   connect(triAmoCon.y, add2.u1)
     annotation (Line(points={{-178,-80},{118,-80}},
-      color={0,0,127}));
-  connect(add2.y, netRes.u1)
-    annotation (Line(points={{142,-86},{150,-86},{150,-38},{158,-38}},
       color={0,0,127}));
   connect(iniSetCon.y, swi.u3)
     annotation (Line(points={{-78,190},{80,190},{80,178},{158,178}},
@@ -178,9 +178,6 @@ equation
   connect(zerTri.y, swi1.u3)
     annotation (Line(points={{82,-10},{100,-10},{100,2},{118,2}},
       color={0,0,127}));
-  connect(greThr.y, and2.u2)
-    annotation (Line(points={{42,-50},{60,-50},{60,-38},{118,-38}},
-      color={255,0,255}));
   connect(and2.y, netRes.u2)
     annotation (Line(points={{142,-30},{158,-30}},
       color={255,0,255}));
@@ -282,6 +279,12 @@ equation
     annotation (Line(points={{-138,-50},{-120,-50},{-120,-36},{-102,-36}},
       color={0,0,127}));
 
+  connect(swi3.y, netRes.u1) annotation (Line(points={{142,-150},{150,-150},{
+          150,-38},{158,-38}}, color={0,0,127}));
+  connect(lesThr.y, not2.u)
+    annotation (Line(points={{42,-50},{62,-50}}, color={255,0,255}));
+  connect(not2.y, and2.u2) annotation (Line(points={{86,-50},{102,-50},{102,-38},
+          {118,-38}}, color={255,0,255}));
 annotation (
   defaultComponentName = "triRes",
   Icon(coordinateSystem(extent={{-100,-100},{100,100}}),

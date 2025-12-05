@@ -70,7 +70,6 @@ model Guideline36
     annotation (Placement(transformation(extent={{-340,430},{-320,450}})));
   Controller                                                      conAHU(
     final eneStd=Buildings.Controls.OBC.ASHRAE.G36.Types.EnergyStandard.ASHRAE90_1,
-    pSamplePeriod=300,
     final venStd=Buildings.Controls.OBC.ASHRAE.G36.Types.VentilationStandard.ASHRAE62_1,
     final ashCliZon=Buildings.Controls.OBC.ASHRAE.G36.Types.ASHRAEClimateZone.Zone_5A,
     final freSta=Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeStat.No_freeze_stat,
@@ -79,7 +78,10 @@ model Guideline36
     final ecoHigLimCon=Buildings.Controls.OBC.ASHRAE.G36.Types.ControlEconomizer.FixedDryBulb,
     final have_perZonRehBox=true,
     final VUncDesOutAir_flow=0.644,
-    final VDesTotOutAir_flow=1.107) "Air handler unit controller"
+    final VDesTotOutAir_flow=1.107,
+    pIniSet=200,
+    pSamplePeriod=300,
+    pNumIgnReq=1)                   "Air handler unit controller"
     annotation (Placement(transformation(extent={{460,460},{540,636}})));
 
   Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow.ASHRAE62_1.SumZone
@@ -180,14 +182,19 @@ model Guideline36
   Buildings.Controls.OBC.CDL.Integers.Sources.Constant conInt[numZon](k=0)
     annotation (Placement(transformation(extent={{800,38},{820,58}})));
   rogue_zone_logic_simple rogue_zone_logic_simple1[numZon]
-    annotation (Placement(transformation(extent={{778,-10},{798,10}})));
+    annotation (Placement(transformation(extent={{770,-22},{790,-2}})));
+  Buildings.Controls.OBC.CDL.Integers.Min minInt[numZon]
+    annotation (Placement(transformation(extent={{804,4},{824,24}})));
+  Buildings.Controls.OBC.CDL.Integers.Sources.Constant conInt1
+                                                             [numZon](k=1)
+    annotation (Placement(transformation(extent={{786,-54},{806,-34}})));
+  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con(k=true)
+    annotation (Placement(transformation(extent={{-306,-264},{-286,-244}})));
 equation
   connect(yFreHeaCoi.y, swiFreStaPum.u1) annotation (Line(points={{-18,-90},{10,
           -90},{10,-102},{18,-102}}, color={0,0,127}));
   connect(occSch.tNexOcc, reaRep.u) annotation (Line(points={{-299,-204},{-280,
           -204},{-280,-180},{-242,-180}}, color={0,0,127}));
-  connect(occSch.occupied, booRep.u) annotation (Line(points={{-299,-216},{-260,
-          -216},{-260,-140},{-242,-140}}, color={255,0,255}));
   connect(freSta.y, swiFreStaPum.u2) annotation (Line(points={{-68,-110},{18,-110}},
                                       color={255,0,255}));
   connect(sysHysCoo.y, valCooCoi.y) annotation (Line(points={{42,-250},{160,
@@ -410,16 +417,24 @@ equation
   connect(truSta.y, groSta.u1Win) annotation (Line(points={{-278,300},{-132,300},
           {-132,381},{-122,381}}, color={255,0,255}));
   connect(VAVBox.y_actual, rogue_zone_logic_simple1.vav_damper_position)
-    annotation (Line(points={{762,40},{776,40},{776,0}}, color={0,0,127}));
+    annotation (Line(points={{762,40},{762,-12},{768,-12}},
+                                                         color={0,0,127}));
   connect(rogue_zone_logic_simple1.rogue_zone_flag, intSwi.u2)
-    annotation (Line(points={{800,0},{842,0},{842,24}}, color={255,0,255}));
+    annotation (Line(points={{792,-12},{842,-12},{842,24}},
+                                                        color={255,0,255}));
   connect(conInt.y, intSwi.u1) annotation (Line(points={{822,48},{824,48},{824,
           32},{842,32}}, color={255,127,0}));
-  connect(intSwi.u3, conVAV.yZonPreResReq) annotation (Line(points={{842,16},{
-          816,16},{816,10},{672,10},{672,198},{640,198}}, color={255,127,0}));
   connect(intSwi.y, preRetReq.u) annotation (Line(points={{866,24},{896,24},{
           896,42},{910,42},{910,308},{742,308},{742,270},{758,270}}, color={255,
           127,0}));
+  connect(conInt1.y, minInt.u2) annotation (Line(points={{808,-44},{806,-44},{
+          806,8},{802,8}}, color={255,127,0}));
+  connect(minInt.u1, conVAV.yZonPreResReq) annotation (Line(points={{802,20},{
+          758,20},{758,14},{640,14},{640,198}}, color={255,127,0}));
+  connect(minInt.y, intSwi.u3) annotation (Line(points={{826,14},{836,14},{836,
+          16},{842,16}}, color={255,127,0}));
+  connect(con.y, booRep.u) annotation (Line(points={{-284,-254},{-262,-254},{
+          -262,-140},{-242,-140}}, color={255,0,255}));
   annotation (
   defaultComponentName="hvac",
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-380,-320},{1420,

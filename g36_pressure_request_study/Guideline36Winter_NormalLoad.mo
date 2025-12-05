@@ -1,5 +1,5 @@
 within CCC_test.g36_pressure_request_study;
-model Guideline36Winter
+model Guideline36Winter_NormalLoad
   "Variable air volume flow system with terminal reheat and five thermal zones controlled using an ASHRAE G36 controller"
   extends Modelica.Icons.Example;
   extends Buildings.Examples.VAVReheat.BaseClasses.HVACBuilding(
@@ -46,6 +46,8 @@ model Guideline36Winter
     annotation (Placement(transformation(extent={{-154,18},{-134,38}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con4(k=1400)
     annotation (Placement(transformation(extent={{-156,-18},{-136,2}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con5(k=5000)
+    annotation (Placement(transformation(extent={{-158,146},{-138,166}})));
 equation
   connect(prescribedHeatFlow1.port, flo.heaPorSou) annotation (Line(points={{-92,106},
           {-58,106},{-58,30},{53.1739,30},{53.1739,48.3077}},      color={191,0,
@@ -60,16 +62,16 @@ equation
           54},{14,54},{14,63.6923},{28.2174,63.6923}}, color={191,0,0}));
   connect(prescribedHeatFlow5.port, flo.heaPorCor) annotation (Line(points={{-92,38},
           {-14,38},{-14,88},{53.4783,88},{53.4783,59.6923}},     color={191,0,0}));
-  connect(con.y, prescribedHeatFlow1.Q_flow) annotation (Line(points={{-134,122},
-          {-120,122},{-120,106},{-112,106}}, color={0,0,127}));
-  connect(con1.y, prescribedHeatFlow2.Q_flow)
-    annotation (Line(points={{-134,88},{-112,88}}, color={0,0,127}));
-  connect(con2.y, prescribedHeatFlow3.Q_flow) annotation (Line(points={{-132,58},
-          {-120,58},{-120,68},{-112,68}}, color={0,0,127}));
   connect(con3.y, prescribedHeatFlow4.Q_flow) annotation (Line(points={{-132,28},
           {-120,28},{-120,54},{-112,54}}, color={0,0,127}));
-  connect(con4.y, prescribedHeatFlow5.Q_flow) annotation (Line(points={{-134,-8},
-          {-122,-8},{-122,38},{-112,38}}, color={0,0,127}));
+  connect(con3.y, prescribedHeatFlow5.Q_flow) annotation (Line(points={{-132,28},
+          {-124,28},{-124,38},{-112,38}}, color={0,0,127}));
+  connect(con3.y, prescribedHeatFlow3.Q_flow) annotation (Line(points={{-132,28},
+          {-132,48},{-112,48},{-112,68}}, color={0,0,127}));
+  connect(con3.y, prescribedHeatFlow2.Q_flow) annotation (Line(points={{-132,28},
+          {-122,28},{-122,88},{-112,88}}, color={0,0,127}));
+  connect(con5.y, prescribedHeatFlow1.Q_flow) annotation (Line(points={{-136,
+          156},{-126,156},{-126,106},{-112,106}}, color={0,0,127}));
   annotation (
     __Dymola_Commands(
       file="modelica://Buildings/Resources/Scripts/Dymola/ThermalZones/EnergyPlus_9_6_0/Examples/SmallOffice/Guideline36Winter.mos" "Simulate and plot"),
@@ -154,4 +156,4 @@ Buildings.Examples.VAVReheat.Guideline36</a> model with an EnergyPlus thermal zo
 </li>
 </ul>
 </html>"));
-end Guideline36Winter;
+end Guideline36Winter_NormalLoad;
