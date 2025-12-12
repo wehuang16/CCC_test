@@ -231,5 +231,5 @@ Annex60 compatibility
 </ul>
 </html>"));
   end BlackBox_Generic_TSetpoint_Heating;
-  annotation ();
+  annotation();
 end Examples;

@@ -11,14 +11,10 @@ model Floor "Model of a floor of the building"
     AFloNor=nor.AFlo,
     AFloEas=eas.AFlo,
     AFloWes=wes.AFlo,
-    opeWesCor(
-      wOpe=4),
-    opeSouCor(
-      wOpe=9),
-    opeNorCor(
-      wOpe=9),
-    opeEasCor(
-      wOpe=4),
+    opeWesCor(wOpe=4),
+    opeSouCor(wOpe=9),
+    opeNorCor(wOpe=9),
+    opeEasCor(wOpe=4),
     leaWes(
       s=18.46/27.69),
     leaSou(

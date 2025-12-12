@@ -29,11 +29,9 @@ model Aixlib_AirToWaterHeatPump_2D_backup
     "Radiative temperature at nominal condition"
     annotation (Dialog(group="Nominal condition"));
 
-  Modelica.Fluid.Interfaces.FluidPort_b port_b(redeclare package Medium = Medium_con)
-                                                                                      annotation (
+  Modelica.Fluid.Interfaces.FluidPort_b port_b(redeclare package Medium = Medium_con) annotation (
     Placement(transformation(origin = {120, 4}, extent = {{150, 110}, {170, 130}}), iconTransformation(origin = {0, 22}, extent = {{160, 58}, {180, 78}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package Medium = Medium_con)
-                                                                                      annotation (
+  Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package Medium = Medium_con) annotation (
     Placement(transformation(origin = {-98, 0}, extent = {{-112, 110}, {-92, 130}}), iconTransformation(origin = {0, 20}, extent = {{-120, 60}, {-100, 80}})));
   Modelica.Blocks.Interfaces.RealInput TSupSet annotation (
     Placement(transformation(origin = {-100, 0}, extent = {{-124, -72}, {-100, -48}}), iconTransformation(origin = {-110, -60}, extent = {{-10, -10}, {10, 10}})));
@@ -67,8 +65,7 @@ model Aixlib_AirToWaterHeatPump_2D_backup
     Placement(transformation(origin = {2, 0}, extent = {{22, -78}, {42, -58}})));
   Modelica.Blocks.Sources.Constant const(final k = 0) annotation (
     Placement(transformation(origin = {10, -110}, extent = {{8, 8}, {-8, -8}}, rotation = 180)));
-  Buildings.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium = Medium_con)
-                                                                                        annotation (
+  Buildings.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium = Medium_con) annotation (
     Placement(transformation(origin = {-66, 0}, extent = {{-86, 110}, {-66, 130}})));
   Modelica.Blocks.Interfaces.RealOutput QCon "Name is a bit confusing, but this represents the useful heat flow of the heat exchanger: this will be condenser hear flow for heating, and evaporator heat flow for cooling" annotation (
     Placement(transformation(origin = {-80, 192}, extent = {{-12, -12}, {12, 12}}, rotation = 90), iconTransformation(origin = {-70, 170}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));

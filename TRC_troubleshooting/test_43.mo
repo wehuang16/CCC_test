@@ -1,4 +1,4 @@
-﻿within CCC_test.TRC_troubleshooting;
+within CCC_test.TRC_troubleshooting;
 package test_43
   model HeatPump "Example for the reversible heat pump model."
    extends Modelica.Icons.Example;
