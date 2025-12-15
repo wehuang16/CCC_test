@@ -80,6 +80,8 @@ model Guideline36
     final VUncDesOutAir_flow=0.644,
     final VDesTotOutAir_flow=1.107,
     pIniSet=200,
+    pMinSet=100,
+    pMaxSet=400,
     pSamplePeriod=300,
     pNumIgnReq=1)                   "Air handler unit controller"
     annotation (Placement(transformation(extent={{460,460},{540,636}})));
@@ -433,8 +435,8 @@ equation
           758,20},{758,14},{640,14},{640,198}}, color={255,127,0}));
   connect(minInt.y, intSwi.u3) annotation (Line(points={{826,14},{836,14},{836,
           16},{842,16}}, color={255,127,0}));
-  connect(con.y, booRep.u) annotation (Line(points={{-284,-254},{-262,-254},{
-          -262,-140},{-242,-140}}, color={255,0,255}));
+  connect(con.y, booRep.u) annotation (Line(points={{-284,-254},{-264,-254},{
+          -264,-140},{-242,-140}}, color={255,0,255}));
   annotation (
   defaultComponentName="hvac",
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-380,-320},{1420,

@@ -12,7 +12,7 @@ model Guideline36Winter_case2
             y_start=0.2)), rogue_zone_logic_simple1(rogue_zone_time(each
             displayUnit="h") = 86400, fraction_active=0.7)),
     redeclare
-      CCC_test.g36_pressure_request_study.Floor
+      Floor_ClosedDoors
       flo,
     weaDat(filNam=ModelicaServices.ExternalReferences.loadResource("modelica://CCC_test/Resources/weatherdata/USA_FL_Tampa.Intl.AP.722110_TMY3.mos")));
 
@@ -37,16 +37,20 @@ model Guideline36Winter_case2
     annotation (Placement(transformation(extent={{-112,44},{-92,64}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow5
     annotation (Placement(transformation(extent={{-112,28},{-92,48}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=790)
-    annotation (Placement(transformation(extent={{-156,112},{-136,132}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con1(k=-310)
-    annotation (Placement(transformation(extent={{-156,78},{-136,98}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con2(k=140)
-    annotation (Placement(transformation(extent={{-154,48},{-134,68}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con3(k=-1010)
-    annotation (Placement(transformation(extent={{-154,18},{-134,38}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con4(k=390)
-    annotation (Placement(transformation(extent={{-156,-18},{-136,2}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=1800)
+    annotation (Placement(transformation(extent={{-224,118},{-204,138}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con1(k=700)
+    annotation (Placement(transformation(extent={{-226,84},{-206,104}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con2(k=1150)
+    annotation (Placement(transformation(extent={{-222,54},{-202,74}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con3(k=0)
+    annotation (Placement(transformation(extent={{-222,24},{-202,44}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con4(k=1400)
+    annotation (Placement(transformation(extent={{-224,-12},{-204,8}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con5(k=0)
+    annotation (Placement(transformation(extent={{-198,-60},{-178,-40}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con6(k=600)
+    annotation (Placement(transformation(extent={{-194,150},{-174,170}})));
 equation
   connect(prescribedHeatFlow1.port, flo.heaPorSou) annotation (Line(points={{-92,106},
           {-58,106},{-58,30},{53.1739,30},{53.1739,48.3077}},      color={191,0,
@@ -61,16 +65,16 @@ equation
           54},{14,54},{14,63.6923},{28.2174,63.6923}}, color={191,0,0}));
   connect(prescribedHeatFlow5.port, flo.heaPorCor) annotation (Line(points={{-92,38},
           {-14,38},{-14,88},{53.4783,88},{53.4783,59.6923}},     color={191,0,0}));
-  connect(con.y, prescribedHeatFlow1.Q_flow) annotation (Line(points={{-134,122},
-          {-120,122},{-120,106},{-112,106}}, color={0,0,127}));
-  connect(con1.y, prescribedHeatFlow2.Q_flow)
-    annotation (Line(points={{-134,88},{-112,88}}, color={0,0,127}));
-  connect(con2.y, prescribedHeatFlow3.Q_flow) annotation (Line(points={{-132,58},
-          {-120,58},{-120,68},{-112,68}}, color={0,0,127}));
-  connect(con3.y, prescribedHeatFlow4.Q_flow) annotation (Line(points={{-132,28},
-          {-120,28},{-120,54},{-112,54}}, color={0,0,127}));
-  connect(con4.y, prescribedHeatFlow5.Q_flow) annotation (Line(points={{-134,-8},
-          {-122,-8},{-122,38},{-112,38}}, color={0,0,127}));
+  connect(con6.y, prescribedHeatFlow1.Q_flow) annotation (Line(points={{-172,
+          160},{-106,160},{-106,106},{-112,106}}, color={0,0,127}));
+  connect(con6.y, prescribedHeatFlow2.Q_flow) annotation (Line(points={{-172,
+          160},{-108,160},{-108,88},{-112,88}}, color={0,0,127}));
+  connect(con6.y, prescribedHeatFlow3.Q_flow) annotation (Line(points={{-172,
+          160},{-108,160},{-108,68},{-112,68}}, color={0,0,127}));
+  connect(con6.y, prescribedHeatFlow4.Q_flow) annotation (Line(points={{-172,
+          160},{-108,160},{-108,54},{-112,54}}, color={0,0,127}));
+  connect(con6.y, prescribedHeatFlow5.Q_flow) annotation (Line(points={{-172,
+          160},{-108,160},{-108,38},{-112,38}}, color={0,0,127}));
   annotation (
     __Dymola_Commands(
       file="modelica://Buildings/Resources/Scripts/Dymola/ThermalZones/EnergyPlus_9_6_0/Examples/SmallOffice/Guideline36Winter.mos" "Simulate and plot"),
