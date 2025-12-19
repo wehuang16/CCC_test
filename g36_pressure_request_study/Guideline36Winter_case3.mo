@@ -1,5 +1,5 @@
 within CCC_test.g36_pressure_request_study;
-model Guideline36Winter_case4
+model Guideline36Winter_case3
   "Variable air volume flow system with terminal reheat and five thermal zones controlled using an ASHRAE G36 controller"
   extends Modelica.Icons.Example;
   extends Buildings.Examples.VAVReheat.BaseClasses.HVACBuilding(
@@ -10,7 +10,7 @@ model Guideline36Winter_case4
     mWes_flow_nominal=ACHWes*VRooWes*conv,
     redeclare CCC_test.g36_pressure_request_study.Guideline36 hvac(VAVBox(vav(
             y_start=0.2)), rogue_zone_logic_simple1(rogue_zone_time(each
-            displayUnit="h") = 86400, fraction_active=0.7)),
+            displayUnit="d") = 345600, fraction_active=0.99999)),
     redeclare
       Floor_ClosedDoors
       flo,
@@ -39,15 +39,15 @@ model Guideline36Winter_case4
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow5
     annotation (Placement(transformation(extent={{-112,28},{-92,48}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=5000)
-    annotation (Placement(transformation(extent={{-202,130},{-182,150}})));
+    annotation (Placement(transformation(extent={{-214,116},{-194,136}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con1(k=800)
-    annotation (Placement(transformation(extent={{-204,96},{-184,116}})));
+    annotation (Placement(transformation(extent={{-216,72},{-196,92}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con2(k=-400)
-    annotation (Placement(transformation(extent={{-200,66},{-180,86}})));
+    annotation (Placement(transformation(extent={{-214,32},{-194,52}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con3(k=400)
-    annotation (Placement(transformation(extent={{-200,36},{-180,56}})));
+    annotation (Placement(transformation(extent={{-194,-6},{-174,14}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con4(k=-800)
-    annotation (Placement(transformation(extent={{-202,0},{-182,20}})));
+    annotation (Placement(transformation(extent={{-196,-42},{-176,-22}})));
 equation
   connect(prescribedHeatFlow1.port, flo.heaPorSou) annotation (Line(points={{-92,106},
           {-58,106},{-58,30},{53.1739,30},{53.1739,48.3077}},      color={191,0,
@@ -62,16 +62,16 @@ equation
           54},{14,54},{14,63.6923},{28.2174,63.6923}}, color={191,0,0}));
   connect(prescribedHeatFlow5.port, flo.heaPorCor) annotation (Line(points={{-92,38},
           {-14,38},{-14,88},{53.4783,88},{53.4783,59.6923}},     color={191,0,0}));
-  connect(con.y, prescribedHeatFlow1.Q_flow) annotation (Line(points={{-180,140},
-          {-136,140},{-136,106},{-112,106}}, color={0,0,127}));
-  connect(con1.y, prescribedHeatFlow2.Q_flow) annotation (Line(points={{-182,
-          106},{-136,106},{-136,88},{-112,88}}, color={0,0,127}));
-  connect(con2.y, prescribedHeatFlow3.Q_flow) annotation (Line(points={{-178,76},
-          {-136,76},{-136,68},{-112,68}}, color={0,0,127}));
-  connect(con3.y, prescribedHeatFlow4.Q_flow) annotation (Line(points={{-178,46},
-          {-135,46},{-135,54},{-112,54}}, color={0,0,127}));
-  connect(con4.y, prescribedHeatFlow5.Q_flow) annotation (Line(points={{-180,10},
-          {-136,10},{-136,38},{-112,38}}, color={0,0,127}));
+  connect(con.y, prescribedHeatFlow1.Q_flow) annotation (Line(points={{-192,126},
+          {-130,126},{-130,106},{-112,106}}, color={0,0,127}));
+  connect(con1.y, prescribedHeatFlow2.Q_flow) annotation (Line(points={{-194,82},
+          {-130,82},{-130,88},{-112,88}}, color={0,0,127}));
+  connect(con2.y, prescribedHeatFlow3.Q_flow) annotation (Line(points={{-192,42},
+          {-130,42},{-130,68},{-112,68}}, color={0,0,127}));
+  connect(con3.y, prescribedHeatFlow4.Q_flow) annotation (Line(points={{-172,4},
+          {-129,4},{-129,54},{-112,54}}, color={0,0,127}));
+  connect(con4.y, prescribedHeatFlow5.Q_flow) annotation (Line(points={{-174,
+          -32},{-130,-32},{-130,38},{-112,38}}, color={0,0,127}));
   annotation (
     __Dymola_Commands(
       file="modelica://Buildings/Resources/Scripts/Dymola/ThermalZones/EnergyPlus_9_6_0/Examples/SmallOffice/Guideline36Winter.mos" "Simulate and plot"),
@@ -156,4 +156,4 @@ Buildings.Examples.VAVReheat.Guideline36</a> model with an EnergyPlus thermal zo
 </li>
 </ul>
 </html>"));
-end Guideline36Winter_case4;
+end Guideline36Winter_case3;

@@ -80,10 +80,13 @@ model Guideline36
     final VUncDesOutAir_flow=0.644,
     final VDesTotOutAir_flow=1.107,
     pIniSet=200,
-    pMinSet=100,
+    pMinSet=25,
     pMaxSet=400,
     pSamplePeriod=300,
-    pNumIgnReq=1)                   "Air handler unit controller"
+    pNumIgnReq=1,
+    pTriAmo=-6,
+    pResAmo=7.5,
+    pMaxRes=16)                     "Air handler unit controller"
     annotation (Placement(transformation(extent={{460,460},{540,636}})));
 
   Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow.ASHRAE62_1.SumZone

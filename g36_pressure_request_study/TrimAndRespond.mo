@@ -147,6 +147,9 @@ protected
 public
   Buildings.Controls.OBC.CDL.Logical.Not not2
     annotation (Placement(transformation(extent={{64,-60},{84,-40}})));
+  Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr
+    "Check if the real requests is more than ignored requests setting"
+    annotation (Placement(transformation(extent={{56,-86},{76,-66}})));
 equation
   connect(difReqIgnReq.y,lesThr. u)
     annotation (Line(points={{-78,-30},{-40,-30},{-40,-50},{18,-50}},
@@ -279,12 +282,14 @@ equation
     annotation (Line(points={{-138,-50},{-120,-50},{-120,-36},{-102,-36}},
       color={0,0,127}));
 
-  connect(swi3.y, netRes.u1) annotation (Line(points={{142,-150},{150,-150},{
-          150,-38},{158,-38}}, color={0,0,127}));
   connect(lesThr.y, not2.u)
     annotation (Line(points={{42,-50},{62,-50}}, color={255,0,255}));
-  connect(not2.y, and2.u2) annotation (Line(points={{86,-50},{102,-50},{102,-38},
-          {118,-38}}, color={255,0,255}));
+  connect(difReqIgnReq.y, greThr.u) annotation (Line(points={{-78,-30},{-12,-30},
+          {-12,-76},{54,-76}}, color={0,0,127}));
+  connect(and2.u2, greThr.y) annotation (Line(points={{118,-38},{98,-38},{98,
+          -76},{78,-76}}, color={255,0,255}));
+  connect(add2.y, netRes.u1) annotation (Line(points={{142,-86},{152,-86},{152,
+          -38},{158,-38}}, color={0,0,127}));
 annotation (
   defaultComponentName = "triRes",
   Icon(coordinateSystem(extent={{-100,-100},{100,100}}),
