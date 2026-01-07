@@ -9,7 +9,8 @@ model Guideline36Winter_case3
     mNor_flow_nominal=ACHNor*VRooNor*conv,
     mWes_flow_nominal=ACHWes*VRooWes*conv,
     redeclare CCC_test.g36_pressure_request_study.Guideline36 hvac(VAVBox(vav(
-            y_start=0.2)), rogue_zone_logic_simple1(rogue_zone_time(each
+            y_start=0.2)), rogue_zone_logic_simple1(
+        each startTime=2.00448e+07,                 rogue_zone_time(each
             displayUnit="d") = 345600, fraction_active=0.99999)),
     redeclare
       Floor_ClosedDoors

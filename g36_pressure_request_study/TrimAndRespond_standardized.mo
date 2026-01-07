@@ -1,5 +1,5 @@
 within CCC_test.g36_pressure_request_study;
-block TrimAndRespond "Block to inplement trim and respond logic"
+block TrimAndRespond_standardized "Block to inplement trim and respond logic"
   parameter Real iniSet  "Initial setpoint";
   parameter Real minSet  "Minimum setpoint";
   parameter Real maxSet  "Maximum setpoint";
@@ -286,10 +286,10 @@ equation
     annotation (Line(points={{42,-50},{62,-50}}, color={255,0,255}));
   connect(difReqIgnReq.y, greThr.u) annotation (Line(points={{-78,-30},{-12,-30},
           {-12,-76},{54,-76}}, color={0,0,127}));
-  connect(netRes.u1, swi3.y) annotation (Line(points={{158,-38},{150,-38},{150,
-          -150},{142,-150}}, color={0,0,127}));
-  connect(not2.y, and2.u2) annotation (Line(points={{86,-50},{102,-50},{102,-38},
+  connect(greThr.y, and2.u2) annotation (Line(points={{78,-76},{97,-76},{97,-38},
           {118,-38}}, color={255,0,255}));
+  connect(netRes.u1, add2.y) annotation (Line(points={{158,-38},{152,-38},{152,
+          -86},{142,-86}}, color={0,0,127}));
 annotation (
   defaultComponentName = "triRes",
   Icon(coordinateSystem(extent={{-100,-100},{100,100}}),
@@ -407,4 +407,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end TrimAndRespond;
+end TrimAndRespond_standardized;
