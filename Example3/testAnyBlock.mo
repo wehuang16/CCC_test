@@ -11,6 +11,9 @@ model testAnyBlock
     annotation (Placement(transformation(extent={{-16,-60},{4,-40}})));
   Buildings.Controls.OBC.CDL.Reals.PID conPID
     annotation (Placement(transformation(extent={{-84,-66},{-64,-46}})));
+  Modelica.Blocks.Tables.CombiTable2Ds combiTable2Ds(extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint,
+      table=[-999,283.15,303.15; 283.15,12000,12000; 303.15,12000,12000])                                                                                                                            annotation(
+    Placement(transformation(origin={62,-8},      extent = {{-10, -10}, {10, 10}})));
 equation
   connect(con[1].y, systemModePre.u1) annotation (Line(points={{-54,2},{-26,2},
           {-26,-44},{-18,-44}}, color={0,0,127}));
