@@ -2,7 +2,7 @@ within CCC_test.Example2;
 model testWeatherFile
   Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
         ModelicaServices.ExternalReferences.loadResource(
-        "modelica://CCC_test/Resources/weatherdata/USA_FL_Tampa.Intl.AP.722110_TMY3.mos"))
+        "modelica://CCC_test/Resources/weatherdata/South_Lake_Tahoe_TMY3.mos"))
     annotation (Placement(transformation(extent={{-32,10},{-12,30}})));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false)),
