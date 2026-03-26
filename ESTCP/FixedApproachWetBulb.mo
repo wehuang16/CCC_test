@@ -7,6 +7,10 @@ model FixedApproachWetBulb
       Buildings.Fluid.HeatExchangers.CoolingTowers.FixedApproach tow(
         m_flow_nominal=m_flow_nominal), weaDat(final computeWetBulbTemperature=
           true));
+  Buildings.Controls.OBC.CDL.Reals.Subtract sub
+    annotation (Placement(transformation(extent={{110,-86},{130,-66}})));
+  Buildings.Controls.OBC.CDL.Interfaces.RealOutput yTemDif
+    annotation (Placement(transformation(extent={{170,-98},{210,-58}})));
 equation
   connect(weaBus.TWetBul, tow.TAir) annotation (Line(
       points={{-59.95,50.05},{0,50.05},{0,-46},{20,-46}},
@@ -16,6 +20,12 @@ equation
       index=-1,
       extent={{-6,3},{-6,3}},
       horizontalAlignment=TextAlignment.Right));
+  connect(tow.TLvg, sub.u1) annotation (Line(points={{43,-56},{98,-56},{98,-70},
+          {108,-70}}, color={0,0,127}));
+  connect(sub.u2, tow.TAir) annotation (Line(points={{108,-82},{58,-82},{58,-34},
+          {12,-34},{12,-46},{20,-46}}, color={0,0,127}));
+  connect(sub.y, yTemDif) annotation (Line(points={{132,-76},{164,-76},{164,-78},
+          {190,-78}}, color={0,0,127}));
   annotation(Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-140,-260},
             {140,100}})),
 experiment(StartTime=15552000, Tolerance=1e-06, StopTime=15984000),
