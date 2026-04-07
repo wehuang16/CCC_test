@@ -2,3 +2,9 @@ FixedApproachDryBulb
 FixedApproachWetBulb
 Merkel
 YorkCalc
+solve_derivative_time_dependent
+solve_derivative_time_independent
+test_function
+coupled_rk4
+w_function
+x_function
