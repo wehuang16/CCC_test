@@ -13,6 +13,8 @@ model testAnyBlock
     annotation (Placement(transformation(extent={{72,-8},{92,12}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant const[5](k={1,1,1,1,1})
     annotation (Placement(transformation(extent={{4,6},{24,26}})));
+  Buildings.Controls.OBC.CDL.Discrete.Sampler sam(samplePeriod=30)
+    annotation (Placement(transformation(extent={{-72,-74},{-52,-54}})));
 equation
   connect(con[1].y, systemModePre.u1) annotation (Line(points={{-54,2},{-26,2},
           {-26,-44},{-18,-44}}, color={0,0,127}));
