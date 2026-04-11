@@ -9,3 +9,12 @@ coupled_rk4
 w_function
 x_function
 m_function
+TestPsy
+HumidityRatioPressure
+MassFraction_pTphi
+SpecificEnthalpy_TDryBulPhi
+h_pTphi
+x_pTphi
+LewisFactor_x
+RightHandSide_dx_w
+RightHandSide_dh_ma
