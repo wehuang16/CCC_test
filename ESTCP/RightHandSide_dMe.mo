@@ -1,5 +1,5 @@
 within CCC_test.ESTCP;
-function RightHandSide_dh_ma
+function RightHandSide_dMe
   extends Modelica.Icons.Function;
   input Modelica.Units.SI.MassFlowRate m_w
     "Mass flow rate of water";
@@ -39,6 +39,6 @@ algorithm
   h_ma := CCC_test.ESTCP.h_pTphi(p,T_a,phi);
   h_masw := CCC_test.ESTCP.h_pTphi(p,T_w,1);
   h_v :=2501014.5+1860*(T_w-273.15);
-  rhs_value := 4184*m_w/m_a*( 1+(x_w_sw-x_w)*4184*T_w/(h_masw-h_ma+(Le-1)*(h_masw-h_ma-(x_w_sw-x_w)*h_v)-(x_w_sw-x_w)*4184*T_w));
+  rhs_value := 4184/(h_masw-h_ma+(Le-1)*(h_masw-h_ma-(x_w_sw-x_w)*h_v)-(x_w_sw-x_w)*4184*T_w);
 
-end RightHandSide_dh_ma;
+end RightHandSide_dMe;
