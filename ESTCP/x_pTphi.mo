@@ -15,8 +15,6 @@ algorithm
   X_w := Buildings.Utilities.Psychrometrics.Functions.X_pTphi(p,T,phi);
   x_w := X_w / (1-X_w);
   annotation (
-    inverse(phi=phi_pTX(p,T,X_w)),
-    smoothOrder=1,
     Documentation(info="<html>
 <p>
 Absolute humidity of air for given

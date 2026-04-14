@@ -19,9 +19,6 @@ algorithm
   T := (h-2501014.5*x_w)/(1006+1860*x_w)+273.15;
   phi :=x_w*p/((0.6219647130774989+x_w)*Buildings.Utilities.Psychrometrics.Functions.saturationPressure(T));
   annotation (
-
-    inverse(phi=phi_pTX(p,T,X_w)),
-    smoothOrder=1,
     Documentation(info="<html>
 <p>
 Absolute humidity of air for given

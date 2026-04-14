@@ -6,6 +6,7 @@ solve_derivative_time_dependent
 solve_derivative_time_independent
 test_function
 coupled_rk4
+coupled_rk4_poppe
 w_function
 x_function
 m_function
@@ -20,3 +21,4 @@ LewisFactor_x
 RightHandSide_dx_w
 RightHandSide_dh_ma
 RightHandSide_dMe
+coupled_rk4_poppe_example

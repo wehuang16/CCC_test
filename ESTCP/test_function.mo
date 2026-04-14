@@ -2,9 +2,10 @@ within CCC_test.ESTCP;
 model test_function
 
     // State variables
+  Real x;
   Real y;
 equation
-  y=w_function(5,2,1);
+  (x,y)=CCC_test.ESTCP.Tphi_hxp(10000,0.01,101325);
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false)),
     Diagram(coordinateSystem(preserveAspectRatio=false)),

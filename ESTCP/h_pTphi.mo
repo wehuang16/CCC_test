@@ -32,8 +32,6 @@ algorithm
   x_w:=0.6219647130774989*p_w/(p - p_w);
   h:=1006*TDryBul_degC+x_w*(2501014.5+1860*TDryBul_degC);
   annotation (
-    inverse(phi=phi_pTX(p,T,X_w)),
-    smoothOrder=1,
     Documentation(info="<html>
 <p>
 Specific enthalpy of air for given pressure,
