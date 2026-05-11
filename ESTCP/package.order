@@ -1,7 +1,7 @@
-FixedApproachDryBulb
-FixedApproachWetBulb
-Merkel
-YorkCalc
+FixedApproachDryBulb_old
+FixedApproachWetBulb_old
+Merkel_old
+YorkCalc_old
 solve_derivative_time_dependent
 solve_derivative_time_independent
 test_function
@@ -24,3 +24,7 @@ RightHandSide_dMe
 coupled_rk4_poppe_example
 IconExample
 Icon2
+FixedApproachDryBulb
+FixedApproachWetBulb
+Merkel
+YorkCalc

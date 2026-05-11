@@ -45,11 +45,11 @@ block Icon2 "Single-step setpoint change"
   Buildings.Controls.OBC.CDL.Reals.Max uCurSetLimMax
     "Current setpoint should be no larger than the maximum of the default setpoint and the target setpoint"
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));
-  Buildings.Controls.OBC.DemandFlexibility.Generic.Subsequences.RealEqual reaEquTarSet(alwDev=
+  cdl_models.Move.Generic.Subsequences_20260429.RealEqual reaEquTarSet(alwDev=
         alwDev)
     "Check if the current setpoint and the target setpoint are equal to each other"
     annotation (Placement(transformation(extent={{-20,140},{0,160}})));
-  Buildings.Controls.OBC.DemandFlexibility.Generic.Subsequences.RealEqual reaEquDefSet(alwDev=
+  cdl_models.Move.Generic.Subsequences_20260429.RealEqual reaEquDefSet(alwDev=
         alwDev)
     "Check if the current setpoint and the default setpoint are equal to each other"
     annotation (Placement(transformation(extent={{-20,-160},{0,-140}})));

@@ -1,5 +1,5 @@
 within CCC_test.ESTCP;
-model Merkel "Test model for cooling tower using the Merkel theory"
+model Merkel_old "Test model for cooling tower using the Merkel theory"
   extends Modelica.Icons.Example;
   extends Buildings.Fluid.HeatExchangers.CoolingTowers.Examples.BaseClasses.PartialStaticTwoPortCoolingTower
                                                       (redeclare
@@ -28,9 +28,9 @@ model Merkel "Test model for cooling tower using the Merkel theory"
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
 
   Buildings.Controls.OBC.CDL.Reals.Subtract sub
-    annotation (Placement(transformation(extent={{192,-88},{212,-68}})));
+    annotation (Placement(transformation(extent={{292,-40},{312,-20}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput yTemDif
-    annotation (Placement(transformation(extent={{252,-100},{292,-60}})));
+    annotation (Placement(transformation(extent={{352,-52},{392,-12}})));
 equation
   connect(TSetLea.y, conFan.u_s)
     annotation (Line(
@@ -52,14 +52,12 @@ equation
       index=-1,
       extent={{-6,3},{-6,3}},
       horizontalAlignment=TextAlignment.Right));
-  connect(tow.TLvg,sub. u1) annotation (Line(points={{43,-56},{150,-56},{150,
-          -72},{190,-72}},
-                      color={0,0,127}));
-  connect(sub.u2, tow.TAir) annotation (Line(points={{190,-84},{138,-84},{138,
-          -46},{20,-46}},
-                     color={0,0,127}));
-  connect(sub.y,yTemDif)  annotation (Line(points={{214,-78},{244,-78},{244,-80},
-          {272,-80}}, color={0,0,127}));
+  connect(tow.TLvg, sub.u1) annotation (Line(points={{43,-56},{280,-56},{280,
+          -24},{290,-24}}, color={0,0,127}));
+  connect(sub.u2, tow.TAir) annotation (Line(points={{290,-36},{240,-36},{240,
+          12},{194,12},{194,-46},{20,-46}}, color={0,0,127}));
+  connect(sub.y, yTemDif) annotation (Line(points={{314,-30},{346,-30},{346,-32},
+          {372,-32}}, color={0,0,127}));
   annotation(Diagram(coordinateSystem(preserveAspectRatio=true,
       extent={{-140,-260},{140,100}})),
 experiment(StartTime=15552000, Tolerance=1e-06, StopTime=15724800),
@@ -85,4 +83,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end Merkel;
+end Merkel_old;

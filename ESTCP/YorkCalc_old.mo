@@ -1,5 +1,5 @@
 within CCC_test.ESTCP;
-model YorkCalc
+model YorkCalc_old
   "Test model for cooling tower using the York performance correlation"
   extends Modelica.Icons.Example;
   extends Buildings.Fluid.HeatExchangers.CoolingTowers.Examples.BaseClasses.PartialStaticTwoPortCoolingTower
@@ -19,9 +19,9 @@ model YorkCalc
     "Controller for tower fan"
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
   Buildings.Controls.OBC.CDL.Reals.Subtract sub
-    annotation (Placement(transformation(extent={{292,-42},{312,-22}})));
+    annotation (Placement(transformation(extent={{176,-84},{196,-64}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput yTemDif
-    annotation (Placement(transformation(extent={{352,-54},{392,-14}})));
+    annotation (Placement(transformation(extent={{236,-96},{276,-56}})));
 equation
   connect(TSetLea.y, conFan.u_s) annotation (Line(
       points={{-59,10},{-42,10}},
@@ -43,14 +43,12 @@ equation
       index=-1,
       extent={{-6,3},{-6,3}},
       horizontalAlignment=TextAlignment.Right));
-  connect(tow.TLvg,sub. u1) annotation (Line(points={{43,-56},{250,-56},{250,
-          -26},{290,-26}},
-                      color={0,0,127}));
-  connect(sub.u2, tow.TAir) annotation (Line(points={{290,-38},{238,-38},{238,
-          -46},{20,-46}},
-                     color={0,0,127}));
-  connect(sub.y,yTemDif)  annotation (Line(points={{314,-32},{344,-32},{344,-34},
-          {372,-34}}, color={0,0,127}));
+  connect(tow.TLvg, sub.u1) annotation (Line(points={{43,-56},{164,-56},{164,
+          -68},{174,-68}}, color={0,0,127}));
+  connect(sub.u2, tow.TAir) annotation (Line(points={{174,-80},{124,-80},{124,
+          -32},{78,-32},{78,-46},{20,-46}}, color={0,0,127}));
+  connect(sub.y, yTemDif) annotation (Line(points={{198,-74},{230,-74},{230,-76},
+          {256,-76}}, color={0,0,127}));
 annotation(Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-140,-260},
             {140,100}}),
                       graphics),
@@ -77,4 +75,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end YorkCalc;
+end YorkCalc_old;
