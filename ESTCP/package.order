@@ -1,7 +1,3 @@
-FixedApproachDryBulb_old
-FixedApproachWetBulb_old
-Merkel_old
-YorkCalc_old
 solve_derivative_time_dependent
 solve_derivative_time_independent
 test_function
@@ -28,3 +24,6 @@ FixedApproachDryBulb
 FixedApproachWetBulb
 Merkel
 YorkCalc
+wet_pad
+wet_pad_example
+PrescribedOutlet
