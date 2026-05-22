@@ -25,7 +25,12 @@ FixedApproachWetBulb
 Merkel
 YorkCalc
 wet_pad
-wet_pad2
+wet_pad2_test
+wet_pad2_test_reverse
 wet_pad_example
+wet_pad_example2_test
+wet_pad_example2_test_reverse
 PrescribedOutlet
 TWetBul_TDryBulXi
+AdiabaticPad
+AdiabaticPadExample

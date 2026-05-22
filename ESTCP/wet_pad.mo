@@ -24,8 +24,8 @@ model wet_pad
   Real test_4;
 
 public
-  Buildings.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBul(redeclare package
-      Medium = Medium)
+  Buildings.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBul_a(redeclare
+      package Medium = Medium)
     annotation (Placement(transformation(extent={{-10,12},{10,34}})));
 protected
   /*
@@ -86,9 +86,9 @@ equation
     Medium.setState_phX(p=port_b.p, h=port_b.h_outflow, X=port_b.Xi_outflow));
 
 
-  wetBul.TDryBul = T_a;
-  wetBul.Xi = port_a.Xi_outflow;
-  wetBul.p = port_a.p;
+  wetBul_a.TDryBul = T_a;
+  wetBul_a.Xi = port_a.Xi_outflow;
+  wetBul_a.p = port_a.p;
 
   test_1 = inStream(port_a.h_outflow);
   test_2 = inStream(port_b.h_outflow);
