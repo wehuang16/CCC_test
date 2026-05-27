@@ -3,6 +3,7 @@ model AdiabaticPad
   extends Buildings.Fluid.Interfaces.PartialTwoPortInterface;
 
   parameter Real satEff = 0.75 "Saturation efficiency";
+  parameter Real facAre = 0.2 "Face area of the adiabatic pad";
   Real T_a(final unit="K",
     final displayUnit="degC",
     final quantity="ThermodynamicTemperature");
@@ -12,38 +13,45 @@ model AdiabaticPad
 
 public
 
-  Buildings.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBulIn(redeclare
-      package Medium = Medium) "Calculate wetbulb temperature at the inlet"
-    annotation (Placement(transformation(extent={{-20,40},{0,62}})));
-  Buildings.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBulOutForFlo(
+  Buildings.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBul_a_forFlo(
       redeclare package Medium = Medium)
-    "Calculate wetbulb temperature at the outlet for forward fluid flow"
-    annotation (Placement(transformation(extent={{-18,-20},{2,2}})));
+    "Calculate wetbulb temperature at port a during forward fluid flow"
+    annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
+  Buildings.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBul_b_forFlo(
+      redeclare package Medium = Medium)
+    "Calculate wetbulb temperature at port b during forward fluid flow"
+    annotation (Placement(transformation(extent={{60,20},{80,40}})));
 
-  Buildings.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBulOutRevFlo(
+  Buildings.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBul_a_revFlo(
       redeclare package Medium = Medium)
-    "Calculate wetbulb temperature at the outlet for reverse fluid flow"
-    annotation (Placement(transformation(extent={{-16,-68},{4,-46}})));
+    "Calculate wetbulb temperature at port a during reverse fluid flow"
+    annotation (Placement(transformation(extent={{-80,-40},{-60,-20}})));
+
+  Buildings.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBul_b_revFlo(
+      redeclare package Medium = Medium)
+    "Calculate wetbulb temperature at port b during reverse fluid flow"
+    annotation (Placement(transformation(extent={{60,-40},{80,-20}})));
+
 protected
 
-  Real h_forwardFlow_a;
-  Real h_reverseFlow_b;
-  Real h_forwardFlow_b;
-  Real h_reverseFlow_a;
-  Real X_w_forwardFlow_a[Medium.nXi];
-  Real X_w_reverseFlow_b[Medium.nXi];
-  Real X_w_forwardFlow_b[Medium.nXi];
-  Real X_w_reverseFlow_a[Medium.nXi];
-  Real T_forwardFlow_a(final unit="K",
+  Real h_a_forFlo;
+  Real h_b_revFlo;
+  Real h_b_forFlo;
+  Real h_a_revFlo;
+  Real Xi_a_forFlo[Medium.nXi];
+  Real Xi_b_revFlo[Medium.nXi];
+  Real Xi_b_forFlo[Medium.nXi];
+  Real Xi_a_revFlo[Medium.nXi];
+  Real T_a_forFlo(final unit="K",
     final displayUnit="degC",
     final quantity="ThermodynamicTemperature");
-  Real T_reverseFlow_b(final unit="K",
+  Real T_b_revFlo(final unit="K",
     final displayUnit="degC",
     final quantity="ThermodynamicTemperature");
-  Real T_forwardFlow_b(final unit="K",
+  Real T_b_forFlo(final unit="K",
     final displayUnit="degC",
     final quantity="ThermodynamicTemperature");
-  Real T_reverseFlow_a(final unit="K",
+  Real T_a_revFlo(final unit="K",
     final displayUnit="degC",
     final quantity="ThermodynamicTemperature");
 
@@ -57,85 +65,74 @@ equation
   // Mass balance (no storage)
   port_a.m_flow + port_b.m_flow = 0;
 
-  h_forwardFlow_a = inStream(port_a.h_outflow);
-  h_reverseFlow_b = inStream(port_b.h_outflow);
-  X_w_forwardFlow_a = inStream(port_a.Xi_outflow);
-  X_w_reverseFlow_b = inStream(port_b.Xi_outflow);
+  h_a_forFlo = inStream(port_a.h_outflow);
+  h_b_revFlo = inStream(port_b.h_outflow);
+  Xi_a_forFlo = inStream(port_a.Xi_outflow);
+  Xi_b_revFlo = inStream(port_b.Xi_outflow);
 
-  T_forwardFlow_a = Medium.temperature(state=
-    Medium.setState_phX(p=port_a.p, h=h_forwardFlow_a, X=X_w_forwardFlow_a));
-  T_reverseFlow_b = Medium.temperature(state=
-    Medium.setState_phX(p=port_b.p, h=h_reverseFlow_b, X=X_w_reverseFlow_b));
+  T_a_forFlo = Medium.temperature(state=
+    Medium.setState_phX(p=port_a.p, h=h_a_forFlo, X=Xi_a_forFlo));
+  T_b_revFlo = Medium.temperature(state=
+    Medium.setState_phX(p=port_b.p, h=h_b_revFlo, X=Xi_b_revFlo));
 
-  h_forwardFlow_b = Medium.specificEnthalpy(state=
-    Medium.setState_pTX(p=port_b.p, T=T_forwardFlow_b, X=X_w_forwardFlow_b));
-  h_reverseFlow_a = Medium.specificEnthalpy(state=
-    Medium.setState_pTX(p=port_a.p, T=T_reverseFlow_a, X=X_w_reverseFlow_a));
+  T_b_forFlo =T_a_forFlo - satEff*(T_a_forFlo - wetBul_a_forFlo.TWetBul);
+  T_a_revFlo =T_b_revFlo - satEff*(T_b_revFlo - wetBul_b_revFlo.TWetBul);
 
-  wetBulIn.TDryBul = Modelica.Fluid.Utilities.regStep(
-    x=port_a.m_flow,
-    y1=T_forwardFlow_a,
-    y2=T_reverseFlow_b,
-    x_small=m_flow_small);
-  wetBulIn.Xi = Modelica.Fluid.Utilities.regStep(
-    x=port_a.m_flow,
-    y1=X_w_forwardFlow_a,
-    y2=X_w_reverseFlow_b,
-    x_small=m_flow_small);
-  wetBulIn.p = Modelica.Fluid.Utilities.regStep(
-    x=port_a.m_flow,
-    y1=port_a.p,
-    y2=port_b.p,
-    x_small=m_flow_small);
+  h_b_forFlo = Medium.specificEnthalpy(state=
+    Medium.setState_pTX(p=port_b.p, T=T_b_forFlo, X=Xi_b_forFlo));
+  h_a_revFlo = Medium.specificEnthalpy(state=
+    Medium.setState_pTX(p=port_a.p, T=T_a_revFlo, X=Xi_a_revFlo));
 
-  wetBulOutForFlo.TWetBul = wetBulIn.TWetBul;
-  wetBulOutRevFlo.TWetBul = wetBulIn.TWetBul;
+  wetBul_a_forFlo.TDryBul = T_a_forFlo;
+  wetBul_a_forFlo.Xi = Xi_a_forFlo;
+  wetBul_a_forFlo.p = port_a.p;
+  wetBul_b_revFlo.TDryBul = T_b_revFlo;
+  wetBul_b_revFlo.Xi = Xi_b_revFlo;
+  wetBul_b_revFlo.p = port_b.p;
+  wetBul_b_forFlo.TWetBul =wetBul_a_forFlo.TWetBul;
 
-  wetBulOutForFlo.TDryBul = T_forwardFlow_b;
-  wetBulOutForFlo.Xi = X_w_forwardFlow_b;
-  wetBulOutForFlo.p = port_b.p;
-
-  wetBulOutRevFlo.TDryBul = T_reverseFlow_a;
-  wetBulOutRevFlo.Xi = X_w_reverseFlow_a;
-  wetBulOutRevFlo.p = port_a.p;
-
-  T_forwardFlow_b = T_forwardFlow_a - satEff*(T_forwardFlow_a - wetBulIn.TWetBul);
-  T_reverseFlow_a = T_reverseFlow_b - satEff*(T_reverseFlow_b - wetBulIn.TWetBul);
+  wetBul_b_forFlo.TDryBul = T_b_forFlo;
+  wetBul_b_forFlo.Xi = Xi_b_forFlo;
+  wetBul_b_forFlo.p = port_b.p;
+  wetBul_a_revFlo.TDryBul = T_a_revFlo;
+  wetBul_a_revFlo.Xi = Xi_a_revFlo;
+  wetBul_a_revFlo.p = port_a.p;
+  wetBul_a_revFlo.TWetBul =wetBul_b_revFlo.TWetBul;
 
   T_a = Modelica.Fluid.Utilities.regStep(
     x=port_a.m_flow,
-    y1=T_forwardFlow_a,
-    y2=T_reverseFlow_a,
+    y1=T_a_forFlo,
+    y2=T_a_revFlo,
     x_small=m_flow_small);
 
   T_b = Modelica.Fluid.Utilities.regStep(
     x=port_a.m_flow,
-    y1=T_forwardFlow_b,
-    y2=T_reverseFlow_b,
+    y1=T_b_forFlo,
+    y2=T_b_revFlo,
     x_small=m_flow_small);
 
   port_a.h_outflow = Modelica.Fluid.Utilities.regStep(
     x=port_a.m_flow,
-    y1=h_forwardFlow_a,
-    y2=h_reverseFlow_a,
+    y1=h_a_forFlo,
+    y2=h_a_revFlo,
     x_small=m_flow_small);
 
   port_b.h_outflow = Modelica.Fluid.Utilities.regStep(
     x=port_a.m_flow,
-    y1=h_forwardFlow_b,
-    y2=h_reverseFlow_b,
+    y1=h_b_forFlo,
+    y2=h_b_revFlo,
     x_small=m_flow_small);
 
   port_a.Xi_outflow = Modelica.Fluid.Utilities.regStep(
     x=port_a.m_flow,
-    y1=X_w_forwardFlow_a,
-    y2=X_w_reverseFlow_a,
+    y1=Xi_a_forFlo,
+    y2=Xi_a_revFlo,
     x_small=m_flow_small);
 
   port_b.Xi_outflow = Modelica.Fluid.Utilities.regStep(
     x=port_a.m_flow,
-    y1=X_w_forwardFlow_b,
-    y2=X_w_reverseFlow_b,
+    y1=Xi_b_forFlo,
+    y2=Xi_b_revFlo,
     x_small=m_flow_small);
 
   if not allowFlowReversal then
