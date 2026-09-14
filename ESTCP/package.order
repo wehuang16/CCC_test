@@ -40,3 +40,11 @@ splineDerivativesExample
 SimplePad
 TestMixingVolume
 Direct_DryWetSwitch
+Direct
+Direct1
+DirectValidation
+EvaporativePadInterfaceValidation
+EvaporativePadInterface
+SubBlock
+MainBlock
+MainBlockValidation
