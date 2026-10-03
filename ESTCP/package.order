@@ -48,3 +48,6 @@ EvaporativePadInterface
 SubBlock
 MainBlock
 MainBlockValidation
+DryCooler
+NormalizedPower
+PressureCurve
