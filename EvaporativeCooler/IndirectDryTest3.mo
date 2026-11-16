@@ -1,5 +1,5 @@
 within CCC_test.EvaporativeCooler;
-model IndirectDryTest2 "Indirect dry evaporative cooler"
+model IndirectDryTest3 "Indirect dry evaporative cooler"
   //extends Buildings.Fluid.Interfaces.PartialFourPortParallel;
 
   replaceable package Medium1 =
@@ -356,4 +356,4 @@ Icon(coordinateSystem(extent={{-220,-140},{260,100}}),
   Rectangle(lineColor={255, 255, 255}, fillColor={255,236,32},
             fillPattern=FillPattern.Solid, extent={{-20,-52},{-24,52}})}),
     Diagram(coordinateSystem(extent={{-220,-140},{260,100}})));
-end IndirectDryTest2;
+end IndirectDryTest3;
