@@ -47,7 +47,7 @@ model TankWithBlowdown
     dp_nominal={25,-25,-25}) annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=90,
-        origin={30,50})));
+        origin={30,90})));
   Buildings.Fluid.Sources.MassFlowSource_T MakUpWat(
     redeclare package Medium = Medium,
     use_m_flow_in=true,
@@ -67,7 +67,7 @@ model TankWithBlowdown
     dp_nominal={25,-25,-25}) annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=90,
-        origin={30,110})));
+        origin={30,50})));
   Modelica.Fluid.Sources.MassFlowSource_T sinEva(
     redeclare package Medium = Medium,
     use_m_flow_in=true,
@@ -76,7 +76,7 @@ model TankWithBlowdown
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
-        origin={70,110})));
+        origin={70,50})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con2(k=-0.02)
     annotation (Placement(transformation(extent={{100,122},{120,142}})));
   Modelica.Fluid.Sources.MassFlowSource_T sinBloDow(
@@ -87,11 +87,11 @@ model TankWithBlowdown
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
-        origin={70,50})));
+        origin={70,90})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai1(k=1/(cycCon - 1))
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=180,
-        origin={110,50})));
+        origin={110,90})));
   Buildings.Controls.OBC.CDL.Conversions.BooleanToReal booToRea
     annotation (Placement(transformation(extent={{-102,-80},{-82,-60}})));
   Buildings.Controls.OBC.CDL.Reals.Hysteresis hys(
@@ -107,28 +107,22 @@ equation
                           color={0,127,255}));
   connect(preDro.port_b, tank.ports[2]) annotation (Line(points={{30,0},{30,-12},
           {0,-12},{0,-10}}, color={0,127,255}));
-  connect(junBloDow.port_2, preDro.port_a)
-    annotation (Line(points={{30,40},{30,20}}, color={0,127,255}));
   connect(MakUpWat.ports[1], tank.ports[3]) annotation (Line(points={{-20,-50},
           {1.33333,-50},{1.33333,-10}}, color={0,127,255}));
   connect(gai.y, MakUpWat.m_flow_in)
     annotation (Line(points={{-48,-70},{-42,-70},{-42,-42}}, color={0,0,127}));
   connect(con1.y, mov.y)
     annotation (Line(points={{-98,20},{-62,20}}, color={0,0,127}));
-  connect(mov.port_b, junEva.port_1) annotation (Line(points={{-50,30},{-50,142},
-          {30,142},{30,120}}, color={0,127,255}));
-  connect(junEva.port_2, junBloDow.port_1)
-    annotation (Line(points={{30,100},{30,60}}, color={0,127,255}));
   connect(con2.y, sinEva.m_flow_in) annotation (Line(points={{122,132},{140,132},
-          {140,102},{80,102}}, color={0,0,127}));
+          {140,42},{80,42}},   color={0,0,127}));
   connect(junEva.port_3, sinEva.ports[1])
-    annotation (Line(points={{40,110},{60,110}}, color={0,127,255}));
+    annotation (Line(points={{40,50},{60,50}},   color={0,127,255}));
   connect(junBloDow.port_3, sinBloDow.ports[1])
-    annotation (Line(points={{40,50},{60,50}}, color={0,127,255}));
-  connect(gai1.y, sinBloDow.m_flow_in) annotation (Line(points={{98,50},{90,50},
-          {90,42},{80,42}}, color={0,0,127}));
-  connect(con2.y, gai1.u) annotation (Line(points={{122,132},{140,132},{140,50},
-          {122,50}}, color={0,0,127}));
+    annotation (Line(points={{40,90},{60,90}}, color={0,127,255}));
+  connect(gai1.y, sinBloDow.m_flow_in) annotation (Line(points={{98,90},{90,90},
+          {90,82},{80,82}}, color={0,0,127}));
+  connect(con2.y, gai1.u) annotation (Line(points={{122,132},{140,132},{140,90},
+          {122,90}}, color={0,0,127}));
   connect(booToRea.y, gai.u)
     annotation (Line(points={{-80,-70},{-72,-70}}, color={0,0,127}));
   connect(realExpression.y, hys.u) annotation (Line(points={{-199,-70},{-182,
@@ -137,6 +131,12 @@ equation
                        color={255,0,255}));
   connect(not1.y, booToRea.u) annotation (Line(points={{-118,-70},{-104,-70}},
                  color={255,0,255}));
+  connect(mov.port_b, junBloDow.port_1) annotation (Line(points={{-50,30},{-50,
+          120},{30,120},{30,100}}, color={0,127,255}));
+  connect(junBloDow.port_2, junEva.port_1)
+    annotation (Line(points={{30,80},{30,60}}, color={0,127,255}));
+  connect(junEva.port_2, preDro.port_a)
+    annotation (Line(points={{30,40},{30,20}}, color={0,127,255}));
   annotation (experiment(
       StopTime=86400,
       Interval=60,
